@@ -2,7 +2,7 @@
 tipo: stile
 titolo: "Testo e lettering"
 spunti: [capitano-della-mia-anima]
-idee: [sognatore-insonne, corona-cieca]
+idee: [sognatore-insonne, alce-di-zapffe]
 creato: 2026-10-04
 ---
 
@@ -18,4 +18,4 @@ Il testo come elemento del tatuaggio. Le domande che ritornano:
 ## Collegamenti
 
 - **Spunti:** [Il capitano della mia anima](/spunti/capitano-della-mia-anima/index.md)
-- **Idee:** [Il sognatore insonne](/idee/sognatore-insonne/index.md) · [La corona cieca](/idee/corona-cieca/index.md)
+- **Idee:** [Il sognatore insonne](/idee/sognatore-insonne/index.md) · [L'alce di Zapffe](/idee/alce-di-zapffe/index.md)

@@ -11,7 +11,7 @@ simboli: [spirale, stelle]
 fonti: [true-detective-s1]
 spunti: [true-detective-sogno]
 percorsi: []
-idee: [corona-cieca]
+idee: [alce-di-zapffe]
 risonanza:
 creato: 2026-10-04
 aggiornato: 2026-10-04
@@ -61,4 +61,4 @@ _Nessuna immagine ancora._
 - **Simboli:** [La spirale](/simboli/spirale.md) · [Le stelle](/simboli/stelle.md)
 - **Stile:** [Dissolvenze](/stile/dissolvenze.md) · [Spazio negativo](/stile/spazio-negativo.md) · [Testo e lettering](/stile/testo-e-lettering.md)
 - **Spunti:** [Non dormo, sogno soltanto](/spunti/true-detective-sogno/index.md)
-- **Idee:** [La corona cieca](/idee/corona-cieca/index.md)
+- **Idee:** [L'alce di Zapffe](/idee/alce-di-zapffe/index.md)

@@ -71,7 +71,9 @@ for (const p of file(ROOT)) {
   if (perSlug.has(n.slug)) errori.push(`slug duplicato "${n.slug}": ${perSlug.get(n.slug).rel} e ${rel}`)
   else perSlug.set(n.slug, n)
 }
-const grafo = [...note.values()].filter((n) => CAMPO[n.fm.tipo])
+// le note in _archivio/ restano fuori dai controlli su grafo e orfani (i link rotti si controllano comunque)
+const archiviata = (n) => n.rel.startsWith('_archivio/')
+const grafo = [...note.values()].filter((n) => CAMPO[n.fm.tipo] && !archiviata(n))
 
 // --- link nel testo
 const entranti = new Map([...note.values()].map((n) => [n.p, new Set()]))
@@ -117,7 +119,7 @@ for (const [s, vs] of vicini) {
 
 // --- orfani: note senza nessun link entrante
 for (const n of note.values()) {
-  if (basename(n.p) === 'README.md') continue
+  if (basename(n.p) === 'README.md' || archiviata(n)) continue
   if (entranti.get(n.p).size === 0) errori.push(`nota orfana (nessun link entrante): ${n.rel}`)
 }
 

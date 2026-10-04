@@ -1,7 +1,7 @@
 ---
 tipo: idea
 titolo: "La corona cieca"
-stato: seme
+stato: archiviata
 formato: 
 placement: []
 stile: [testo-e-lettering, incisione-xilografia]
@@ -51,6 +51,7 @@ _Nessuna immagine ancora._
 ## Evoluzione
 
 - 2026-10-04: nata dal monologo di Rust nello spunto [La coscienza come passo falso](/spunti/true-detective-coscienza/index.md) e da un pin. Stato iniziale: `seme`.
+- 2026-10-04: archiviata, confluita in [L'alce di Zapffe](/idee/alce-di-zapffe/index.md): i pin di True Detective sono reference, non idee a sé.
 
 ## Collegamenti
 
