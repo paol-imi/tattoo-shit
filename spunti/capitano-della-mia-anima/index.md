@@ -11,6 +11,7 @@ stile: [testo-e-lettering]
 percorsi: [dal-dolore-alle-stelle]
 idee: []
 stato: grezzo
+ricerche: [pensieri-marco-aurelio]
 creato: 2026-10-04
 ---
 
@@ -70,3 +71,4 @@ _Nessun pin collegato._
 - **Simboli:** [La porta](/simboli/porta.md)
 - **Stile:** [Testo e lettering](/stile/testo-e-lettering.md)
 - **Percorsi:** [Dal dolore alle stelle](/percorsi/dal-dolore-alle-stelle.md)
+- **Ricerche:** [I Pensieri di Marco Aurelio](/ricerche/pensieri-marco-aurelio/index.md)

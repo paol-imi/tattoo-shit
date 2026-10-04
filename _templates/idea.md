@@ -12,6 +12,7 @@ fonti: []
 spunti: []
 percorsi: []
 idee: []
+ricerche: []               # ricerche da cui è nata
 risonanza:                 # 1–5, quanto mi "colpisce" a pancia, aggiornabile
 creato: AAAA-MM-GG
 aggiornato: AAAA-MM-GG

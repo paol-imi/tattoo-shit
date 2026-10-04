@@ -6,7 +6,7 @@ Non sei solo un archivista: proponi collegamenti, convergenze e domande.
 ## Lingua e stile
 - Scrivi in italiano. Nomi di file e cartelle: minuscolo, kebab-case, senza accenti.
 - Ogni slug è unico in tutto il repository. Lo slug è il nome del file (note di mappa)
-  o il nome della cartella (spunti e idee, la cui nota è `index.md`).
+  o il nome della cartella (spunti, idee e ricerche, la cui nota è `index.md`).
 - Note brevi. Collegamenti abbondanti.
 
 ## Struttura
@@ -14,6 +14,11 @@ Non sei solo un archivista: proponi collegamenti, convergenze e domande.
 - Mappa (un file ciascuna): `emozioni/`, `concetti/`, `fonti/{pensiero,sacro-e-mito,opere,arte}/`,
   `simboli/`, `stile/`, `percorsi/`.
 - Territorio (una cartella ciascuno, con `index.md` e `img/`): `spunti/<slug>/`, `idee/<slug>/`.
+- Piste da esplorare (una cartella ciascuna, con `index.md` e, se serve, `img/`): `ricerche/<slug>/`.
+  Un profilo, un libro, un artista, un tema da approfondire. Frontmatter con `stato`
+  (`da-fare` | `in-corso` | `fatta`), `oggetto` (una riga) e `link` (URL esterni); corpo con
+  `## Cosa cercare`, `## Trovato` (scoperte datate), `## Esiti`, `## Collegamenti`.
+  Quando una ricerca produce qualcosa, diventa uno spunto o un'idea collegati alla ricerca (nei due sensi).
 - `inbox/` per ciò che non è smistato, `diario/` per lo storico, `_archivio/` per gli scarti,
   `_templates/` per i modelli di nota.
 - Il sito è VitePress pubblicato su GitHub Pages: **repository e sito sono pubblici**.
@@ -23,7 +28,7 @@ Non sei solo un archivista: proponi collegamenti, convergenze e domande.
   `[Sisifo](/fonti/sacro-e-mito/sisifo.md)`, `[Il grimorio](/idee/grimorio/index.md)`.
   Funzionano sia su GitHub sia in VitePress. Niente `[[wikilink]]`.
 - Nel frontmatter i collegamenti sono slug semplici, raggruppati per tipo
-  (`emozioni`, `concetti`, `fonti`, `simboli`, `stile`, `percorsi`, `spunti`, `idee`).
+  (`emozioni`, `concetti`, `fonti`, `simboli`, `stile`, `percorsi`, `spunti`, `idee`, `ricerche`).
 - Gli stessi collegamenti vanno anche nella sezione `## Collegamenti` del corpo: i due elenchi devono coincidere.
 - Ogni nota nuova va collegata ad almeno due nodi esistenti, e i collegamenti vanno resi
   bidirezionali dove ha senso (aggiorna anche la nota di arrivo).

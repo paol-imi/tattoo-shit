@@ -41,6 +41,7 @@ Le idee erano sparse tra Pinterest, chat, appunti e immagini generate. Qui stann
 |---|---|
 | [spunti/](spunti/) | scintille: un frammento preciso che mi ha colpito |
 | [idee/](idee/) | proposte di tatuaggio, dove le dimensioni si incontrano |
+| [ricerche/](ricerche/) | piste da esplorare: un profilo, un libro, un artista; quello che ne nasce diventa spunto o idea |
 
 E poi [inbox/](inbox/) per ciò che non è smistato, [diario/](diario/) per lo storico, [_templates/](_templates/) per i modelli di nota.
 
@@ -67,6 +68,7 @@ Le istruzioni permanenti per Claude Code sono in [CLAUDE.md](CLAUDE.md).
 - **Fase 1, fondamenta e migrazione:** fatta. 157 note nate dal [seme](diario/2026-10-04-seed.md), vedi il [diario](diario/2026-10-04-fase-1.md).
 - **Primi spunti:** True Detective e Invictus, vedi il [diario](diario/2026-10-04-primi-spunti.md).
 - **Fase 2, il sito:** fatta. VitePress su GitHub Pages, con indice generato dalle cartelle, ricerca, embed Pinterest e backlink, vedi il [diario](diario/2026-10-04-fase-2.md).
+- **Ricerche:** nuova sezione per le piste da esplorare, con le prime due: [I Pensieri di Marco Aurelio](ricerche/pensieri-marco-aurelio/index.md) e [Sooraj Saxena](ricerche/soorajsaxena/index.md), vedi il [diario](diario/2026-10-04-ricerche.md).
 - **Fase 3, Pinterest:** link alle board e triage.
 - **Fase 4, le skill di Claude Code:** `/spunto`, `/idea`, `/triage`, `/convergenze`, `/diario`…
 - **Fase 5, lavoro creativo:** ricorrente.

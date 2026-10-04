@@ -9,6 +9,7 @@ simboli: []
 fonti: []                  # altre fonti oltre a quella principale
 percorsi: []
 idee: []                   # idee generate da questo spunto
+ricerche: []               # ricerche da cui è nato o che apre
 stato: grezzo              # grezzo | esplorato | confluito | archiviato
 creato: AAAA-MM-GG
 ---

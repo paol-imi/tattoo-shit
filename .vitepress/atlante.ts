@@ -31,12 +31,12 @@ export interface Nota {
 
 const TIPO_DA_CARTELLA: Record<string, string> = {
   emozioni: 'emozione', concetti: 'concetto', fonti: 'fonte', simboli: 'simbolo', stile: 'stile',
-  percorsi: 'percorso', spunti: 'spunto', idee: 'idea', diario: 'diario', inbox: 'inbox',
+  percorsi: 'percorso', spunti: 'spunto', idee: 'idea', ricerche: 'ricerca', diario: 'diario', inbox: 'inbox',
   _archivio: 'archivio',
 }
 
 export const ETICHETTE: Record<string, string> = {
-  nucleo: 'Nucleo', percorso: 'Percorsi', idea: 'Idee', spunto: 'Spunti', emozione: 'Emozioni',
+  nucleo: 'Nucleo', percorso: 'Percorsi', idea: 'Idee', spunto: 'Spunti', ricerca: 'Ricerche', emozione: 'Emozioni',
   concetto: 'Concetti', fonte: 'Fonti', simbolo: 'Simboli', stile: 'Stile', inbox: 'Inbox',
   diario: 'Diario', archivio: 'Archivio',
 }
@@ -45,6 +45,12 @@ export const ORDINE_GRUPPI = Object.keys(ETICHETTE)
 export const STATI = ['tatuata', 'scelta', 'forte', 'in-esplorazione', 'seme']
 export const ETICHETTE_STATO: Record<string, string> = {
   tatuata: 'Tatuate', scelta: 'Scelte', forte: 'Forti', 'in-esplorazione': 'In esplorazione', seme: 'Semi',
+}
+
+// le ricerche (piste da esplorare): prima quelle aperte
+export const STATI_RICERCA = ['in-corso', 'da-fare', 'fatta']
+export const ETICHETTE_STATO_RICERCA: Record<string, string> = {
+  'in-corso': 'In corso', 'da-fare': 'Da fare', fatta: 'Fatte',
 }
 
 export const SOTTOCARTELLE_FONTI: [string, string][] = [

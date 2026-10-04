@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// La home: la formula del nucleo, i percorsi, le idee per stato.
+// La home: la formula del nucleo, i percorsi, le idee per stato, le piste aperte.
 import { computed } from 'vue'
 import { withBase } from 'vitepress'
 import { data } from '../home.data'
@@ -61,6 +61,19 @@ const totIdee = computed(() => data.stati.reduce((t, s) => t + s.idee.length, 0)
         </ul>
       </div>
       <p v-if="vuote.length" class="nota-sezione">Ancora nessuna idea tra le {{ elenco(vuote) }}.</p>
+    </section>
+
+    <section class="sezione">
+      <h2 id="piste-aperte" tabindex="-1">Piste aperte <a class="header-anchor" href="#piste-aperte" aria-label="Link a Piste aperte">&#8203;</a></h2>
+      <p class="nota-sezione">Ricerche da fare o in corso: quello che ne nasce diventa spunto o idea.</p>
+      <ul v-if="data.piste.length" class="idee piste">
+        <li v-for="p in data.piste" :key="p.link" class="idea">
+          <a class="titolo" :href="withBase(p.link)">{{ p.titolo }}</a>
+          <span class="dettagli">{{ p.stato.toLowerCase() }}</span>
+          <span v-if="p.oggetto" class="concetto">{{ p.oggetto }}</span>
+        </li>
+      </ul>
+      <p v-else class="nota-sezione">Nessuna pista aperta: tutte le ricerche sono fatte.</p>
     </section>
 
     <p class="mappa">

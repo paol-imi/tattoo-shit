@@ -6,6 +6,7 @@ fonti: [lamed-vav, maimonide, vangelo-matteo, marco-aurelio, tao-te-ching, kshit
 simboli: [lamed-vav-lettere, vite]
 percorsi: [dall-io-al-noi]
 idee: [i-36-giusti]
+ricerche: [pensieri-marco-aurelio]
 creato: 2026-10-04
 ---
 
@@ -30,3 +31,4 @@ Fonti:
 - **Simboli:** [ל״ו](/simboli/lamed-vav-lettere.md) · [La vite](/simboli/vite.md)
 - **Percorsi:** [Dall'io al noi](/percorsi/dall-io-al-noi.md)
 - **Idee:** [I 36 giusti](/idee/i-36-giusti/index.md)
+- **Ricerche:** [I Pensieri di Marco Aurelio](/ricerche/pensieri-marco-aurelio/index.md)

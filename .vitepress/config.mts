@@ -1,6 +1,7 @@
 import { defineConfig, type DefaultTheme } from 'vitepress'
 import {
-  note, diario, perTitolo, ETICHETTE, ORDINE_GRUPPI, STATI, ETICHETTE_STATO, SOTTOCARTELLE_FONTI, REWRITES,
+  note, diario, perTitolo, ETICHETTE, ORDINE_GRUPPI, STATI, ETICHETTE_STATO, STATI_RICERCA,
+  ETICHETTE_STATO_RICERCA, SOTTOCARTELLE_FONTI, REWRITES,
   type Nota,
 } from './atlante'
 import { pinterest } from './pinterest'
@@ -13,17 +14,20 @@ const voce = (n: Nota): DefaultTheme.SidebarItem => ({ text: n.titolo, link: n.l
 const delGruppo = (g: string) => tutte.filter((n) => n.gruppo === g)
 const ordinate = (g: string) => delGruppo(g).sort(perTitolo).map(voce)
 
-function idee(): DefaultTheme.SidebarItem[] {
-  const tutteIdee = delGruppo('idea')
-  const altri = [...new Set(tutteIdee.map((n) => n.fm.stato))].filter((s) => !STATI.includes(s))
-  return [...STATI, ...altri]
+// idee e ricerche: un sottogruppo per stato, nell'ordine dato (gli stati sconosciuti in coda)
+function perStato(gruppo: string, stati: string[], etichette: Record<string, string>): DefaultTheme.SidebarItem[] {
+  const tutteDelGruppo = delGruppo(gruppo)
+  const altri = [...new Set(tutteDelGruppo.map((n) => n.fm.stato))].filter((s) => !stati.includes(s))
+  return [...stati, ...altri]
     .map((stato) => ({
-      text: ETICHETTE_STATO[stato] ?? stato ?? 'Senza stato',
+      text: etichette[stato] ?? stato ?? 'Senza stato',
       collapsed: false,
-      items: tutteIdee.filter((n) => n.fm.stato === stato).sort(perTitolo).map(voce),
+      items: tutteDelGruppo.filter((n) => n.fm.stato === stato).sort(perTitolo).map(voce),
     }))
     .filter((g) => g.items.length)
 }
+const idee = () => perStato('idea', STATI, ETICHETTE_STATO)
+const ricerche = () => perStato('ricerca', STATI_RICERCA, ETICHETTE_STATO_RICERCA)
 
 function fonti(): DefaultTheme.SidebarItem[] {
   return SOTTOCARTELLE_FONTI.map(([cartella, text]) => ({
@@ -45,12 +49,13 @@ const voceDiario = diario(tutte).map(voce)
 const gruppi: Record<string, () => DefaultTheme.SidebarItem[]> = {
   nucleo: () => delGruppo('nucleo').map(voce),
   idea: idee,
+  ricerca: ricerche,
   fonte: fonti,
   inbox: () => conIndice('inbox'),
   diario: () => voceDiario,
   archivio: () => conIndice('archivio'),
 }
-const aperti = new Set(['nucleo', 'percorso', 'idea'])
+const aperti = new Set(['nucleo', 'percorso', 'idea', 'ricerca'])
 
 const sidebar: DefaultTheme.SidebarItem[] = ORDINE_GRUPPI.map((g) => ({
   text: ETICHETTE[g],
@@ -87,6 +92,7 @@ export default defineConfig({
     nav: [
       { text: 'Nucleo', link: '/nucleo' },
       { text: 'Idee', link: '/#le-idee' },
+      { text: 'Ricerche', link: '/#piste-aperte' },
       { text: 'Percorsi', items: percorsi.map((p) => ({ text: p.text!, link: p.link! })) },
       { text: 'Diario', items: voceDiario.map((p) => ({ text: p.text!, link: p.link! })) },
     ],

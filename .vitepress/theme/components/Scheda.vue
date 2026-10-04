@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// Riga in testa alla nota: il tipo e, per idee e spunti, stato, formato e risonanza.
+// Riga in testa alla nota: il tipo e, per idee, spunti e ricerche, stato, formato e risonanza.
 import { computed } from 'vue'
 import { useData } from 'vitepress'
 
@@ -8,6 +8,7 @@ const { frontmatter, page } = useData()
 const TIPI: Record<string, string> = {
   nucleo: 'Nucleo', percorso: 'Percorso', idea: 'Idea', spunto: 'Spunto', emozione: 'Emozione',
   concetto: 'Concetto', fonte: 'Fonte', simbolo: 'Simbolo', stile: 'Stile', diario: 'Diario',
+  ricerca: 'Ricerca',
 }
 const FONTI: Record<string, string> = {
   pensiero: 'pensiero', 'sacro-e-mito': 'sacro e mito', opere: 'opere', arte: 'arte',
@@ -24,7 +25,7 @@ const voci = computed(() => {
     const sotto = rel.split('/')[1]
     if (FONTI[sotto]) out.push(FONTI[sotto])
   }
-  if (tipo === 'idea' || tipo === 'spunto') {
+  if (tipo === 'idea' || tipo === 'spunto' || tipo === 'ricerca') {
     if (fm.stato) out.push(String(fm.stato).replace(/-/g, ' '))
     if (fm.formato) out.push(String(fm.formato).replace(/-/g, ' '))
   }

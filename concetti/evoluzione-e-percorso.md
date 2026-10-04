@@ -4,6 +4,7 @@ titolo: "Evoluzione e percorso"
 concetti: [tre-metamorfosi, nave-di-teseo]
 fonti: [eraclito, jordan-peterson]
 idee: [il-prigione, trittico-metamorfosi]
+ricerche: [soorajsaxena]
 creato: 2026-10-04
 ---
 
@@ -18,3 +19,4 @@ Fonti: le tre metamorfosi, Eraclito (panta rei), la nave di Teseo, il viaggio de
 - **Concetti:** [Le tre metamorfosi](/concetti/tre-metamorfosi.md) · [Identità che cambia: la nave di Teseo](/concetti/nave-di-teseo.md)
 - **Fonti:** [Eraclito](/fonti/pensiero/eraclito.md) · [Jordan Peterson](/fonti/pensiero/jordan-peterson.md)
 - **Idee:** [Il Prigione: il non-finito](/idee/il-prigione/index.md) · [Trittico delle metamorfosi](/idee/trittico-metamorfosi/index.md)
+- **Ricerche:** [Sooraj Saxena](/ricerche/soorajsaxena/index.md)

@@ -1,7 +1,8 @@
-// Dati della home: la formula del nucleo, i percorsi, le idee con stato, formato e risonanza.
+// Dati della home: la formula del nucleo, i percorsi, le idee con stato, formato e risonanza,
+// le piste aperte (ricerche non ancora fatte).
 // Si rigenera da solo a ogni build (e in sviluppo quando cambia una nota).
 import { defineLoader } from 'vitepress'
-import { note, perTitolo, sintesi, STATI, ETICHETTE_STATO } from '../atlante'
+import { note, perTitolo, sintesi, STATI, ETICHETTE_STATO, STATI_RICERCA, ETICHETTE_STATO_RICERCA } from '../atlante'
 
 export interface IdeaHome {
   titolo: string
@@ -11,10 +12,17 @@ export interface IdeaHome {
   risonanza: number | null
   concetto: string
 }
+export interface PistaHome {
+  titolo: string
+  link: string
+  stato: string
+  oggetto: string
+}
 export interface DatiHome {
   formula: string
   percorsi: { titolo: string; link: string; sintesi: string }[]
   stati: { stato: string; etichetta: string; idee: IdeaHome[] }[]
+  piste: PistaHome[]
   conteggi: { etichetta: string; n: number }[]
 }
 
@@ -52,11 +60,23 @@ export default defineLoader({
         }),
     }))
 
+    // piste aperte: tutte le ricerche non fatte, prima quelle in corso
+    const ordineStato = (s: string) => (STATI_RICERCA.includes(s) ? STATI_RICERCA.indexOf(s) : STATI_RICERCA.length)
+    const piste = tutte
+      .filter((n) => n.gruppo === 'ricerca' && n.fm.stato !== 'fatta')
+      .sort((a, b) => ordineStato(a.fm.stato) - ordineStato(b.fm.stato) || perTitolo(a, b))
+      .map((n) => ({
+        titolo: n.titolo,
+        link: n.link,
+        stato: ETICHETTE_STATO_RICERCA[n.fm.stato] ?? n.fm.stato ?? 'senza stato',
+        oggetto: n.fm.oggetto || sintesi(n.corpo),
+      }))
+
     const conteggi = [
       ['emozione', 'emozioni'], ['concetto', 'concetti'], ['fonte', 'fonti'], ['simbolo', 'simboli'],
-      ['stile', 'stili'], ['spunto', 'spunti'],
+      ['stile', 'stili'], ['spunto', 'spunti'], ['ricerca', 'ricerche'],
     ].map(([g, etichetta]) => ({ etichetta, n: tutte.filter((n) => n.gruppo === g).length }))
 
-    return { formula, percorsi, stati, conteggi }
+    return { formula, percorsi, stati, piste, conteggi }
   },
 })

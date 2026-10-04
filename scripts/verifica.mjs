@@ -10,7 +10,7 @@ const IGNORA = new Set(['node_modules', '.git', '.github', '.vitepress', '_templ
 const NON_ANALIZZARE = new Set(['diario/2026-10-04-seed.md', 'CLAUDE.md'])
 const CAMPO = {
   emozione: 'emozioni', concetto: 'concetti', fonte: 'fonti', simbolo: 'simboli',
-  stile: 'stile', percorso: 'percorsi', spunto: 'spunti', idea: 'idee',
+  stile: 'stile', percorso: 'percorsi', spunto: 'spunti', idea: 'idee', ricerca: 'ricerche',
 }
 const CAMPI = Object.values(CAMPO)
 
