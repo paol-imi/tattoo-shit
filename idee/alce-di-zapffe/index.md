@@ -11,7 +11,7 @@ simboli: [alce-irlandese, stelle, albero-della-vita-simbolo]
 fonti: [zapffe]
 spunti: [true-detective-coscienza]
 percorsi: []
-idee: []
+idee: [corona-cieca]
 risonanza:
 creato: 2026-10-04
 aggiornato: 2026-10-04
@@ -49,3 +49,4 @@ _Nessun pin collegato._
 - **Fonti:** [Peter Wessel Zapffe](/fonti/pensiero/zapffe.md)
 - **Simboli:** [L'alce irlandese](/simboli/alce-irlandese.md) · [Le stelle](/simboli/stelle.md) · [Albero della Vita (simbolo)](/simboli/albero-della-vita-simbolo.md)
 - **Spunti:** [La coscienza come passo falso](/spunti/true-detective-coscienza/index.md)
+- **Idee:** [La corona cieca](/idee/corona-cieca/index.md)

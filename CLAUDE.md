@@ -32,8 +32,10 @@ Non sei solo un archivista: proponi collegamenti, convergenze e domande.
 
 ## Immagini e Pinterest
 - Nel repository solo immagini mie: sketch, foto, immagini generate. Mai immagini Pinterest.
-- Pinterest si collega solo con il link del pin, nella sezione `## Pinterest`, un pin per riga:
-  `<Pin url="https://www.pinterest.com/pin/…" />`. Sul sito diventa l'embed ufficiale.
+- Pinterest si collega solo con il link del pin, nella sezione `## Pinterest`, un pin per riga,
+  come voce di elenco markdown: `- [breve descrizione del pin](https://www.pinterest.com/pin/ID/)`.
+  L'URL va sempre normalizzato in `https://www.pinterest.com/pin/ID/` (via sottodomini come `it.`, parametri, ecc.).
+  Niente tag HTML tipo `<Pin />`: GitHub li elimina. Il sito VitePress trasformerà questi link nell'embed ufficiale.
 - Le mie immagini vanno in `img/` dello spunto o dell'idea, con nome `AAAAMMGG-origine-descrizione.webp`
   (origine: `ref`, `sketch`, `foto`, `gen`). Prima del commit ridimensionale con
   `node scripts/immagini.mjs <file>` (lato lungo max 2000 px, WebP qualità 85).

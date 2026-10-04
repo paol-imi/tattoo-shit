@@ -4,6 +4,7 @@ titolo: "Resilienza, tenacia, passione: virtù e fortuna"
 emozioni: [caos, passione]
 fonti: [machiavelli, napoleone, tarocchi]
 simboli: [ruota-della-fortuna]
+spunti: [capitano-della-mia-anima]
 creato: 2026-10-04
 ---
 
@@ -18,3 +19,4 @@ Simbolo: la Ruota della Fortuna (anche nei Tarocchi).
 - **Emozioni:** [Caos](/emozioni/caos.md) · [Passione](/emozioni/passione.md)
 - **Fonti:** [Niccolò Machiavelli](/fonti/pensiero/machiavelli.md) · [Napoleone](/fonti/pensiero/napoleone.md) · [Tarocchi](/fonti/sacro-e-mito/tarocchi.md)
 - **Simboli:** [La Ruota della Fortuna](/simboli/ruota-della-fortuna.md)
+- **Spunti:** [Il capitano della mia anima](/spunti/capitano-della-mia-anima/index.md)

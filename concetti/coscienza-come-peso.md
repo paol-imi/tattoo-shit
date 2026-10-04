@@ -4,7 +4,7 @@ titolo: "La coscienza come peso"
 fonti: [zapffe, schopenhauer]
 simboli: [alce-irlandese]
 spunti: [true-detective-coscienza]
-idee: [alce-di-zapffe]
+idee: [alce-di-zapffe, corona-cieca]
 creato: 2026-10-04
 ---
 
@@ -17,4 +17,4 @@ La consapevolezza come dono e maledizione. Nato dallo spunto di True Detective s
 - **Fonti:** [Peter Wessel Zapffe](/fonti/pensiero/zapffe.md) · [Arthur Schopenhauer](/fonti/pensiero/schopenhauer.md)
 - **Simboli:** [L'alce irlandese](/simboli/alce-irlandese.md)
 - **Spunti:** [La coscienza come passo falso](/spunti/true-detective-coscienza/index.md)
-- **Idee:** [L'alce di Zapffe](/idee/alce-di-zapffe/index.md)
+- **Idee:** [L'alce di Zapffe](/idee/alce-di-zapffe/index.md) · [La corona cieca](/idee/corona-cieca/index.md)

@@ -29,7 +29,7 @@ _A pancia._
 
 ## Pinterest
 
-<!-- <Pin url="https://www.pinterest.com/pin/…" /> -->
+<!-- Un pin per riga: - [breve descrizione del pin](https://www.pinterest.com/pin/ID/) -->
 
 ## Collegamenti
 

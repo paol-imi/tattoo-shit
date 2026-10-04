@@ -8,7 +8,7 @@ emozioni: [lucidita, vuoto, malinconia]
 simboli: [alce-irlandese, stelle, spirale, ouroboros]
 fonti: [zapffe, ligotti, camus, schopenhauer]
 percorsi: [peso-sguardo-oltre, dal-dolore-alle-stelle]
-idee: [alce-di-zapffe, luce-contro-buio]
+idee: [alce-di-zapffe, luce-contro-buio, corona-cieca]
 stato: grezzo
 creato: 2026-10-04
 ---
@@ -20,7 +20,11 @@ creato: 2026-10-04
 
 [True Detective, stagione 1](/fonti/opere/true-detective-s1.md), episodio 1 (*The Long Bright Dark*). In macchina con Marty, Rust Cohle dice che secondo lui la coscienza umana è stata un passo falso tragico dell'evoluzione ("a tragic misstep in evolution"): siamo diventati troppo consapevoli di noi stessi, la natura ha creato una parte di sé separata da sé. Ne trae una conclusione estrema: la cosa più onorevole per la specie sarebbe smettere di riprodursi.
 
-_Citazione completa: la inserisco io._
+La citazione completa, come l'ho trascritta io:
+
+> I think human consciousness is a tragic misstep in human evolution. We became too self aware; nature created an aspect of nature separate from itself. We are creatures that should not exist by natural law. We are things that labor under the illusion of having a self, a secretion of sensory experience and feeling, programmed with total assurance that we are each somebody, when in fact everybody’s nobody. I think the honorable thing for our species to do is deny our programming, stop reproducing, walk hand in hand into extinction, one last midnight, brothers and sisters opting out of a raw deal.
+
+Nella versione citata più spesso l'inizio è "a tragic misstep in evolution", senza "human" (da verificare).
 
 ## Perché mi colpisce
 
@@ -47,6 +51,7 @@ Suggestioni, non intenzioni dichiarate: le corna di cervo nel primo caso; la [sp
 
 - [L'alce di Zapffe](/idee/alce-di-zapffe/index.md): un alce irlandese, o il suo scheletro, con corna immense che si ramificano fino a diventare costellazioni, o a disegnare le sefirot dell'Albero della Vita. La coscienza come corona e condanna insieme: troppo grande per vivere tranquilli, ma è con quella che si toccano le stelle.
 - [La luce sta vincendo](/idee/luce-contro-buio/index.md): un cielo notturno quasi tutto nero, dove poche stelle sono pelle lasciata libera. La proporzione tra luce e buio come messaggio. Minimale, leggibile solo da chi conosce il finale.
+- [La corona cieca](/idee/corona-cieca/index.md): il monologo come tatuaggio di testo, intorno a una testa bendata con corna di cervo. Il monologo come punto di partenza (il peso), non come approdo.
 
 ## Immagini
 
@@ -54,7 +59,9 @@ _Nessuna immagine ancora._
 
 ## Pinterest
 
-_Nessun pin collegato._ In fase di triage cercare pin legati a cervi e alci, cieli stellati, spirali, figure sotto le stelle, e proporli qui.
+- [Illustrazione a penna: testa bendata con capelli lunghi, rami e corna di cervo, una collana; sotto, la scritta "True Detective"](https://www.pinterest.com/pin/150378075043142308/)
+
+In fase di triage cercare altri pin legati a cervi e alci, cieli stellati, spirali, figure sotto le stelle, e proporli qui.
 
 ## Collegamenti
 
@@ -63,4 +70,4 @@ _Nessun pin collegato._ In fase di triage cercare pin legati a cervi e alci, cie
 - **Fonti:** [True Detective, stagione 1](/fonti/opere/true-detective-s1.md) · [Peter Wessel Zapffe](/fonti/pensiero/zapffe.md) · [Thomas Ligotti](/fonti/pensiero/ligotti.md) · [Albert Camus](/fonti/pensiero/camus.md) · [Arthur Schopenhauer](/fonti/pensiero/schopenhauer.md)
 - **Simboli:** [L'alce irlandese](/simboli/alce-irlandese.md) · [Le stelle](/simboli/stelle.md) · [La spirale](/simboli/spirale.md) · [Ouroboros](/simboli/ouroboros.md)
 - **Percorsi:** [Il peso → lo sguardo → l'oltre](/percorsi/peso-sguardo-oltre.md) · [Dal dolore alle stelle](/percorsi/dal-dolore-alle-stelle.md)
-- **Idee:** [L'alce di Zapffe](/idee/alce-di-zapffe/index.md) · [La luce sta vincendo](/idee/luce-contro-buio/index.md)
+- **Idee:** [L'alce di Zapffe](/idee/alce-di-zapffe/index.md) · [La luce sta vincendo](/idee/luce-contro-buio/index.md) · [La corona cieca](/idee/corona-cieca/index.md)

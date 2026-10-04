@@ -59,6 +59,7 @@ Le istruzioni permanenti per Claude Code sono in [CLAUDE.md](CLAUDE.md).
 ## Stato
 
 - **Fase 1, fondamenta e migrazione:** fatta. 157 note nate dal [seme](diario/2026-10-04-seed.md), vedi il [diario](diario/2026-10-04-fase-1.md).
+- **Primi spunti:** True Detective e Invictus, vedi il [diario](diario/2026-10-04-primi-spunti.md).
 - **Fase 2, il sito:** VitePress su GitHub Pages, embed Pinterest, backlink.
 - **Fase 3, Pinterest:** link alle board e triage.
 - **Fase 4, le skill di Claude Code:** `/spunto`, `/idea`, `/triage`, `/convergenze`, `/diario`…
