@@ -29,7 +29,7 @@ _Da scrivere io, a pancia._
 ## Genealogia
 
 Il pensiero di Rust ha radici precise:
-- [Peter Wessel Zapffe](/fonti/pensiero/zapffe.md), *L'ultimo Messia* (1933): la coscienza come sviluppo eccessivo, paragonata alle corna dell'[L'alce irlandese](/simboli/alce-irlandese.md), cresciute fino a renderlo incapace di vivere. Quattro difese: isolamento, ancoraggio, distrazione, sublimazione.
+- [Peter Wessel Zapffe](/fonti/pensiero/zapffe.md), *L'ultimo Messia* (1933): la coscienza come sviluppo eccessivo, paragonata alle corna dell'[alce irlandese](/simboli/alce-irlandese.md), cresciute fino a renderlo incapace di vivere. Quattro difese: isolamento, ancoraggio, distrazione, sublimazione.
 - [Thomas Ligotti](/fonti/pensiero/ligotti.md), *La cospirazione contro la razza umana*: riprende Zapffe; Pizzolatto lo ha indicato tra le sue influenze.
 - [Arthur Schopenhauer](/fonti/pensiero/schopenhauer.md), sullo sfondo.
 
@@ -41,7 +41,7 @@ Il pensiero di Rust ha radici precise:
 
 ## Echi visivi nella serie
 
-Suggestioni, non intenzioni dichiarate: le corna di cervo nel primo caso; la [La spirale](/simboli/spirale.md); il "tempo come cerchio piatto" (episodio 5, vedi [Eterno ritorno](/concetti/eterno-ritorno.md) e [Ouroboros](/simboli/ouroboros.md)); le [Le stelle](/simboli/stelle.md) del finale.
+Suggestioni, non intenzioni dichiarate: le corna di cervo nel primo caso; la [spirale](/simboli/spirale.md); il "tempo come cerchio piatto" (episodio 5, vedi [Eterno ritorno](/concetti/eterno-ritorno.md) e [Ouroboros](/simboli/ouroboros.md)); le [stelle](/simboli/stelle.md) del finale.
 
 ## Idee generate da questo spunto
 
