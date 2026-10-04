@@ -1,0 +1,12 @@
+{
+  "name": "atlante",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "verifica": "node scripts/verifica.mjs",
+    "immagini": "node scripts/immagini.mjs"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.5"
+  }
+}
