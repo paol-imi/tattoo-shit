@@ -6,7 +6,7 @@ import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs'
 import { join, dirname, basename, relative, resolve } from 'node:path'
 
 const ROOT = resolve(dirname(new URL(import.meta.url).pathname), '..')
-const IGNORA = new Set(['node_modules', '.git', '.vitepress', '_templates', 'scripts', '.claude'])
+const IGNORA = new Set(['node_modules', '.git', '.github', '.vitepress', '_templates', 'scripts', '.claude'])
 const NON_ANALIZZARE = new Set(['diario/2026-10-04-seed.md', 'CLAUDE.md'])
 const CAMPO = {
   emozione: 'emozioni', concetto: 'concetti', fonte: 'fonti', simbolo: 'simboli',
@@ -67,7 +67,7 @@ for (const p of file(ROOT)) {
   const testo = readFileSync(p, 'utf8')
   const n = { p, rel, testo, fm: frontmatter(testo), slug: slugDi(p) }
   note.set(p, n)
-  if (basename(p) === 'README.md') continue
+  if (basename(p) === 'README.md' || rel === 'index.md') continue
   if (perSlug.has(n.slug)) errori.push(`slug duplicato "${n.slug}": ${perSlug.get(n.slug).rel} e ${rel}`)
   else perSlug.set(n.slug, n)
 }
@@ -119,14 +119,15 @@ for (const [s, vs] of vicini) {
 
 // --- orfani: note senza nessun link entrante
 for (const n of note.values()) {
-  if (basename(n.p) === 'README.md' || archiviata(n)) continue
+  // README e home del sito (index.md alla radice) non hanno bisogno di link entranti
+  if (basename(n.p) === 'README.md' || n.rel === 'index.md' || archiviata(n)) continue
   if (entranti.get(n.p).size === 0) errori.push(`nota orfana (nessun link entrante): ${n.rel}`)
 }
 
 // --- riepilogo
 const perTipo = {}
 for (const n of note.values()) {
-  const t = n.fm.tipo || (basename(n.p) === 'README.md' ? 'readme' : 'altro')
+  const t = n.fm.tipo || (basename(n.p) === 'README.md' ? 'readme' : n.rel === 'index.md' ? 'home' : 'altro')
   perTipo[t] = (perTipo[t] || 0) + 1
 }
 console.log('Note per tipo:')

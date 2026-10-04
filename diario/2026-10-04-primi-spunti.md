@@ -15,7 +15,7 @@ data: 2026-10-04
 
 ## Cosa è cambiato
 
-- **Convenzione Pinterest:** niente più `<Pin url="…" />`, che GitHub elimina. Nella sezione `## Pinterest` ogni pin è una voce di elenco con un link markdown, `- [breve descrizione](https://www.pinterest.com/pin/ID/)`, con l'URL sempre normalizzato. Il sito lo trasformerà in embed. Aggiornati [CLAUDE.md](/CLAUDE.md) e i template di spunto e idea.
+- **Convenzione Pinterest:** niente più `<Pin url="…" />`, che GitHub elimina. Nella sezione `## Pinterest` ogni pin è una voce di elenco con un link markdown, `- [breve descrizione](https://www.pinterest.com/pin/ID/)`, con l'URL sempre normalizzato. Il sito lo trasformerà in embed. Aggiornati [CLAUDE.md](https://github.com/paol-imi/tattoo-shit/blob/main/CLAUDE.md) e i template di spunto e idea.
 
 ## Domande aperte
 

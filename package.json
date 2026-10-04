@@ -4,9 +4,13 @@
   "type": "module",
   "scripts": {
     "verifica": "node scripts/verifica.mjs",
-    "immagini": "node scripts/immagini.mjs"
+    "immagini": "node scripts/immagini.mjs",
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview"
   },
   "devDependencies": {
-    "sharp": "^0.35.5"
+    "sharp": "^0.35.5",
+    "vitepress": "^1.6.4"
   }
 }

@@ -28,7 +28,9 @@ Non sei solo un archivista: proponi collegamenti, convergenze e domande.
 - Ogni nota nuova va collegata ad almeno due nodi esistenti, e i collegamenti vanno resi
   bidirezionali dove ha senso (aggiorna anche la nota di arrivo).
 - Dopo ogni modifica lancia `node scripts/verifica.mjs`: slug unici, link rotti, note orfane,
-  coerenza tra frontmatter e `## Collegamenti`.
+  coerenza tra frontmatter e `## Collegamenti`. Deve passare anche `npm run docs:build`
+  (il sito, in `.vitepress/`, segnala i link morti); i link a file fuori dal sito, come README e CLAUDE.md,
+  vanno scritti con l'URL di GitHub.
 
 ## Immagini e Pinterest
 - Nel repository solo immagini mie: sketch, foto, immagini generate. Mai immagini Pinterest.

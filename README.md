@@ -52,7 +52,13 @@ Ogni nota ha i collegamenti due volte: nel frontmatter (slug, per filtri e tabel
 npm install                              # una volta sola
 node scripts/verifica.mjs                # slug unici, link rotti, note orfane, riepilogo
 node scripts/immagini.mjs <file…>        # ridimensiona le mie immagini (2000 px, WebP 85)
+npm run docs:dev                         # il sito in locale, su http://localhost:5173/tattoo-shit/
+npm run docs:build                       # build del sito: deve passare (segnala anche i link morti)
 ```
+
+Il sito è pubblico su <https://paol-imi.github.io/tattoo-shit/>: si pubblica da solo a ogni push su `main`
+(workflow in `.github/workflows/deploy.yml`). La prima volta va abilitato a mano in
+**Settings → Pages → Source: GitHub Actions**. La configurazione del sito è in `.vitepress/`.
 
 Le istruzioni permanenti per Claude Code sono in [CLAUDE.md](CLAUDE.md).
 
@@ -60,7 +66,7 @@ Le istruzioni permanenti per Claude Code sono in [CLAUDE.md](CLAUDE.md).
 
 - **Fase 1, fondamenta e migrazione:** fatta. 157 note nate dal [seme](diario/2026-10-04-seed.md), vedi il [diario](diario/2026-10-04-fase-1.md).
 - **Primi spunti:** True Detective e Invictus, vedi il [diario](diario/2026-10-04-primi-spunti.md).
-- **Fase 2, il sito:** VitePress su GitHub Pages, embed Pinterest, backlink.
+- **Fase 2, il sito:** fatta. VitePress su GitHub Pages, con indice generato dalle cartelle, ricerca, embed Pinterest e backlink, vedi il [diario](diario/2026-10-04-fase-2.md).
 - **Fase 3, Pinterest:** link alle board e triage.
 - **Fase 4, le skill di Claude Code:** `/spunto`, `/idea`, `/triage`, `/convergenze`, `/diario`…
 - **Fase 5, lavoro creativo:** ricorrente.
