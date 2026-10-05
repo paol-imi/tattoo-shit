@@ -60,6 +60,8 @@ _Da scrivere io, a pancia._
 > - **La porta stretta:** "how strait the gate" sembra un'eco della porta stretta di [Matteo](/fonti/sacro-e-mito/vangelo-matteo.md) 7,13-14 (da verificare). Vedi [la porta](/simboli/porta.md).
 >
 > Rispetto al [nucleo](/nucleo.md): è tutto peso e sguardo, resistenza. L'oltre (amore, verità) qui non c'è.
+>
+> Fanno parte della proposta anche questi collegamenti: Resilienza, tenacia, passione: virtù e fortuna, Amor fati, Battaglie interiori, Memento mori, Stoicismo, Vangelo di Matteo, La porta, Dal dolore alle stelle e I Pensieri di Marco Aurelio (che viene dalla convergenza proposta in quella ricerca).
 
 ## Immagini
 

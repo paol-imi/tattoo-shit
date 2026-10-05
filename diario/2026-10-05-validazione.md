@@ -44,6 +44,7 @@ data: 2026-10-05
   - nel sognatore insonne, i tre modi di far giocare il fumo;
   - nel capitano della mia anima, tutta la sezione Convergenze e il commento sul nucleo;
   - nei Pensieri di Marco Aurelio, la scelta dei dodici passi con il loro "perché può interessarmi" e i tre spunti proposti negli Esiti.
+  - in Sooraj Saxena, la lettura "Quindi, per ora…" (i fatti verificati restano fuori). I collegamenti nati solo da una proposta non si possono racchiudere: in Sooraj Saxena, nel capitano e nei Pensieri li elenca per titolo una frase dentro il blocco proposta. La riga sull'unione nello spunto della coscienza resta com'è: è storia, non proposta.
 - **Collegamenti di migrazione:** restano elencati nel [diario della fase 1](/diario/2026-10-04-fase-1.md), che è l'unica fonte. Ho aggiunto i link alle note, così la pagina Da validare e la mappa li riconoscono.
 - **Fuori dal conto:** l'archivio. [La corona cieca](/_archivio/corona-cieca/index.md) non ha i due campi: è già scartata.
 

@@ -63,6 +63,8 @@ _Ancora nessuno spunto creato._
 > - **"L'anima prende il colore dei pensieri"** (V.16). Uno spunto sul tatuaggio stesso come tintura dell'anima: la frase, o un'immagine di inchiostro che entra nella pelle come un pensiero ripetuto. Il meta-tatuaggio.
 > - **"L'ostacolo diventa la via"** (V.20). Il masso sul sentiero che diventa il gradino: la [scala](/simboli/scala.md) fatta degli ostacoli stessi. Si lega a Sisifo e alla discesa.
 > - **"Il promontorio"** (IV.49). Lo scoglio sotto le onde, in incisione nera: il peso e lo sguardo insieme, senza ancora l'oltre.
+>
+> Fanno parte della proposta anche questi collegamenti, che vengono dalla scelta dei dodici passi: Amor fati, Memento mori, Sacrificio anonimo, Pace interiore, Dolore, Lucidità, Eraclito, La vite, Clessidra, Testo e lettering, Il peso → lo sguardo → l'oltre e Il capitano della mia anima.
 
 Domanda per me: quale di questi passi ti colpisce di più, a pancia?
 
