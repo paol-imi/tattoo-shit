@@ -140,45 +140,122 @@
 }
 .pin figcaption a { color: inherit; font-weight: 400; }
 
-/* home */
-.atlante-home { max-width: 760px; margin: 0 auto; padding-top: 48px; }
-.atlante-home .testata { padding: 24px 0 8px; }
+/* home: un frontespizio, le tre porte, una vetrina della bacheca, poi l'indice */
+.atlante-home { max-width: 1160px; margin: 0 auto; padding-top: 32px; }
+.atlante-home .colonna { max-width: 760px; margin: 0 auto; }
+.atlante-home .testata {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 24px 0 36px;
+  text-align: center;
+}
 .atlante-home .marchio {
   margin: 0;
   font-size: 13px;
-  letter-spacing: 0.32em;
+  letter-spacing: 0.42em;
   text-transform: uppercase;
   color: var(--atl-rubrica);
 }
+.atlante-home .marchio::before, .atlante-home .marchio::after {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  width: 40px;
+  margin: 0 14px 0 calc(14px - 0.42em);
+  border-top: 1px solid currentColor;
+}
+.atlante-home .marchio::before { margin: 0 14px 0 0; }
 .vp-doc .atlante-home .formula {
-  margin: 16px 0 20px;
+  margin: 18px 0 18px;
   padding: 0;
   border: 0;
 }
 .vp-doc .atlante-home .formula p {
   margin: 0;
-  font-size: clamp(28px, 6vw, 44px);
-  line-height: 1.18;
+  font-size: clamp(30px, 5.6vw, 54px);
+  line-height: 1.12;
   font-weight: 500;
   color: var(--vp-c-text-1);
+  text-wrap: balance;
 }
-.atlante-home .sottotitolo { color: var(--vp-c-text-2); font-size: 17px; max-width: 560px; }
-.atlante-home .azioni { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
-.vp-doc .atlante-home .azione {
-  display: inline-block;
-  padding: 6px 18px;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: 500;
+.atlante-home .sottotitolo { color: var(--vp-c-text-2); font-size: 17px; max-width: 560px; margin: 0 auto; text-wrap: pretty; }
+.vp-doc .atlante-home .leggi-nucleo { display: inline-block; margin-left: 4px; font-weight: 600; color: var(--atl-rubrica); text-decoration: none; white-space: nowrap; }
+.vp-doc .atlante-home .leggi-nucleo:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* le tre porte */
+.atlante-home .porte {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 3px double var(--vp-c-text-1);
+  border-bottom: 3px double var(--vp-c-text-1);
+  padding: 4px 0;
+}
+.vp-doc .atlante-home a.porta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 28px 24px 26px;
+  text-align: center;
   color: var(--vp-c-text-1);
   text-decoration: none;
+  transition: background-color 0.25s;
 }
-.vp-doc .atlante-home .azione:hover { border-color: var(--vp-c-brand-1); color: var(--vp-c-brand-1); }
-.vp-doc .atlante-home .azione.primaria { background: var(--vp-c-text-1); border-color: var(--vp-c-text-1); color: var(--vp-c-bg); }
-.vp-doc .atlante-home .azione.primaria:hover { background: var(--vp-c-brand-1); border-color: var(--vp-c-brand-1); color: #fff; }
+.atlante-home .porta + .porta { border-left: 1px solid var(--vp-c-divider); }
+.vp-doc .atlante-home a.porta:hover { background: var(--vp-c-bg-elv); }
+.atlante-home .porta-ornamento { width: 76px; height: 76px; color: var(--atl-rubrica); --atl-carta-carta: var(--vp-c-bg); transition: transform 0.4s; }
+.vp-doc .atlante-home a.porta:hover .porta-ornamento { transform: rotate(-4deg) scale(1.04); --atl-carta-carta: var(--vp-c-bg-elv); }
+.atlante-home .porta-nome { font-family: var(--atl-serif); font-size: 32px; line-height: 1.1; font-weight: 500; }
+.atlante-home .porta-dice { font-weight: 400; font-size: 14.5px; line-height: 1.55; color: var(--vp-c-text-2); max-width: 300px; }
+.atlante-home .porta-conta { margin-top: 2px; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--atl-rubrica); }
+@media (max-width: 760px) {
+  .atlante-home .porte { grid-template-columns: 1fr; }
+  .atlante-home .porta + .porta { border-left: 0; border-top: 1px solid var(--vp-c-divider); }
+  .vp-doc .atlante-home a.porta {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    grid-template-areas: 'o n' 'o d' 'o c';
+    align-items: start;
+    gap: 2px 16px;
+    padding: 20px 4px;
+    text-align: left;
+  }
+  .atlante-home .porta-ornamento { grid-area: o; width: 56px; height: 56px; }
+  .atlante-home .porta-nome { grid-area: n; font-size: 26px; }
+  .atlante-home .porta-dice { grid-area: d; max-width: none; }
+  .atlante-home .porta-conta { grid-area: c; margin-top: 6px; }
+}
 
-.atlante-home .sezione { margin-top: 56px; }
+/* la vetrina: tre tavole */
+.atlante-home .vetrina h2 { text-align: center; border-top: 0; margin-top: 0; padding-top: 0; }
+.atlante-home .vetrina-tavole { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: start; margin-top: 20px; }
+.atlante-home .vetrina-colonna { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+@media (max-width: 900px) {
+  .atlante-home .vetrina-tavole { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
+  /* sul telefono bastano tre tavole */
+  .atlante-home .vetrina-colonna:nth-child(3) { display: none; }
+}
+.vp-doc .atlante-home .vetrina-tutte { text-align: center; margin-top: 20px; }
+.vp-doc .atlante-home .vetrina-tutte a { font-weight: 600; text-decoration: none; }
+.vp-doc .atlante-home .vetrina-tutte a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* le tavole dentro una pagina markdown (la home): via gli stili del documento */
+.vp-doc .tavola h3 { margin: -6px 0 0; padding: 0; border: 0; font-size: 22px; line-height: 1.2; }
+.vp-doc .tavola blockquote { margin: 0; padding: 0; border: 0; }
+.vp-doc .tavola blockquote p, .vp-doc .tavola p { margin: 0; }
+.vp-doc .tavola .tavola-citazione p { color: var(--vp-c-text-1); }
+.vp-doc .tavola ul.tavola-chip { margin: 2px 0 0; padding: 12px 0 0; list-style: none; }
+.vp-doc .tavola ul.tavola-chip li + li { margin-top: 0; }
+.vp-doc .tavola a { font-weight: 400; text-decoration: none; }
+.vp-doc .tavola .tavola-titolo a { font-weight: 600; color: var(--vp-c-text-1); }
+.vp-doc .tavola .tavola-titolo a:hover { color: var(--atl-rubrica); }
+.vp-doc .tavola a.chip { color: var(--vp-c-text-1); }
+.vp-doc .tavola a.tavola-apri { color: var(--vp-c-text-3); }
+.vp-doc .tavola:hover a.tavola-apri { color: var(--atl-rubrica); }
+.vp-doc .tavola figure { margin: 0 -8px; }
+.vp-doc .tavola figcaption a { color: inherit; }
+
+.atlante-home .sezione { margin-top: 64px; }
 .atlante-home .nota-sezione { color: var(--vp-c-text-2); font-size: 15px; }
 .vp-doc .atlante-home ol.percorsi { list-style: none; padding: 0; counter-reset: percorso; }
 .vp-doc .atlante-home ol.percorsi li {
@@ -207,4 +284,12 @@
 .atlante-home .dettagli .sep { margin: 0 0.5em; color: var(--vp-c-text-3); }
 .atlante-home .dettagli .vuoto { color: var(--vp-c-text-3); }
 .atlante-home .risonanza { letter-spacing: 0.15em; color: var(--atl-rubrica); }
-.atlante-home .mappa { margin-top: 56px; padding-top: 16px; border-top: 1px solid var(--vp-c-divider); font-size: 14px; color: var(--vp-c-text-3); }
+.atlante-home .conteggio { margin-top: 56px; padding-top: 16px; border-top: 1px solid var(--vp-c-divider); font-size: 14px; color: var(--vp-c-text-3); }
+
+/* in coda alla riga della scheda: mappa e bacheca */
+.scheda { display: flex; flex-wrap: wrap; align-items: baseline; row-gap: 2px; }
+.scheda-vai { margin-left: auto; display: inline-flex; gap: 14px; letter-spacing: 0.06em; }
+.scheda-voce + .scheda-vai { padding-left: 16px; }
+.scheda-vai a { color: var(--vp-c-text-2); text-decoration: none; border-bottom: 1px solid var(--vp-c-divider); }
+.scheda-vai a::before { content: '→ '; color: var(--atl-rubrica); }
+.scheda-vai a:hover { color: var(--atl-rubrica); border-bottom-color: currentColor; }

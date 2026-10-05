@@ -47,6 +47,16 @@ E poi [inbox/](inbox/) per ciò che non è smistato, [diario/](diario/) per lo s
 
 Ogni nota ha i collegamenti due volte: nel frontmatter (slug, per filtri e tabelle) e nella sezione `## Collegamenti` (link cliccabili). Le immagini Pinterest non stanno nel repository: si collegano con il link del pin e sul sito diventano embed.
 
+## Come navigare il sito
+
+Il sito ha tre porte, in alto nel menu e in home:
+
+- **[Bacheca](https://paol-imi.github.io/tattoo-shit/bacheca):** tutte le idee e gli spunti come tavole, con i pin e le parole. Tocca un chip (un simbolo, una fonte, un concetto) per vedere solo ciò che vi è legato; i filtri stanno nell'indirizzo e si possono condividere.
+- **[Testi](https://paol-imi.github.io/tattoo-shit/testi):** ogni citazione dell'archivio, per fonte. Le candidate al lettering.
+- **[Mappa](https://paol-imi.github.io/tattoo-shit/mappa):** il grafo delle note. Passa sopra un nodo per accendere i vicini, cliccalo per aprire la nota.
+
+Da ogni nota, la riga in testa porta alla sua posizione sulla mappa e alle tavole della bacheca legate a lei.
+
 ## Strumenti
 
 ```sh
@@ -69,6 +79,7 @@ Le istruzioni permanenti per Claude Code sono in [CLAUDE.md](CLAUDE.md).
 - **Primi spunti:** True Detective e Invictus, vedi il [diario](diario/2026-10-04-primi-spunti.md).
 - **Fase 2, il sito:** fatta. VitePress su GitHub Pages, con indice generato dalle cartelle, ricerca, embed Pinterest e backlink, vedi il [diario](diario/2026-10-04-fase-2.md).
 - **Ricerche:** nuova sezione per le piste da esplorare, con le prime due: [I Pensieri di Marco Aurelio](ricerche/pensieri-marco-aurelio/index.md) e [Sooraj Saxena](ricerche/soorajsaxena/index.md), vedi il [diario](diario/2026-10-04-ricerche.md).
+- **Bacheca, Testi e Mappa:** fatte. Il cuore visivo del sito, generato dalle note a ogni build, vedi il [diario](diario/2026-10-05-bacheca.md).
 - **Fase 3, Pinterest:** link alle board e triage.
 - **Fase 4, le skill di Claude Code:** `/spunto`, `/idea`, `/triage`, `/convergenze`, `/diario`…
 - **Fase 5, lavoro creativo:** ricorrente.
