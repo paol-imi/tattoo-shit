@@ -14,6 +14,8 @@ const props = defineProps<{
   filtrabile?: boolean
   /** quanti chip mostrare prima di "+N" */
   maxChip?: number
+  /** vero con l'interruttore "proposte" acceso: segni rossi, testi e collegamenti proposti da Claude */
+  proposte?: boolean
 }>()
 const emit = defineEmits<{ filtra: [slug: string] }>()
 
@@ -21,11 +23,18 @@ const TIPI: Record<string, string> = { idea: 'Idea', spunto: 'Spunto' }
 const ETICHETTE_CHIP: Record<string, string> = { concetto: 'concetto', simbolo: 'simbolo', fonte: 'fonte', emozione: 'emozione' }
 
 const c = computed(() => props.carta)
+// di default il testo viene solo da ciò che è validato (mai da un blocco proposta)
+const testo = computed(() => (props.proposte ? c.value.testo : c.value.testoValidato))
 const misura = computed(() => {
-  const n = c.value.testo?.testo.length ?? 0
+  const n = testo.value?.testo.length ?? 0
   return n <= 60 ? 'grande' : n <= 140 ? 'media' : 'piccola'
 })
-const chip = computed(() => c.value.chip.map((s) => ({ slug: s, ...props.nodi[s] })).filter((x) => x.titolo))
+const chip = computed(() =>
+  c.value.chip
+    .filter((s) => props.proposte || !c.value.nodiProposti.includes(s))
+    .map((s) => ({ slug: s, ...props.nodi[s] }))
+    .filter((x) => x.titolo),
+)
 const tuttiChip = ref(false)
 const limite = computed(() => props.maxChip ?? 6)
 const chipVisibili = computed(() => {
@@ -37,7 +46,7 @@ const chipVisibili = computed(() => {
 const nascosti = computed(() => chip.value.length - chipVisibili.value.length)
 // provenienza: una proposta di Claude non ancora approvata, o una nota mia con proposte dentro
 const prov = computed(() =>
-  !c.value.validata ? 'proposta' : c.value.proposte ? 'parziale' : null,
+  !props.proposte ? null : !c.value.validata ? 'proposta' : c.value.proposte ? 'parziale' : null,
 )
 const meta = computed(() => [c.value.stato.replace(/-/g, ' '), c.value.formato?.replace(/-/g, ' ')].filter(Boolean))
 </script>
@@ -82,10 +91,10 @@ const meta = computed(() => [c.value.stato.replace(/-/g, ' '), c.value.formato?.
 
     <Ornamento v-if="!c.pin.length" class="tavola-ornamento" :nome="c.ornamento" />
 
-    <blockquote v-if="c.testo?.citazione" class="tavola-citazione" :class="`misura-${misura}`">
-      <p>{{ c.testo.testo }}</p>
+    <blockquote v-if="testo?.citazione" class="tavola-citazione" :class="`misura-${misura}`">
+      <p>{{ testo.testo }}</p>
     </blockquote>
-    <p v-else-if="c.testo" class="tavola-concetto" :class="`misura-${misura}`">{{ c.testo.testo }}</p>
+    <p v-else-if="testo" class="tavola-concetto" :class="`misura-${misura}`">{{ testo.testo }}</p>
 
     <ul v-if="chip.length" class="tavola-chip" aria-label="Collegamenti">
       <li v-for="n in chipVisibili" :key="n.slug">

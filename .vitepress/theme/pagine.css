@@ -884,3 +884,86 @@ button.altri {
   .validare-parte { margin-top: 44px; }
   .validare-proposta-testo { padding: 10px 14px; }
 }
+
+/* --- Vista di default: solo ciò che ho validato.
+   Senza la classe `mostra-proposte` su <html> (l'interruttore "proposte", spento di default) spariscono
+   i blocchi proposta, i collegamenti proposti in `## Collegamenti` e i titoli fatti solo di proposte. */
+html:not(.mostra-proposte) .vp-doc .proposta.custom-block,
+html:not(.mostra-proposte) .solo-proposte,
+html:not(.mostra-proposte) .coll-proposto,
+html:not(.mostra-proposte) .coll-sep-primo { display: none !important; }
+
+/* una nota proposta aperta dal suo indirizzo: l'indicazione resta, ma discreta */
+html:not(.mostra-proposte) .scheda a.scheda-prov.da-validare { color: var(--vp-c-text-2); font-weight: 600; }
+
+/* con le proposte accese, i collegamenti proposti sono sottolineati a tratteggio */
+html.mostra-proposte .vp-doc .coll-proposto a,
+.vp-doc .collegato-da a.link-proposto { text-decoration-style: dashed; text-decoration-color: var(--atl-rubrica); }
+
+/* l'interruttore, nella barra in alto */
+.interruttore-proposte { display: flex; align-items: center; gap: 10px; margin-left: 14px; }
+.interruttore {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 2px;
+  border: 0;
+  background: none;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  color: var(--vp-c-text-2);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.interruttore:hover { color: var(--vp-c-text-1); }
+.interruttore:focus-visible { outline: 2px solid var(--vp-c-brand-1); outline-offset: 2px; border-radius: 4px; }
+.interruttore-pista {
+  position: relative;
+  flex: none;
+  width: 26px;
+  height: 15px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 999px;
+  background: var(--vp-c-bg-soft);
+  transition: border-color 0.2s;
+}
+.interruttore-pomello {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--vp-c-text-3);
+  transition: transform 0.2s, background-color 0.2s;
+}
+html.mostra-proposte .interruttore { color: var(--atl-rubrica); }
+html.mostra-proposte .interruttore-pista { border-color: color-mix(in srgb, var(--atl-rubrica) 50%, transparent); }
+html.mostra-proposte .interruttore-pomello { transform: translateX(11px); background: var(--atl-rubrica); }
+.interruttore-validare { font-size: 12px; color: var(--atl-rubrica); text-decoration: none; white-space: nowrap; }
+.interruttore-validare:hover { text-decoration: underline; text-underline-offset: 3px; }
+html:not(.mostra-proposte) .interruttore-proposte:not(.interruttore-schermo) .interruttore-validare { display: none; }
+@media (max-width: 1099px) {
+  .interruttore-proposte:not(.interruttore-schermo) .interruttore-validare { display: none; }
+}
+@media (max-width: 767px) {
+  .interruttore-proposte:not(.interruttore-schermo) { margin: 0 2px 0 6px; }
+  .interruttore-proposte:not(.interruttore-schermo) .interruttore-testo { font-size: 11px; letter-spacing: 0.04em; }
+}
+
+/* l'interruttore nel menu del telefono, con il link alla pagina Da validare */
+.interruttore-proposte.interruttore-schermo {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 24px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--vp-c-divider);
+}
+.interruttore-schermo .interruttore { font-size: 14px; letter-spacing: 0; }
+.interruttore-schermo .interruttore-validare { font-size: 14px; color: var(--vp-c-text-2); }
+
+/* la pagina Da validare: come vedere le proposte nel resto del sito */
+.validare-interruttore { margin: 10px 0 0; max-width: 640px; font-size: 14px; line-height: 1.6; color: var(--vp-c-text-3); }

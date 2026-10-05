@@ -48,6 +48,10 @@ data: 2026-10-05
 - **Collegamenti di migrazione:** restano elencati nel [diario della fase 1](/diario/2026-10-04-fase-1.md), che è l'unica fonte. Ho aggiunto i link alle note, così la pagina Da validare e la mappa li riconoscono.
 - **Fuori dal conto:** l'archivio. [La corona cieca](/_archivio/corona-cieca/index.md) non ha i due campi: è già scartata.
 
+## 2026-10-05, più tardi: di default solo il validato
+
+Il sito mostrava tutto, con i segni rossi: troppo caos. Ora, di default, si vede solo ciò che ho approvato: bacheca, testi, mappa, home, indice, ricerca e note non mostrano note proposte, blocchi proposta né collegamenti proposti (quelli di migrazione e quelli che un blocco dice "fanno parte della proposta"). Per esplorare le proposte c'è l'interruttore **proposte** in alto (sul telefono anche nel menu), che si ricorda la scelta, oppure la pagina [Da validare](/da-validare.md), che mostra sempre tutto ed è uscita dal menu principale. Le note non sono cambiate: è tutto lato sito.
+
 ## Domande aperte
 
 - Delle quattro note proposte, quale ti dice qualcosa a pancia? Partiamo da una.

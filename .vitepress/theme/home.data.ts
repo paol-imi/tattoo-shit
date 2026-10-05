@@ -24,15 +24,18 @@ export interface PistaHome {
   link: string
   stato: string
   oggetto: string
+  validata: boolean
 }
 export interface DatiHome {
   formula: string
-  percorsi: { titolo: string; link: string; sintesi: string }[]
+  percorsi: { titolo: string; link: string; sintesi: string; validata: boolean }[]
   stati: { stato: string; etichetta: string; idee: IdeaHome[] }[]
   piste: PistaHome[]
-  conteggi: { etichetta: string; n: number }[]
-  /** per le tre porte: quanti testi, quante note e fili sulla mappa */
+  /** n: tutte le note; validate: solo quelle validate (la vista di default) */
+  conteggi: { etichetta: string; n: number; validate: number }[]
+  /** per le tre porte: quanti testi, quante note e fili sulla mappa; con le proposte e senza */
   porte: { testi: number; fonti: number; nodi: number; archi: number }
+  porteValidate: { testi: number; fonti: number; nodi: number; archi: number }
   /** quante cose proposte da Claude aspettano un sì o un no (note, blocchi, collegamenti) */
   daValidare: number
 }
@@ -50,7 +53,7 @@ export default defineLoader({
     const percorsi = tutte
       .filter((n) => n.gruppo === 'percorso')
       .sort(perTitolo)
-      .map((n) => ({ titolo: n.titolo, link: n.link, sintesi: sintesi(n.corpo) }))
+      .map((n) => ({ titolo: n.titolo, link: n.link, sintesi: sintesi(n.corpo), validata: provenienza(n).validata }))
 
     const idee = tutte.filter((n) => n.gruppo === 'idea').sort(perTitolo)
     const stati = STATI.map((stato) => ({
@@ -82,16 +85,28 @@ export default defineLoader({
         link: n.link,
         stato: ETICHETTE_STATO_RICERCA[n.fm.stato] ?? n.fm.stato ?? 'senza stato',
         oggetto: n.fm.oggetto || sintesi(n.corpo),
+        validata: provenienza(n).validata,
       }))
 
     const conteggi = [
       ['emozione', 'emozioni'], ['concetto', 'concetti'], ['fonte', 'fonti'], ['simbolo', 'simboli'],
       ['stile', 'stili'], ['spunto', 'spunti'], ['ricerca', 'ricerche'],
-    ].map(([g, etichetta]) => ({ etichetta, n: tutte.filter((n) => n.gruppo === g).length }))
+    ].map(([g, etichetta]) => {
+      const delGruppo = tutte.filter((n) => n.gruppo === g)
+      return { etichetta, n: delGruppo.length, validate: delGruppo.filter((n) => provenienza(n).validata).length }
+    })
 
     const m = (mappa as any).load()
     const t = (testi as any).load()
     const porte = { testi: t.testi.length, fonti: t.fonti.length, nodi: m.nodi.length, archi: m.archi.length }
+    const nodiV = new Set(m.nodi.filter((n: any) => n.validata).map((n: any) => n.id))
+    const testiV = t.testi.filter((x: any) => !x.proposta)
+    const porteValidate = {
+      testi: testiV.length,
+      fonti: new Set(testiV.map((x: any) => x.fonte).filter(Boolean)).size,
+      nodi: nodiV.size,
+      archi: m.archi.filter((a: any) => !a.proposto && nodiV.has(a.source) && nodiV.has(a.target)).length,
+    }
 
     const tipi = new Set(Object.values(CAMPI_LINK))
     const attive = tutte.filter((n) => !n.archiviata && tipi.has(n.tipo))
@@ -100,6 +115,6 @@ export default defineLoader({
       attive.filter((n) => provenienza(n).validata).reduce((t, n) => t + proposteDi(n.corpo).length, 0) +
       collegamentiProposti().length
 
-    return { formula, percorsi, stati, piste, conteggi, porte, daValidare }
+    return { formula, percorsi, stati, piste, conteggi, porte, porteValidate, daValidare }
   },
 })

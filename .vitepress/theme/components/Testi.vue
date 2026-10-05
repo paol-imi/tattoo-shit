@@ -5,6 +5,21 @@ import { computed, ref } from 'vue'
 import { withBase } from 'vitepress'
 import { data } from '../testi.data'
 import { filtriNellUrl } from '../url'
+import { useProposte } from '../proposte'
+
+// di default solo i testi che compaiono in qualcosa di validato, e solo le note validate da cui vengono
+const mostra = useProposte()
+const testi = computed(() =>
+  mostra.value
+    ? data.testi
+    : data.testi.filter((t) => !t.proposta).map((t) => ({ ...t, note: t.note.filter((n) => !n.proposta) })),
+)
+const fonti = computed(() =>
+  data.fonti
+    .map((f) => ({ ...f, n: testi.value.filter((t) => t.fonte === f.slug).length }))
+    .filter((f) => f.n)
+    .sort((a, b) => b.n - a.n),
+)
 
 const fonte = ref<string>('')
 const misura = ref<string>('')
@@ -20,8 +35,8 @@ const TIPI: Record<string, string> = { spunto: 'spunto', idea: 'idea', ricerca: 
 const perSlug = Object.fromEntries(data.fonti.map((f) => [f.slug, f]))
 
 const gruppi = computed(() => {
-  const scelti = data.testi.filter((t) => (!fonte.value || t.fonte === fonte.value) && (!misura.value || t.misura === misura.value))
-  const ordine = [...data.fonti.map((f) => f.slug), null]
+  const scelti = testi.value.filter((t) => (!fonte.value || t.fonte === fonte.value) && (!misura.value || t.misura === misura.value))
+  const ordine = [...fonti.value.map((f) => f.slug), null]
   return ordine
     .map((s) => ({ fonte: s ? perSlug[s] : null, testi: scelti.filter((t) => t.fonte === s) }))
     .filter((g) => g.testi.length)
@@ -44,7 +59,7 @@ function apri(id: string) {
       <p class="atl-sommario">
         Ogni citazione trovata negli spunti, nelle idee e nelle ricerche, composta come un saggio di stampa.
         Le brevi sono candidate al lettering; le lunghe restano intere, da tagliare un giorno.
-        Quelle scelte da Claude e non ancora approvate portano il segno rosso.
+        <template v-if="mostra">Quelle scelte da Claude e non ancora approvate portano il segno rosso.</template>
       </p>
     </header>
 
@@ -53,10 +68,10 @@ function apri(id: string) {
         <span class="filtri-etichetta">Fonte</span>
         <div class="porte-elenco">
           <button type="button" class="chip" :class="{ attivo: !fonte }" :aria-pressed="!fonte ? 'true' : 'false'" @click="fonte = ''">
-            tutte <span class="conta">{{ data.testi.length }}</span>
+            tutte <span class="conta">{{ testi.length }}</span>
           </button>
           <button
-            v-for="f in data.fonti"
+            v-for="f in fonti"
             :key="f.slug"
             type="button"
             class="chip chip-fonte"
@@ -91,7 +106,7 @@ function apri(id: string) {
         v-for="t in g.testi"
         :key="t.id"
         class="saggio"
-        :class="[`misura-${t.misura}`, { aperto: aperti.has(t.id), proposta: t.proposta }]"
+        :class="[`misura-${t.misura}`, { aperto: aperti.has(t.id), proposta: mostra && t.proposta }]"
       >
         <blockquote :id="`testo-${t.id}`"><p>{{ t.testo }}</p></blockquote>
         <button
@@ -104,7 +119,7 @@ function apri(id: string) {
         >{{ aperti.has(t.id) ? 'Ripiega' : 'Leggi tutto' }}</button>
         <figcaption>
           <a
-            v-if="t.proposta"
+            v-if="mostra && t.proposta"
             class="saggio-proposta"
             :href="withBase('/da-validare')"
             title="Il testo è dentro una proposta di Claude che non hai ancora approvato"

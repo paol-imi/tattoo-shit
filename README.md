@@ -60,14 +60,16 @@ Dentro una nota mia, un passo proposto da Claude sta in un blocco così, leggibi
 
 Quando dico sì la nota diventa `validata: true`, o il blocco si scioglie nel testo, con la data nell'evoluzione. Tutto ciò che aspetta un sì o un no è nella pagina **[Da validare](https://paol-imi.github.io/tattoo-shit/da-validare)**.
 
+Sul sito, di default, si vede solo ciò che ho validato: niente note proposte, niente blocchi proposta, niente collegamenti proposti (quelli di migrazione e quelli nati da un blocco proposta), né in bacheca, testi e mappa, né nell'indice, nella ricerca e nelle note. Le proposte tornano visibili, marcate in rosso, con l'interruttore **proposte** in alto (sul telefono anche nel menu), che si ricorda la scelta; `?proposte=1` nell'indirizzo lo accende, `?proposte=0` lo spegne. Una nota proposta aperta dal suo indirizzo si vede comunque, con l'indicazione "proposta di Claude". Qui su GitHub si vede sempre tutto.
+
 ## Come navigare il sito
 
-Il sito ha tre porte, in alto nel menu e in home, più la pagina delle proposte:
+Il sito ha tre porte, in alto nel menu e in home. Di default mostrano solo ciò che ho validato; l'interruttore **proposte**, in alto a destra, aggiunge le proposte di Claude.
 
 - **[Bacheca](https://paol-imi.github.io/tattoo-shit/bacheca):** tutte le idee e gli spunti come tavole, con i pin e le parole. Tocca un chip (un simbolo, una fonte, un concetto) per vedere solo ciò che vi è legato; i filtri stanno nell'indirizzo e si possono condividere.
 - **[Testi](https://paol-imi.github.io/tattoo-shit/testi):** ogni citazione dell'archivio, per fonte. Le candidate al lettering.
 - **[Mappa](https://paol-imi.github.io/tattoo-shit/mappa):** il grafo delle note. Passa sopra un nodo per accendere i vicini, cliccalo per aprire la nota.
-- **[Da validare](https://paol-imi.github.io/tattoo-shit/da-validare):** ciò che Claude ha proposto e non ho ancora approvato. Sulla bacheca e sulla mappa le proposte sono tratteggiate in rosso.
+- **[Da validare](https://paol-imi.github.io/tattoo-shit/da-validare):** ciò che Claude ha proposto e non ho ancora approvato, sempre tutto. Non è nel menu: ci si arriva dall'interruttore acceso (o dal menu del telefono). Con le proposte accese, sulla bacheca e sulla mappa sono tratteggiate in rosso.
 
 Da ogni nota, la riga in testa porta alla sua posizione sulla mappa e alle tavole della bacheca legate a lei.
 

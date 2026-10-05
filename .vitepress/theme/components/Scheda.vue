@@ -4,8 +4,10 @@
 import { computed } from 'vue'
 import { useData, withBase } from 'vitepress'
 import { data as schede } from '../schede.data'
+import { useProposte } from '../proposte'
 
-const presenze = schede.presenze
+// di default si contano solo carte e collegamenti validati; le proposte di Claude con l'interruttore acceso
+const mostra = useProposte()
 
 const { frontmatter, page } = useData()
 
@@ -47,8 +49,11 @@ const vai = computed(() => {
   if (rel.startsWith('_archivio/') || !SULLA_MAPPA.has(tipo)) return null
   const parti = rel.split('/')
   const slug = /^(index|README)\.md$/.test(parti[parti.length - 1]) ? parti[parti.length - 2] : parti[parti.length - 1].replace(/\.md$/, '')
+  const presenze = mostra.value ? schede.presenze : schede.presenzeValidate
   const n = tipo === 'idea' || tipo === 'spunto' ? 0 : presenze[slug] ?? 0
-  return { mappa: withBase(`/mappa?nodo=${slug}`), bacheca: n ? withBase(`/bacheca?nodo=${slug}`) : null, n }
+  // una nota non validata, a proposte spente, non è sulla mappa
+  const sullaMappa = mostra.value || !provenienza.value || provenienza.value.validata
+  return { mappa: sullaMappa ? withBase(`/mappa?nodo=${slug}`) : null, bacheca: n ? withBase(`/bacheca?nodo=${slug}`) : null, n }
 })
 
 // provenienza: sempre per spunti, idee e ricerche; sulle note di mappa solo se dichiarata
@@ -83,11 +88,11 @@ const risonanza = computed(() => {
       title="Proposta di Claude: non l'hai ancora approvata"
     ><span>{{ provenienza.claude ? 'proposta di Claude' : provenienza.origine }} · da validare</span></a>
     <span v-else-if="provenienza" class="scheda-voce scheda-prov">{{ provenienza.origine }}</span>
-    <a v-if="proposte" class="scheda-voce scheda-prov con-proposte" href="#proposta-1">
+    <a v-if="mostra && proposte" class="scheda-voce scheda-prov con-proposte" href="#proposta-1">
       <span>{{ proposte === 1 ? 'una proposta di Claude' : `${proposte} proposte di Claude` }} da validare</span>
     </a>
-    <span v-if="vai" class="scheda-vai">
-      <a :href="vai.mappa">sulla mappa</a>
+    <span v-if="vai && (vai.mappa || vai.bacheca)" class="scheda-vai">
+      <a v-if="vai.mappa" :href="vai.mappa">sulla mappa</a>
       <a v-if="vai.bacheca" :href="vai.bacheca">{{ vai.n }} {{ vai.n === 1 ? 'tavola' : 'tavole' }} in bacheca</a>
     </span>
   </p>

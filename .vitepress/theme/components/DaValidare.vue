@@ -20,6 +20,10 @@ const parti = [
       <p class="atl-sommario">
         Ciò che Claude ha proposto e tu non hai ancora approvato. Dimmi sì o no, una cosa alla volta.
       </p>
+      <p class="validare-interruttore">
+        Questa pagina mostra sempre tutto. Nel resto del sito le proposte sono nascoste: per vederle al loro posto,
+        marcate in rosso, accendi l'interruttore <em>proposte</em> in alto (sul telefono, nel menu).
+      </p>
     </header>
 
     <nav class="validare-indice" aria-label="Le tre parti">

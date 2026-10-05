@@ -9,7 +9,8 @@ export interface Testo {
   riferimento: string | null
   misura: 'breve' | 'media' | 'lunga'
   fonte: string | null // slug
-  note: { titolo: string; link: string; tipo: string }[]
+  /** proposta: in quella nota il testo sta solo dentro una proposta di Claude */
+  note: { titolo: string; link: string; tipo: string; proposta: boolean }[]
   /** vero se il testo compare solo dentro proposte di Claude (blocchi proposta o note non validate) */
   proposta: boolean
 }
@@ -44,11 +45,13 @@ export default defineLoader({
       const validata = provenienza(n).validata
       for (const c of citazioniDi(n)) {
         const k = norma(c.testo)
-        const nota = { titolo: n.titolo, link: n.link, tipo: n.tipo }
         const proposta = c.proposta || !validata
+        const nota = { titolo: n.titolo, link: n.link, tipo: n.tipo, proposta }
         const gia = perTesto.get(k)
         if (gia) {
-          if (!gia.note.some((x) => x.link === n.link)) gia.note.push(nota)
+          const x = gia.note.find((x) => x.link === n.link)
+          if (x) x.proposta &&= proposta
+          else gia.note.push(nota)
           gia.proposta &&= proposta
           continue
         }

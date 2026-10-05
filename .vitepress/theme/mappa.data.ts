@@ -1,14 +1,14 @@
 // Dati della Mappa: le note come nodi, i collegamenti del frontmatter come archi.
 // Il nucleo, che non ha collegamenti nel frontmatter, si lega alle note che cita nel corpo.
 import { defineLoader } from 'vitepress'
-import { note, collegamentiFm, linkInterni, CAMPI_LINK, provenienza, collegamentiProposti } from '../atlante'
+import { note, collegamentiFm, linkInterni, CAMPI_LINK, provenienza, proposte, chiaveCoppia } from '../atlante'
 
 export interface NodoMappa {
   id: string; titolo: string; tipo: string; link: string; grado: number
   /** falso per le proposte di Claude non ancora approvate */
   validata: boolean
 }
-/** proposto: un collegamento aggiunto da Claude in migrazione, non ancora approvato */
+/** proposto: un collegamento proposto da Claude (in migrazione o in un blocco proposta), non ancora approvato */
 export interface ArcoMappa { source: string; target: string; proposto?: boolean }
 export interface DatiMappa { nodi: NodoMappa[]; archi: ArcoMappa[] }
 
@@ -20,7 +20,8 @@ const TIPI = new Set([...Object.values(CAMPI_LINK), 'nucleo'])
 export default defineLoader({
   watch: ['../../**/*.md'],
   load(): DatiMappa {
-    const tutte = note().filter((n) => !n.archiviata && TIPI.has(n.tipo))
+    const tutteLeNote = note()
+    const tutte = tutteLeNote.filter((n) => !n.archiviata && TIPI.has(n.tipo))
     const perSlug = new Map(tutte.map((n) => [n.slug, n]))
     const perRel = new Map(tutte.map((n) => [n.rel, n]))
     const archi = new Map<string, ArcoMappa>()
@@ -37,10 +38,9 @@ export default defineLoader({
         for (const s of Object.values(collegamentiFm(n)).flat()) aggiungi(n.slug, s)
       }
     }
-    // i collegamenti proposti in migrazione: tratteggiati
-    for (const c of collegamentiProposti()) {
-      for (const [a, b] of c.coppie) { const arco = archi.get(chiave(a, b)); if (arco) arco.proposto = true }
-    }
+    // i collegamenti proposti: tratteggiati con le proposte accese, nascosti di default
+    const { coppie } = proposte(tutteLeNote)
+    for (const [k, arco] of archi) if (coppie.has(chiaveCoppia(arco.source, arco.target)) || coppie.has(k)) arco.proposto = true
     const grado = new Map<string, number>()
     for (const { source, target } of archi.values()) {
       grado.set(source, (grado.get(source) ?? 0) + 1)

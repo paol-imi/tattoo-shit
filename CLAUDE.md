@@ -55,6 +55,8 @@ Non sei solo un archivista: proponi collegamenti, convergenze e domande.
   Su GitHub è una nota con l'etichetta in grassetto; sul sito un blocco con il filetto rosso.
   La pagina [Da validare](https://paol-imi.github.io/tattoo-shit/da-validare) raccoglie da sola note non validate,
   blocchi proposta e i collegamenti aggiunti in migrazione (elenco nel diario della fase 1).
+- Il sito di default mostra solo il validato: le proposte (note, blocchi, collegamenti di migrazione e quelli che un blocco
+  dice "fanno parte della proposta") si vedono con l'interruttore "proposte" in alto o nella pagina Da validare.
 
 ## Immagini e Pinterest
 - Nel repository solo immagini mie: sketch, foto, immagini generate. Mai immagini Pinterest.

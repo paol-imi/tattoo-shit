@@ -4,7 +4,7 @@
 import { defineLoader } from 'vitepress'
 import {
   note, perTitolo, collegamentiFm, citazioniDi, pinDi, primeFrasi, fraseTraVirgolette, sezione, rapportiPin,
-  provenienza, proposteDi, STATI, type Nota,
+  provenienza, proposteDi, senzaProposte, proposte as leProposte, collegamentoProposto, STATI, type Nota,
 } from '../atlante'
 
 export interface NodoBreve { titolo: string; tipo: string; link: string }
@@ -18,10 +18,14 @@ export interface Carta {
   risonanza: number | null
   pin: { id: string; descrizione: string; rapporto: number }[]
   testo: { testo: string; citazione: boolean; tagliato: boolean } | null
+  /** il testo della vista di default: preso solo da ciò che è validato (fuori dai blocchi proposta) */
+  testoValidato: { testo: string; citazione: boolean; tagliato: boolean } | null
   /** chip: concetti, simboli, fonti, emozioni (slug) */
   chip: string[]
   /** tutti gli slug collegati dal frontmatter, per il filtro */
   nodi: string[]
+  /** gli slug (tra chip e nodi) legati da un collegamento proposto da Claude: nascosti di default */
+  nodiProposti: string[]
   ornamento: string
   /** seme | mia | claude */
   origine: string
@@ -84,6 +88,7 @@ export default defineLoader({
   watch: ['../../**/*.md'],
   async load(): Promise<DatiBacheca> {
     const tutte = note()
+    const prop = leProposte(tutte)
     const perSlug = new Map(tutte.filter((n) => !n.archiviata).map((n) => [n.slug, n]))
     const scelte = tutte.filter((n) => (n.gruppo === 'idea' || n.gruppo === 'spunto'))
     const rapporti = await rapportiPin(scelte.flatMap((n) => pinDi(n.corpo).map((p) => p.id)))
@@ -110,8 +115,10 @@ export default defineLoader({
         risonanza: n.fm.risonanza != null && r >= 1 && r <= 5 ? r : null,
         pin: pinDi(n.corpo).map((p) => ({ ...p, rapporto: rapporti[p.id] })),
         testo: testoDi(n),
+        testoValidato: testoDi({ ...n, corpo: senzaProposte(n.corpo) }),
         chip,
         nodi: [...new Set(tuttiNodi)],
+        nodiProposti: [...new Set(tuttiNodi)].filter((s) => collegamentoProposto(prop, n.slug, s)),
         ornamento: simbolo ? ORNAMENTI[simbolo] : 'sole',
         ...provenienza(n),
         proposte: proposteDi(n.corpo).length,

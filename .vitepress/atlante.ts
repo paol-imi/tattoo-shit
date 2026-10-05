@@ -351,7 +351,7 @@ export function citazioniDi(n: Nota): Citazione[] {
 export const DIARIO_MIGRAZIONE = 'diario/2026-10-04-fase-1.md'
 export interface CollegamentoProposto { md: string; coppie: [string, string][] }
 
-const slugDaUrl = (u: string) => {
+export const slugDaUrl = (u: string) => {
   const p = u.split('#')[0].replace(/\/$/, '')
   const parti = p.split('/')
   const ultimo = parti[parti.length - 1]
@@ -378,6 +378,79 @@ export function collegamentiProposti(): CollegamentoProposto[] {
   }
   return out
 }
+
+// --- la vista "solo validato": ciò che il sito mostra di default.
+// Le proposte di Claude (note non validate, blocchi proposta, collegamenti proposti) si vedono solo
+// con l'interruttore "proposte" acceso, o nella pagina Da validare.
+
+const èBloccoProposta = (righe: string[]) => {
+  const r = righe.map((x) => x.replace(/^>[ \t]?/, ''))
+  const i = r.findIndex((x) => x.trim())
+  if (i < 0 || !AVVISO.test(r[i].trim())) return false
+  const j = r.findIndex((x, k) => k > i && x.trim())
+  return j >= 0 && ETICHETTA_PROPOSTA.test(r[j].trim())
+}
+
+/** Il corpo senza i blocchi proposta. */
+export function senzaProposte(corpo: string): string {
+  const out: string[] = []
+  let codice = false
+  let blocco: string[] = []
+  const chiudi = () => {
+    if (blocco.length && !èBloccoProposta(blocco)) out.push(...blocco)
+    blocco = []
+  }
+  for (const riga of corpo.split('\n')) {
+    if (/^\s*(```|~~~)/.test(riga)) codice = !codice
+    if (!codice && /^>/.test(riga)) { blocco.push(riga); continue }
+    chiudi()
+    out.push(riga)
+  }
+  chiudi()
+  return out.join('\n')
+}
+
+/** La chiave di un collegamento, senza verso. */
+export const chiaveCoppia = (a: string, b: string) => (a < b ? `${a}|${b}` : `${b}|${a}`)
+
+export interface Proposte {
+  /** gli slug delle note non validate (fuori dall'archivio) */
+  nonValidate: Set<string>
+  /** i collegamenti proposti (chiaveCoppia): quelli di migrazione e quelli nati da un blocco proposta */
+  coppie: Set<string>
+}
+
+// dentro un blocco proposta, la frase "Fanno parte della proposta anche questi collegamenti: …"
+// nomina (per titolo o con un link) i collegamenti del frontmatter nati solo dalla proposta
+const FANNO_PARTE = /fanno parte della proposta/i
+
+/** Tutto ciò che è proposta di Claude e non è ancora validato, per la vista di default del sito. */
+export function proposte(tutte: Nota[] = note()): Proposte {
+  const attive = tutte.filter((n) => !n.archiviata)
+  const perSlug = new Map(attive.map((n) => [n.slug, n]))
+  const nonValidate = new Set(attive.filter((n) => !provenienza(n).validata).map((n) => n.slug))
+  const coppie = new Set<string>()
+  for (const c of collegamentiProposti()) for (const [a, b] of c.coppie) coppie.add(chiaveCoppia(a, b))
+  for (const n of attive) {
+    const fm = new Set(Object.values(collegamentiFm(n)).flat())
+    for (const p of proposteDi(n.corpo)) {
+      for (const par of p.md.split(/\n\s*\n/)) {
+        if (!FANNO_PARTE.test(par)) continue
+        const testo = testoSemplice(par).replace(/\s+/g, ' ')
+        const linkati = new Set(linkInterni(n.rel, par).map((rel) => tutte.find((x) => x.rel === rel)?.slug))
+        for (const s of fm) {
+          const d = perSlug.get(s)
+          if (d && (linkati.has(s) || testo.includes(d.titolo))) coppie.add(chiaveCoppia(n.slug, s))
+        }
+      }
+    }
+  }
+  return { nonValidate, coppie }
+}
+
+/** Vero se il collegamento da `a` a `b` è una proposta (nota d'arrivo non validata, o collegamento proposto). */
+export const collegamentoProposto = (p: Proposte, a: string, b: string) =>
+  p.nonValidate.has(b) || p.nonValidate.has(a) || p.coppie.has(chiaveCoppia(a, b))
 
 /** La prima frase citata tra virgolette in un testo (almeno tre parole), per gli spunti di formato "frase". */
 export function fraseTraVirgolette(md: string): string | null {
