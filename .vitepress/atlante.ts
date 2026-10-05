@@ -178,3 +178,138 @@ export function sintesi(corpo: string, sezione?: string): string {
     .replace(/\s+/g, ' ')
     .trim()
 }
+
+// --- per Bacheca, Testi e Mappa
+
+/** I campi del frontmatter che collegano a un'altra nota, con il tipo della nota di arrivo. */
+export const CAMPI_LINK: Record<string, string> = {
+  emozioni: 'emozione', concetti: 'concetto', fonti: 'fonte', simboli: 'simbolo', stile: 'stile',
+  percorsi: 'percorso', spunti: 'spunto', idee: 'idea', ricerche: 'ricerca',
+}
+
+const lista = (v: any): string[] => (Array.isArray(v) ? v : v ? [String(v)] : []).filter(Boolean)
+
+/** Gli slug collegati dal frontmatter, per campo. Il campo singolo `fonte` degli spunti va in testa alle fonti. */
+export function collegamentiFm(n: Nota): Record<string, string[]> {
+  const out: Record<string, string[]> = {}
+  for (const campo of Object.keys(CAMPI_LINK)) {
+    const v = campo === 'fonti' ? [...lista(n.fm.fonte), ...lista(n.fm.fonti)] : lista(n.fm[campo])
+    const unici = [...new Set(v)]
+    if (unici.length) out[campo] = unici
+  }
+  return out
+}
+
+/** Il testo di una sezione `## Nome` (senza il titolo), o stringa vuota. */
+export function sezione(corpo: string, nome: string): string {
+  const m = ('\n' + corpo).match(new RegExp(`\\n## ${nome}[ \\t]*\\n([\\s\\S]*?)(?=\\n## |$)`))
+  return m ? m[1] : ''
+}
+
+/** Markdown in linea → testo semplice. */
+export function testoSemplice(md: string): string {
+  return md
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/\*\*|__|`/g, '')
+    .replace(/(^|[\s(“"])[*_]([^*_\n]+)[*_](?=[\s).,;:!?”"]|$)/g, '$1$2')
+    .replace(/\\$/gm, '')
+    .trim()
+}
+
+export interface Pin { id: string; descrizione: string }
+
+/** I pin della sezione `## Pinterest`: voci di elenco fatte solo del link al pin. */
+export function pinDi(corpo: string): Pin[] {
+  const out: Pin[] = []
+  for (const [, desc, id] of sezione(corpo, 'Pinterest').matchAll(
+    /^\s*[-*]\s+\[([^\]]*)\]\(https:\/\/www\.pinterest\.com\/pin\/(\d+)\/?\)\s*$/gm,
+  )) out.push({ id, descrizione: testoSemplice(desc) })
+  return out
+}
+
+/** Una citazione trovata in una nota: il testo (a capo conservati) e, se c'è, il riferimento. */
+export interface Citazione { testo: string; riferimento: string | null }
+
+/**
+ * Le citazioni di una nota, nell'ordine:
+ * - i blocchi `>` dentro le sezioni (non quelli in testa alla nota, che sono avvertenze);
+ * - nelle ricerche, i passi di `## Trovato` scritti come `**riferimento.** *"testo"*`.
+ */
+export function citazioniDi(n: Nota): Citazione[] {
+  const out: Citazione[] = []
+  const inizio = n.corpo.search(/^## /m)
+  if (inizio >= 0) {
+    const righe = n.corpo.slice(inizio).replace(/```[\s\S]*?```/g, '').split('\n')
+    let blocco: string[] | null = null
+    const chiudi = () => {
+      if (!blocco) return
+      // le righe che finiscono con "\" vanno a capo; una riga vuota separa le strofe; il resto si unisce
+      const strofe = blocco.join('\n').split(/\n\s*\n/).map((s) =>
+        s.split('\n').reduce((acc, r, i, a) => acc + r.replace(/\\$/, '') + (i === a.length - 1 ? '' : /\\$/.test(r) ? '\n' : ' '), ''),
+      )
+      const testo = strofe.map((s) => testoSemplice(s.split('\n').map((r) => r.trim()).join('\n'))).join('\n\n').trim()
+      if (testo) out.push({ testo, riferimento: null })
+      blocco = null
+    }
+    for (const r of righe) {
+      const m = r.match(/^>\s?(.*)$/)
+      if (m) (blocco ??= []).push(m[1])
+      else chiudi()
+    }
+    chiudi()
+  }
+  if (n.tipo === 'ricerca') {
+    for (const [, rif, testo] of sezione(n.corpo, 'Trovato').matchAll(
+      /^\s*(?:\d+\.|[-*])\s+\*\*([^*]+?)\.?\*\*[^\n]*?\*["“]([^*\n]+?)["”]\*/gm,
+    )) out.push({ testo: testo.trim(), riferimento: rif.trim() })
+  }
+  return out
+}
+
+/** La prima frase citata tra virgolette in un testo (almeno tre parole), per gli spunti di formato "frase". */
+export function fraseTraVirgolette(md: string): string | null {
+  const t = testoSemplice(md)
+  for (const [, f] of t.matchAll(/["“]([^"”\n]{8,160})["”]/g)) if (f.trim().split(/\s+/).length >= 3) return f.trim()
+  return null
+}
+
+/** Le prime frasi di un paragrafo, fino a circa `min` caratteri; salta un'avvertenza iniziale in grassetto. */
+export function primeFrasi(corpo: string, nomeSezione: string, min = 70, max = 260): string {
+  const testo = sezione(corpo, nomeSezione)
+  const par = testo.split(/\n\s*\n/).map((p) => p.trim()).find((p) => p && !/^[#>|-]/.test(p) && !p.startsWith('_'))
+  if (!par) return ''
+  const pulito = testoSemplice(par.replace(/^\*\*[^*]+\*\*[^.]*\.\s+/, '')).replace(/\s+/g, ' ')
+  const frasi = pulito.match(/[^.!?]+(?:[.!?]+["”»)]?|$)\s*/g) ?? [pulito]
+  let out = ''
+  for (const f of frasi) {
+    if (out.length >= min) break
+    if (out && (out + f).length > max) break
+    out += f
+  }
+  out = out.trim()
+  return out.length > max ? out.slice(0, max).replace(/\s+\S*$/, '') + '…' : out
+}
+
+// --- proporzioni dei pin (solo i numeri: larghezza e altezza dell'immagine, niente immagini)
+// Servono a dare all'embed ufficiale l'altezza giusta. Se Pinterest non risponde, si usa 4:3.
+const rapporti = new Map<string, number>()
+export async function rapportiPin(ids: string[]): Promise<Record<string, number>> {
+  const mancanti = [...new Set(ids)].filter((id) => !rapporti.has(id))
+  for (let i = 0; i < mancanti.length; i += 20) {
+    const gruppo = mancanti.slice(i, i + 20)
+    try {
+      const r = await fetch(`https://widgets.pinterest.com/v3/pidgets/pins/info/?pin_ids=${gruppo.join(',')}`, {
+        signal: AbortSignal.timeout(6000),
+      })
+      const json: any = await r.json()
+      for (const p of json?.data ?? []) {
+        const img = p?.images?.['237x'] ?? p?.images?.['236x'] ?? p?.images?.['564x']
+        if (p?.id && img?.width && img?.height) rapporti.set(String(p.id), +(img.height / img.width).toFixed(4))
+      }
+    } catch {
+      // senza rete: resta il rapporto predefinito
+    }
+  }
+  return Object.fromEntries(ids.map((id) => [id, rapporti.get(id) ?? 4 / 3]))
+}

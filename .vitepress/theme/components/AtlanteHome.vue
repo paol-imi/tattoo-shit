@@ -3,11 +3,40 @@
 import { computed } from 'vue'
 import { withBase } from 'vitepress'
 import { data } from '../home.data'
+import { data as bacheca } from '../bacheca.data'
+import Ornamento from './Ornamento.vue'
+import Tavola from './Tavola.vue'
 
 const piene = computed(() => data.stati.filter((s) => s.idee.length))
 const vuote = computed(() => data.stati.filter((s) => !s.idee.length).map((s) => s.etichetta.toLowerCase()))
 const elenco = (v: string[]) => (v.length > 1 ? `${v.slice(0, -1).join(', ')} e ${v[v.length - 1]}` : v[0])
 const totIdee = computed(() => data.stati.reduce((t, s) => t + s.idee.length, 0))
+
+// la vetrina: una tavola con un pin, poi quattro tavole tipografiche (citazioni prima), in tre colonne
+const vetrina = (() => {
+  const c = bacheca.carte
+  const conPin = c.find((x) => x.pin.length)
+  const tipografiche = c.filter((x) => !x.pin.length).slice(0, 4)
+  const tutte = [conPin, ...tipografiche].filter(Boolean) as typeof c
+  return [tutte.slice(0, 1), tutte.slice(1, 3), tutte.slice(3, 5)].filter((col) => col.length)
+})()
+const porte = [
+  {
+    link: '/bacheca', nome: 'Bacheca', ornamento: 'tavole',
+    dice: 'Tutte le idee e gli spunti come un muro di tavole: i pin, le parole, i simboli. Tocca un nodo per filtrare.',
+    conta: `${bacheca.carte.length} tavole · ${bacheca.carte.reduce((t, c) => t + c.pin.length, 0)} pin`,
+  },
+  {
+    link: '/testi', nome: 'Testi', ornamento: 'penna',
+    dice: 'Le parole che potrei portare addosso: ogni citazione dell\'archivio, composta come un saggio di stampa.',
+    conta: `${data.porte.testi} testi · ${data.porte.fonti} fonti`,
+  },
+  {
+    link: '/mappa', nome: 'Mappa', ornamento: 'costellazione',
+    dice: 'Il cielo delle note: ogni nota una stella, ogni collegamento un filo. Esplora i vicini, apri le note.',
+    conta: `${data.porte.nodi} note · ${data.porte.archi} fili`,
+  },
+]
 </script>
 
 <template>
@@ -20,14 +49,30 @@ const totIdee = computed(() => data.stati.reduce((t, s) => t + s.idee.length, 0)
       <p class="sottotitolo">
         Un archivio di idee per tatuaggi. Prima il concetto, poi il soggetto.
         Il tatuaggio racconta il viaggio, non la tappa.
-      </p>
-      <p class="azioni">
-        <a class="azione primaria" :href="withBase('/nucleo')">Leggi il nucleo</a>
-        <a class="azione" href="#percorsi">I percorsi</a>
-        <a class="azione" href="#le-idee">Le idee</a>
+        <a class="leggi-nucleo" :href="withBase('/nucleo')">Leggi il nucleo →</a>
       </p>
     </header>
 
+    <nav class="porte" aria-label="Le tre porte">
+      <a v-for="p in porte" :key="p.link" class="porta" :href="withBase(p.link)">
+        <Ornamento class="porta-ornamento" :nome="p.ornamento" />
+        <span class="porta-nome">{{ p.nome }}</span>
+        <span class="porta-dice">{{ p.dice }}</span>
+        <span class="porta-conta">{{ p.conta }} <span aria-hidden="true">→</span></span>
+      </a>
+    </nav>
+
+    <section class="sezione vetrina">
+      <h2 id="dalla-bacheca" tabindex="-1">Dalla bacheca <a class="header-anchor" href="#dalla-bacheca" aria-label="Link a Dalla bacheca">&#8203;</a></h2>
+      <div class="vetrina-tavole">
+        <div v-for="(col, i) in vetrina" :key="i" class="vetrina-colonna">
+          <Tavola v-for="c in col" :key="c.slug" :carta="c" :nodi="bacheca.nodi" :max-chip="4" />
+        </div>
+      </div>
+      <p class="vetrina-tutte"><a :href="withBase('/bacheca')">Tutta la bacheca: {{ bacheca.carte.length }} tavole →</a></p>
+    </section>
+
+    <div class="colonna">
     <section class="sezione">
       <h2 id="percorsi" tabindex="-1">Percorsi <a class="header-anchor" href="#percorsi" aria-label="Link a Percorsi">&#8203;</a></h2>
       <p class="nota-sezione">Fili narrativi che attraversano tutto l'archivio.</p>
@@ -76,12 +121,13 @@ const totIdee = computed(() => data.stati.reduce((t, s) => t + s.idee.length, 0)
       <p v-else class="nota-sezione">Nessuna pista aperta: tutte le ricerche sono fatte.</p>
     </section>
 
-    <p class="mappa">
+    <p class="conteggio">
       La mappa:
       <template v-for="(c, i) in data.conteggi" :key="c.etichetta">
         {{ c.n }} {{ c.etichetta }}<span v-if="i < data.conteggi.length - 1"> · </span>
       </template>.
-      Tutto è nell'indice e nella ricerca.
+      Tutto è nell'indice, nella ricerca e sulla <a :href="withBase('/mappa')">mappa</a>.
     </p>
+    </div>
   </div>
 </template>

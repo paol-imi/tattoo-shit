@@ -90,6 +90,9 @@ export default defineConfig({
 
   themeConfig: {
     nav: [
+      { text: 'Bacheca', link: '/bacheca' },
+      { text: 'Testi', link: '/testi' },
+      { text: 'Mappa', link: '/mappa' },
       { text: 'Nucleo', link: '/nucleo' },
       { text: 'Idee', link: '/#le-idee' },
       { text: 'Ricerche', link: '/#piste-aperte' },

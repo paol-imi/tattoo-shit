@@ -2,6 +2,8 @@
 // le piste aperte (ricerche non ancora fatte).
 // Si rigenera da solo a ogni build (e in sviluppo quando cambia una nota).
 import { defineLoader } from 'vitepress'
+import mappa from './mappa.data'
+import testi from './testi.data'
 import { note, perTitolo, sintesi, STATI, ETICHETTE_STATO, STATI_RICERCA, ETICHETTE_STATO_RICERCA } from '../atlante'
 
 export interface IdeaHome {
@@ -24,6 +26,8 @@ export interface DatiHome {
   stati: { stato: string; etichetta: string; idee: IdeaHome[] }[]
   piste: PistaHome[]
   conteggi: { etichetta: string; n: number }[]
+  /** per le tre porte: quanti testi, quante note e fili sulla mappa */
+  porte: { testi: number; fonti: number; nodi: number; archi: number }
 }
 
 declare const data: DatiHome
@@ -77,6 +81,10 @@ export default defineLoader({
       ['stile', 'stili'], ['spunto', 'spunti'], ['ricerca', 'ricerche'],
     ].map(([g, etichetta]) => ({ etichetta, n: tutte.filter((n) => n.gruppo === g).length }))
 
-    return { formula, percorsi, stati, piste, conteggi }
+    const m = (mappa as any).load()
+    const t = (testi as any).load()
+    const porte = { testi: t.testi.length, fonti: t.fonti.length, nodi: m.nodi.length, archi: m.archi.length }
+
+    return { formula, percorsi, stati, piste, conteggi, porte }
   },
 })
