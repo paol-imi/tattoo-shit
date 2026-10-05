@@ -1,0 +1,20 @@
+---
+tipo: emozione
+titolo: "Rabbia"
+concetti: [tre-metamorfosi, rivolta]
+fonti: [berserk]
+percorsi: [tre-metamorfosi-percorso]
+idee: [trittico-metamorfosi]
+creato: 2026-10-04
+---
+
+# Rabbia
+
+Energia della rivolta. È il leone delle tre metamorfosi.
+
+## Collegamenti
+
+- **Concetti:** [Le tre metamorfosi](/concetti/tre-metamorfosi.md) · [Rivolta](/concetti/rivolta.md)
+- **Fonti:** [Berserk](/fonti/opere/berserk.md)
+- **Percorsi:** [Le tre metamorfosi (percorso)](/percorsi/tre-metamorfosi-percorso.md)
+- **Idee:** [Trittico delle metamorfosi](/idee/trittico-metamorfosi/index.md)
