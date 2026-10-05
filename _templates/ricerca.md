@@ -1,8 +1,8 @@
 ---
 tipo: ricerca
 titolo: ""
-origine: mia               # seme (dal documento d'origine) | mia (l'ho portata io) | claude (proposta di Claude, di sua iniziativa)
-validata: true             # l'ho approvata io? seme e mia: true; claude: false finché non dico sì
+origine: mia               # seme (dal documento d'origine, compilato da Claude) | mia (l'ho portata io) | claude (proposta di Claude, di sua iniziativa)
+validata: true             # l'ho approvata io? mia: sempre true; seme e claude: false finché non dico sì
 stato: da-fare             # da-fare | in-corso | fatta
 oggetto: ""                # cosa c'è da esplorare, in una riga
 link: []                   # URL esterni (profili, testi, pagine), tra virgolette

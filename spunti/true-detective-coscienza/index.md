@@ -10,7 +10,7 @@ emozioni: [lucidita, vuoto, malinconia]
 simboli: [alce-irlandese, stelle, spirale, ouroboros]
 fonti: [zapffe, ligotti, camus, schopenhauer]
 percorsi: [peso-sguardo-oltre, dal-dolore-alle-stelle]
-idee: [alce-di-zapffe, luce-contro-buio]
+idee: [alce-di-zapffe, luce-contro-buio, monologo-di-rust]
 stato: grezzo
 creato: 2026-10-04
 ---
@@ -53,6 +53,7 @@ Suggestioni, non intenzioni dichiarate: le corna di cervo nel primo caso; la [sp
 
 - [L'alce di Zapffe](/idee/alce-di-zapffe/index.md): un alce irlandese, o il suo scheletro, con corna immense che si ramificano fino a diventare costellazioni, o a disegnare le sefirot dell'Albero della Vita. La coscienza come corona e condanna insieme: troppo grande per vivere tranquilli, ma è con quella che si toccano le stelle. Ha assorbito l'idea della testa bendata del pin, con il monologo come testo (il peso come punto di partenza, non come approdo).
 - [La luce sta vincendo](/idee/luce-contro-buio/index.md): un cielo notturno quasi tutto nero, dove poche stelle sono pelle lasciata libera. La proporzione tra luce e buio come messaggio. Minimale, leggibile solo da chi conosce il finale.
+- [Il monologo di Rust](/idee/monologo-di-rust/index.md): il pin della testa bendata e il monologo come testo, da capire quanto tenerne. L'ho portata io.
 
 ## Immagini
 
@@ -71,4 +72,4 @@ In fase di triage cercare altri pin legati a cervi e alci, cieli stellati, spira
 - **Fonti:** [True Detective, stagione 1](/fonti/opere/true-detective-s1.md) · [Peter Wessel Zapffe](/fonti/pensiero/zapffe.md) · [Thomas Ligotti](/fonti/pensiero/ligotti.md) · [Albert Camus](/fonti/pensiero/camus.md) · [Arthur Schopenhauer](/fonti/pensiero/schopenhauer.md)
 - **Simboli:** [L'alce irlandese](/simboli/alce-irlandese.md) · [Le stelle](/simboli/stelle.md) · [La spirale](/simboli/spirale.md) · [Ouroboros](/simboli/ouroboros.md)
 - **Percorsi:** [Il peso → lo sguardo → l'oltre](/percorsi/peso-sguardo-oltre.md) · [Dal dolore alle stelle](/percorsi/dal-dolore-alle-stelle.md)
-- **Idee:** [L'alce di Zapffe](/idee/alce-di-zapffe/index.md) · [La luce sta vincendo](/idee/luce-contro-buio/index.md)
+- **Idee:** [L'alce di Zapffe](/idee/alce-di-zapffe/index.md) · [La luce sta vincendo](/idee/luce-contro-buio/index.md) · [Il monologo di Rust](/idee/monologo-di-rust/index.md)

@@ -2,7 +2,7 @@
 tipo: idea
 titolo: "Il velo di Iside"
 origine: seme
-validata: true
+validata: false
 stato: seme
 formato: 
 placement: []
@@ -44,6 +44,7 @@ _Nessun pin collegato._
 ## Evoluzione
 
 - 2026-10-04: nata nella conversazione d'origine ([diario](/diario/2026-10-04-origine.md)). Stato iniziale: `seme`.
+- 2026-10-05: proposta di Claude nella chat d'origine, mai approvata: torna da validare.
 
 ## Collegamenti
 

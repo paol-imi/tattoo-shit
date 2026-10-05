@@ -8,7 +8,7 @@ fonti: [ligotti]
 simboli: [stelle, spirale, ouroboros]
 percorsi: [peso-sguardo-oltre, dal-dolore-alle-stelle]
 spunti: [true-detective-coscienza, true-detective-sogno]
-idee: [sleeve-dantesca, luce-contro-buio, sognatore-insonne, alce-di-zapffe]
+idee: [sleeve-dantesca, luce-contro-buio, sognatore-insonne, alce-di-zapffe, monologo-di-rust]
 creato: 2026-10-04
 ---
 
@@ -24,4 +24,4 @@ Rust Cohle: pessimismo radicale, ricerca della verità a ogni costo, il tempo co
 - **Simboli:** [Le stelle](/simboli/stelle.md) · [La spirale](/simboli/spirale.md) · [Ouroboros](/simboli/ouroboros.md)
 - **Percorsi:** [Il peso → lo sguardo → l'oltre](/percorsi/peso-sguardo-oltre.md) · [Dal dolore alle stelle](/percorsi/dal-dolore-alle-stelle.md)
 - **Spunti:** [La coscienza come passo falso](/spunti/true-detective-coscienza/index.md) · [Non dormo, sogno soltanto](/spunti/true-detective-sogno/index.md)
-- **Idee:** [Il Cammino: sleeve dantesca](/idee/sleeve-dantesca/index.md) · [La luce sta vincendo](/idee/luce-contro-buio/index.md) · [Il sognatore insonne](/idee/sognatore-insonne/index.md) · [L'alce di Zapffe](/idee/alce-di-zapffe/index.md)
+- **Idee:** [Il Cammino: sleeve dantesca](/idee/sleeve-dantesca/index.md) · [La luce sta vincendo](/idee/luce-contro-buio/index.md) · [Il sognatore insonne](/idee/sognatore-insonne/index.md) · [L'alce di Zapffe](/idee/alce-di-zapffe/index.md) · [Il monologo di Rust](/idee/monologo-di-rust/index.md)

@@ -39,8 +39,10 @@ Non sei solo un archivista: proponi collegamenti, convergenze e domande.
 
 ## Validazione: cosa ho approvato e cosa è proposta tua
 - Frontmatter di ogni spunto, idea e ricerca (obbligatori): `origine: seme | mia | claude`
-  (seme = dal documento d'origine, discusso con me; mia = l'ho portata io; claude = proposta tua, di tua iniziativa)
-  e `validata: true | false` (true = l'ho approvata; seme e mia sono sempre true; claude parte da false).
+  (seme = dal documento d'origine, compilato da Claude in una chat con me: contiene mie parole e proposte di Claude;
+  mia = l'ho portata io; claude = proposta tua, di tua iniziativa)
+  e `validata: true | false` (true = l'ho approvata; mia è sempre true; claude parte da false;
+  le idee del seme sono proposte e partono da false).
   Sulle note di mappa sono facoltativi: se mancano valgono `origine: seme`, `validata: true`; scrivili solo se diversi.
 - Dentro una nota validata, un passo che proponi tu di tua iniziativa va in un blocco proposta, sempre così
   (avviso in stile GitHub, etichetta esatta sulla seconda riga, poi una riga `>` vuota):

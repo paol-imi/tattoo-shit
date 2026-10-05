@@ -1,8 +1,8 @@
 ---
 tipo: spunto
 titolo: ""
-origine: mia               # seme (dal documento d'origine) | mia (l'ho portata io) | claude (proposta di Claude, di sua iniziativa)
-validata: true             # l'ho approvata io? seme e mia: true; claude: false finché non dico sì
+origine: mia               # seme (dal documento d'origine, compilato da Claude) | mia (l'ho portata io) | claude (proposta di Claude, di sua iniziativa)
+validata: true             # l'ho approvata io? mia: sempre true; seme e claude: false finché non dico sì
 fonte: slug-della-fonte
 formato: frase             # frase | scena | immagine | mito | opera | pin | sensazione
 concetti: []

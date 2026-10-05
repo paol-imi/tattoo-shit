@@ -56,7 +56,8 @@ const vai = computed(() => {
   return { mappa: sullaMappa ? withBase(`/mappa?nodo=${slug}`) : null, bacheca: n ? withBase(`/bacheca?nodo=${slug}`) : null, n }
 })
 
-// provenienza: sempre per spunti, idee e ricerche; sulle note di mappa solo se dichiarata
+// provenienza: sempre per spunti, idee e ricerche; sulle note di mappa solo se dichiarata.
+// Conta solo `validata`: anche ciò che viene dal seme (compilato da Claude in chat) può essere una proposta.
 const TERRITORIO = new Set(['idea', 'spunto', 'ricerca'])
 const ORIGINI: Record<string, string> = { seme: 'dal seme', mia: 'tua', claude: 'proposta di Claude' }
 const provenienza = computed(() => {
@@ -65,7 +66,8 @@ const provenienza = computed(() => {
   if (!TERRITORIO.has(fm.tipo) && fm.origine == null && fm.validata == null) return null
   const origine = String(fm.origine ?? 'seme')
   const validata = fm.validata == null ? origine !== 'claude' : String(fm.validata) === 'true'
-  return { origine: ORIGINI[origine] ?? origine, validata, claude: origine === 'claude' }
+  const daValidare = origine === 'seme' ? 'dal seme, proposta di Claude' : origine === 'mia' ? 'tua' : 'proposta di Claude'
+  return { origine: ORIGINI[origine] ?? origine, validata, daValidare }
 })
 const proposte = computed(() => schede.proposte[page.value.filePath] ?? 0)
 
@@ -86,7 +88,7 @@ const risonanza = computed(() => {
       class="scheda-voce scheda-prov da-validare"
       :href="withBase('/da-validare')"
       title="Proposta di Claude: non l'hai ancora approvata"
-    ><span>{{ provenienza.claude ? 'proposta di Claude' : provenienza.origine }} · da validare</span></a>
+    ><span>{{ provenienza.daValidare }} · da validare</span></a>
     <span v-else-if="provenienza" class="scheda-voce scheda-prov">{{ provenienza.origine }}</span>
     <a v-if="mostra && proposte" class="scheda-voce scheda-prov con-proposte" href="#proposta-1">
       <span>{{ proposte === 1 ? 'una proposta di Claude' : `${proposte} proposte di Claude` }} da validare</span>

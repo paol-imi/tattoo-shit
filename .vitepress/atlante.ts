@@ -233,6 +233,8 @@ export function pinDi(corpo: string): Pin[] {
 // --- provenienza: chi ha portato una cosa e se l'ho approvata
 // Nel frontmatter: `origine` (seme | mia | claude) e `validata` (true | false).
 // Obbligatori su spunti, idee e ricerche; sulle note di mappa valgono, se mancano, seme e true.
+// Il sito guarda solo `validata`: "mia" è sempre validata, ma "seme" no (il seme l'ha compilato Claude in chat,
+// e le sue idee sono proposte da validare) e "claude" parte da false.
 // Dentro una nota validata, i passi proposti da Claude stanno in un blocco "proposta":
 //   > [!NOTE]
 //   > **Proposta di Claude, da validare.**
