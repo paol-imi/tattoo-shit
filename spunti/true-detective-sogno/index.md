@@ -19,7 +19,14 @@ creato: 2026-10-04
 
 ## Il frammento
 
-[True Detective, stagione 1](/fonti/opere/true-detective-s1.md), Rust Cohle: "I don't sleep, I just dream" (episodio da verificare). L'insonne che non si spegne mai: la veglia e il sogno che si confondono, la mente che non smette di guardare.
+[True Detective, stagione 1](/fonti/opere/true-detective-s1.md), Rust Cohle: "I don't sleep, I just dream" (episodio da verificare).
+
+> [!NOTE]
+> **Proposta di Claude, da validare.**
+>
+> L'insonne che non si spegne mai: la veglia e il sogno che si confondono, la mente che non smette di guardare.
+>
+> Fanno parte della proposta: [La soglia e il mistero](/concetti/soglia-e-mistero.md), [Lucidità](/emozioni/lucidita.md).
 
 ## Perché mi colpisce
 

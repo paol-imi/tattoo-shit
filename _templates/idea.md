@@ -1,8 +1,8 @@
 ---
 tipo: idea
 titolo: ""
-origine: mia               # seme (dal documento d'origine) | mia (l'ho portata io) | claude (proposta di Claude, di sua iniziativa)
-validata: true             # l'ho approvata io? seme e mia: true; claude: false finché non dico sì
+origine: mia               # seme (dal documento d'origine, compilato da Claude) | mia (l'ho portata io) | claude (proposta di Claude, di sua iniziativa)
+validata: true             # l'ho approvata io? mia: sempre true; seme e claude: false finché non dico sì
 stato: seme                # seme | in-esplorazione | forte | scelta | tatuata | archiviata
 formato:                   # pezzo-singolo | patchwork | sleeve | schiena | serie
 placement: []              # avambraccio, spalla, schiena, polpaccio, fianco…

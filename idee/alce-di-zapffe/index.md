@@ -13,7 +13,7 @@ simboli: [alce-irlandese, stelle, albero-della-vita-simbolo, velo]
 fonti: [zapffe, true-detective-s1]
 spunti: [true-detective-coscienza]
 percorsi: [peso-sguardo-oltre]
-idee: [sognatore-insonne]
+idee: [sognatore-insonne, monologo-di-rust]
 risonanza:
 creato: 2026-10-04
 aggiornato: 2026-10-04
@@ -31,7 +31,7 @@ Un alce irlandese, o il suo scheletro, con corna immense che si ramificano fino 
 
 **Variante: la testa bendata.** Una testa bendata, capelli lunghi intrecciati di rami e corna di cervo, tratteggio a penna (dal pin). La benda è l'illusione di essere qualcuno; le corna sono la coscienza. Per non fermarsi al peso: la benda che si allenta, o le punte delle corna che diventano stelle.
 
-**Variante con testo:** il monologo di Rust (nello [spunto](/spunti/true-detective-coscienza/index.md)) come punto di partenza, non come approdo. Quanto tenere? Tagli possibili:
+**Variante con testo:** il monologo di Rust (nello [spunto](/spunti/true-detective-coscienza/index.md); pin e testo sono la mia idea [Il monologo di Rust](/idee/monologo-di-rust/index.md)) come punto di partenza, non come approdo. Quanto tenere? Tagli possibili:
 - solo "everybody's nobody", scritto sulla benda stessa;
 - la prima frase, sotto la figura come una didascalia d'incisione;
 - il testo intero, piccolo, in blocco come una pagina accanto alla figura.
@@ -53,6 +53,7 @@ _Nessuna immagine ancora._
 - 2026-10-04: nata nella conversazione d'origine ([diario](/diario/2026-10-04-origine.md)). Stato iniziale: `seme`. Nata dallo spunto di True Detective sulla coscienza come passo falso.
 - 2026-10-04: assorbe l'idea corona-cieca (confluita).
 - 2026-10-05: marcata come proposta di Claude (`origine: claude`, `validata: false`): il seme la elenca tra le idee "nuove, da esplorare", non discusse con me. Il materiale della variante è mio (il [pin](https://www.pinterest.com/pin/150378075043142308/) della testa bendata e il monologo di Rust come testo possibile); la scelta di farvi confluire la corona cieca invece l'ha fatta Claude, quando gli ho detto "dimmi tu". Da validare, l'idea e la fusione.
+- 2026-10-05: pin e monologo tornano anche in una nota mia, [Il monologo di Rust](/idee/monologo-di-rust/index.md); qui la variante resta come parte della proposta.
 
 ## Collegamenti
 
@@ -62,4 +63,4 @@ _Nessuna immagine ancora._
 - **Stile:** [Testo e lettering](/stile/testo-e-lettering.md) · [Incisione / xilografia antica](/stile/incisione-xilografia.md)
 - **Percorsi:** [Il peso → lo sguardo → l'oltre](/percorsi/peso-sguardo-oltre.md)
 - **Spunti:** [La coscienza come passo falso](/spunti/true-detective-coscienza/index.md)
-- **Idee:** [Il sognatore insonne](/idee/sognatore-insonne/index.md)
+- **Idee:** [Il sognatore insonne](/idee/sognatore-insonne/index.md) · [Il monologo di Rust](/idee/monologo-di-rust/index.md)

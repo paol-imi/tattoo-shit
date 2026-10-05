@@ -34,19 +34,22 @@ const parti = [
     </nav>
 
     <p class="validare-come">
-      <strong>Come si valida.</strong> Quando dici sì, la nota prende <code>validata: true</code> (l'origine resta
-      <code>claude</code>) oppure il blocco proposta si scioglie nel testo; la data finisce nell'evoluzione della nota.
+      <strong>Come si valida.</strong> Quando dici sì, la nota prende <code>validata: true</code> (l'origine non
+      cambia) oppure il blocco proposta si scioglie nel testo; la data finisce nell'evoluzione della nota.
       Quando dici no, la proposta si toglie o va in archivio. In ogni caso, da qui sparisce da sola.
     </p>
 
     <section class="validare-parte" aria-labelledby="note-proposte">
       <h2 id="note-proposte" class="validare-titolo">Note proposte da Claude <span class="conta">{{ data.note.length }}</span></h2>
-      <p class="validare-nota">Idee, spunti e nodi nati da un'iniziativa di Claude, non discussi con te.</p>
+      <p class="validare-nota">
+        Idee, spunti e nodi proposti da Claude: di sua iniziativa qui, o nella chat da cui è nato il seme. Non li hai ancora approvati.
+      </p>
       <div v-if="data.note.length" class="validare-carte">
         <article v-for="n in data.note" :key="n.link" class="validare-carta">
           <p class="validare-carta-testa">
             <span class="validare-tipo">{{ n.etichetta }}</span>
             <span class="validare-segno">proposta di Claude</span>
+            <span v-if="n.seme" class="validare-segno">dal seme</span>
             <span class="validare-segno">da validare</span>
           </p>
           <h3 class="validare-carta-titolo"><a :href="withBase(n.link)">{{ n.titolo }}</a></h3>

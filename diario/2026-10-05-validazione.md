@@ -52,6 +52,10 @@ data: 2026-10-05
 
 Il sito mostrava tutto, con i segni rossi: troppo caos. Ora, di default, si vede solo ciò che ho approvato: bacheca, testi, mappa, home, indice, ricerca e note non mostrano note proposte, blocchi proposta né collegamenti proposti (quelli di migrazione e quelli che un blocco dice "fanno parte della proposta"). Per esplorare le proposte c'è l'interruttore **proposte** in alto (sul telefono anche nel menu), che si ricorda la scelta, oppure la pagina [Da validare](/da-validare.md), che mostra sempre tutto ed è uscita dal menu principale. Le note non sono cambiate: è tutto lato sito.
 
+## 2026-10-05, dopo: correzione
+
+"Dal seme" non voleva dire "approvato": il seme l'ha compilato Claude, e le sue idee sono proposte. Le 14 idee del seme tornano da validare; vedi la [revisione del seme](/diario/2026-10-05-revisione-seme.md).
+
 ## Domande aperte
 
 - Delle quattro note proposte, quale ti dice qualcosa a pancia? Partiamo da una.

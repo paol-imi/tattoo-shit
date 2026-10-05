@@ -1,7 +1,7 @@
 ---
 tipo: nucleo
 titolo: "Il nucleo"
-aggiornato: 2026-10-04
+aggiornato: 2026-10-05
 ---
 
 # Il nucleo
@@ -60,4 +60,9 @@ Prima il concetto, poi il soggetto. Nessun limite di tono: può essere macabro q
 
 - Mi attira il filone esoterico in cui si percepisce una coscienza elevata: guardando il tatuaggio deve nascere la sensazione che esistano risposte a domande che non ho, anzi **domande che ancora non so di volere**.
 - Mi piacciono le **[patchwork sleeve](/stile/patchwork.md)**: pezzi separati, di dimensioni diverse, con pelle libera tra loro, che però si leggono come un'unica opera. Non le sleeve "fuse" con sfondo continuo.
-- Estetica che si sta delineando: nero, [incisione/xilografia antica](/stile/incisione-xilografia.md), mistero. L'idea che oggi tiene insieme tutto questo è [il grimorio](/idee/grimorio/index.md).
+- Estetica che si sta delineando: nero, [incisione/xilografia antica](/stile/incisione-xilografia.md), mistero.
+
+> [!NOTE]
+> **Proposta di Claude, da validare.**
+>
+> L'idea che oggi tiene insieme tutto questo è [il grimorio](/idee/grimorio/index.md).

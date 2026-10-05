@@ -108,7 +108,7 @@ export default defineLoader({
       archi: m.archi.filter((a: any) => !a.proposto && nodiV.has(a.source) && nodiV.has(a.target)).length,
     }
 
-    const tipi = new Set(Object.values(CAMPI_LINK))
+    const tipi = new Set([...Object.values(CAMPI_LINK), 'nucleo'])
     const attive = tutte.filter((n) => !n.archiviata && tipi.has(n.tipo))
     const daValidare =
       attive.filter((n) => !provenienza(n).validata).length +

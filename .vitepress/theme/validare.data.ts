@@ -15,6 +15,8 @@ export interface NotaDaValidare {
   etichetta: string
   sintesi: string
   origine: string
+  /** viene dal seme: una proposta di Claude nella chat d'origine */
+  seme: boolean
   creato: string | null
 }
 export interface PropostaDentro {
@@ -36,10 +38,10 @@ declare const data: DatiValidare
 export { data }
 
 const TIPI: Record<string, string> = {
-  idea: 'Idea', spunto: 'Spunto', ricerca: 'Ricerca', emozione: 'Emozione', concetto: 'Concetto',
+  nucleo: 'Nucleo', idea: 'Idea', spunto: 'Spunto', ricerca: 'Ricerca', emozione: 'Emozione', concetto: 'Concetto',
   fonte: 'Fonte', simbolo: 'Simbolo', stile: 'Stile', percorso: 'Percorso',
 }
-const ORDINE = ['idea', 'spunto', 'ricerca', 'percorso', 'concetto', 'simbolo', 'fonte', 'emozione', 'stile']
+const ORDINE = ['nucleo', 'idea', 'spunto', 'ricerca', 'percorso', 'concetto', 'simbolo', 'fonte', 'emozione', 'stile']
 const rango = (n: Nota) => (ORDINE.includes(n.tipo) ? ORDINE.indexOf(n.tipo) : ORDINE.length)
 
 function sintesiDi(n: Nota): string {
@@ -70,6 +72,7 @@ export default defineLoader({
       etichetta: TIPI[n.tipo],
       sintesi: sintesiDi(n),
       origine: ETICHETTE_ORIGINE[provenienza(n).origine] ?? provenienza(n).origine,
+      seme: provenienza(n).origine === 'seme',
       creato: n.fm.creato ? String(n.fm.creato) : null,
     }))
 

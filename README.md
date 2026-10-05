@@ -49,7 +49,13 @@ Ogni nota ha i collegamenti due volte: nel frontmatter (slug, per filtri e tabel
 
 ## Cosa ho approvato e cosa propone Claude
 
-Ogni spunto, idea e ricerca dice da dove viene e se l'ho approvato: nel frontmatter `origine` (`seme`, dal documento d'origine; `mia`, l'ho portata io; `claude`, proposta di Claude di sua iniziativa) e `validata` (`true` o `false`). Le note di mappa, se non dicono altro, vengono dal seme e sono validate.
+Ogni spunto, idea e ricerca dice da dove viene e se l'ho approvato: nel frontmatter `origine` e `validata` (`true` o `false`).
+
+- `seme`: dal [documento d'origine](diario/2026-10-04-seed.md), che ha compilato Claude in una chat con me. Contiene mie parole e proposte di Claude: le idee del seme sono proposte e partono da `false`.
+- `mia`: l'ho portata io; sempre `true`.
+- `claude`: proposta di Claude di sua iniziativa; parte da `false`.
+
+Il sito guarda solo `validata`. Le note di mappa, se non dicono altro, vengono dal seme e sono validate.
 
 Dentro una nota mia, un passo proposto da Claude sta in un blocco così, leggibile sia qui sia sul sito:
 
@@ -97,8 +103,10 @@ Le istruzioni permanenti per Claude Code sono in [CLAUDE.md](CLAUDE.md).
 - **Ricerche:** nuova sezione per le piste da esplorare, con le prime due: [I Pensieri di Marco Aurelio](ricerche/pensieri-marco-aurelio/index.md) e [Sooraj Saxena](ricerche/soorajsaxena/index.md), vedi il [diario](diario/2026-10-04-ricerche.md).
 - **Bacheca, Testi e Mappa:** fatte. Il cuore visivo del sito, generato dalle note a ogni build, vedi il [diario](diario/2026-10-05-bacheca.md).
 - **Validazione:** fatta. Ogni nota dice se viene dal seme, da me o da Claude, e se l'ho approvata; le proposte di Claude sono marcate e raccolte in [Da validare](https://paol-imi.github.io/tattoo-shit/da-validare), vedi il [diario](diario/2026-10-05-validazione.md).
+- **Revisione del seme:** il seme l'ha compilato Claude, e le sue idee di tatuaggio sono proposte di Claude, mai approvate: tornano da validare, vedi il [diario](diario/2026-10-05-revisione-seme.md).
 - **Fase 3, Pinterest:** link alle board e triage.
 - **Fase 4, le skill di Claude Code:** `/spunto`, `/idea`, `/triage`, `/convergenze`, `/diario`…
 - **Fase 5, lavoro creativo:** ricorrente.
 
-Le idee in esplorazione oggi: [il grimorio](idee/grimorio/index.md) e [il viandante oltre il firmamento](idee/viandante-oltre-il-firmamento/index.md).
+Le mie idee, portate da me: [il sognatore insonne](idee/sognatore-insonne/index.md) e [il monologo di Rust](idee/monologo-di-rust/index.md).
+Le proposte di Claude nel seme segnate "in esplorazione", [il grimorio](idee/grimorio/index.md) e [il viandante oltre il firmamento](idee/viandante-oltre-il-firmamento/index.md), aspettano ancora un mio sì o un no, come le altre idee del seme.

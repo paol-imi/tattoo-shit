@@ -113,12 +113,15 @@ for (const n of grafo) {
 }
 
 // --- provenienza: "origine" (seme | mia | claude) e "validata" (true | false)
-// obbligatori su spunti, idee e ricerche; facoltativi sulle note di mappa (se mancano: seme, true)
+// obbligatori su spunti, idee e ricerche; facoltativi sulle note di mappa (se mancano: seme, true).
+// "mia" è sempre validata; "seme" e "claude" possono essere false (le idee del seme sono proposte di Claude)
 const ORIGINI = new Set(['seme', 'mia', 'claude'])
 const TERRITORIO = new Set(['spunto', 'idea', 'ricerca'])
 const ETICHETTA_PROPOSTA = /^>\s?\*\*Proposta di Claude, da validare\.\*\*/
 const daValidare = { note: [], proposte: 0 }
-for (const n of grafo) {
+// anche il nucleo può contenere blocchi proposta
+const conProvenienza = [...grafo, ...[...note.values()].filter((x) => x.rel === 'nucleo.md')]
+for (const n of conProvenienza) {
   const obbligatori = TERRITORIO.has(n.fm.tipo)
   const { origine, validata } = n.fm
   if (origine == null || origine === '') {
@@ -129,7 +132,8 @@ for (const n of grafo) {
   } else if (validata !== 'true' && validata !== 'false') errori.push(`${n.rel}: "validata" vale "${validata}", ammessi: true, false`)
   const o = origine || 'seme'
   const v = validata === 'true' || validata === 'false' ? validata === 'true' : o !== 'claude'
-  if (o !== 'claude' && ORIGINI.has(o) && !v) errori.push(`${n.rel}: origine "${o}" vuol dire già validata (validata: true)`)
+  // solo ciò che ho portato io è sempre validato; il seme (compilato da Claude in chat) e le proposte di Claude possono non esserlo
+  if (o === 'mia' && !v) errori.push(`${n.rel}: origine "mia" vuol dire già validata (validata: true)`)
   if (!v) daValidare.note.push(n.rel)
 
   // i blocchi proposta: avviso GitHub "> [!NOTE]" con l'etichetta esatta sulla riga dopo
