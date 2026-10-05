@@ -1,6 +1,8 @@
 ---
 tipo: idea
 titolo: "La discesa di Sisifo"
+origine: seme
+validata: true
 stato: seme
 formato: pezzo-singolo
 placement: [schiena, polpaccio, fianco]

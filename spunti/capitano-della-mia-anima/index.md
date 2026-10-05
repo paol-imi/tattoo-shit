@@ -1,6 +1,8 @@
 ---
 tipo: spunto
 titolo: "Il capitano della mia anima"
+origine: mia
+validata: true
 fonte: invictus
 formato: opera
 concetti: [virtu-e-fortuna, amor-fati, battaglie-interiori, memento-mori]
@@ -47,14 +49,17 @@ _Da scrivere io, a pancia._
 
 ## Convergenze
 
-- **La notte:** si apre nel buio "come il pozzo", come la selva di Dante e il buio di Rust. Ma Henley non esce a riveder le stelle: resta in piedi nella notte. Vedi [Dal dolore alle stelle](/percorsi/dal-dolore-alle-stelle.md).
-- **Il caso che bastona:** "the bludgeonings of chance" è la fortuna di Machiavelli. Vedi [virtù e fortuna](/concetti/virtu-e-fortuna.md).
-- **Padrone del destino:** tensione con lo [stoicismo](/fonti/pensiero/stoicismo.md) e l'[amor fati](/concetti/amor-fati.md). Gli stoici accettano il fato, Henley rivendica il comando. Si toccano in un punto: l'anima è l'unica cosa che governo.
-- **La testa insanguinata ma non piegata:** [le battaglie interiori](/concetti/battaglie-interiori.md).
-- **"Unafraid":** l'ombra della morte guardata in faccia, il [memento mori](/concetti/memento-mori.md).
-- **La porta stretta:** "how strait the gate" sembra un'eco della porta stretta di [Matteo](/fonti/sacro-e-mito/vangelo-matteo.md) 7,13-14 (da verificare). Vedi [la porta](/simboli/porta.md).
-
-Rispetto al [nucleo](/nucleo.md): è tutto peso e sguardo, resistenza. L'oltre (amore, verità) qui non c'è.
+> [!NOTE]
+> **Proposta di Claude, da validare.**
+>
+> - **La notte:** si apre nel buio "come il pozzo", come la selva di Dante e il buio di Rust. Ma Henley non esce a riveder le stelle: resta in piedi nella notte. Vedi [Dal dolore alle stelle](/percorsi/dal-dolore-alle-stelle.md).
+> - **Il caso che bastona:** "the bludgeonings of chance" è la fortuna di Machiavelli. Vedi [virtù e fortuna](/concetti/virtu-e-fortuna.md).
+> - **Padrone del destino:** tensione con lo [stoicismo](/fonti/pensiero/stoicismo.md) e l'[amor fati](/concetti/amor-fati.md). Gli stoici accettano il fato, Henley rivendica il comando. Si toccano in un punto: l'anima è l'unica cosa che governo.
+> - **La testa insanguinata ma non piegata:** [le battaglie interiori](/concetti/battaglie-interiori.md).
+> - **"Unafraid":** l'ombra della morte guardata in faccia, il [memento mori](/concetti/memento-mori.md).
+> - **La porta stretta:** "how strait the gate" sembra un'eco della porta stretta di [Matteo](/fonti/sacro-e-mito/vangelo-matteo.md) 7,13-14 (da verificare). Vedi [la porta](/simboli/porta.md).
+>
+> Rispetto al [nucleo](/nucleo.md): è tutto peso e sguardo, resistenza. L'oltre (amore, verità) qui non c'è.
 
 ## Immagini
 

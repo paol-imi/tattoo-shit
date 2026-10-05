@@ -1,6 +1,7 @@
 ---
 tipo: fonte
 titolo: "William Ernest Henley, Invictus (1875)"
+origine: mia
 sottotipo: opera
 emozioni: [dolore]
 concetti: [battaglie-interiori]

@@ -44,6 +44,7 @@ function apri(id: string) {
       <p class="atl-sommario">
         Ogni citazione trovata negli spunti, nelle idee e nelle ricerche, composta come un saggio di stampa.
         Le brevi sono candidate al lettering; le lunghe restano intere, da tagliare un giorno.
+        Quelle scelte da Claude e non ancora approvate portano il segno rosso.
       </p>
     </header>
 
@@ -90,7 +91,7 @@ function apri(id: string) {
         v-for="t in g.testi"
         :key="t.id"
         class="saggio"
-        :class="[`misura-${t.misura}`, { aperto: aperti.has(t.id) }]"
+        :class="[`misura-${t.misura}`, { aperto: aperti.has(t.id), proposta: t.proposta }]"
       >
         <blockquote :id="`testo-${t.id}`"><p>{{ t.testo }}</p></blockquote>
         <button
@@ -102,6 +103,12 @@ function apri(id: string) {
           @click="apri(t.id)"
         >{{ aperti.has(t.id) ? 'Ripiega' : 'Leggi tutto' }}</button>
         <figcaption>
+          <a
+            v-if="t.proposta"
+            class="saggio-proposta"
+            :href="withBase('/da-validare')"
+            title="Il testo è dentro una proposta di Claude che non hai ancora approvato"
+          >scelta di Claude · da validare</a>
           <span v-if="t.riferimento" class="saggio-rif">{{ t.riferimento }}</span>
           <span class="saggio-da">
             da

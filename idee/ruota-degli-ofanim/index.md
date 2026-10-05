@@ -1,6 +1,8 @@
 ---
 tipo: idea
 titolo: "La ruota degli Ofanim"
+origine: seme
+validata: true
 stato: seme
 formato: 
 placement: []

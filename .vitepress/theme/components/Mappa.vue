@@ -1,6 +1,7 @@
 <script setup lang="ts">
 // La Mappa: tutte le note come un grafo. I nodi sono le note, gli archi i collegamenti del frontmatter.
 // Colore = tipo, grandezza = numero di collegamenti. Il disegno è solo nel browser (force-graph, su canvas).
+// Le proposte di Claude non ancora approvate: nodi chiari con il contorno tratteggiato, fili tratteggiati.
 import { computed, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
 import { withBase, useRouter } from 'vitepress'
 import { data, type NodoMappa } from '../mappa.data'
@@ -22,6 +23,8 @@ const ETICHETTA: Record<string, string> = {
   simbolo: 'Simbolo', fonte: 'Fonte', stile: 'Stile', percorso: 'Percorso', nucleo: 'Nucleo',
 }
 const gruppoDi = (tipo: string) => (tipo === 'nucleo' ? 'percorso' : tipo)
+const nProposte = data.nodi.filter((n) => !n.validata).length
+const nFiliProposti = data.archi.filter((a) => a.proposto).length
 const conta = Object.fromEntries(TIPI.map((t) => [t.tipo, data.nodi.filter((n) => gruppoDi(n.tipo) === t.tipo).length]))
 
 const spenti = ref(new Set<string>())
@@ -75,7 +78,7 @@ function leggiColori() {
   const v = (k: string) => cs.getPropertyValue(k).trim()
   colori = {
     carta: v('--vp-c-bg'), testo: v('--vp-c-text-1'), testo2: v('--vp-c-text-2'), arco: v('--mappa-arco'),
-    arcoForte: v('--mappa-arco-forte'), rubrica: v('--atl-rubrica'),
+    arcoForte: v('--mappa-arco-forte'), arcoProposto: v('--mappa-arco-proposto'), rubrica: v('--atl-rubrica'),
     ...Object.fromEntries(TIPI.map((t) => [t.tipo, v(`--mappa-${t.tipo}`)])),
   }
   colori.nucleo = colori.percorso
@@ -139,9 +142,10 @@ onMounted(async () => {
     .linkVisibility((l: any) => !spenti.value.has(gruppoDi(l.source.tipo ?? '')) && !spenti.value.has(gruppoDi(l.target.tipo ?? '')))
     .linkColor((l: any) => {
       const a = attivo.value
-      if (!a) return colori.arco
+      if (!a) return l.proposto ? colori.arcoProposto : colori.arco
       return l.source.id === a.id || l.target.id === a.id ? colori.arcoForte : 'rgba(0,0,0,0)'
     })
+    .linkLineDash((l: any) => (l.proposto ? [2.2, 1.6] : null))
     .linkWidth((l: any) => (attivo.value && (l.source.id === attivo.value.id || l.target.id === attivo.value.id) ? 1.4 : 0.6))
     .nodeCanvasObject((n: N, ctx: CanvasRenderingContext2D, k: number) => disegna(n, ctx, k))
     .onRenderFramePost((ctx: CanvasRenderingContext2D, k: number) => etichette(ctx, k))
@@ -214,7 +218,24 @@ function disegna(n: N, ctx: CanvasRenderingContext2D, k: number) {
   ctx.fillStyle = colore
   ctx.beginPath()
   const forma = n.tipo === 'nucleo' ? 'nucleo' : FORMA[n.tipo]
-  if (forma === 'rombo') {
+  if (!n.validata && forma !== 'anello' && forma !== 'nucleo') {
+    // proposta di Claude: la forma vuota, appena velata del colore, con il contorno tratteggiato
+    const d = r * 1.3
+    if (forma === 'rombo') { ctx.moveTo(x, y - d); ctx.lineTo(x + d, y); ctx.lineTo(x, y + d); ctx.lineTo(x - d, y); ctx.closePath() }
+    else ctx.arc(x, y, r, 0, 2 * Math.PI)
+    ctx.fillStyle = colori.carta
+    ctx.fill()
+    const alfa = ctx.globalAlpha
+    ctx.globalAlpha = alfa * 0.22
+    ctx.fillStyle = colore
+    ctx.fill()
+    ctx.globalAlpha = alfa
+    ctx.setLineDash([r * 0.42, r * 0.3])
+    ctx.lineWidth = Math.max(1.3 / k, r * 0.2)
+    ctx.strokeStyle = colore
+    ctx.stroke()
+    ctx.setLineDash([])
+  } else if (forma === 'rombo') {
     const d = r * 1.3
     ctx.moveTo(x, y - d); ctx.lineTo(x + d, y); ctx.lineTo(x, y + d); ctx.lineTo(x - d, y); ctx.closePath()
     ctx.fill(); ctx.stroke()
@@ -276,6 +297,7 @@ function etichetta(n: N, ctx: CanvasRenderingContext2D, k: number, a: N | null, 
       <h1>Il cielo delle note</h1>
       <p class="atl-sommario">
         Ogni nota è una stella, ogni collegamento un filo. Più fili, più grande la stella.
+        Le proposte di Claude non ancora approvate sono tratteggiate.
         Passa sopra un nodo per accendere i suoi vicini, cliccalo per aprire la nota.
         <span class="solo-tocco">Al tocco: un tap sceglie, il secondo apre.</span>
       </p>
@@ -327,6 +349,12 @@ function etichetta(n: N, ctx: CanvasRenderingContext2D, k: number, a: N | null, 
           <span class="segno" :class="[`segno-${t.tipo}`, `forma-${t.forma}`]" aria-hidden="true" />
           {{ t.etichetta }} <span class="conta">{{ conta[t.tipo] }}</span>
         </button>
+        <a v-if="nProposte || nFiliProposti" class="legenda-voce legenda-proposta" :href="withBase('/da-validare')" title="Ciò che Claude ha proposto e tu non hai ancora approvato">
+          <span class="segno forma-rombo segno-proposta" aria-hidden="true" />
+          <span class="filo-proposto" aria-hidden="true" />
+          proposte di Claude, da validare
+          <span class="conta">{{ nProposte }} {{ nProposte === 1 ? 'nota' : 'note' }} · {{ nFiliProposti }} {{ nFiliProposti === 1 ? 'filo' : 'fili' }}</span>
+        </a>
       </div>
     </div>
 
@@ -339,6 +367,7 @@ function etichetta(n: N, ctx: CanvasRenderingContext2D, k: number, a: N | null, 
           <span class="segno" :class="[`segno-${gruppoDi(attivo.tipo)}`, `forma-${attivo.tipo === 'nucleo' ? 'anello' : FORMA[attivo.tipo]}`]" aria-hidden="true" />
           {{ ETICHETTA[attivo.tipo] }} · {{ attivo.grado }} {{ attivo.grado === 1 ? 'collegamento' : 'collegamenti' }}
         </p>
+        <p v-if="!attivo.validata" class="mappa-scheda-proposta">Proposta di Claude · da validare</p>
         <p class="mappa-scheda-titolo">{{ attivo.titolo }}</p>
         <p v-if="viciniElenco.length" class="mappa-scheda-vicini">
           <template v-for="(v, i) in viciniElenco.slice(0, 6)" :key="v.id">
@@ -356,7 +385,7 @@ function etichetta(n: N, ctx: CanvasRenderingContext2D, k: number, a: N | null, 
         <h2>{{ t.etichetta }}</h2>
         <p>
           <template v-for="(n, i) in data.nodi.filter((x) => gruppoDi(x.tipo) === t.tipo).sort((a, b) => b.grado - a.grado)" :key="n.id">
-            <a :href="withBase(n.link)">{{ n.titolo }}</a><span class="conta"> {{ n.grado }}</span><span v-if="i < conta[t.tipo] - 1"> · </span>
+            <a :href="withBase(n.link)" :class="{ proposta: !n.validata }" :title="n.validata ? undefined : 'Proposta di Claude, da validare'">{{ n.titolo }}</a><span class="conta"> {{ n.grado }}</span><span v-if="i < conta[t.tipo] - 1"> · </span>
           </template>
         </p>
       </div>

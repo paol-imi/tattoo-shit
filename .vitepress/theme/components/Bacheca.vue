@@ -2,6 +2,7 @@
 // La Bacheca: tutte le idee e gli spunti come un muro di tavole.
 // Filtri per tipo, stato, nodo collegato (cliccando un chip) e testo libero; tutti nell'URL.
 import { computed, ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { withBase } from 'vitepress'
 import { data } from '../bacheca.data'
 import { filtriNellUrl } from '../url'
 import Tavola from './Tavola.vue'
@@ -10,12 +11,20 @@ const tipo = ref<string>('')
 const stato = ref<string>('')
 const nodo = ref<string[]>([])
 const q = ref<string>('')
-filtriNellUrl({ tipo, stato, nodo, q })
+const validazione = ref<string>('')
+filtriNellUrl({ tipo, stato, nodo, q, validazione })
 
 const TIPI = [
   { v: '', t: 'Tutto' },
   { v: 'idea', t: 'Idee' },
   { v: 'spunto', t: 'Spunti' },
+]
+// validate: tutto approvato; da validare: una proposta di Claude, o una nota con proposte dentro
+const daValidare = (c: (typeof data.carte)[number]) => !c.validata || c.proposte > 0
+const VALIDAZIONE = [
+  { v: '', t: 'tutte', n: data.carte.length },
+  { v: 'validate', t: 'validate', n: data.validazione.validate },
+  { v: 'da-validare', t: 'da validare', n: data.validazione.daValidare },
 ]
 const ETICHETTE_TIPO: Record<string, string> = {
   concetto: 'Concetti', simbolo: 'Simboli', fonte: 'Fonti', emozione: 'Emozioni',
@@ -39,12 +48,13 @@ const visibili = computed(() => {
   return data.carte.filter((c) =>
     (!tipo.value || c.tipo === tipo.value) &&
     (!stato.value || c.stato === stato.value) &&
+    (!validazione.value || (validazione.value === 'da-validare') === daValidare(c)) &&
     nodo.value.every((s) => c.nodi.includes(s)) &&
     parole.every((p) => testoCarta.get(c.slug)!.includes(p)),
   )
 })
-const filtrato = computed(() => !!(tipo.value || stato.value || nodo.value.length || q.value.trim()))
-function azzera() { tipo.value = ''; stato.value = ''; nodo.value = []; q.value = '' }
+const filtrato = computed(() => !!(tipo.value || stato.value || validazione.value || nodo.value.length || q.value.trim()))
+function azzera() { tipo.value = ''; stato.value = ''; validazione.value = ''; nodo.value = []; q.value = '' }
 function filtra(s: string) {
   nodo.value = nodo.value.includes(s) ? nodo.value.filter((x) => x !== s) : [...nodo.value, s]
   nextTick(() => document.getElementById('bacheca-muro')?.scrollIntoView({ behavior: 'smooth', block: 'start' }))
@@ -135,6 +145,20 @@ const colonne = computed(() => {
             @click="stato = stato === s.stato ? '' : s.stato"
           >{{ s.etichetta }} <span class="conta">{{ s.n }}</span></button>
         </div>
+      </div>
+      <div class="filtri-riga">
+        <span class="filtri-etichetta">Validazione</span>
+        <div class="segmenti segmenti-leggeri" role="group" aria-label="Validazione">
+          <button
+            v-for="v in VALIDAZIONE"
+            :key="v.v"
+            type="button"
+            :class="{ 'segmento-proposta': v.v === 'da-validare' }"
+            :aria-pressed="validazione === v.v ? 'true' : 'false'"
+            @click="validazione = validazione === v.v ? '' : v.v"
+          >{{ v.t }} <span class="conta">{{ v.n }}</span></button>
+        </div>
+        <a class="filtri-nota" :href="withBase('/da-validare')">cosa c'è da validare →</a>
       </div>
       <div class="filtri-riga porte">
         <span class="filtri-etichetta">Sfoglia per</span>

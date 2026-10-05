@@ -1,6 +1,8 @@
 ---
 tipo: idea
 titolo: ""
+origine: mia               # seme (dal documento d'origine) | mia (l'ho portata io) | claude (proposta di Claude, di sua iniziativa)
+validata: true             # l'ho approvata io? seme e mia: true; claude: false finché non dico sì
 stato: seme                # seme | in-esplorazione | forte | scelta | tatuata | archiviata
 formato:                   # pezzo-singolo | patchwork | sleeve | schiena | serie
 placement: []              # avambraccio, spalla, schiena, polpaccio, fianco…
@@ -23,6 +25,13 @@ aggiornato: AAAA-MM-GG
 ## Concetto
 
 ## Composizione
+
+<!-- Un passo proposto da Claude di sua iniziativa, dentro una nota già mia, va in un blocco proposta:
+> [!NOTE]
+> **Proposta di Claude, da validare.**
+>
+> il testo proposto…
+Quando lo approvo, il blocco si scioglie nel testo e la data va in "## Evoluzione". -->
 
 ## Reference
 

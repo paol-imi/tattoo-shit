@@ -1,6 +1,8 @@
 ---
 tipo: idea
 titolo: "Il viandante oltre il firmamento"
+origine: seme
+validata: true
 stato: in-esplorazione
 formato: pezzo-singolo
 placement: []

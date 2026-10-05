@@ -1,6 +1,8 @@
 ---
 tipo: idea
 titolo: "Ascesa dal polso alla spalla"
+origine: seme
+validata: true
 stato: seme
 formato: sleeve
 placement: [braccio]

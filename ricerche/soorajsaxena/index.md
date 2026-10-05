@@ -1,6 +1,8 @@
 ---
 tipo: ricerca
 titolo: "Sooraj Saxena"
+origine: mia
+validata: true
 stato: da-fare
 oggetto: "Un account Instagram da guardare bene: c'è qualcosa di interessante per me?"
 link: ["https://www.instagram.com/soorajsaxena/", "https://www.soorajsaxena.com/information", "https://www.youtube.com/watch?v=t_lGJqloVp0"]

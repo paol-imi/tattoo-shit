@@ -1,6 +1,8 @@
 ---
 tipo: idea
 titolo: "Trittico delle metamorfosi"
+origine: claude
+validata: false
 stato: seme
 formato: serie
 placement: []
@@ -42,6 +44,7 @@ _Nessun pin collegato._
 ## Evoluzione
 
 - 2026-10-04: nata nella conversazione d'origine ([diario](/diario/2026-10-04-origine.md)). Stato iniziale: `seme`. Proposta nata in fase di raccolta del seme, non ancora discussa.
+- 2026-10-05: marcata come proposta di Claude (`origine: claude`, `validata: false`): il seme stesso la dice "nata ora in fase di raccolta, non ancora discussa". Da validare.
 
 ## Collegamenti
 

@@ -1,6 +1,8 @@
 ---
 tipo: spunto
 titolo: ""
+origine: mia               # seme (dal documento d'origine) | mia (l'ho portata io) | claude (proposta di Claude, di sua iniziativa)
+validata: true             # l'ho approvata io? seme e mia: true; claude: false finché non dico sì
 fonte: slug-della-fonte
 formato: frase             # frase | scena | immagine | mito | opera | pin | sensazione
 concetti: []
@@ -23,6 +25,12 @@ Il punto preciso che mi ha colpito: dove, quando, cosa. Citazioni brevi.
 ## Perché mi colpisce
 
 _A pancia._
+
+<!-- Le convergenze o i commenti proposti da Claude di sua iniziativa vanno in un blocco proposta:
+> [!NOTE]
+> **Proposta di Claude, da validare.**
+>
+> il testo proposto… -->
 
 ## Immagini
 

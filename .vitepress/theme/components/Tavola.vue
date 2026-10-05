@@ -35,11 +35,18 @@ const chipVisibili = computed(() => {
   return [...primi, ...chip.value.filter((x) => props.attivi?.includes(x.slug) && !primi.includes(x))]
 })
 const nascosti = computed(() => chip.value.length - chipVisibili.value.length)
+// provenienza: una proposta di Claude non ancora approvata, o una nota mia con proposte dentro
+const prov = computed(() =>
+  !c.value.validata ? 'proposta' : c.value.proposte ? 'parziale' : null,
+)
 const meta = computed(() => [c.value.stato.replace(/-/g, ' '), c.value.formato?.replace(/-/g, ' ')].filter(Boolean))
 </script>
 
 <template>
-  <article class="tavola" :class="[`tipo-${c.tipo}`, { tipografica: !c.pin.length }]">
+  <article class="tavola" :class="[`tipo-${c.tipo}`, { tipografica: !c.pin.length, 'da-validare': prov === 'proposta' }]">
+    <p v-if="prov === 'proposta'" class="tavola-prov proposta" title="Claude l'ha proposta di sua iniziativa: non l'hai ancora approvata">
+      <span class="tavola-prov-chi">Proposta di Claude</span><span class="tavola-prov-stato">da validare</span>
+    </p>
     <header class="tavola-testa">
       <span class="tavola-tipo">{{ TIPI[c.tipo] ?? c.tipo }}</span>
       <span v-for="m in meta" :key="m" class="tavola-meta">{{ m }}</span>
@@ -50,6 +57,10 @@ const meta = computed(() => [c.value.stato.replace(/-/g, ' '), c.value.formato?.
         :aria-label="`risonanza ${c.risonanza} su 5`"
       >{{ '●'.repeat(c.risonanza) }}{{ '○'.repeat(5 - c.risonanza) }}</span>
     </header>
+
+    <p v-if="prov === 'parziale'" class="tavola-prov parziale">
+      <a :href="withBase(`${c.link}#proposta-1`)">{{ c.proposte === 1 ? 'una proposta di Claude' : `${c.proposte} proposte di Claude` }} da validare</a>
+    </p>
 
     <h3 class="tavola-titolo"><a :href="withBase(c.link)">{{ c.titolo }}</a></h3>
 

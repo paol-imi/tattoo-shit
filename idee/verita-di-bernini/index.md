@@ -1,6 +1,8 @@
 ---
 tipo: idea
 titolo: "La Verità di Bernini"
+origine: seme
+validata: true
 stato: seme
 formato: pezzo-singolo
 placement: []

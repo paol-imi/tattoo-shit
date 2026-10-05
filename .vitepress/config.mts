@@ -1,10 +1,11 @@
 import { defineConfig, type DefaultTheme } from 'vitepress'
 import {
   note, diario, perTitolo, ETICHETTE, ORDINE_GRUPPI, STATI, ETICHETTE_STATO, STATI_RICERCA,
-  ETICHETTE_STATO_RICERCA, SOTTOCARTELLE_FONTI, REWRITES,
+  ETICHETTE_STATO_RICERCA, SOTTOCARTELLE_FONTI, REWRITES, BASE,
   type Nota,
 } from './atlante'
 import { pinterest } from './pinterest'
+import { proposta } from './proposta'
 
 const REPO = 'https://github.com/paol-imi/tattoo-shit'
 
@@ -69,7 +70,7 @@ export default defineConfig({
   lang: 'it-IT',
   title: 'Atlante',
   description: 'Un archivio di idee per tatuaggi: concetti, simboli, fonti. Prima il concetto, poi il soggetto.',
-  base: '/tattoo-shit/',
+  base: BASE,
   cleanUrls: true,
   lastUpdated: true,
   srcExclude: ['README.md', 'CLAUDE.md', '_templates/**', 'node_modules/**', 'scripts/**'],
@@ -85,6 +86,7 @@ export default defineConfig({
   markdown: {
     config(md) {
       md.use(pinterest)
+      md.use(proposta)
     },
   },
 
@@ -93,6 +95,7 @@ export default defineConfig({
       { text: 'Bacheca', link: '/bacheca' },
       { text: 'Testi', link: '/testi' },
       { text: 'Mappa', link: '/mappa' },
+      { text: 'Da validare', link: '/da-validare' },
       { text: 'Nucleo', link: '/nucleo' },
       { text: 'Idee', link: '/#le-idee' },
       { text: 'Ricerche', link: '/#piste-aperte' },

@@ -4,7 +4,10 @@
 import { defineLoader } from 'vitepress'
 import mappa from './mappa.data'
 import testi from './testi.data'
-import { note, perTitolo, sintesi, STATI, ETICHETTE_STATO, STATI_RICERCA, ETICHETTE_STATO_RICERCA } from '../atlante'
+import {
+  note, perTitolo, sintesi, provenienza, proposteDi, collegamentiProposti, CAMPI_LINK,
+  STATI, ETICHETTE_STATO, STATI_RICERCA, ETICHETTE_STATO_RICERCA,
+} from '../atlante'
 
 export interface IdeaHome {
   titolo: string
@@ -13,6 +16,8 @@ export interface IdeaHome {
   formato: string | null
   risonanza: number | null
   concetto: string
+  /** falso per le proposte di Claude non ancora approvate */
+  validata: boolean
 }
 export interface PistaHome {
   titolo: string
@@ -28,6 +33,8 @@ export interface DatiHome {
   conteggi: { etichetta: string; n: number }[]
   /** per le tre porte: quanti testi, quante note e fili sulla mappa */
   porte: { testi: number; fonti: number; nodi: number; archi: number }
+  /** quante cose proposte da Claude aspettano un sì o un no (note, blocchi, collegamenti) */
+  daValidare: number
 }
 
 declare const data: DatiHome
@@ -60,6 +67,7 @@ export default defineLoader({
             formato: n.fm.formato || null,
             risonanza: n.fm.risonanza != null && Number.isFinite(r) ? r : null,
             concetto: sintesi(n.corpo, 'Concetto'),
+            validata: provenienza(n).validata,
           }
         }),
     }))
@@ -85,6 +93,13 @@ export default defineLoader({
     const t = (testi as any).load()
     const porte = { testi: t.testi.length, fonti: t.fonti.length, nodi: m.nodi.length, archi: m.archi.length }
 
-    return { formula, percorsi, stati, piste, conteggi, porte }
+    const tipi = new Set(Object.values(CAMPI_LINK))
+    const attive = tutte.filter((n) => !n.archiviata && tipi.has(n.tipo))
+    const daValidare =
+      attive.filter((n) => !provenienza(n).validata).length +
+      attive.filter((n) => provenienza(n).validata).reduce((t, n) => t + proposteDi(n.corpo).length, 0) +
+      collegamentiProposti().length
+
+    return { formula, percorsi, stati, piste, conteggi, porte, daValidare }
   },
 })

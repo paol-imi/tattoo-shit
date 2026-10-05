@@ -1,6 +1,8 @@
 ---
 tipo: spunto
 titolo: "La coscienza come passo falso"
+origine: seme
+validata: true
 fonte: true-detective-s1
 formato: frase
 concetti: [coscienza-come-peso, assurdo, prezzo-della-conoscenza, eterno-ritorno, verita, amore]

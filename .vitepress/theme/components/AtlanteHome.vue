@@ -100,6 +100,10 @@ const porte = [
               <span class="sep" aria-hidden="true">·</span>
               <span v-if="i.risonanza" class="risonanza" :title="`risonanza ${i.risonanza} su 5`" :aria-label="`risonanza ${i.risonanza} su 5`">{{ '●'.repeat(i.risonanza) }}{{ '○'.repeat(5 - i.risonanza) }}</span>
               <span v-else class="vuoto">risonanza da sentire</span>
+              <template v-if="!i.validata">
+                <span class="sep" aria-hidden="true">·</span>
+                <a class="proposta-tag" :href="withBase('/da-validare')" title="Proposta di Claude: non l'hai ancora approvata">proposta di Claude, da validare</a>
+              </template>
             </span>
             <span v-if="i.concetto" class="concetto">{{ i.concetto }}</span>
           </li>
@@ -127,6 +131,10 @@ const porte = [
         {{ c.n }} {{ c.etichetta }}<span v-if="i < data.conteggi.length - 1"> · </span>
       </template>.
       Tutto è nell'indice, nella ricerca e sulla <a :href="withBase('/mappa')">mappa</a>.
+      <template v-if="data.daValidare">
+        <br />Ci sono {{ data.daValidare }} proposte di Claude che aspettano un sì o un no:
+        <a :href="withBase('/da-validare')">da validare</a>.
+      </template>
     </p>
     </div>
   </div>

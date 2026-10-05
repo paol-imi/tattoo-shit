@@ -1,6 +1,8 @@
 ---
 tipo: idea
 titolo: "L'alce di Zapffe"
+origine: claude
+validata: false
 stato: seme
 formato: 
 placement: []
@@ -50,6 +52,7 @@ _Nessuna immagine ancora._
 
 - 2026-10-04: nata nella conversazione d'origine ([diario](/diario/2026-10-04-origine.md)). Stato iniziale: `seme`. Nata dallo spunto di True Detective sulla coscienza come passo falso.
 - 2026-10-04: assorbe l'idea corona-cieca (confluita).
+- 2026-10-05: marcata come proposta di Claude (`origine: claude`, `validata: false`): il seme la elenca tra le idee "nuove, da esplorare", non discusse con me. Il materiale della variante è mio (il [pin](https://www.pinterest.com/pin/150378075043142308/) della testa bendata e il monologo di Rust come testo possibile); la scelta di farvi confluire la corona cieca invece l'ha fatta Claude, quando gli ho detto "dimmi tu". Da validare, l'idea e la fusione.
 
 ## Collegamenti
 

@@ -7,6 +7,7 @@ import AtlanteHome from './components/AtlanteHome.vue'
 import Bacheca from './components/Bacheca.vue'
 import Testi from './components/Testi.vue'
 import Mappa from './components/Mappa.vue'
+import DaValidare from './components/DaValidare.vue'
 import './style.css'
 import './pagine.css'
 
@@ -22,5 +23,6 @@ export default {
     app.component('Bacheca', Bacheca)
     app.component('Testi', Testi)
     app.component('Mappa', Mappa)
+    app.component('DaValidare', DaValidare)
   },
 } satisfies Theme

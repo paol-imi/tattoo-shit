@@ -1,6 +1,8 @@
 ---
 tipo: idea
 titolo: "Il cosmo alchemico"
+origine: seme
+validata: true
 stato: seme
 formato: 
 placement: []

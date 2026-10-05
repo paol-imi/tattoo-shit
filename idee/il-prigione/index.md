@@ -1,6 +1,8 @@
 ---
 tipo: idea
 titolo: "Il Prigione: il non-finito"
+origine: seme
+validata: true
 stato: seme
 formato: pezzo-singolo
 placement: [spalla, pettorale]

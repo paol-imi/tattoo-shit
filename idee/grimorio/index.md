@@ -1,6 +1,8 @@
 ---
 tipo: idea
 titolo: "Il grimorio"
+origine: seme
+validata: true
 stato: in-esplorazione
 formato: patchwork
 placement: [braccio]

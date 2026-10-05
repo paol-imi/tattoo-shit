@@ -1,6 +1,8 @@
 ---
 tipo: fonte
 titolo: ""
+# origine: claude          # facoltativo: se manca vale seme (dal documento d'origine); mia | claude solo se diverso
+# validata: false          # facoltativo: se manca vale true; false per le proposte di Claude non ancora approvate
 sottotipo: pensiero        # pensiero | sacro-e-mito | opera | arte (cartelle: pensiero, sacro-e-mito, opere, arte)
 alias: []
 emozioni: []

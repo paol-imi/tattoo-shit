@@ -1,6 +1,8 @@
 ---
 tipo: stile
 titolo: "Testo e lettering"
+origine: claude
+validata: false
 spunti: [capitano-della-mia-anima]
 idee: [sognatore-insonne, alce-di-zapffe]
 ricerche: [pensieri-marco-aurelio]

@@ -1,6 +1,8 @@
 ---
 tipo: spunto
 titolo: "Non dormo, sogno soltanto"
+origine: mia
+validata: true
 fonte: true-detective-s1
 formato: frase
 concetti: [soglia-e-mistero]
