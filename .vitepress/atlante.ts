@@ -6,6 +6,8 @@ import { fileURLToPath } from 'node:url'
 import { execFileSync } from 'node:child_process'
 
 export const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
+/** Il percorso del sito su GitHub Pages. */
+export const BASE = '/tattoo-shit/'
 
 // cartelle e file che non diventano pagine
 const IGNORA = new Set(['node_modules', '.git', '.github', '.vitepress', '.claude', '_templates', 'scripts'])
@@ -228,44 +230,227 @@ export function pinDi(corpo: string): Pin[] {
   return out
 }
 
-/** Una citazione trovata in una nota: il testo (a capo conservati) e, se c'è, il riferimento. */
-export interface Citazione { testo: string; riferimento: string | null }
+// --- provenienza: chi ha portato una cosa e se l'ho approvata
+// Nel frontmatter: `origine` (seme | mia | claude) e `validata` (true | false).
+// Obbligatori su spunti, idee e ricerche; sulle note di mappa valgono, se mancano, seme e true.
+// Dentro una nota validata, i passi proposti da Claude stanno in un blocco "proposta":
+//   > [!NOTE]
+//   > **Proposta di Claude, da validare.**
+//   >
+//   > il testo proposto…
+export const ORIGINI = ['seme', 'mia', 'claude']
+export const ETICHETTE_ORIGINE: Record<string, string> = {
+  seme: 'dal seme', mia: 'tua', claude: 'proposta di Claude',
+}
+export const ETICHETTA_PROPOSTA = /^\*\*Proposta di Claude, da validare\.\*\*[ \t]*/
+const AVVISO = /^\[!(\w+)\][ \t]*$/i
+
+export interface Provenienza { origine: string; validata: boolean }
+export function provenienza(n: { fm: Record<string, any> }): Provenienza {
+  const origine = String(n.fm.origine || 'seme')
+  const v = n.fm.validata
+  return { origine, validata: v == null ? origine !== 'claude' : String(v) === 'true' }
+}
+
+/** Un pezzo di corpo: testo, una citazione (`>`), un avviso (`> [!…]`) o un blocco proposta, con la sezione in cui sta. */
+export interface Blocco { tipo: 'testo' | 'citazione' | 'avviso' | 'proposta'; righe: string[]; sezione: string }
+
+/** Il corpo diviso in blocchi. Le righe `>` consecutive (fuori dai blocchi di codice) fanno un blocco solo. */
+export function blocchi(corpo: string): Blocco[] {
+  const out: Blocco[] = []
+  let sezione = ''
+  let codice = false
+  let cur: Blocco | null = null
+  const chiudi = () => {
+    if (!cur) return
+    if (cur.tipo === 'citazione') {
+      const r = cur.righe
+      const prima = r.findIndex((x) => x.trim())
+      if (prima >= 0 && AVVISO.test(r[prima].trim())) {
+        const dopo = r.findIndex((x, i) => i > prima && x.trim())
+        if (dopo >= 0 && ETICHETTA_PROPOSTA.test(r[dopo].trim())) {
+          const resto = r[dopo].trim().replace(ETICHETTA_PROPOSTA, '')
+          cur = { ...cur, tipo: 'proposta', righe: [...(resto ? [resto] : []), ...r.slice(dopo + 1)] }
+        } else cur = { ...cur, tipo: 'avviso' }
+      }
+    }
+    out.push(cur)
+    cur = null
+  }
+  for (const riga of corpo.split('\n')) {
+    if (/^\s*(```|~~~)/.test(riga)) codice = !codice
+    const quota = !codice && /^>/.test(riga)
+    if (!codice && !quota) {
+      const h = riga.match(/^##\s+(.+?)\s*$/)
+      if (h) { chiudi(); sezione = h[1] }
+    }
+    const tipo = quota ? 'citazione' : 'testo'
+    if (cur && cur.tipo !== tipo) chiudi()
+    cur ??= { tipo, righe: [], sezione }
+    cur.righe.push(quota ? riga.replace(/^>[ \t]?/, '') : riga)
+  }
+  chiudi()
+  return out
+}
+
+/** I blocchi proposta di una nota, in ordine (il numero è quello dell'ancora #proposta-N sul sito). */
+export interface Proposta { n: number; sezione: string; md: string }
+export function proposteDi(corpo: string): Proposta[] {
+  return blocchi(corpo)
+    .filter((b) => b.tipo === 'proposta')
+    .map((b, i) => ({ n: i + 1, sezione: b.sezione, md: b.righe.join('\n').trim() }))
+}
+
+/** Una citazione trovata in una nota: il testo (a capo conservati), se c'è il riferimento, e se sta in un blocco proposta. */
+export interface Citazione { testo: string; riferimento: string | null; proposta: boolean }
+
+function testoCitazione(righe: string[]): string {
+  // le righe che finiscono con "\" vanno a capo; una riga vuota separa le strofe; il resto si unisce
+  const strofe = righe.join('\n').split(/\n\s*\n/).map((s) =>
+    s.split('\n').reduce((acc, r, i, a) => acc + r.replace(/\\$/, '') + (i === a.length - 1 ? '' : /\\$/.test(r) ? '\n' : ' '), ''),
+  )
+  return strofe.map((s) => testoSemplice(s.split('\n').map((r) => r.trim()).join('\n'))).join('\n\n').trim()
+}
+
+const PASSO_TROVATO = /^\s*(?:\d+\.|[-*])\s+\*\*([^*]+?)\.?\*\*[^\n]*?\*["“]([^*\n]+?)["”]\*/gm
 
 /**
  * Le citazioni di una nota, nell'ordine:
- * - i blocchi `>` dentro le sezioni (non quelli in testa alla nota, che sono avvertenze);
+ * - i blocchi `>` dentro le sezioni (non quelli in testa alla nota, che sono avvertenze; non gli avvisi `> [!…]`);
+ *   dentro un blocco proposta, le sue citazioni (`> >`) contano, marcate come proposta;
  * - nelle ricerche, i passi di `## Trovato` scritti come `**riferimento.** *"testo"*`.
  */
 export function citazioniDi(n: Nota): Citazione[] {
   const out: Citazione[] = []
-  const inizio = n.corpo.search(/^## /m)
-  if (inizio >= 0) {
-    const righe = n.corpo.slice(inizio).replace(/```[\s\S]*?```/g, '').split('\n')
-    let blocco: string[] | null = null
-    const chiudi = () => {
-      if (!blocco) return
-      // le righe che finiscono con "\" vanno a capo; una riga vuota separa le strofe; il resto si unisce
-      const strofe = blocco.join('\n').split(/\n\s*\n/).map((s) =>
-        s.split('\n').reduce((acc, r, i, a) => acc + r.replace(/\\$/, '') + (i === a.length - 1 ? '' : /\\$/.test(r) ? '\n' : ' '), ''),
-      )
-      const testo = strofe.map((s) => testoSemplice(s.split('\n').map((r) => r.trim()).join('\n'))).join('\n\n').trim()
-      if (testo) out.push({ testo, riferimento: null })
-      blocco = null
+  const tutti = blocchi(n.corpo).filter((b) => b.sezione)
+  for (const b of tutti) {
+    if (b.tipo === 'citazione') {
+      const testo = testoCitazione(b.righe)
+      if (testo) out.push({ testo, riferimento: null, proposta: false })
+    } else if (b.tipo === 'proposta') {
+      for (const d of blocchi(b.righe.join('\n'))) {
+        if (d.tipo !== 'citazione') continue
+        const testo = testoCitazione(d.righe)
+        if (testo) out.push({ testo, riferimento: null, proposta: true })
+      }
     }
-    for (const r of righe) {
-      const m = r.match(/^>\s?(.*)$/)
-      if (m) (blocco ??= []).push(m[1])
-      else chiudi()
-    }
-    chiudi()
   }
   if (n.tipo === 'ricerca') {
-    for (const [, rif, testo] of sezione(n.corpo, 'Trovato').matchAll(
-      /^\s*(?:\d+\.|[-*])\s+\*\*([^*]+?)\.?\*\*[^\n]*?\*["“]([^*\n]+?)["”]\*/gm,
-    )) out.push({ testo: testo.trim(), riferimento: rif.trim() })
+    for (const b of tutti) {
+      if (b.sezione !== 'Trovato' || (b.tipo !== 'testo' && b.tipo !== 'proposta')) continue
+      for (const [, rif, testo] of b.righe.join('\n').matchAll(PASSO_TROVATO)) {
+        out.push({ testo: testo.trim(), riferimento: rif.trim(), proposta: b.tipo === 'proposta' })
+      }
+    }
   }
   return out
 }
+
+// --- i collegamenti aggiunti da Claude in migrazione: una sola fonte, l'elenco nel diario della fase 1.
+// Ogni voce è `- [A](…) → [B](…)` (o `↔`); quando la approvo o la tolgo prende in coda "— validato il …" o "— tolto il …".
+export const DIARIO_MIGRAZIONE = 'diario/2026-10-04-fase-1.md'
+export interface CollegamentoProposto { md: string; coppie: [string, string][] }
+
+export const slugDaUrl = (u: string) => {
+  const p = u.split('#')[0].replace(/\/$/, '')
+  const parti = p.split('/')
+  const ultimo = parti[parti.length - 1]
+  return /^(index|README)\.md$/.test(ultimo) ? parti[parti.length - 2] : ultimo.replace(/\.md$/, '')
+}
+
+export function collegamentiProposti(): CollegamentoProposto[] {
+  const p = join(ROOT, DIARIO_MIGRAZIONE)
+  if (!existsSync(p)) return []
+  const righe = readFileSync(p, 'utf8').split('\n')
+  const i = righe.findIndex((r) => /^- Collegamenti aggiunti in migrazione/.test(r))
+  if (i < 0) return []
+  const out: CollegamentoProposto[] = []
+  for (const r of righe.slice(i + 1)) {
+    const m = r.match(/^\s{2,}[-*]\s+(.+)$/)
+    if (!m) break
+    const md = m[1].trim()
+    if (/—\s*(validat[oa]|tolt[oa]) il/i.test(md)) continue
+    const [sx, dx] = md.split(/\s[→↔]\s/)
+    const slug = (s = '') => [...s.matchAll(/\]\(([^)\s]+)\)/g)].map((x) => slugDaUrl(x[1]))
+    const coppie: [string, string][] = []
+    for (const a of slug(sx)) for (const b of slug(dx)) coppie.push([a, b])
+    out.push({ md, coppie })
+  }
+  return out
+}
+
+// --- la vista "solo validato": ciò che il sito mostra di default.
+// Le proposte di Claude (note non validate, blocchi proposta, collegamenti proposti) si vedono solo
+// con l'interruttore "proposte" acceso, o nella pagina Da validare.
+
+const èBloccoProposta = (righe: string[]) => {
+  const r = righe.map((x) => x.replace(/^>[ \t]?/, ''))
+  const i = r.findIndex((x) => x.trim())
+  if (i < 0 || !AVVISO.test(r[i].trim())) return false
+  const j = r.findIndex((x, k) => k > i && x.trim())
+  return j >= 0 && ETICHETTA_PROPOSTA.test(r[j].trim())
+}
+
+/** Il corpo senza i blocchi proposta. */
+export function senzaProposte(corpo: string): string {
+  const out: string[] = []
+  let codice = false
+  let blocco: string[] = []
+  const chiudi = () => {
+    if (blocco.length && !èBloccoProposta(blocco)) out.push(...blocco)
+    blocco = []
+  }
+  for (const riga of corpo.split('\n')) {
+    if (/^\s*(```|~~~)/.test(riga)) codice = !codice
+    if (!codice && /^>/.test(riga)) { blocco.push(riga); continue }
+    chiudi()
+    out.push(riga)
+  }
+  chiudi()
+  return out.join('\n')
+}
+
+/** La chiave di un collegamento, senza verso. */
+export const chiaveCoppia = (a: string, b: string) => (a < b ? `${a}|${b}` : `${b}|${a}`)
+
+export interface Proposte {
+  /** gli slug delle note non validate (fuori dall'archivio) */
+  nonValidate: Set<string>
+  /** i collegamenti proposti (chiaveCoppia): quelli di migrazione e quelli nati da un blocco proposta */
+  coppie: Set<string>
+}
+
+// dentro un blocco proposta, la frase "Fanno parte della proposta anche questi collegamenti: …"
+// nomina (per titolo o con un link) i collegamenti del frontmatter nati solo dalla proposta
+const FANNO_PARTE = /fanno parte della proposta/i
+
+/** Tutto ciò che è proposta di Claude e non è ancora validato, per la vista di default del sito. */
+export function proposte(tutte: Nota[] = note()): Proposte {
+  const attive = tutte.filter((n) => !n.archiviata)
+  const perSlug = new Map(attive.map((n) => [n.slug, n]))
+  const nonValidate = new Set(attive.filter((n) => !provenienza(n).validata).map((n) => n.slug))
+  const coppie = new Set<string>()
+  for (const c of collegamentiProposti()) for (const [a, b] of c.coppie) coppie.add(chiaveCoppia(a, b))
+  for (const n of attive) {
+    const fm = new Set(Object.values(collegamentiFm(n)).flat())
+    for (const p of proposteDi(n.corpo)) {
+      for (const par of p.md.split(/\n\s*\n/)) {
+        if (!FANNO_PARTE.test(par)) continue
+        const testo = testoSemplice(par).replace(/\s+/g, ' ')
+        const linkati = new Set(linkInterni(n.rel, par).map((rel) => tutte.find((x) => x.rel === rel)?.slug))
+        for (const s of fm) {
+          const d = perSlug.get(s)
+          if (d && (linkati.has(s) || testo.includes(d.titolo))) coppie.add(chiaveCoppia(n.slug, s))
+        }
+      }
+    }
+  }
+  return { nonValidate, coppie }
+}
+
+/** Vero se il collegamento da `a` a `b` è una proposta (nota d'arrivo non validata, o collegamento proposto). */
+export const collegamentoProposto = (p: Proposte, a: string, b: string) =>
+  p.nonValidate.has(b) || p.nonValidate.has(a) || p.coppie.has(chiaveCoppia(a, b))
 
 /** La prima frase citata tra virgolette in un testo (almeno tre parole), per gli spunti di formato "frase". */
 export function fraseTraVirgolette(md: string): string | null {

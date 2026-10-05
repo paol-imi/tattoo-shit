@@ -1,6 +1,8 @@
 ---
 tipo: ricerca
 titolo: ""
+origine: mia               # seme (dal documento d'origine) | mia (l'ho portata io) | claude (proposta di Claude, di sua iniziativa)
+validata: true             # l'ho approvata io? seme e mia: true; claude: false finché non dico sì
 stato: da-fare             # da-fare | in-corso | fatta
 oggetto: ""                # cosa c'è da esplorare, in una riga
 link: []                   # URL esterni (profili, testi, pagine), tra virgolette
@@ -31,7 +33,8 @@ Una pista da esplorare: un profilo, un libro, un artista, un tema. In una riga, 
 
 ## Esiti
 
-<!-- Gli spunti e le idee nati da qui, collegati anche nel frontmatter. Le proposte non ancora scelte restano marcate come tali. -->
+<!-- Gli spunti e le idee nati da qui, collegati anche nel frontmatter. Le proposte di Claude non ancora scelte
+vanno in un blocco proposta ("> [!NOTE]" e, sulla riga dopo, "> **Proposta di Claude, da validare.**"). -->
 
 _Ancora nessuno._
 

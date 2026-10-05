@@ -1,6 +1,8 @@
 ---
 tipo: idea
 titolo: "Il sognatore insonne"
+origine: mia
+validata: true
 stato: seme
 formato: 
 placement: []
@@ -31,10 +33,14 @@ Una sagoma (Rust seduto, che accende la sigaretta), il fumo che sale, la frase.
 1. Come giocare con il fumo della sigaretta?
 2. Come disporre la sagoma rispetto al testo?
 
-**Proposte di Claude** (solo spunti, da scartare liberamente):
-- **Il fumo diventa la scritta:** il filo di fumo sale e si sfalda nelle lettere della frase, che si dissolvono verso l'alto. Vedi [dissolvenze](/stile/dissolvenze.md).
-- **Il fumo come spirale:** il fumo si avvolge nella [spirale](/simboli/spirale.md) della serie; il riferimento pop resta nascosto nel dettaglio, la frase sotto, piccola.
-- **Il fumo che diventa stelle:** il fumo sale e si spezza in puntini, poi in [stelle](/simboli/stelle.md): un richiamo al finale ("la luce sta vincendo"). Sagoma piena in basso, tanta pelle vuota in mezzo, testo nel vuoto come nel pin. Vedi [spazio negativo](/stile/spazio-negativo.md).
+> [!NOTE]
+> **Proposta di Claude, da validare.**
+>
+> Tre modi di far giocare il fumo, da scartare liberamente:
+>
+> - **Il fumo diventa la scritta:** il filo di fumo sale e si sfalda nelle lettere della frase, che si dissolvono verso l'alto. Vedi [dissolvenze](/stile/dissolvenze.md).
+> - **Il fumo come spirale:** il fumo si avvolge nella [spirale](/simboli/spirale.md) della serie; il riferimento pop resta nascosto nel dettaglio, la frase sotto, piccola.
+> - **Il fumo che diventa stelle:** il fumo sale e si spezza in puntini, poi in [stelle](/simboli/stelle.md): un richiamo al finale ("la luce sta vincendo"). Sagoma piena in basso, tanta pelle vuota in mezzo, testo nel vuoto come nel pin. Vedi [spazio negativo](/stile/spazio-negativo.md).
 
 Il crocifisso del pin: tenerlo o no? Da decidere.
 

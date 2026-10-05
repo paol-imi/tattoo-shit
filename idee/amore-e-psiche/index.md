@@ -1,6 +1,8 @@
 ---
 tipo: idea
 titolo: "Amore e Psiche"
+origine: seme
+validata: true
 stato: seme
 formato: pezzo-singolo
 placement: []

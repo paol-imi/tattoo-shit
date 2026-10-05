@@ -4,7 +4,7 @@
 import { defineLoader } from 'vitepress'
 import {
   note, perTitolo, collegamentiFm, citazioniDi, pinDi, primeFrasi, fraseTraVirgolette, sezione, rapportiPin,
-  STATI, type Nota,
+  provenienza, proposteDi, senzaProposte, proposte as leProposte, collegamentoProposto, STATI, type Nota,
 } from '../atlante'
 
 export interface NodoBreve { titolo: string; tipo: string; link: string }
@@ -18,16 +18,28 @@ export interface Carta {
   risonanza: number | null
   pin: { id: string; descrizione: string; rapporto: number }[]
   testo: { testo: string; citazione: boolean; tagliato: boolean } | null
+  /** il testo della vista di default: preso solo da ciò che è validato (fuori dai blocchi proposta) */
+  testoValidato: { testo: string; citazione: boolean; tagliato: boolean } | null
   /** chip: concetti, simboli, fonti, emozioni (slug) */
   chip: string[]
   /** tutti gli slug collegati dal frontmatter, per il filtro */
   nodi: string[]
+  /** gli slug (tra chip e nodi) legati da un collegamento proposto da Claude: nascosti di default */
+  nodiProposti: string[]
   ornamento: string
+  /** seme | mia | claude */
+  origine: string
+  /** l'ho approvata io? */
+  validata: boolean
+  /** quanti blocchi "proposta di Claude" restano da validare dentro la nota */
+  proposte: number
 }
 export interface DatiBacheca {
   carte: Carta[]
   nodi: Record<string, NodoBreve>
   stati: { stato: string; etichetta: string; n: number }[]
+  /** quante carte sono tutte validate e quante hanno qualcosa da validare */
+  validazione: { validate: number; daValidare: number }
 }
 
 declare const data: DatiBacheca
@@ -51,7 +63,8 @@ const rango = (n: Nota) => {
 }
 
 function testoDi(n: Nota): Carta['testo'] {
-  const cit = citazioniDi(n)[0]
+  const tutte = citazioniDi(n)
+  const cit = tutte.find((c) => !c.proposta) ?? tutte[0]
   if (cit) {
     const MAX = 230
     if (cit.testo.length <= MAX) return { testo: cit.testo, citazione: true, tagliato: false }
@@ -68,10 +81,14 @@ function testoDi(n: Nota): Carta['testo'] {
   return c ? { testo: c, citazione: false, tagliato: false } : null
 }
 
+/** Una carta ha qualcosa da validare se è una proposta di Claude o se contiene blocchi proposta. */
+const daValidareC = (c: Pick<Carta, 'validata' | 'proposte'>) => !c.validata || c.proposte > 0
+
 export default defineLoader({
   watch: ['../../**/*.md'],
   async load(): Promise<DatiBacheca> {
     const tutte = note()
+    const prop = leProposte(tutte)
     const perSlug = new Map(tutte.filter((n) => !n.archiviata).map((n) => [n.slug, n]))
     const scelte = tutte.filter((n) => (n.gruppo === 'idea' || n.gruppo === 'spunto'))
     const rapporti = await rapportiPin(scelte.flatMap((n) => pinDi(n.corpo).map((p) => p.id)))
@@ -98,9 +115,13 @@ export default defineLoader({
         risonanza: n.fm.risonanza != null && r >= 1 && r <= 5 ? r : null,
         pin: pinDi(n.corpo).map((p) => ({ ...p, rapporto: rapporti[p.id] })),
         testo: testoDi(n),
+        testoValidato: testoDi({ ...n, corpo: senzaProposte(n.corpo) }),
         chip,
         nodi: [...new Set(tuttiNodi)],
+        nodiProposti: [...new Set(tuttiNodi)].filter((s) => collegamentoProposto(prop, n.slug, s)),
         ornamento: simbolo ? ORNAMENTI[simbolo] : 'sole',
+        ...provenienza(n),
+        proposte: proposteDi(n.corpo).length,
       }
     })
 
@@ -112,6 +133,7 @@ export default defineLoader({
     const stati = [...STATI, ...STATI_SPUNTO]
       .map((s) => ({ stato: s, etichetta: ETICHETTA_STATO[s] ?? s, n: carte.filter((c) => c.stato === s).length }))
       .filter((s) => s.n)
-    return { carte, nodi, stati }
+    const daValidare = carte.filter(daValidareC).length
+    return { carte, nodi, stati, validazione: { validate: carte.length - daValidare, daValidare } }
   },
 })

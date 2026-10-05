@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Verifica il repository: slug unici, link rotti, note orfane,
-// coerenza tra frontmatter e sezione "## Collegamenti". Stampa un riepilogo.
+// coerenza tra frontmatter e sezione "## Collegamenti", provenienza (origine e validata). Stampa un riepilogo.
 // Uso: node scripts/verifica.mjs
 import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs'
 import { join, dirname, basename, relative, resolve } from 'node:path'
@@ -112,6 +112,41 @@ for (const n of grafo) {
   vicini.set(n.slug, daFm)
 }
 
+// --- provenienza: "origine" (seme | mia | claude) e "validata" (true | false)
+// obbligatori su spunti, idee e ricerche; facoltativi sulle note di mappa (se mancano: seme, true)
+const ORIGINI = new Set(['seme', 'mia', 'claude'])
+const TERRITORIO = new Set(['spunto', 'idea', 'ricerca'])
+const ETICHETTA_PROPOSTA = /^>\s?\*\*Proposta di Claude, da validare\.\*\*/
+const daValidare = { note: [], proposte: 0 }
+for (const n of grafo) {
+  const obbligatori = TERRITORIO.has(n.fm.tipo)
+  const { origine, validata } = n.fm
+  if (origine == null || origine === '') {
+    if (obbligatori) errori.push(`${n.rel}: manca "origine" (seme | mia | claude)`)
+  } else if (!ORIGINI.has(origine)) errori.push(`${n.rel}: "origine" vale "${origine}", ammessi: seme, mia, claude`)
+  if (validata == null || validata === '') {
+    if (obbligatori) errori.push(`${n.rel}: manca "validata" (true | false)`)
+  } else if (validata !== 'true' && validata !== 'false') errori.push(`${n.rel}: "validata" vale "${validata}", ammessi: true, false`)
+  const o = origine || 'seme'
+  const v = validata === 'true' || validata === 'false' ? validata === 'true' : o !== 'claude'
+  if (o !== 'claude' && ORIGINI.has(o) && !v) errori.push(`${n.rel}: origine "${o}" vuol dire già validata (validata: true)`)
+  if (!v) daValidare.note.push(n.rel)
+
+  // i blocchi proposta: avviso GitHub "> [!NOTE]" con l'etichetta esatta sulla riga dopo
+  const righe = n.testo.split('\n')
+  let codice = false
+  righe.forEach((r, i) => {
+    if (/^\s*(```|~~~)/.test(r)) codice = !codice
+    if (codice) return
+    if (/^>\s?\[!NOTE\]\s*$/i.test(r) && /^>\s?\*\*Propost/i.test(righe[i + 1] ?? '')) {
+      if (!ETICHETTA_PROPOSTA.test(righe[i + 1])) avvisi.push(`${n.rel}: blocco proposta con etichetta diversa da "**Proposta di Claude, da validare.**" (riga ${i + 2})`)
+      else daValidare.proposte++
+    } else if (/^>\s?\*\*Proposta di Claude/.test(r) && !/^>\s?\[!NOTE\]/i.test(righe[i - 1] ?? '')) {
+      avvisi.push(`${n.rel}: etichetta di proposta senza "> [!NOTE]" sulla riga prima (riga ${i + 1})`)
+    }
+  })
+}
+
 // collegamenti a senso unico (solo avviso: la bidirezionalità vale "dove ha senso")
 for (const [s, vs] of vicini) {
   for (const v of vs) if (vicini.has(v) && !vicini.get(v).has(s)) avvisi.push(`collegamento a senso unico: ${s} → ${v}`)
@@ -137,6 +172,9 @@ console.log(`  ${'totale'.padEnd(10)} ${note.size}`)
 const grado = [...vicini].map(([s, vs]) => [s, vs.size]).sort((a, b) => b[1] - a[1])
 console.log('\nLe 5 note più collegate:')
 for (const [s, g] of grado.slice(0, 5)) console.log(`  ${String(g).padStart(3)}  ${perSlug.get(s).fm.titolo} (${s})`)
+
+console.log(`\nDa validare (proposte di Claude): ${daValidare.note.length} note, ${daValidare.proposte} blocchi proposta.`)
+for (const r of daValidare.note) console.log(`  - ${r}`)
 
 for (const a of avvisi) console.log(`avviso: ${a}`)
 if (errori.length) {

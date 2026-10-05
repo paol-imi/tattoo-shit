@@ -1,9 +1,12 @@
 <script setup lang="ts">
 // La Mappa: tutte le note come un grafo. I nodi sono le note, gli archi i collegamenti del frontmatter.
 // Colore = tipo, grandezza = numero di collegamenti. Il disegno è solo nel browser (force-graph, su canvas).
+// Di default solo ciò che è validato. Con l'interruttore "proposte" acceso tornano le proposte di Claude
+// non ancora approvate: nodi chiari con il contorno tratteggiato, fili tratteggiati.
 import { computed, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
 import { withBase, useRouter } from 'vitepress'
-import { data, type NodoMappa } from '../mappa.data'
+import { data, type NodoMappa, type ArcoMappa } from '../mappa.data'
+import { useProposte } from '../proposte'
 
 const TIPI = [
   { tipo: 'idea', etichetta: 'Idee', forma: 'rombo' },
@@ -22,7 +25,28 @@ const ETICHETTA: Record<string, string> = {
   simbolo: 'Simbolo', fonte: 'Fonte', stile: 'Stile', percorso: 'Percorso', nucleo: 'Nucleo',
 }
 const gruppoDi = (tipo: string) => (tipo === 'nucleo' ? 'percorso' : tipo)
-const conta = Object.fromEntries(TIPI.map((t) => [t.tipo, data.nodi.filter((n) => gruppoDi(n.tipo) === t.tipo).length]))
+
+// --- la vista: di default solo i nodi validati e i fili validati tra loro (il grado si riconta)
+const mostra = useProposte()
+const vista = computed<{ nodi: NodoMappa[]; archi: ArcoMappa[] }>(() => {
+  if (mostra.value) return data
+  const nodi = data.nodi.filter((n) => n.validata)
+  const ids = new Set(nodi.map((n) => n.id))
+  const archi = data.archi.filter((a) => !a.proposto && ids.has(a.source) && ids.has(a.target))
+  const grado = new Map<string, number>()
+  for (const a of archi) for (const id of [a.source, a.target]) grado.set(id, (grado.get(id) ?? 0) + 1)
+  return { nodi: nodi.map((n) => ({ ...n, grado: grado.get(n.id) ?? 0 })), archi }
+})
+const nProposte = data.nodi.filter((n) => !n.validata).length
+const nFiliProposti = data.archi.filter((a) => a.proposto).length
+const conta = computed(() =>
+  Object.fromEntries(TIPI.map((t) => [t.tipo, vista.value.nodi.filter((n) => gruppoDi(n.tipo) === t.tipo).length])),
+)
+const elencoPerTipo = computed(() =>
+  Object.fromEntries(
+    TIPI.map((t) => [t.tipo, vista.value.nodi.filter((x) => gruppoDi(x.tipo) === t.tipo).sort((a, b) => b.grado - a.grado)]),
+  ),
+)
 
 const spenti = ref(new Set<string>())
 function alterna(tipo: string) {
@@ -37,7 +61,7 @@ const norma = (s: string) => s.toLowerCase().normalize('NFD').replace(/\p{Diacri
 const suggeriti = computed(() => {
   const q = norma(cerca.value.trim())
   if (!q) return []
-  return data.nodi
+  return vista.value.nodi
     .filter((n) => norma(n.titolo).includes(q) || n.id.includes(q))
     .sort((a, b) => Number(!norma(a.titolo).startsWith(q)) - Number(!norma(b.titolo).startsWith(q)) || b.grado - a.grado)
     .slice(0, 8)
@@ -55,19 +79,25 @@ const attivo = computed(() => sopra.value ?? scelto.value)
 const pronto = ref(false)
 const router = useRouter()
 
-const vicini = new Map<string, Set<string>>()
-for (const n of data.nodi) vicini.set(n.id, new Set())
-for (const a of data.archi) { vicini.get(a.source)!.add(a.target); vicini.get(a.target)!.add(a.source) }
-const viciniAttivi = computed(() => (attivo.value ? vicini.get(attivo.value.id)! : null))
+const vicini = computed(() => {
+  const v = new Map<string, Set<string>>()
+  for (const n of vista.value.nodi) v.set(n.id, new Set())
+  for (const a of vista.value.archi) { v.get(a.source)!.add(a.target); v.get(a.target)!.add(a.source) }
+  return v
+})
+const viciniAttivi = computed(() => (attivo.value ? vicini.value.get(attivo.value.id) ?? null : null))
 const viciniElenco = computed(() => {
   if (!attivo.value) return []
-  const per = new Map(data.nodi.map((n) => [n.id, n]))
-  return [...vicini.get(attivo.value.id)!].map((id) => per.get(id)!).sort((a, b) => b.grado - a.grado)
+  const per = new Map(vista.value.nodi.map((n) => [n.id, n]))
+  return [...(vicini.value.get(attivo.value.id) ?? [])].map((id) => per.get(id)!).sort((a, b) => b.grado - a.grado)
 })
 
-const maxGrado = Math.max(...data.nodi.map((n) => n.grado), 1)
 const raggio = (n: N) => (n.tipo === 'nucleo' ? 9 : 2.6 + Math.sqrt(n.grado) * 1.45)
-const sogliaEtichetta = [...data.nodi].sort((a, b) => b.grado - a.grado)[Math.min(9, data.nodi.length - 1)]?.grado ?? maxGrado
+const sogliaEtichetta = computed(() => {
+  const nodi = vista.value.nodi
+  const maxGrado = Math.max(...nodi.map((n) => n.grado), 1)
+  return [...nodi].sort((a, b) => b.grado - a.grado)[Math.min(9, nodi.length - 1)]?.grado ?? maxGrado
+})
 
 let colori: Record<string, string> = {}
 function leggiColori() {
@@ -75,7 +105,7 @@ function leggiColori() {
   const v = (k: string) => cs.getPropertyValue(k).trim()
   colori = {
     carta: v('--vp-c-bg'), testo: v('--vp-c-text-1'), testo2: v('--vp-c-text-2'), arco: v('--mappa-arco'),
-    arcoForte: v('--mappa-arco-forte'), rubrica: v('--atl-rubrica'),
+    arcoForte: v('--mappa-arco-forte'), arcoProposto: v('--mappa-arco-proposto'), rubrica: v('--atl-rubrica'),
     ...Object.fromEntries(TIPI.map((t) => [t.tipo, v(`--mappa-${t.tipo}`)])),
   }
   colori.nucleo = colori.percorso
@@ -118,14 +148,26 @@ let ro: ResizeObserver | undefined
 let mo: MutationObserver | undefined
 const toccoMedia = typeof window !== 'undefined' ? window.matchMedia('(hover: none)') : null
 
+// i nodi del grafo (con le coordinate) restano gli stessi quando la vista cambia: la mappa non riparte da zero
+const nodiGrafo = new Map<string, N>()
+function datiGrafo() {
+  const nodes = vista.value.nodi.map((n) => {
+    const g = nodiGrafo.get(n.id)
+    if (g) return Object.assign(g, n, { x: g.x, y: g.y })
+    const nuovo: N = { ...n }
+    nodiGrafo.set(n.id, nuovo)
+    return nuovo
+  })
+  return { nodes, links: vista.value.archi.map((a) => ({ ...a })) }
+}
+let rinquadra = false
+
 onMounted(async () => {
   const { default: ForceGraph } = await import('force-graph')
   const el = contenitore.value!
   leggiColori()
-  const nodi: N[] = data.nodi.map((n) => ({ ...n }))
-  const archi = data.archi.map((a) => ({ ...a }))
   const g = new ForceGraph(el)
-    .graphData({ nodes: nodi, links: archi })
+    .graphData(datiGrafo())
     .nodeId('id')
     .width(el.clientWidth)
     .height(el.clientHeight)
@@ -139,9 +181,10 @@ onMounted(async () => {
     .linkVisibility((l: any) => !spenti.value.has(gruppoDi(l.source.tipo ?? '')) && !spenti.value.has(gruppoDi(l.target.tipo ?? '')))
     .linkColor((l: any) => {
       const a = attivo.value
-      if (!a) return colori.arco
+      if (!a) return l.proposto ? colori.arcoProposto : colori.arco
       return l.source.id === a.id || l.target.id === a.id ? colori.arcoForte : 'rgba(0,0,0,0)'
     })
+    .linkLineDash((l: any) => (l.proposto ? [2.2, 1.6] : null))
     .linkWidth((l: any) => (attivo.value && (l.source.id === attivo.value.id || l.target.id === attivo.value.id) ? 1.4 : 0.6))
     .nodeCanvasObject((n: N, ctx: CanvasRenderingContext2D, k: number) => disegna(n, ctx, k))
     .onRenderFramePost((ctx: CanvasRenderingContext2D, k: number) => etichette(ctx, k))
@@ -176,10 +219,11 @@ onMounted(async () => {
 
   let primo = true
   g.onEngineStop(() => {
+    if (rinquadra) { rinquadra = false; if (!scelto.value) g.zoomToFit(500, 24) }
     if (!primo) return
     primo = false
     const id = new URLSearchParams(location.search).get('nodo')
-    const n = id ? nodi.find((x) => x.id === id) : undefined
+    const n = id ? (g.graphData().nodes as N[]).find((x) => x.id === id) : undefined
     if (n) focalizza(n, 2.2)
     else g.zoomToFit(500, 24)
   })
@@ -201,6 +245,15 @@ function ridisegna() {
   g.nodeVisibility(g.nodeVisibility()).linkColor(g.linkColor())
 }
 watch([attivo, spenti], ridisegna)
+// l'interruttore "proposte": nodi e fili entrano o escono, le posizioni restano
+watch(vista, () => {
+  const g = grafo.value
+  if (!g) return
+  if (scelto.value && !vista.value.nodi.some((n) => n.id === scelto.value!.id)) { scelto.value = null; aggiornaUrl(null) }
+  sopra.value = null
+  rinquadra = true
+  g.graphData(datiGrafo())
+})
 
 function disegna(n: N, ctx: CanvasRenderingContext2D, k: number) {
   const a = attivo.value
@@ -214,7 +267,24 @@ function disegna(n: N, ctx: CanvasRenderingContext2D, k: number) {
   ctx.fillStyle = colore
   ctx.beginPath()
   const forma = n.tipo === 'nucleo' ? 'nucleo' : FORMA[n.tipo]
-  if (forma === 'rombo') {
+  if (!n.validata && forma !== 'anello' && forma !== 'nucleo') {
+    // proposta di Claude: la forma vuota, appena velata del colore, con il contorno tratteggiato
+    const d = r * 1.3
+    if (forma === 'rombo') { ctx.moveTo(x, y - d); ctx.lineTo(x + d, y); ctx.lineTo(x, y + d); ctx.lineTo(x - d, y); ctx.closePath() }
+    else ctx.arc(x, y, r, 0, 2 * Math.PI)
+    ctx.fillStyle = colori.carta
+    ctx.fill()
+    const alfa = ctx.globalAlpha
+    ctx.globalAlpha = alfa * 0.22
+    ctx.fillStyle = colore
+    ctx.fill()
+    ctx.globalAlpha = alfa
+    ctx.setLineDash([r * 0.42, r * 0.3])
+    ctx.lineWidth = Math.max(1.3 / k, r * 0.2)
+    ctx.strokeStyle = colore
+    ctx.stroke()
+    ctx.setLineDash([])
+  } else if (forma === 'rombo') {
     const d = r * 1.3
     ctx.moveTo(x, y - d); ctx.lineTo(x + d, y); ctx.lineTo(x, y + d); ctx.lineTo(x - d, y); ctx.closePath()
     ctx.fill(); ctx.stroke()
@@ -253,9 +323,10 @@ function etichette(ctx: CanvasRenderingContext2D, k: number) {
 }
 function etichetta(n: N, ctx: CanvasRenderingContext2D, k: number, a: N | null, acceso: boolean | undefined, r: number, x: number, y: number, forma: string) {
   // etichette: i nodi più collegati sempre, gli altri quando ci si avvicina o sono accesi
-  const mostra = a ? acceso : n.tipo === 'nucleo' || (n.grado >= sogliaEtichetta && k > 0.45) || k > 2.6
-  if (!mostra) return
-  const px = (a && a.id === n.id ? 16 : n.grado >= sogliaEtichetta || n.tipo === 'nucleo' ? 13.5 : 12) / Math.max(k, 0.6)
+  const soglia = sogliaEtichetta.value
+  const visibile = a ? acceso : n.tipo === 'nucleo' || (n.grado >= soglia && k > 0.45) || k > 2.6
+  if (!visibile) return
+  const px = (a && a.id === n.id ? 16 : n.grado >= soglia || n.tipo === 'nucleo' ? 13.5 : 12) / Math.max(k, 0.6)
   ctx.font = `${a?.id === n.id || n.tipo === 'nucleo' ? '600 ' : ''}${px}px ${serif}`
   ctx.textAlign = 'center'
   ctx.textBaseline = 'top'
@@ -276,6 +347,7 @@ function etichetta(n: N, ctx: CanvasRenderingContext2D, k: number, a: N | null, 
       <h1>Il cielo delle note</h1>
       <p class="atl-sommario">
         Ogni nota è una stella, ogni collegamento un filo. Più fili, più grande la stella.
+        <template v-if="mostra">Le proposte di Claude non ancora approvate sono tratteggiate.</template>
         Passa sopra un nodo per accendere i suoi vicini, cliccalo per aprire la nota.
         <span class="solo-tocco">Al tocco: un tap sceglie, il secondo apre.</span>
       </p>
@@ -327,6 +399,12 @@ function etichetta(n: N, ctx: CanvasRenderingContext2D, k: number, a: N | null, 
           <span class="segno" :class="[`segno-${t.tipo}`, `forma-${t.forma}`]" aria-hidden="true" />
           {{ t.etichetta }} <span class="conta">{{ conta[t.tipo] }}</span>
         </button>
+        <a v-if="mostra && (nProposte || nFiliProposti)" class="legenda-voce legenda-proposta" :href="withBase('/da-validare')" title="Ciò che Claude ha proposto e tu non hai ancora approvato">
+          <span class="segno forma-rombo segno-proposta" aria-hidden="true" />
+          <span class="filo-proposto" aria-hidden="true" />
+          proposte di Claude, da validare
+          <span class="conta">{{ nProposte }} {{ nProposte === 1 ? 'nota' : 'note' }} · {{ nFiliProposti }} {{ nFiliProposti === 1 ? 'filo' : 'fili' }}</span>
+        </a>
       </div>
     </div>
 
@@ -339,6 +417,7 @@ function etichetta(n: N, ctx: CanvasRenderingContext2D, k: number, a: N | null, 
           <span class="segno" :class="[`segno-${gruppoDi(attivo.tipo)}`, `forma-${attivo.tipo === 'nucleo' ? 'anello' : FORMA[attivo.tipo]}`]" aria-hidden="true" />
           {{ ETICHETTA[attivo.tipo] }} · {{ attivo.grado }} {{ attivo.grado === 1 ? 'collegamento' : 'collegamenti' }}
         </p>
+        <p v-if="!attivo.validata" class="mappa-scheda-proposta">Proposta di Claude · da validare</p>
         <p class="mappa-scheda-titolo">{{ attivo.titolo }}</p>
         <p v-if="viciniElenco.length" class="mappa-scheda-vicini">
           <template v-for="(v, i) in viciniElenco.slice(0, 6)" :key="v.id">
@@ -351,12 +430,12 @@ function etichetta(n: N, ctx: CanvasRenderingContext2D, k: number, a: N | null, 
     </div>
 
     <details class="mappa-elenco">
-      <summary>Tutti i nodi, per tipo ({{ data.nodi.length }})</summary>
+      <summary>Tutti i nodi, per tipo ({{ vista.nodi.length }})</summary>
       <div v-for="t in TIPI" :key="t.tipo" class="mappa-elenco-gruppo">
         <h2>{{ t.etichetta }}</h2>
         <p>
-          <template v-for="(n, i) in data.nodi.filter((x) => gruppoDi(x.tipo) === t.tipo).sort((a, b) => b.grado - a.grado)" :key="n.id">
-            <a :href="withBase(n.link)">{{ n.titolo }}</a><span class="conta"> {{ n.grado }}</span><span v-if="i < conta[t.tipo] - 1"> · </span>
+          <template v-for="(n, i) in elencoPerTipo[t.tipo]" :key="n.id">
+            <a :href="withBase(n.link)" :class="{ proposta: !n.validata }" :title="n.validata ? undefined : 'Proposta di Claude, da validare'">{{ n.titolo }}</a><span class="conta"> {{ n.grado }}</span><span v-if="i < conta[t.tipo] - 1"> · </span>
           </template>
         </p>
       </div>

@@ -1,8 +1,13 @@
 <script setup lang="ts">
-// Riga in testa alla nota: il tipo e, per idee, spunti e ricerche, stato, formato e risonanza.
+// Riga in testa alla nota: il tipo e, per idee, spunti e ricerche, stato, formato e risonanza;
+// poi la provenienza (dal seme, tua, proposta di Claude) e le proposte ancora da validare nella pagina.
 import { computed } from 'vue'
 import { useData, withBase } from 'vitepress'
-import { data as presenze } from '../schede.data'
+import { data as schede } from '../schede.data'
+import { useProposte } from '../proposte'
+
+// di default si contano solo carte e collegamenti validati; le proposte di Claude con l'interruttore acceso
+const mostra = useProposte()
 
 const { frontmatter, page } = useData()
 
@@ -44,9 +49,25 @@ const vai = computed(() => {
   if (rel.startsWith('_archivio/') || !SULLA_MAPPA.has(tipo)) return null
   const parti = rel.split('/')
   const slug = /^(index|README)\.md$/.test(parti[parti.length - 1]) ? parti[parti.length - 2] : parti[parti.length - 1].replace(/\.md$/, '')
+  const presenze = mostra.value ? schede.presenze : schede.presenzeValidate
   const n = tipo === 'idea' || tipo === 'spunto' ? 0 : presenze[slug] ?? 0
-  return { mappa: withBase(`/mappa?nodo=${slug}`), bacheca: n ? withBase(`/bacheca?nodo=${slug}`) : null, n }
+  // una nota non validata, a proposte spente, non è sulla mappa
+  const sullaMappa = mostra.value || !provenienza.value || provenienza.value.validata
+  return { mappa: sullaMappa ? withBase(`/mappa?nodo=${slug}`) : null, bacheca: n ? withBase(`/bacheca?nodo=${slug}`) : null, n }
 })
+
+// provenienza: sempre per spunti, idee e ricerche; sulle note di mappa solo se dichiarata
+const TERRITORIO = new Set(['idea', 'spunto', 'ricerca'])
+const ORIGINI: Record<string, string> = { seme: 'dal seme', mia: 'tua', claude: 'proposta di Claude' }
+const provenienza = computed(() => {
+  const fm = frontmatter.value
+  if (page.value.filePath.startsWith('_archivio/')) return null
+  if (!TERRITORIO.has(fm.tipo) && fm.origine == null && fm.validata == null) return null
+  const origine = String(fm.origine ?? 'seme')
+  const validata = fm.validata == null ? origine !== 'claude' : String(fm.validata) === 'true'
+  return { origine: ORIGINI[origine] ?? origine, validata, claude: origine === 'claude' }
+})
+const proposte = computed(() => schede.proposte[page.value.filePath] ?? 0)
 
 const risonanza = computed(() => {
   const r = Number(frontmatter.value.risonanza)
@@ -60,8 +81,18 @@ const risonanza = computed(() => {
     <span v-if="risonanza" class="scheda-voce" :aria-label="`risonanza ${risonanza} su 5`">
       {{ '●'.repeat(risonanza) }}{{ '○'.repeat(5 - risonanza) }}
     </span>
-    <span v-if="vai" class="scheda-vai">
-      <a :href="vai.mappa">sulla mappa</a>
+    <a
+      v-if="provenienza && !provenienza.validata"
+      class="scheda-voce scheda-prov da-validare"
+      :href="withBase('/da-validare')"
+      title="Proposta di Claude: non l'hai ancora approvata"
+    ><span>{{ provenienza.claude ? 'proposta di Claude' : provenienza.origine }} · da validare</span></a>
+    <span v-else-if="provenienza" class="scheda-voce scheda-prov">{{ provenienza.origine }}</span>
+    <a v-if="mostra && proposte" class="scheda-voce scheda-prov con-proposte" href="#proposta-1">
+      <span>{{ proposte === 1 ? 'una proposta di Claude' : `${proposte} proposte di Claude` }} da validare</span>
+    </a>
+    <span v-if="vai && (vai.mappa || vai.bacheca)" class="scheda-vai">
+      <a v-if="vai.mappa" :href="vai.mappa">sulla mappa</a>
       <a v-if="vai.bacheca" :href="vai.bacheca">{{ vai.n }} {{ vai.n === 1 ? 'tavola' : 'tavole' }} in bacheca</a>
     </span>
   </p>

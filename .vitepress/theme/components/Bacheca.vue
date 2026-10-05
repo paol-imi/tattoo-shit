@@ -1,50 +1,77 @@
 <script setup lang="ts">
 // La Bacheca: tutte le idee e gli spunti come un muro di tavole.
 // Filtri per tipo, stato, nodo collegato (cliccando un chip) e testo libero; tutti nell'URL.
+// Di default solo ciò che è validato; con l'interruttore "proposte" acceso anche le proposte di Claude,
+// marcate in rosso, e il filtro per validazione.
 import { computed, ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { withBase } from 'vitepress'
 import { data } from '../bacheca.data'
 import { filtriNellUrl } from '../url'
+import { useProposte } from '../proposte'
 import Tavola from './Tavola.vue'
+
+type C = (typeof data.carte)[number]
+const mostra = useProposte()
+// le carte della vista: di default solo quelle validate
+const base = computed(() => (mostra.value ? data.carte : data.carte.filter((c) => c.validata)))
+// i nodi di una carta, senza i collegamenti proposti quando le proposte sono spente
+const nodiDi = (c: C) => (mostra.value ? c.nodi : c.nodi.filter((s) => !c.nodiProposti.includes(s)))
+const chipDi = (c: C) => (mostra.value ? c.chip : c.chip.filter((s) => !c.nodiProposti.includes(s)))
 
 const tipo = ref<string>('')
 const stato = ref<string>('')
 const nodo = ref<string[]>([])
 const q = ref<string>('')
-filtriNellUrl({ tipo, stato, nodo, q })
+const validazione = ref<string>('')
+filtriNellUrl({ tipo, stato, nodo, q, validazione })
 
 const TIPI = [
   { v: '', t: 'Tutto' },
   { v: 'idea', t: 'Idee' },
   { v: 'spunto', t: 'Spunti' },
 ]
+// validate: tutto approvato; da validare: una proposta di Claude, o una nota con proposte dentro
+const daValidare = (c: C) => !c.validata || c.proposte > 0
+const VALIDAZIONE = [
+  { v: '', t: 'tutte', n: data.carte.length },
+  { v: 'validate', t: 'validate', n: data.validazione.validate },
+  { v: 'da-validare', t: 'da validare', n: data.validazione.daValidare },
+]
+// gli stati con il numero di carte della vista
+const stati = computed(() =>
+  data.stati.map((s) => ({ ...s, n: base.value.filter((c) => c.stato === s.stato).length })).filter((s) => s.n),
+)
 const ETICHETTE_TIPO: Record<string, string> = {
   concetto: 'Concetti', simbolo: 'Simboli', fonte: 'Fonti', emozione: 'Emozioni',
   stile: 'Stile', percorso: 'Percorsi', idea: 'Idee', spunto: 'Spunti', ricerca: 'Ricerche',
 }
 
 const norma = (s: string) => s.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '')
-const testoCarta = new Map(
-  data.carte.map((c) => [
+const testoCarta = computed(() => new Map(
+  base.value.map((c) => [
     c.slug,
     norma([
-      c.titolo, c.testo?.testo, c.formato, c.stato, c.tipo,
+      c.titolo, (mostra.value ? c.testo : c.testoValidato)?.testo, c.formato, c.stato, c.tipo,
       ...c.pin.map((p) => p.descrizione),
-      ...c.nodi.map((s) => data.nodi[s]?.titolo),
+      ...nodiDi(c).map((s) => data.nodi[s]?.titolo),
     ].filter(Boolean).join(' ')),
   ]),
-)
+))
 
+// il filtro per validazione vale solo con le proposte accese
+const validazioneAttiva = computed(() => (mostra.value ? validazione.value : ''))
 const visibili = computed(() => {
   const parole = norma(q.value).split(/\s+/).filter(Boolean)
-  return data.carte.filter((c) =>
+  return base.value.filter((c) =>
     (!tipo.value || c.tipo === tipo.value) &&
     (!stato.value || c.stato === stato.value) &&
-    nodo.value.every((s) => c.nodi.includes(s)) &&
-    parole.every((p) => testoCarta.get(c.slug)!.includes(p)),
+    (!validazioneAttiva.value || (validazioneAttiva.value === 'da-validare') === daValidare(c)) &&
+    nodo.value.every((s) => nodiDi(c).includes(s)) &&
+    parole.every((p) => testoCarta.value.get(c.slug)!.includes(p)),
   )
 })
-const filtrato = computed(() => !!(tipo.value || stato.value || nodo.value.length || q.value.trim()))
-function azzera() { tipo.value = ''; stato.value = ''; nodo.value = []; q.value = '' }
+const filtrato = computed(() => !!(tipo.value || stato.value || validazioneAttiva.value || nodo.value.length || q.value.trim()))
+function azzera() { tipo.value = ''; stato.value = ''; validazione.value = ''; nodo.value = []; q.value = '' }
 function filtra(s: string) {
   nodo.value = nodo.value.includes(s) ? nodo.value.filter((x) => x !== s) : [...nodo.value, s]
   nextTick(() => document.getElementById('bacheca-muro')?.scrollIntoView({ behavior: 'smooth', block: 'start' }))
@@ -53,7 +80,7 @@ function filtra(s: string) {
 // i nodi più presenti, come porte d'ingresso; tutti gli altri a richiesta, per tipo
 const presenze = computed(() => {
   const conta = new Map<string, number>()
-  for (const c of data.carte) for (const s of c.chip) conta.set(s, (conta.get(s) ?? 0) + 1)
+  for (const c of base.value) for (const s of chipDi(c)) conta.set(s, (conta.get(s) ?? 0) + 1)
   return [...conta].filter(([s]) => data.nodi[s]).sort((a, b) => b[1] - a[1] || data.nodi[a[0]].titolo.localeCompare(data.nodi[b[0]].titolo, 'it'))
 })
 const principali = computed(() => presenze.value.filter(([, n]) => n >= 2).slice(0, 12))
@@ -84,9 +111,9 @@ const colonne = computed(() => {
   const cw = (larghezza.value - 20 * (n - 1)) / n
   const cols = Array.from({ length: n }, () => ({ h: 0, carte: [] as typeof data.carte }))
   for (const c of visibili.value) {
-    const len = c.testo?.testo.length ?? 0
+    const len = (mostra.value ? c.testo : c.testoValidato)?.testo.length ?? 0
     const h = 150 + c.pin.reduce((t, p) => t + cw * p.rapporto + 120, 0) + (c.pin.length ? 0 : 90) +
-      len * (len <= 60 ? 1.6 : 0.75) * (300 / cw) + Math.ceil(c.chip.length / 3) * 30
+      len * (len <= 60 ? 1.6 : 0.75) * (300 / cw) + Math.ceil(chipDi(c).length / 3) * 30
     const col = cols.reduce((a, b) => (b.h < a.h - 1 ? b : a))
     col.carte.push(c)
     col.h += h + 20
@@ -128,13 +155,27 @@ const colonne = computed(() => {
         <div class="segmenti segmenti-leggeri" role="group" aria-label="Stato">
           <button type="button" :aria-pressed="!stato ? 'true' : 'false'" @click="stato = ''">tutti</button>
           <button
-            v-for="s in data.stati"
+            v-for="s in stati"
             :key="s.stato"
             type="button"
             :aria-pressed="stato === s.stato ? 'true' : 'false'"
             @click="stato = stato === s.stato ? '' : s.stato"
           >{{ s.etichetta }} <span class="conta">{{ s.n }}</span></button>
         </div>
+      </div>
+      <div v-if="mostra" class="filtri-riga">
+        <span class="filtri-etichetta">Validazione</span>
+        <div class="segmenti segmenti-leggeri" role="group" aria-label="Validazione">
+          <button
+            v-for="v in VALIDAZIONE"
+            :key="v.v"
+            type="button"
+            :class="{ 'segmento-proposta': v.v === 'da-validare' }"
+            :aria-pressed="validazione === v.v ? 'true' : 'false'"
+            @click="validazione = validazione === v.v ? '' : v.v"
+          >{{ v.t }} <span class="conta">{{ v.n }}</span></button>
+        </div>
+        <a class="filtri-nota" :href="withBase('/da-validare')">cosa c'è da validare →</a>
       </div>
       <div class="filtri-riga porte">
         <span class="filtri-etichetta">Sfoglia per</span>
@@ -174,7 +215,7 @@ const colonne = computed(() => {
     <div id="bacheca-muro" class="stato-filtri" aria-live="polite">
       <p>
         <strong>{{ visibili.length }}</strong>
-        {{ filtrato ? `di ${data.carte.length} tavole` : (visibili.length === 1 ? 'tavola' : 'tavole') }}
+        {{ filtrato ? `di ${base.length} tavole` : (visibili.length === 1 ? 'tavola' : 'tavole') }}
         <template v-if="nodo.length">
           legate a
           <template v-for="(s, i) in nodo" :key="s">
@@ -195,6 +236,7 @@ const colonne = computed(() => {
           :carta="c"
           :nodi="data.nodi"
           :attivi="nodo"
+          :proposte="mostra"
           filtrabile
           @filtra="filtra"
         />

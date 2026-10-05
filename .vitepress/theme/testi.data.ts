@@ -1,7 +1,7 @@
 // Dati di Testi: tutte le citazioni trovate in spunti, idee e ricerche,
 // con la nota da cui vengono e la fonte. Le citazioni uguali in più note si uniscono.
 import { defineLoader } from 'vitepress'
-import { note, perTitolo, citazioniDi, collegamentiFm, chiave } from '../atlante'
+import { note, perTitolo, citazioniDi, collegamentiFm, chiave, provenienza } from '../atlante'
 
 export interface Testo {
   id: string
@@ -9,7 +9,10 @@ export interface Testo {
   riferimento: string | null
   misura: 'breve' | 'media' | 'lunga'
   fonte: string | null // slug
-  note: { titolo: string; link: string; tipo: string }[]
+  /** proposta: in quella nota il testo sta solo dentro una proposta di Claude */
+  note: { titolo: string; link: string; tipo: string; proposta: boolean }[]
+  /** vero se il testo compare solo dentro proposte di Claude (blocchi proposta o note non validate) */
+  proposta: boolean
 }
 export interface DatiTesti {
   testi: Testo[]
@@ -39,11 +42,19 @@ export default defineLoader({
     const perTesto = new Map<string, Testo>()
     for (const n of sorgenti) {
       const fonte = (collegamentiFm(n).fonti ?? []).find((s) => perSlug.get(s)?.tipo === 'fonte') ?? null
+      const validata = provenienza(n).validata
       for (const c of citazioniDi(n)) {
         const k = norma(c.testo)
-        const nota = { titolo: n.titolo, link: n.link, tipo: n.tipo }
+        const proposta = c.proposta || !validata
+        const nota = { titolo: n.titolo, link: n.link, tipo: n.tipo, proposta }
         const gia = perTesto.get(k)
-        if (gia) { if (!gia.note.some((x) => x.link === n.link)) gia.note.push(nota); continue }
+        if (gia) {
+          const x = gia.note.find((x) => x.link === n.link)
+          if (x) x.proposta &&= proposta
+          else gia.note.push(nota)
+          gia.proposta &&= proposta
+          continue
+        }
         const righe = c.testo.split('\n').length
         perTesto.set(k, {
           id: hash(k),
@@ -52,6 +63,7 @@ export default defineLoader({
           misura: c.testo.length <= 90 ? 'breve' : c.testo.length > 320 || righe > 6 ? 'lunga' : 'media',
           fonte,
           note: [nota],
+          proposta,
         })
       }
     }

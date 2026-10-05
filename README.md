@@ -47,13 +47,29 @@ E poi [inbox/](inbox/) per ciò che non è smistato, [diario/](diario/) per lo s
 
 Ogni nota ha i collegamenti due volte: nel frontmatter (slug, per filtri e tabelle) e nella sezione `## Collegamenti` (link cliccabili). Le immagini Pinterest non stanno nel repository: si collegano con il link del pin e sul sito diventano embed.
 
+## Cosa ho approvato e cosa propone Claude
+
+Ogni spunto, idea e ricerca dice da dove viene e se l'ho approvato: nel frontmatter `origine` (`seme`, dal documento d'origine; `mia`, l'ho portata io; `claude`, proposta di Claude di sua iniziativa) e `validata` (`true` o `false`). Le note di mappa, se non dicono altro, vengono dal seme e sono validate.
+
+Dentro una nota mia, un passo proposto da Claude sta in un blocco così, leggibile sia qui sia sul sito:
+
+> [!NOTE]
+> **Proposta di Claude, da validare.**
+>
+> il testo proposto…
+
+Quando dico sì la nota diventa `validata: true`, o il blocco si scioglie nel testo, con la data nell'evoluzione. Tutto ciò che aspetta un sì o un no è nella pagina **[Da validare](https://paol-imi.github.io/tattoo-shit/da-validare)**.
+
+Sul sito, di default, si vede solo ciò che ho validato: niente note proposte, niente blocchi proposta, niente collegamenti proposti (quelli di migrazione e quelli nati da un blocco proposta), né in bacheca, testi e mappa, né nell'indice, nella ricerca e nelle note. Le proposte tornano visibili, marcate in rosso, con l'interruttore **proposte** in alto (sul telefono anche nel menu), che si ricorda la scelta; `?proposte=1` nell'indirizzo lo accende, `?proposte=0` lo spegne. Una nota proposta aperta dal suo indirizzo si vede comunque, con l'indicazione "proposta di Claude". Qui su GitHub si vede sempre tutto.
+
 ## Come navigare il sito
 
-Il sito ha tre porte, in alto nel menu e in home:
+Il sito ha tre porte, in alto nel menu e in home. Di default mostrano solo ciò che ho validato; l'interruttore **proposte**, in alto a destra, aggiunge le proposte di Claude.
 
 - **[Bacheca](https://paol-imi.github.io/tattoo-shit/bacheca):** tutte le idee e gli spunti come tavole, con i pin e le parole. Tocca un chip (un simbolo, una fonte, un concetto) per vedere solo ciò che vi è legato; i filtri stanno nell'indirizzo e si possono condividere.
 - **[Testi](https://paol-imi.github.io/tattoo-shit/testi):** ogni citazione dell'archivio, per fonte. Le candidate al lettering.
 - **[Mappa](https://paol-imi.github.io/tattoo-shit/mappa):** il grafo delle note. Passa sopra un nodo per accendere i vicini, cliccalo per aprire la nota.
+- **[Da validare](https://paol-imi.github.io/tattoo-shit/da-validare):** ciò che Claude ha proposto e non ho ancora approvato, sempre tutto. Non è nel menu: ci si arriva dall'interruttore acceso (o dal menu del telefono). Con le proposte accese, sulla bacheca e sulla mappa sono tratteggiate in rosso.
 
 Da ogni nota, la riga in testa porta alla sua posizione sulla mappa e alle tavole della bacheca legate a lei.
 
@@ -80,6 +96,7 @@ Le istruzioni permanenti per Claude Code sono in [CLAUDE.md](CLAUDE.md).
 - **Fase 2, il sito:** fatta. VitePress su GitHub Pages, con indice generato dalle cartelle, ricerca, embed Pinterest e backlink, vedi il [diario](diario/2026-10-04-fase-2.md).
 - **Ricerche:** nuova sezione per le piste da esplorare, con le prime due: [I Pensieri di Marco Aurelio](ricerche/pensieri-marco-aurelio/index.md) e [Sooraj Saxena](ricerche/soorajsaxena/index.md), vedi il [diario](diario/2026-10-04-ricerche.md).
 - **Bacheca, Testi e Mappa:** fatte. Il cuore visivo del sito, generato dalle note a ogni build, vedi il [diario](diario/2026-10-05-bacheca.md).
+- **Validazione:** fatta. Ogni nota dice se viene dal seme, da me o da Claude, e se l'ho approvata; le proposte di Claude sono marcate e raccolte in [Da validare](https://paol-imi.github.io/tattoo-shit/da-validare), vedi il [diario](diario/2026-10-05-validazione.md).
 - **Fase 3, Pinterest:** link alle board e triage.
 - **Fase 4, le skill di Claude Code:** `/spunto`, `/idea`, `/triage`, `/convergenze`, `/diario`…
 - **Fase 5, lavoro creativo:** ricorrente.

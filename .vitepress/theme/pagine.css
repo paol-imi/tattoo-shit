@@ -588,3 +588,382 @@ button.altri {
   .filtri-riga > .porte-elenco > *, .filtri-riga > .segmenti-leggeri > * { flex: none; white-space: nowrap; }
   .tutti-gruppo .porte-elenco { flex-basis: 100%; }
 }
+
+/* --- Provenienza: le proposte di Claude non ancora approvate.
+   Un solo segno in tutto il sito: il rosso della rubrica e il tratteggio, come una nota a margine a matita. */
+:root { --mappa-arco-proposto: rgba(140, 47, 36, 0.5); --atl-proposta-fondo: rgba(140, 47, 36, 0.045); }
+.dark { --mappa-arco-proposto: rgba(224, 138, 120, 0.55); --atl-proposta-fondo: rgba(208, 113, 95, 0.07); }
+
+/* il blocco proposta dentro le note */
+.vp-doc .proposta.custom-block {
+  position: relative;
+  margin: 20px 0;
+  padding: 12px 18px 4px 18px;
+  border: 0;
+  border-left: 3px solid var(--atl-rubrica);
+  border-radius: 0 2px 2px 0;
+  background:
+    linear-gradient(to right, var(--atl-proposta-fondo), var(--atl-proposta-fondo)),
+    var(--vp-c-bg);
+  outline: 1px dashed color-mix(in srgb, var(--atl-rubrica) 35%, transparent);
+  outline-offset: -1px;
+  color: var(--vp-c-text-1);
+  font-size: 15px;
+  line-height: 1.65;
+  scroll-margin-top: calc(var(--vp-nav-height) + 24px);
+}
+.vp-doc .proposta.custom-block .custom-block-title {
+  display: flex;
+  align-items: baseline;
+  gap: 0 10px;
+  margin: 0 0 6px;
+  font-size: 11.5px;
+  line-height: 20px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.proposta-chi { color: var(--atl-rubrica); font-weight: 700; }
+.proposta-stato { color: var(--vp-c-text-3); font-weight: 500; }
+.proposta-stato::before { content: '·'; margin-right: 10px; }
+.vp-doc .proposta .proposta-ancora {
+  margin-left: auto;
+  color: var(--vp-c-text-3);
+  font-weight: 400;
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.vp-doc .proposta:hover .proposta-ancora, .vp-doc .proposta .proposta-ancora:focus { opacity: 1; }
+.vp-doc .proposta.custom-block p, .vp-doc .proposta.custom-block li { color: var(--vp-c-text-1); }
+.vp-doc .proposta.custom-block a { color: var(--vp-c-brand-1); font-weight: 500; }
+.vp-doc .proposta.custom-block :target, .vp-doc .proposta.custom-block:target { outline-color: var(--atl-rubrica); }
+
+/* la riga in testa alla nota */
+.scheda-prov { text-decoration: none; }
+.scheda a.scheda-prov.da-validare { color: var(--atl-rubrica); font-weight: 700; }
+.scheda a.scheda-prov.da-validare span,
+.scheda a.scheda-prov.con-proposte span { border-bottom: 1px dashed currentColor; }
+.scheda a.scheda-prov.con-proposte { color: var(--atl-rubrica); }
+.scheda a.scheda-prov:hover span { border-bottom-style: solid; }
+
+/* la tavola della bacheca */
+.tavola.da-validare {
+  border: 1px dashed var(--atl-rubrica);
+  box-shadow: inset 0 0 0 4px var(--vp-c-bg-elv), inset 0 0 0 5px color-mix(in srgb, var(--atl-rubrica) 22%, transparent);
+}
+.tavola.da-validare:hover { border-color: var(--atl-rubrica); border-style: solid; }
+.tavola-prov { position: relative; z-index: 1; margin: -4px 0 -6px; font-size: 10.5px; line-height: 16px; letter-spacing: 0.14em; text-transform: uppercase; }
+.vp-doc .tavola .tavola-prov { margin: -4px 0 -6px; }
+.tavola-prov.proposta {
+  align-self: flex-start;
+  display: inline-flex;
+  gap: 8px;
+  padding: 2px 10px;
+  border: 1px dashed var(--atl-rubrica);
+  border-radius: 999px;
+  background: var(--atl-proposta-fondo);
+}
+.tavola.tipografica .tavola-prov.proposta { align-self: center; }
+.tavola-prov-chi { color: var(--atl-rubrica); font-weight: 700; }
+.tavola-prov-stato { color: var(--vp-c-text-2); }
+.tavola-prov-stato::before { content: '·'; margin-right: 8px; color: var(--vp-c-text-3); }
+.tavola-prov.parziale { margin: -6px 0 -4px; letter-spacing: 0.1em; }
+.tavola.tipografica .tavola-prov.parziale { text-align: center; }
+.tavola-prov.parziale a, .vp-doc .tavola .tavola-prov.parziale a { color: var(--atl-rubrica); text-decoration: none; border-bottom: 1px dashed currentColor; }
+.tavola-prov.parziale a:hover { border-bottom-style: solid; }
+
+/* il filtro della bacheca */
+.segmenti-leggeri button.segmento-proposta { border-style: dashed; border-color: color-mix(in srgb, var(--atl-rubrica) 55%, transparent); color: var(--atl-rubrica); }
+.segmenti-leggeri button.segmento-proposta[aria-pressed='true'] { background: var(--atl-rubrica); border-color: var(--atl-rubrica); border-style: solid; color: var(--vp-c-bg); }
+.filtri-nota { font-size: 13px; color: var(--atl-rubrica); text-decoration: none; white-space: nowrap; }
+.filtri-nota:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* testi */
+.saggio-proposta {
+  padding: 0 8px;
+  border: 1px dashed var(--atl-rubrica);
+  border-radius: 999px;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--atl-rubrica);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.saggio-proposta:hover { background: var(--atl-proposta-fondo); }
+.saggio.proposta blockquote { padding-left: 14px; border-left: 2px dashed color-mix(in srgb, var(--atl-rubrica) 55%, transparent); }
+
+/* mappa */
+.legenda-proposta { text-decoration: none; color: var(--atl-rubrica); }
+.legenda-proposta:hover { border-color: color-mix(in srgb, var(--atl-rubrica) 40%, transparent); }
+.segno.segno-proposta { background: transparent; border: 1.5px dashed var(--atl-rubrica); width: 9px; height: 9px; }
+.filo-proposto { flex: none; width: 16px; height: 0; border-top: 1.5px dashed var(--atl-rubrica); }
+.mappa-scheda-proposta {
+  margin-top: 6px !important;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--atl-rubrica);
+}
+.mappa-elenco-gruppo a.proposta { text-decoration: underline dashed var(--atl-rubrica); text-underline-offset: 3px; }
+
+/* home */
+.vp-doc .atlante-home .proposta-tag { color: var(--atl-rubrica); font-weight: 600; text-decoration: none; border-bottom: 1px dashed currentColor; }
+
+/* --- la pagina Da validare */
+.validare .atl-testata { margin-bottom: 24px; }
+.validare-indice {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 3px double var(--vp-c-text-1);
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+.validare-conta {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 16px 18px;
+  color: var(--vp-c-text-2);
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 1.35;
+  transition: background-color 0.2s;
+}
+.validare-conta + .validare-conta { border-left: 1px solid var(--vp-c-divider); }
+.validare-conta:hover { background: var(--vp-c-bg-elv); color: var(--vp-c-text-1); }
+.validare-conta strong { font-family: var(--atl-serif); font-size: 40px; line-height: 1; font-weight: 500; color: var(--atl-rubrica); }
+.validare-conta.zero strong { color: var(--vp-c-text-3); }
+.validare-come {
+  max-width: 760px;
+  margin: 20px 0 0;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--vp-c-text-2);
+}
+.validare-come strong { color: var(--vp-c-text-1); }
+.validare code, .validare-proposta-testo code {
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: var(--vp-c-bg-soft);
+  font-size: 0.88em;
+  color: var(--vp-c-text-1);
+}
+
+.validare-parte { margin-top: 56px; }
+.validare-titolo {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0;
+  font-family: var(--atl-serif);
+  font-size: clamp(24px, 3.4vw, 30px);
+  font-weight: 600;
+  line-height: 1.2;
+  scroll-margin-top: calc(var(--vp-nav-height) + 16px);
+}
+.validare-titolo .conta { font-family: var(--vp-font-family-base); font-size: 15px; font-weight: 400; }
+.validare-nota { max-width: 760px; margin: 8px 0 22px; font-size: 15px; line-height: 1.6; color: var(--vp-c-text-2); }
+.validare-nota a, .validare-collegamenti a, .validare-proposta-testo a {
+  color: var(--vp-c-text-1);
+  text-decoration: underline;
+  text-decoration-color: var(--vp-c-divider);
+  text-underline-offset: 3px;
+}
+.validare-nota a:hover, .validare-collegamenti a:hover, .validare-proposta-testo a:hover { color: var(--atl-rubrica); text-decoration-color: currentColor; }
+.validare-vuoto { margin: 0; font-family: var(--atl-serif); font-style: italic; color: var(--vp-c-text-3); }
+
+.validare-carte { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 20px; }
+.validare-carta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  padding: 18px 18px 16px;
+  background: var(--vp-c-bg-elv);
+  border: 1px dashed var(--atl-rubrica);
+  box-shadow: inset 0 0 0 4px var(--vp-c-bg-elv), inset 0 0 0 5px color-mix(in srgb, var(--atl-rubrica) 22%, transparent);
+  transition: border-color 0.2s;
+}
+.validare-carta:hover { border-style: solid; }
+.validare-carta-testa, .validare-proposta figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 0;
+  margin: 0;
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--vp-c-text-3);
+}
+.validare-carta-testa > * + *::before { content: '·'; margin: 0 0.55em; color: var(--vp-c-text-3); }
+.validare-tipo { color: var(--vp-c-text-1); font-weight: 600; }
+.validare-segno:first-of-type { color: var(--atl-rubrica); font-weight: 700; }
+.validare-carta-titolo { margin: 0; font-family: var(--atl-serif); font-size: 22px; line-height: 1.2; font-weight: 600; }
+.validare-carta-titolo a { color: var(--vp-c-text-1); text-decoration: none; }
+.validare-carta-titolo a::after { content: ''; position: absolute; inset: 0; }
+.validare-carta-titolo a:hover { color: var(--atl-rubrica); }
+.validare-sintesi { margin: 0; font-family: var(--atl-serif); font-style: italic; font-size: 17px; line-height: 1.45; color: var(--vp-c-text-2); }
+.validare-apri {
+  position: relative;
+  align-self: flex-end;
+  margin-top: auto;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--vp-c-text-3);
+  text-decoration: none;
+}
+.validare-carta:hover .validare-apri, .validare-apri:hover { color: var(--atl-rubrica); }
+
+.validare-proposte { display: flex; flex-direction: column; gap: 36px; max-width: 820px; }
+.validare-proposta { margin: 0; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.validare-proposta figcaption { gap: 4px 12px; }
+.validare-proposta-nota {
+  font-family: var(--atl-serif);
+  font-size: 19px;
+  letter-spacing: 0;
+  text-transform: none;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+  text-decoration: none;
+}
+.validare-proposta-nota:hover { color: var(--atl-rubrica); }
+.validare-sezione { font-style: italic; letter-spacing: 0.06em; }
+.validare-proposta-testo {
+  margin: 0;
+  padding: 12px 18px;
+  border-left: 3px solid var(--atl-rubrica);
+  outline: 1px dashed color-mix(in srgb, var(--atl-rubrica) 35%, transparent);
+  outline-offset: -1px;
+  background: var(--atl-proposta-fondo);
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--vp-c-text-1);
+  overflow-wrap: break-word;
+  min-width: 0;
+}
+.validare-proposta-testo > :first-child { margin-top: 0; }
+.validare-proposta-testo > :last-child { margin-bottom: 0; }
+.validare-proposta-testo p { margin: 10px 0; }
+.validare-proposta-testo ul, .validare-proposta-testo ol { margin: 10px 0; padding-left: 1.3em; }
+.validare-proposta-testo ul { list-style: disc; }
+.validare-proposta-testo ol { list-style: decimal; }
+.validare-proposta-testo li + li { margin-top: 6px; }
+.validare-proposta-testo li::marker { color: var(--atl-rubrica); }
+.validare-proposta-testo strong { font-weight: 600; }
+.validare-proposta .validare-apri { align-self: flex-start; }
+
+.validare-collegamenti { max-width: 820px; margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--vp-c-divider); }
+.validare-collegamenti li {
+  margin: 0;
+  padding: 10px 0 10px 26px;
+  border-bottom: 1px solid var(--vp-c-divider);
+  position: relative;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--vp-c-text-2);
+}
+.validare-collegamenti li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 21px;
+  width: 16px;
+  border-top: 1.5px dashed var(--atl-rubrica);
+}
+
+@media (max-width: 640px) {
+  .validare-indice { grid-template-columns: 1fr; }
+  .validare-conta { padding: 10px 4px; }
+  .validare-conta + .validare-conta { border-left: 0; border-top: 1px solid var(--vp-c-divider); }
+  .validare-conta strong { font-size: 30px; min-width: 1.2em; }
+  .validare-parte { margin-top: 44px; }
+  .validare-proposta-testo { padding: 10px 14px; }
+}
+
+/* --- Vista di default: solo ciò che ho validato.
+   Senza la classe `mostra-proposte` su <html> (l'interruttore "proposte", spento di default) spariscono
+   i blocchi proposta, i collegamenti proposti in `## Collegamenti` e i titoli fatti solo di proposte. */
+html:not(.mostra-proposte) .vp-doc .proposta.custom-block,
+html:not(.mostra-proposte) .solo-proposte,
+html:not(.mostra-proposte) .coll-proposto,
+html:not(.mostra-proposte) .coll-sep-primo { display: none !important; }
+
+/* una nota proposta aperta dal suo indirizzo: l'indicazione resta, ma discreta */
+html:not(.mostra-proposte) .scheda a.scheda-prov.da-validare { color: var(--vp-c-text-2); font-weight: 600; }
+
+/* con le proposte accese, i collegamenti proposti sono sottolineati a tratteggio */
+html.mostra-proposte .vp-doc .coll-proposto a,
+.vp-doc .collegato-da a.link-proposto { text-decoration-style: dashed; text-decoration-color: var(--atl-rubrica); }
+
+/* l'interruttore, nella barra in alto */
+.interruttore-proposte { display: flex; align-items: center; gap: 10px; margin-left: 14px; }
+.interruttore {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 2px;
+  border: 0;
+  background: none;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  color: var(--vp-c-text-2);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.interruttore:hover { color: var(--vp-c-text-1); }
+.interruttore:focus-visible { outline: 2px solid var(--vp-c-brand-1); outline-offset: 2px; border-radius: 4px; }
+.interruttore-pista {
+  position: relative;
+  flex: none;
+  width: 26px;
+  height: 15px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 999px;
+  background: var(--vp-c-bg-soft);
+  transition: border-color 0.2s;
+}
+.interruttore-pomello {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--vp-c-text-3);
+  transition: transform 0.2s, background-color 0.2s;
+}
+html.mostra-proposte .interruttore { color: var(--atl-rubrica); }
+html.mostra-proposte .interruttore-pista { border-color: color-mix(in srgb, var(--atl-rubrica) 50%, transparent); }
+html.mostra-proposte .interruttore-pomello { transform: translateX(11px); background: var(--atl-rubrica); }
+.interruttore-validare { font-size: 12px; color: var(--atl-rubrica); text-decoration: none; white-space: nowrap; }
+.interruttore-validare:hover { text-decoration: underline; text-underline-offset: 3px; }
+html:not(.mostra-proposte) .interruttore-proposte:not(.interruttore-schermo) .interruttore-validare { display: none; }
+@media (max-width: 1099px) {
+  .interruttore-proposte:not(.interruttore-schermo) .interruttore-validare { display: none; }
+}
+@media (max-width: 767px) {
+  .interruttore-proposte:not(.interruttore-schermo) { margin: 0 2px 0 6px; }
+  .interruttore-proposte:not(.interruttore-schermo) .interruttore-testo { font-size: 11px; letter-spacing: 0.04em; }
+}
+
+/* l'interruttore nel menu del telefono, con il link alla pagina Da validare */
+.interruttore-proposte.interruttore-schermo {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 24px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--vp-c-divider);
+}
+.interruttore-schermo .interruttore { font-size: 14px; letter-spacing: 0; }
+.interruttore-schermo .interruttore-validare { font-size: 14px; color: var(--vp-c-text-2); }
+
+/* la pagina Da validare: come vedere le proposte nel resto del sito */
+.validare-interruttore { margin: 10px 0 0; max-width: 640px; font-size: 14px; line-height: 1.6; color: var(--vp-c-text-3); }

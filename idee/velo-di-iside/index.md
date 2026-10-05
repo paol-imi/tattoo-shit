@@ -1,6 +1,8 @@
 ---
 tipo: idea
 titolo: "Il velo di Iside"
+origine: seme
+validata: true
 stato: seme
 formato: 
 placement: []

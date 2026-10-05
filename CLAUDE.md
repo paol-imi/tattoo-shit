@@ -37,6 +37,27 @@ Non sei solo un archivista: proponi collegamenti, convergenze e domande.
   (il sito, in `.vitepress/`, segnala i link morti); i link a file fuori dal sito, come README e CLAUDE.md,
   vanno scritti con l'URL di GitHub.
 
+## Validazione: cosa ho approvato e cosa è proposta tua
+- Frontmatter di ogni spunto, idea e ricerca (obbligatori): `origine: seme | mia | claude`
+  (seme = dal documento d'origine, discusso con me; mia = l'ho portata io; claude = proposta tua, di tua iniziativa)
+  e `validata: true | false` (true = l'ho approvata; seme e mia sono sempre true; claude parte da false).
+  Sulle note di mappa sono facoltativi: se mancano valgono `origine: seme`, `validata: true`; scrivili solo se diversi.
+- Dentro una nota validata, un passo che proponi tu di tua iniziativa va in un blocco proposta, sempre così
+  (avviso in stile GitHub, etichetta esatta sulla seconda riga, poi una riga `>` vuota):
+
+  ```md
+  > [!NOTE]
+  > **Proposta di Claude, da validare.**
+  >
+  > il testo proposto…
+  ```
+
+  Su GitHub è una nota con l'etichetta in grassetto; sul sito un blocco con il filetto rosso.
+  La pagina [Da validare](https://paol-imi.github.io/tattoo-shit/da-validare) raccoglie da sola note non validate,
+  blocchi proposta e i collegamenti aggiunti in migrazione (elenco nel diario della fase 1).
+- Il sito di default mostra solo il validato: le proposte (note, blocchi, collegamenti di migrazione e quelli che un blocco
+  dice "fanno parte della proposta") si vedono con l'interruttore "proposte" in alto o nella pagina Da validare.
+
 ## Immagini e Pinterest
 - Nel repository solo immagini mie: sketch, foto, immagini generate. Mai immagini Pinterest.
 - Pinterest si collega solo con il link del pin, nella sezione `## Pinterest`, un pin per riga,
@@ -50,6 +71,12 @@ Non sei solo un archivista: proponi collegamenti, convergenze e domande.
 ## Regole
 - Leggi `nucleo.md` all'inizio di ogni sessione: è il mio punto di vista attuale.
 - Non cancellare mai idee o spunti: spostali in `_archivio/` con il motivo.
+- Tutto ciò che aggiungi di tua iniziativa (note, varianti, convergenze, scelte di passi, collegamenti) va marcato:
+  la nota nuova con `origine: claude` e `validata: false`, il passo dentro una nota mia nel blocco proposta.
+  Ciò che mi limito a riportare (le mie frasi, i miei pin, le mie domande, i fatti verificati) non si marca.
+  Quando approvo: `validata: true` (l'origine resta `claude`) oppure sciogli il blocco nel testo, e scrivi la data
+  in `## Evoluzione` (se la nota non l'ha, nel diario). Quando rifiuto: togli la proposta o archiviala con il motivo.
+  Per i collegamenti di migrazione, in coda alla riga del diario: "— validato il AAAA-MM-GG" o "— tolto il AAAA-MM-GG".
 - Non ristrutturare cartelle o schemi senza chiedermelo.
 - Fatti su opere, autori e miti: se non sei sicuro scrivi "(da verificare)". Non inventare.
 - Citazioni: brevi. Niente testi di canzoni riprodotti: cita titolo, album e il momento.

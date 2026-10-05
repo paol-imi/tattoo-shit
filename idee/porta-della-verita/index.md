@@ -1,6 +1,8 @@
 ---
 tipo: idea
 titolo: "La Porta della Verità"
+origine: seme
+validata: true
 stato: seme
 formato: pezzo-singolo
 placement: []

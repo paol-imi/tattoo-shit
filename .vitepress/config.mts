@@ -1,15 +1,19 @@
 import { defineConfig, type DefaultTheme } from 'vitepress'
 import {
   note, diario, perTitolo, ETICHETTE, ORDINE_GRUPPI, STATI, ETICHETTE_STATO, STATI_RICERCA,
-  ETICHETTE_STATO_RICERCA, SOTTOCARTELLE_FONTI, REWRITES,
+  ETICHETTE_STATO_RICERCA, SOTTOCARTELLE_FONTI, REWRITES, BASE, provenienza,
   type Nota,
 } from './atlante'
 import { pinterest } from './pinterest'
+import { proposta } from './proposta'
+import { collegamenti } from './collegamenti'
 
 const REPO = 'https://github.com/paol-imi/tattoo-shit'
 
 // --- barra laterale e menu, generati dalle cartelle a ogni build
-const tutte = note()
+// Solo ciò che è validato: le note proposte da Claude si aprono dal loro indirizzo,
+// dalla pagina Da validare o con l'interruttore "proposte" acceso.
+const tutte = note().filter((n) => n.archiviata || provenienza(n).validata)
 const voce = (n: Nota): DefaultTheme.SidebarItem => ({ text: n.titolo, link: n.link })
 const delGruppo = (g: string) => tutte.filter((n) => n.gruppo === g)
 const ordinate = (g: string) => delGruppo(g).sort(perTitolo).map(voce)
@@ -63,18 +67,25 @@ const sidebar: DefaultTheme.SidebarItem[] = ORDINE_GRUPPI.map((g) => ({
   items: (gruppi[g] ?? (() => ordinate(g)))(),
 })).filter((g) => g.items.length)
 
+const INTERRUTTORE = `(function(){try{var d=document.documentElement,q=new URLSearchParams(location.search).get('proposte'),v=q==='1'?true:q==='0'?false:null;if(v===null){try{v=localStorage.getItem('atlante-proposte')==='1'}catch(e){v=false}}if(v)d.classList.add('mostra-proposte')}catch(e){}})()`
+
 const percorsi = delGruppo('percorso').sort(perTitolo).map(voce)
 
 export default defineConfig({
   lang: 'it-IT',
   title: 'Atlante',
   description: 'Un archivio di idee per tatuaggi: concetti, simboli, fonti. Prima il concetto, poi il soggetto.',
-  base: '/tattoo-shit/',
+  base: BASE,
   cleanUrls: true,
   lastUpdated: true,
   srcExclude: ['README.md', 'CLAUDE.md', '_templates/**', 'node_modules/**', 'scripts/**'],
   rewrites: REWRITES,
-  head: [['meta', { name: 'theme-color', content: '#111111' }]],
+  head: [
+    ['meta', { name: 'theme-color', content: '#111111' }],
+    // le proposte di Claude: spente di default; ?proposte=1 (o 0) le forza, altrimenti vale la preferenza salvata.
+    // La classe su <html> c'è prima del primo disegno: niente lampi. I componenti la leggono dopo il montaggio.
+    ['script', {}, INTERRUTTORE],
+  ],
 
   // il titolo della pagina viene dal campo "titolo" del frontmatter
   transformPageData(pageData) {
@@ -85,6 +96,8 @@ export default defineConfig({
   markdown: {
     config(md) {
       md.use(pinterest)
+      md.use(proposta)
+      md.use(collegamenti)
     },
   },
 
@@ -123,6 +136,14 @@ export default defineConfig({
     search: {
       provider: 'local',
       options: {
+        // l'indice contiene solo il validato: niente note proposte, niente blocchi proposta né collegamenti proposti
+        _render(src, env, md) {
+          const e: any = Object.assign(env, { perLaRicerca: true })
+          const html = md.render(src, e)
+          const fm = e.frontmatter ?? {}
+          if (fm.search === false || !provenienza({ fm }).validata || env.relativePath === 'da-validare.md') return ''
+          return html
+        },
         translations: {
           button: { buttonText: 'Cerca', buttonAriaLabel: 'Cerca' },
           modal: {

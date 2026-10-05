@@ -1,6 +1,8 @@
 ---
 tipo: idea
 titolo: "L'angelo malinconico"
+origine: seme
+validata: true
 stato: seme
 formato: 
 placement: []

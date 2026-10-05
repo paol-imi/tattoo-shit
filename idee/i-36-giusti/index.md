@@ -1,6 +1,8 @@
 ---
 tipo: idea
 titolo: "I 36 giusti"
+origine: seme
+validata: true
 stato: seme
 formato: pezzo-singolo
 placement: []

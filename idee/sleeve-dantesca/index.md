@@ -1,6 +1,8 @@
 ---
 tipo: idea
 titolo: "Il Cammino: sleeve dantesca"
+origine: seme
+validata: true
 stato: seme
 formato: sleeve
 placement: [braccio]
