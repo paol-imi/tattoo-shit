@@ -19,7 +19,7 @@ creato: 2026-10-04
 
 ## Il frammento
 
-[True Detective, stagione 1](/fonti/opere/true-detective-s1.md), Rust Cohle: "I don't sleep, I just dream" (episodio da verificare).
+[True Detective, stagione 1](/fonti/opere/true-detective-s1.md), Rust Cohle: "I don't sleep, I just dream" (episodio 1, *The Long Bright Dark*).
 
 > [!NOTE]
 > **Proposta di Claude, da validare.**

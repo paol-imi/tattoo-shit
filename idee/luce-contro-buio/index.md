@@ -13,7 +13,7 @@ simboli: [stelle]
 fonti: [true-detective-s1]
 spunti: [true-detective-coscienza]
 percorsi: [dal-dolore-alle-stelle]
-idee: []
+idee: [buio-sotto-il-buio]
 risonanza:
 creato: 2026-10-04
 aggiornato: 2026-10-04
@@ -53,3 +53,4 @@ _Nessun pin collegato._
 - **Stile:** [Spazio negativo](/stile/spazio-negativo.md)
 - **Percorsi:** [Dal dolore alle stelle](/percorsi/dal-dolore-alle-stelle.md)
 - **Spunti:** [La coscienza come passo falso](/spunti/true-detective-coscienza/index.md)
+- **Idee:** [Il buio sotto il buio](/idee/buio-sotto-il-buio/index.md)

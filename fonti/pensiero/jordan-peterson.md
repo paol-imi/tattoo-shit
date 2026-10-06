@@ -4,6 +4,7 @@ titolo: "Jordan Peterson"
 sottotipo: pensiero
 emozioni: [caos]
 concetti: [evoluzione-e-percorso]
+idee: [lotta-al-guado]
 creato: 2026-10-04
 ---
 
@@ -15,3 +16,4 @@ Il viaggio dell'eroe: entrare volontariamente nella caverna del drago (il caos, 
 
 - **Emozioni:** [Caos](/emozioni/caos.md)
 - **Concetti:** [Evoluzione e percorso](/concetti/evoluzione-e-percorso.md)
+- **Idee:** [La lotta al guado](/idee/lotta-al-guado/index.md)

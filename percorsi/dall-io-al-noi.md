@@ -3,7 +3,7 @@ tipo: percorso
 titolo: "Dall'io al noi"
 concetti: [rivolta, sacrificio-anonimo, dissoluzione-dell-io, guida-e-condottiero, amore]
 fonti: [camus, tao-te-ching, maimonide, kshitigarbha, vangelo-matteo, advaita-buddhismo]
-idee: [i-36-giusti]
+idee: [i-36-giusti, elmo-e-vite, uno-e-tutto, mulo-e-guida]
 creato: 2026-10-04
 ---
 
@@ -15,4 +15,4 @@ La rivolta che diventa solidarietà (Camus), il sacrificio anonimo, la dissoluzi
 
 - **Concetti:** [Rivolta](/concetti/rivolta.md) · [Sacrificio anonimo](/concetti/sacrificio-anonimo.md) · [Dissoluzione dell'io](/concetti/dissoluzione-dell-io.md) · [Guida e condottiero](/concetti/guida-e-condottiero.md) · [Amore](/concetti/amore.md)
 - **Fonti:** [Albert Camus](/fonti/pensiero/camus.md) · [Laozi, Tao Te Ching](/fonti/pensiero/tao-te-ching.md) · [Maimonide](/fonti/pensiero/maimonide.md) · [Kṣitigarbha / Jizō](/fonti/sacro-e-mito/kshitigarbha.md) · [Vangelo di Matteo](/fonti/sacro-e-mito/vangelo-matteo.md) · [Advaita e buddhismo](/fonti/sacro-e-mito/advaita-buddhismo.md)
-- **Idee:** [I 36 giusti](/idee/i-36-giusti/index.md)
+- **Idee:** [I 36 giusti](/idee/i-36-giusti/index.md) · [L'elmo e la vite](/idee/elmo-e-vite/index.md) · [Uno è tutto](/idee/uno-e-tutto/index.md) · [Il mulo e la guida](/idee/mulo-e-guida/index.md)

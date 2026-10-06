@@ -13,7 +13,7 @@ simboli: [vite, clessidra]
 stile: [testo-e-lettering]
 percorsi: [peso-sguardo-oltre]
 spunti: [capitano-della-mia-anima]
-idee: []
+idee: [invitto, a-se-stesso, elmo-e-vite]
 ricerche: []
 creato: 2026-10-04
 aggiornato: 2026-10-04
@@ -58,6 +58,11 @@ _Ancora nessuno spunto creato._
 > [!NOTE]
 > **Proposta di Claude, da validare.**
 >
+> 2026-10-06: tre idee proposte nate da questi passi: [Invitto](/idee/invitto/index.md), dalla parola "invincibile" di VIII.48; [A se stesso](/idee/a-se-stesso/index.md), dal titolo dei Pensieri; [L'elmo e la vite](/idee/elmo-e-vite/index.md), dalla vite di V.6.
+
+> [!NOTE]
+> **Proposta di Claude, da validare.**
+>
 > Tre spunti possibili, da scegliere io:
 >
 > - **"L'anima prende il colore dei pensieri"** (V.16). Uno spunto sul tatuaggio stesso come tintura dell'anima: la frase, o un'immagine di inchiostro che entra nella pelle come un pensiero ripetuto. Il meta-tatuaggio.
@@ -77,3 +82,4 @@ Domanda per me: quale di questi passi ti colpisce di più, a pancia?
 - **Stile:** [Testo e lettering](/stile/testo-e-lettering.md)
 - **Percorsi:** [Il peso → lo sguardo → l'oltre](/percorsi/peso-sguardo-oltre.md)
 - **Spunti:** [Il capitano della mia anima](/spunti/capitano-della-mia-anima/index.md)
+- **Idee:** [Invitto](/idee/invitto/index.md) · [A se stesso](/idee/a-se-stesso/index.md) · [L'elmo e la vite](/idee/elmo-e-vite/index.md)

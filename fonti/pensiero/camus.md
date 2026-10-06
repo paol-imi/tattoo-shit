@@ -7,7 +7,7 @@ concetti: [assurdo, rivolta, amor-fati, verita, amore]
 fonti: [sisifo, camus-opere]
 percorsi: [dall-io-al-noi]
 spunti: [true-detective-coscienza]
-idee: [discesa-di-sisifo]
+idee: [discesa-di-sisifo, alzati-e-cammina]
 creato: 2026-10-04
 ---
 
@@ -24,4 +24,4 @@ L'assurdo, Sisifo, rivolta-libertà-passione, il passaggio dall'io al noi (*L'uo
 - **Fonti:** [Sisifo](/fonti/sacro-e-mito/sisifo.md) · [Il mito di Sisifo / L'uomo in rivolta](/fonti/opere/camus-opere.md)
 - **Percorsi:** [Dall'io al noi](/percorsi/dall-io-al-noi.md)
 - **Spunti:** [La coscienza come passo falso](/spunti/true-detective-coscienza/index.md)
-- **Idee:** [La discesa di Sisifo](/idee/discesa-di-sisifo/index.md)
+- **Idee:** [La discesa di Sisifo](/idee/discesa-di-sisifo/index.md) · [Alzati e cammina](/idee/alzati-e-cammina/index.md)

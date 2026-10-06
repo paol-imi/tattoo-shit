@@ -10,7 +10,7 @@ emozioni: [lucidita, vuoto, malinconia]
 simboli: [alce-irlandese, stelle, spirale, ouroboros]
 fonti: [zapffe, ligotti, camus, schopenhauer]
 percorsi: [peso-sguardo-oltre, dal-dolore-alle-stelle]
-idee: [alce-di-zapffe, luce-contro-buio, monologo-di-rust]
+idee: [alce-di-zapffe, luce-contro-buio, monologo-di-rust, buio-sotto-il-buio]
 stato: grezzo
 creato: 2026-10-04
 ---
@@ -72,4 +72,4 @@ In fase di triage cercare altri pin legati a cervi e alci, cieli stellati, spira
 - **Fonti:** [True Detective, stagione 1](/fonti/opere/true-detective-s1.md) · [Peter Wessel Zapffe](/fonti/pensiero/zapffe.md) · [Thomas Ligotti](/fonti/pensiero/ligotti.md) · [Albert Camus](/fonti/pensiero/camus.md) · [Arthur Schopenhauer](/fonti/pensiero/schopenhauer.md)
 - **Simboli:** [L'alce irlandese](/simboli/alce-irlandese.md) · [Le stelle](/simboli/stelle.md) · [La spirale](/simboli/spirale.md) · [Ouroboros](/simboli/ouroboros.md)
 - **Percorsi:** [Il peso → lo sguardo → l'oltre](/percorsi/peso-sguardo-oltre.md) · [Dal dolore alle stelle](/percorsi/dal-dolore-alle-stelle.md)
-- **Idee:** [L'alce di Zapffe](/idee/alce-di-zapffe/index.md) · [La luce sta vincendo](/idee/luce-contro-buio/index.md) · [Il monologo di Rust](/idee/monologo-di-rust/index.md)
+- **Idee:** [L'alce di Zapffe](/idee/alce-di-zapffe/index.md) · [La luce sta vincendo](/idee/luce-contro-buio/index.md) · [Il monologo di Rust](/idee/monologo-di-rust/index.md) · [Il buio sotto il buio](/idee/buio-sotto-il-buio/index.md)
