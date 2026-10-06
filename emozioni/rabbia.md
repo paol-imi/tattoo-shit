@@ -4,7 +4,7 @@ titolo: "Rabbia"
 concetti: [tre-metamorfosi, rivolta]
 fonti: [berserk]
 percorsi: [tre-metamorfosi-percorso]
-idee: [trittico-metamorfosi]
+idee: [trittico-metamorfosi, lotta-al-guado]
 creato: 2026-10-04
 ---
 
@@ -17,4 +17,4 @@ Energia della rivolta. È il leone delle tre metamorfosi.
 - **Concetti:** [Le tre metamorfosi](/concetti/tre-metamorfosi.md) · [Rivolta](/concetti/rivolta.md)
 - **Fonti:** [Berserk](/fonti/opere/berserk.md)
 - **Percorsi:** [Le tre metamorfosi (percorso)](/percorsi/tre-metamorfosi-percorso.md)
-- **Idee:** [Trittico delle metamorfosi](/idee/trittico-metamorfosi/index.md)
+- **Idee:** [Trittico delle metamorfosi](/idee/trittico-metamorfosi/index.md) · [La lotta al guado](/idee/lotta-al-guado/index.md)

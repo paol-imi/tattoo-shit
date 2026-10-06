@@ -4,7 +4,7 @@ titolo: "Testo e lettering"
 origine: claude
 validata: false
 spunti: [capitano-della-mia-anima]
-idee: [sognatore-insonne, alce-di-zapffe]
+idee: [sognatore-insonne, alce-di-zapffe, la-notte-che-mi-copre, invitto, a-se-stesso, monologo-di-rust]
 ricerche: [pensieri-marco-aurelio]
 creato: 2026-10-04
 ---
@@ -21,5 +21,5 @@ Il testo come elemento del tatuaggio. Le domande che ritornano:
 ## Collegamenti
 
 - **Spunti:** [Il capitano della mia anima](/spunti/capitano-della-mia-anima/index.md)
-- **Idee:** [Il sognatore insonne](/idee/sognatore-insonne/index.md) · [L'alce di Zapffe](/idee/alce-di-zapffe/index.md)
+- **Idee:** [Il sognatore insonne](/idee/sognatore-insonne/index.md) · [L'alce di Zapffe](/idee/alce-di-zapffe/index.md) · [La notte che mi copre](/idee/la-notte-che-mi-copre/index.md) · [Invitto](/idee/invitto/index.md) · [A se stesso](/idee/a-se-stesso/index.md) · [Il monologo di Rust](/idee/monologo-di-rust/index.md)
 - **Ricerche:** [I Pensieri di Marco Aurelio](/ricerche/pensieri-marco-aurelio/index.md)

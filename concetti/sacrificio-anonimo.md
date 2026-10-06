@@ -5,7 +5,7 @@ concetti: [tensioni]
 fonti: [lamed-vav, maimonide, vangelo-matteo, marco-aurelio, tao-te-ching, kshitigarbha, fma-brotherhood]
 simboli: [lamed-vav-lettere, vite]
 percorsi: [dall-io-al-noi]
-idee: [i-36-giusti]
+idee: [i-36-giusti, elmo-e-vite]
 ricerche: [pensieri-marco-aurelio]
 creato: 2026-10-04
 ---
@@ -30,5 +30,5 @@ Fonti:
 - **Fonti:** [Lamed Vav, i 36 giusti](/fonti/sacro-e-mito/lamed-vav.md) · [Maimonide](/fonti/pensiero/maimonide.md) · [Vangelo di Matteo](/fonti/sacro-e-mito/vangelo-matteo.md) · [Marco Aurelio](/fonti/pensiero/marco-aurelio.md) · [Laozi, Tao Te Ching](/fonti/pensiero/tao-te-ching.md) · [Kṣitigarbha / Jizō](/fonti/sacro-e-mito/kshitigarbha.md) · [Fullmetal Alchemist: Brotherhood](/fonti/opere/fma-brotherhood.md)
 - **Simboli:** [ל״ו](/simboli/lamed-vav-lettere.md) · [La vite](/simboli/vite.md)
 - **Percorsi:** [Dall'io al noi](/percorsi/dall-io-al-noi.md)
-- **Idee:** [I 36 giusti](/idee/i-36-giusti/index.md)
+- **Idee:** [I 36 giusti](/idee/i-36-giusti/index.md) · [L'elmo e la vite](/idee/elmo-e-vite/index.md)
 - **Ricerche:** [I Pensieri di Marco Aurelio](/ricerche/pensieri-marco-aurelio/index.md)

@@ -6,6 +6,7 @@ sottotipo: opera
 emozioni: [dolore]
 concetti: [battaglie-interiori]
 spunti: [capitano-della-mia-anima]
+idee: [la-notte-che-mi-copre, invitto]
 creato: 2026-10-04
 ---
 
@@ -20,3 +21,4 @@ Mi interessa come possibile testo lungo: quattro quartine sull'anima che resiste
 - **Emozioni:** [Dolore](/emozioni/dolore.md)
 - **Concetti:** [Battaglie interiori](/concetti/battaglie-interiori.md)
 - **Spunti:** [Il capitano della mia anima](/spunti/capitano-della-mia-anima/index.md)
+- **Idee:** [La notte che mi copre](/idee/la-notte-che-mi-copre/index.md) · [Invitto](/idee/invitto/index.md)

@@ -2,7 +2,7 @@
 tipo: stile
 titolo: "Patchwork sleeve"
 stile: [sleeve-unita, spazio-negativo]
-idee: [grimorio]
+idee: [grimorio, mute-della-cicala]
 creato: 2026-10-04
 ---
 
@@ -24,4 +24,4 @@ Vantaggio per me: si costruisce nel tempo, come una filosofia che evolve.
 ## Collegamenti
 
 - **Stile:** [Sleeve unita](/stile/sleeve-unita.md) · [Spazio negativo](/stile/spazio-negativo.md)
-- **Idee:** [Il grimorio](/idee/grimorio/index.md)
+- **Idee:** [Il grimorio](/idee/grimorio/index.md) · [Le mute della cicala](/idee/mute-della-cicala/index.md)

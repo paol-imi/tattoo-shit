@@ -104,9 +104,11 @@ Le istruzioni permanenti per Claude Code sono in [CLAUDE.md](CLAUDE.md).
 - **Bacheca, Testi e Mappa:** fatte. Il cuore visivo del sito, generato dalle note a ogni build, vedi il [diario](diario/2026-10-05-bacheca.md).
 - **Validazione:** fatta. Ogni nota dice se viene dal seme, da me o da Claude, e se l'ho approvata; le proposte di Claude sono marcate e raccolte in [Da validare](https://paol-imi.github.io/tattoo-shit/da-validare), vedi il [diario](diario/2026-10-05-validazione.md).
 - **Revisione del seme:** il seme l'ha compilato Claude, e le sue idee di tatuaggio sono proposte di Claude, mai approvate: tornano da validare, vedi il [diario](diario/2026-10-05-revisione-seme.md).
+- **Nuove proposte:** nove idee proposte da Claude a partire dalle mie parole e dai miei riferimenti, sette note nuove e due varianti dentro le mie idee, tutte da valutare a pancia, vedi il [diario](diario/2026-10-06-nuove-proposte.md).
 - **Fase 3, Pinterest:** link alle board e triage.
 - **Fase 4, le skill di Claude Code:** `/spunto`, `/idea`, `/triage`, `/convergenze`, `/diario`…
 - **Fase 5, lavoro creativo:** ricorrente.
 
 Le mie idee, portate da me: [il sognatore insonne](idee/sognatore-insonne/index.md) e [il monologo di Rust](idee/monologo-di-rust/index.md).
 Le proposte di Claude nel seme segnate "in esplorazione", [il grimorio](idee/grimorio/index.md) e [il viandante oltre il firmamento](idee/viandante-oltre-il-firmamento/index.md), aspettano ancora un mio sì o un no, come le altre idee del seme.
+Le nove nuove proposte di Claude, dal [lago nel cratere](idee/lago-nel-cratere/index.md) all'[elmo e la vite](idee/elmo-e-vite/index.md), sono raccolte nel [diario del 6 ottobre](diario/2026-10-06-nuove-proposte.md).
