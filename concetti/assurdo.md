@@ -5,7 +5,7 @@ emozioni: [liberta, passione, vuoto]
 concetti: [rivolta, tensioni]
 fonti: [camus, friedrich-monaco]
 spunti: [true-detective-coscienza]
-idee: [discesa-di-sisifo]
+idee: [discesa-di-sisifo, alzati-e-cammina]
 creato: 2026-10-04
 ---
 
@@ -21,4 +21,4 @@ Camus ne ricava tre conseguenze: rivolta, libertà, passione.
 - **Concetti:** [Rivolta](/concetti/rivolta.md) · [Tensioni aperte](/concetti/tensioni.md)
 - **Fonti:** [Albert Camus](/fonti/pensiero/camus.md) · [Caspar David Friedrich, Monaco in riva al mare (1808–10)](/fonti/arte/friedrich-monaco.md)
 - **Spunti:** [La coscienza come passo falso](/spunti/true-detective-coscienza/index.md)
-- **Idee:** [La discesa di Sisifo](/idee/discesa-di-sisifo/index.md)
+- **Idee:** [La discesa di Sisifo](/idee/discesa-di-sisifo/index.md) · [Alzati e cammina](/idee/alzati-e-cammina/index.md)

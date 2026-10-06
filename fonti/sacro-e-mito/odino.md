@@ -4,6 +4,7 @@ titolo: "Odino"
 sottotipo: sacro-e-mito
 concetti: [prezzo-della-conoscenza]
 simboli: [occhi]
+idee: [visiera-aperta]
 creato: 2026-10-04
 ---
 
@@ -15,3 +16,4 @@ Sacrifica un occhio per bere alla fonte della saggezza.
 
 - **Concetti:** [Il prezzo della conoscenza](/concetti/prezzo-della-conoscenza.md)
 - **Simboli:** [Gli occhi](/simboli/occhi.md)
+- **Idee:** [La visiera aperta](/idee/visiera-aperta/index.md)

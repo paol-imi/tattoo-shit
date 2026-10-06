@@ -13,7 +13,7 @@ simboli: [vite]
 fonti: [marco-aurelio, fma-brotherhood]
 spunti: []
 percorsi: [dall-io-al-noi]
-idee: []
+idee: [mulo-e-guida]
 ricerche: [pensieri-marco-aurelio]
 risonanza:
 creato: 2026-10-06
@@ -80,4 +80,5 @@ _Nessun pin collegato._
 - **Simboli:** [La vite](/simboli/vite.md)
 - **Stile:** [Incisione / xilografia antica](/stile/incisione-xilografia.md)
 - **Percorsi:** [Dall'io al noi](/percorsi/dall-io-al-noi.md)
+- **Idee:** [Il mulo e la guida](/idee/mulo-e-guida/index.md)
 - **Ricerche:** [I Pensieri di Marco Aurelio](/ricerche/pensieri-marco-aurelio/index.md)

@@ -4,7 +4,7 @@ titolo: "Il viandante"
 emozioni: [solitudine]
 fonti: [friedrich-viandante, incisione-flammarion, divina-commedia]
 percorsi: [peso-sguardo-oltre]
-idee: [discesa-di-sisifo, viandante-oltre-il-firmamento, ascesa-dal-polso-alla-spalla]
+idee: [discesa-di-sisifo, viandante-oltre-il-firmamento, ascesa-dal-polso-alla-spalla, mulo-e-guida]
 creato: 2026-10-04
 ---
 
@@ -17,4 +17,4 @@ La figura del cammino: Friedrich, Flammarion, Dante.
 - **Emozioni:** [Solitudine](/emozioni/solitudine.md)
 - **Fonti:** [Caspar David Friedrich, Viandante sul mare di nebbia (1818)](/fonti/arte/friedrich-viandante.md) · [L'incisione Flammarion](/fonti/arte/incisione-flammarion.md) · [Divina Commedia](/fonti/opere/divina-commedia.md)
 - **Percorsi:** [Il peso → lo sguardo → l'oltre](/percorsi/peso-sguardo-oltre.md)
-- **Idee:** [La discesa di Sisifo](/idee/discesa-di-sisifo/index.md) · [Il viandante oltre il firmamento](/idee/viandante-oltre-il-firmamento/index.md) · [Ascesa dal polso alla spalla](/idee/ascesa-dal-polso-alla-spalla/index.md)
+- **Idee:** [La discesa di Sisifo](/idee/discesa-di-sisifo/index.md) · [Il viandante oltre il firmamento](/idee/viandante-oltre-il-firmamento/index.md) · [Ascesa dal polso alla spalla](/idee/ascesa-dal-polso-alla-spalla/index.md) · [Il mulo e la guida](/idee/mulo-e-guida/index.md)

@@ -5,7 +5,7 @@ concetti: [eterno-ritorno, tensioni]
 fonti: [advaita-buddhismo, jung]
 simboli: [ouroboros]
 percorsi: [dall-io-al-noi]
-idee: [ruota-degli-ofanim]
+idee: [ruota-degli-ofanim, buio-sotto-il-buio, lo-stormo, uno-e-tutto]
 creato: 2026-10-04
 ---
 
@@ -21,4 +21,4 @@ Fonti: Advaita, buddhismo, Jung (il Sé oltre l'Io), eterno ritorno, ouroboros.
 - **Fonti:** [Advaita e buddhismo](/fonti/sacro-e-mito/advaita-buddhismo.md) · [Carl Gustav Jung](/fonti/pensiero/jung.md)
 - **Simboli:** [Ouroboros](/simboli/ouroboros.md)
 - **Percorsi:** [Dall'io al noi](/percorsi/dall-io-al-noi.md)
-- **Idee:** [La ruota degli Ofanim](/idee/ruota-degli-ofanim/index.md)
+- **Idee:** [La ruota degli Ofanim](/idee/ruota-degli-ofanim/index.md) · [Il buio sotto il buio](/idee/buio-sotto-il-buio/index.md) · [Lo stormo](/idee/lo-stormo/index.md) · [Uno è tutto](/idee/uno-e-tutto/index.md)

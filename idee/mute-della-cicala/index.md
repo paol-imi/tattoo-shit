@@ -13,7 +13,7 @@ simboli: [serpente]
 fonti: []
 spunti: []
 percorsi: [versioni-morte]
-idee: []
+idee: [uno-e-tutto]
 ricerche: []
 risonanza:
 creato: 2026-10-06
@@ -80,3 +80,4 @@ _Nessun pin collegato._
 - **Simboli:** [Il serpente che muta](/simboli/serpente.md)
 - **Stile:** [Patchwork sleeve](/stile/patchwork.md)
 - **Percorsi:** [Le versioni di me morte lungo il cammino](/percorsi/versioni-morte.md)
+- **Idee:** [Uno è tutto](/idee/uno-e-tutto/index.md)

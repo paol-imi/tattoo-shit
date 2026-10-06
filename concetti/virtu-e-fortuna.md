@@ -5,6 +5,7 @@ emozioni: [caos, passione]
 fonti: [machiavelli, napoleone, tarocchi]
 simboli: [ruota-della-fortuna]
 spunti: [capitano-della-mia-anima]
+idee: [mulo-e-guida]
 creato: 2026-10-04
 ---
 
@@ -20,3 +21,4 @@ Simbolo: la Ruota della Fortuna (anche nei Tarocchi).
 - **Fonti:** [Niccolò Machiavelli](/fonti/pensiero/machiavelli.md) · [Napoleone](/fonti/pensiero/napoleone.md) · [Tarocchi](/fonti/sacro-e-mito/tarocchi.md)
 - **Simboli:** [La Ruota della Fortuna](/simboli/ruota-della-fortuna.md)
 - **Spunti:** [Il capitano della mia anima](/spunti/capitano-della-mia-anima/index.md)
+- **Idee:** [Il mulo e la guida](/idee/mulo-e-guida/index.md)

@@ -5,7 +5,7 @@ concetti: [scambio-equivalente]
 fonti: [prometeo, odino, fma-brotherhood]
 simboli: [porta]
 spunti: [true-detective-coscienza]
-idee: [porta-della-verita]
+idee: [porta-della-verita, visiera-aperta]
 creato: 2026-10-04
 ---
 
@@ -21,4 +21,4 @@ Fonti: Prometeo, Odino che sacrifica un occhio, l'albero della conoscenza, la Po
 - **Fonti:** [Prometeo](/fonti/sacro-e-mito/prometeo.md) · [Odino](/fonti/sacro-e-mito/odino.md) · [Fullmetal Alchemist: Brotherhood](/fonti/opere/fma-brotherhood.md)
 - **Simboli:** [La porta](/simboli/porta.md)
 - **Spunti:** [La coscienza come passo falso](/spunti/true-detective-coscienza/index.md)
-- **Idee:** [La Porta della Verità](/idee/porta-della-verita/index.md)
+- **Idee:** [La Porta della Verità](/idee/porta-della-verita/index.md) · [La visiera aperta](/idee/visiera-aperta/index.md)

@@ -13,7 +13,7 @@ simboli: [clessidra, poliedro, scala]
 fonti: [durer-melencolia]
 spunti: []
 percorsi: []
-idee: [grimorio]
+idee: [grimorio, cavaliere-e-morte]
 risonanza:
 creato: 2026-10-04
 aggiornato: 2026-10-04
@@ -52,4 +52,4 @@ _Nessun pin collegato._
 - **Concetti:** [La soglia e il mistero](/concetti/soglia-e-mistero.md)
 - **Fonti:** [Albrecht Dürer, Melencolia I (1514)](/fonti/arte/durer-melencolia.md)
 - **Simboli:** [Clessidra](/simboli/clessidra.md) · [Il poliedro](/simboli/poliedro.md) · [La scala](/simboli/scala.md)
-- **Idee:** [Il grimorio](/idee/grimorio/index.md)
+- **Idee:** [Il grimorio](/idee/grimorio/index.md) · [Il cavaliere e la morte](/idee/cavaliere-e-morte/index.md)

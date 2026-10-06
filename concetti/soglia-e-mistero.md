@@ -6,7 +6,7 @@ concetti: [tensioni]
 fonti: [fludd, blake-antico-dei-giorni, incisione-flammarion, mutus-liber]
 simboli: [porta, velo, occhi, chiave]
 spunti: [true-detective-sogno]
-idee: [porta-della-verita, viandante-oltre-il-firmamento, angelo-malinconico, velo-di-iside, ruota-degli-ofanim, cosmo-alchemico, ascesa-dal-polso-alla-spalla, grimorio]
+idee: [porta-della-verita, viandante-oltre-il-firmamento, angelo-malinconico, velo-di-iside, ruota-degli-ofanim, cosmo-alchemico, ascesa-dal-polso-alla-spalla, grimorio, lo-stormo]
 creato: 2026-10-04
 ---
 
@@ -27,4 +27,4 @@ Trucchi visivi per evocarlo:
 - **Fonti:** [Robert Fludd](/fonti/arte/fludd.md) · [William Blake, L'Antico dei Giorni](/fonti/arte/blake-antico-dei-giorni.md) · [L'incisione Flammarion](/fonti/arte/incisione-flammarion.md) · [Mutus Liber (1677)](/fonti/arte/mutus-liber.md)
 - **Simboli:** [La porta](/simboli/porta.md) · [Il velo](/simboli/velo.md) · [Gli occhi](/simboli/occhi.md) · [La chiave](/simboli/chiave.md)
 - **Spunti:** [Non dormo, sogno soltanto](/spunti/true-detective-sogno/index.md)
-- **Idee:** [La Porta della Verità](/idee/porta-della-verita/index.md) · [Il viandante oltre il firmamento](/idee/viandante-oltre-il-firmamento/index.md) · [L'angelo malinconico](/idee/angelo-malinconico/index.md) · [Il velo di Iside](/idee/velo-di-iside/index.md) · [La ruota degli Ofanim](/idee/ruota-degli-ofanim/index.md) · [Il cosmo alchemico](/idee/cosmo-alchemico/index.md) · [Ascesa dal polso alla spalla](/idee/ascesa-dal-polso-alla-spalla/index.md) · [Il grimorio](/idee/grimorio/index.md)
+- **Idee:** [La Porta della Verità](/idee/porta-della-verita/index.md) · [Il viandante oltre il firmamento](/idee/viandante-oltre-il-firmamento/index.md) · [L'angelo malinconico](/idee/angelo-malinconico/index.md) · [Il velo di Iside](/idee/velo-di-iside/index.md) · [La ruota degli Ofanim](/idee/ruota-degli-ofanim/index.md) · [Il cosmo alchemico](/idee/cosmo-alchemico/index.md) · [Ascesa dal polso alla spalla](/idee/ascesa-dal-polso-alla-spalla/index.md) · [Il grimorio](/idee/grimorio/index.md) · [Lo stormo](/idee/lo-stormo/index.md)

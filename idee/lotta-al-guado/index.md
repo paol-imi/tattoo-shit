@@ -13,7 +13,7 @@ simboli: []
 fonti: [jordan-peterson, berserk]
 spunti: []
 percorsi: []
-idee: []
+idee: [braccio-del-fratello, visiera-aperta]
 ricerche: []
 risonanza:
 creato: 2026-10-06
@@ -80,3 +80,4 @@ _Nessun pin collegato._
 - **Concetti:** [Battaglie interiori](/concetti/battaglie-interiori.md)
 - **Fonti:** [Jordan Peterson](/fonti/pensiero/jordan-peterson.md) · [Berserk](/fonti/opere/berserk.md)
 - **Stile:** [Incisione / xilografia antica](/stile/incisione-xilografia.md) · [Blackwork](/stile/blackwork.md)
+- **Idee:** [Il braccio del fratello](/idee/braccio-del-fratello/index.md) · [La visiera aperta](/idee/visiera-aperta/index.md)
