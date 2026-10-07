@@ -1,13 +1,8 @@
-import { defineComponent, h } from 'vue'
+import { defineAsyncComponent, defineComponent, h } from 'vue'
 import DefaultTheme from 'vitepress/theme'
 import { onContentUpdated, type Theme } from 'vitepress'
 import CollegatoDa from './components/CollegatoDa.vue'
 import Scheda from './components/Scheda.vue'
-import AtlanteHome from './components/AtlanteHome.vue'
-import Bacheca from './components/Bacheca.vue'
-import Testi from './components/Testi.vue'
-import Mappa from './components/Mappa.vue'
-import DaValidare from './components/DaValidare.vue'
 import Interruttore from './components/Interruttore.vue'
 import './style.css'
 import './pagine.css'
@@ -49,11 +44,12 @@ const Layout = defineComponent({
 export default {
   extends: DefaultTheme,
   Layout,
+  // i componenti delle pagine speciali (e i loro dati) si caricano solo quando servono, in chunk a parte
   enhanceApp({ app }) {
-    app.component('AtlanteHome', AtlanteHome)
-    app.component('Bacheca', Bacheca)
-    app.component('Testi', Testi)
-    app.component('Mappa', Mappa)
-    app.component('DaValidare', DaValidare)
+    app.component('AtlanteHome', defineAsyncComponent(() => import('./components/AtlanteHome.vue')))
+    app.component('Bacheca', defineAsyncComponent(() => import('./components/Bacheca.vue')))
+    app.component('Testi', defineAsyncComponent(() => import('./components/Testi.vue')))
+    app.component('Mappa', defineAsyncComponent(() => import('./components/Mappa.vue')))
+    app.component('DaValidare', defineAsyncComponent(() => import('./components/DaValidare.vue')))
   },
 } satisfies Theme

@@ -6,18 +6,24 @@
 // Il CSS nasconde ciò che sta dentro le pagine (blocchi proposta, collegamenti proposti); i componenti Vue
 // partono sempre dalla vista validata, come la pagina statica, e leggono la classe solo dopo il montaggio:
 // così non c'è disaccordo nell'idratazione.
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref, type ComputedRef } from 'vue'
 import { CLASSE_PROPOSTE, CHIAVE_PROPOSTE, PARAM_PROPOSTE } from '../shared/proposte.ts'
 import { cambiaQuery } from '../shared/indirizzo.ts'
 
 const mostra = ref(false)
 
-/** Vero se le proposte di Claude sono visibili. Falso sul server e fino al montaggio. */
-export function useProposte() {
+/**
+ * Vero se le proposte di Claude sono visibili. Falso sul server e, per ogni componente, fino al suo
+ * montaggio: un componente caricato dopo (le pagine speciali sono asincrone) si idrata anche lui sulla
+ * vista validata, anche se l'interruttore, montato prima, ha già letto la classe.
+ */
+export function useProposte(): ComputedRef<boolean> {
+  const montato = ref(false)
   onMounted(() => {
     mostra.value = document.documentElement.classList.contains(CLASSE_PROPOSTE)
+    montato.value = true
   })
-  return mostra
+  return computed(() => montato.value && mostra.value)
 }
 
 /** Accende o spegne le proposte, ricorda la scelta e toglie ?proposte dall'indirizzo. */

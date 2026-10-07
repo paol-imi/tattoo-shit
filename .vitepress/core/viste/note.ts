@@ -1,5 +1,6 @@
 // I dati delle singole note: chi le cita ("Collegato da") e cosa dice la riga in testa (tavole in bacheca,
-// proposte dentro la pagina).
+// proposte dentro la pagina). Arrivano a ogni pagina con i suoi dati (transformPageData in config.mts),
+// così il tema non porta con sé quelli di tutto il sito.
 import { memo, linkInterni, perTitolo, type Archivio, type Nota } from '../archivio.ts'
 import { senzaProposte, proposteDi } from '../blocchi.ts'
 import { proposte, collegamentoProposto } from '../proposte.ts'
@@ -66,3 +67,24 @@ export const schede = (a: Archivio): DatiSchede => memo(a, 'schede', () => {
   }
   return { ...presenzeInBacheca(a), proposte }
 })
+
+/** Ciò che serve alla pagina di una nota, nel campo `atlante` dei suoi dati. */
+export interface DatiPagina {
+  /** "Collegato da": le note che la citano, per gruppo */
+  collegatoDa: GruppoBacklink[]
+  /** le tavole della bacheca legate alla nota: con le proposte di Claude, e solo validate */
+  tavole: { tutte: number; validate: number }
+  /** quanti blocchi proposta ci sono nella pagina */
+  proposte: number
+}
+
+/** I dati della pagina di `rel` (percorso del file dalla radice). */
+export function datiPagina(a: Archivio, rel: string): DatiPagina {
+  const s = schede(a)
+  const slug = slugDaRel(rel)
+  return {
+    collegatoDa: backlink(a)[rel] ?? [],
+    tavole: { tutte: s.presenze[slug] ?? 0, validate: s.presenzeValidate[slug] ?? 0 },
+    proposte: s.proposte[rel] ?? 0,
+  }
+}

@@ -3,7 +3,7 @@
 // poi la provenienza (dal seme, tua, proposta di Claude) e le proposte ancora da validare nella pagina.
 import { computed } from 'vue'
 import { useData, withBase } from 'vitepress'
-import { data as schede } from '../schede.data'
+import { useDatiPagina } from '../pagina'
 import { useProposte } from '../proposte'
 import {
   tipoDi, leggibile, ETICHETTE_TIPO, SOTTOCARTELLE_FONTI, TIPI_MAPPA, TIPI_TERRITORIO, ETICHETTE_ORIGINE,
@@ -15,6 +15,7 @@ import { provenienza as provenienzaDi, slugDaRel, risonanzaDi, pallini } from '.
 const mostra = useProposte()
 
 const { frontmatter, page } = useData()
+const pagina = useDatiPagina()
 
 const archiviata = computed(() => page.value.filePath.startsWith('_archivio/'))
 const tipo = computed(() => tipoDi(page.value.filePath, frontmatter.value.tipo))
@@ -45,8 +46,8 @@ const vai = computed(() => {
   const t = tipo.value
   if (archiviata.value || !TIPI_MAPPA.has(t) || t === 'nucleo') return null
   const slug = slugDaRel(page.value.filePath)
-  const presenze = mostra.value ? schede.presenze : schede.presenzeValidate
-  const n = t === 'idea' || t === 'spunto' ? 0 : presenze[slug] ?? 0
+  const { tavole } = pagina.value
+  const n = t === 'idea' || t === 'spunto' ? 0 : mostra.value ? tavole.tutte : tavole.validate
   // una nota non validata, a proposte spente, non è sulla mappa
   const sullaMappa = mostra.value || !provenienza.value || provenienza.value.validata
   return { mappa: sullaMappa ? withBase(`/mappa?nodo=${slug}`) : null, bacheca: n ? withBase(`/bacheca?nodo=${slug}`) : null, n }
@@ -65,7 +66,7 @@ const provenienza = computed(() => {
     daValidare: ETICHETTE_ORIGINE_DA_VALIDARE[origine] ?? ETICHETTE_ORIGINE_DA_VALIDARE.claude,
   }
 })
-const proposte = computed(() => schede.proposte[page.value.filePath] ?? 0)
+const proposte = computed(() => pagina.value.proposte)
 
 const risonanza = computed(() => (tipo.value === 'idea' ? risonanzaDi(frontmatter.value.risonanza) : null))
 </script>

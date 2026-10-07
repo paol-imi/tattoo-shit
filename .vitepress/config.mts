@@ -1,5 +1,6 @@
 import { defineConfig, type DefaultTheme } from 'vitepress'
 import { archivio, diario, perTitolo, REWRITES, BASE, type Nota } from './core/archivio.ts'
+import { datiPagina } from './core/viste/note.ts'
 import {
   ETICHETTE_GRUPPO, ORDINE_GRUPPI, STATI, ETICHETTE_STATO, STATI_RICERCA, ETICHETTE_STATO_RICERCA, SOTTOCARTELLE_FONTI,
 } from './shared/tipi.ts'
@@ -97,10 +98,12 @@ export default defineConfig({
     return html.replace('<head>', `<head><script>${SENZA_BARRA_FINALE}</script>`)
   },
 
-  // il titolo della pagina viene dal campo "titolo" del frontmatter
+  // il titolo della pagina viene dal campo "titolo" del frontmatter; in `atlante` i dati della nota
+  // per la riga in testa e per "Collegato da" (theme/pagina.ts)
   transformPageData(pageData) {
     const titolo = pageData.frontmatter.titolo
     if (titolo) pageData.title = String(titolo)
+    if (pageData.frontmatter.layout !== 'home') Object.assign(pageData, { atlante: datiPagina(archivio(), pageData.filePath) })
   },
 
   markdown: {

@@ -2,14 +2,14 @@
 // "Collegato da": le note che citano questa pagina, raggruppate per tipo.
 // Di default senza i link che sono proposte di Claude (si vedono con l'interruttore "proposte" acceso).
 import { computed } from 'vue'
-import { useData, withBase } from 'vitepress'
-import { data } from '../backlink.data'
+import { withBase } from 'vitepress'
+import { useDatiPagina } from '../pagina'
 import { useProposte } from '../proposte'
 
-const { page, frontmatter } = useData()
+const pagina = useDatiPagina()
 const mostra = useProposte()
 const gruppi = computed(() => {
-  const tutti = frontmatter.value.layout === 'home' ? [] : data[page.value.filePath] ?? []
+  const tutti = pagina.value.collegatoDa
   if (mostra.value) return tutti
   return tutti.map((g) => ({ ...g, note: g.note.filter((n) => !n.proposta) })).filter((g) => g.note.length)
 })
