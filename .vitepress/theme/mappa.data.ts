@@ -25,10 +25,9 @@ export default defineLoader({
     const perSlug = new Map(tutte.map((n) => [n.slug, n]))
     const perRel = new Map(tutte.map((n) => [n.rel, n]))
     const archi = new Map<string, ArcoMappa>()
-    const chiave = (a: string, b: string) => (a < b ? `${a}|${b}` : `${b}|${a}`)
     const aggiungi = (a: string, b: string) => {
       if (a === b || !perSlug.has(a) || !perSlug.has(b)) return
-      const k = chiave(a, b)
+      const k = chiaveCoppia(a, b)
       if (!archi.has(k)) archi.set(k, { source: a, target: b })
     }
     for (const n of tutte) {
@@ -40,7 +39,7 @@ export default defineLoader({
     }
     // i collegamenti proposti: tratteggiati con le proposte accese, nascosti di default
     const { coppie } = proposte(tutteLeNote)
-    for (const [k, arco] of archi) if (coppie.has(chiaveCoppia(arco.source, arco.target)) || coppie.has(k)) arco.proposto = true
+    for (const [k, arco] of archi) if (coppie.has(k)) arco.proposto = true
     const grado = new Map<string, number>()
     for (const { source, target } of archi.values()) {
       grado.set(source, (grado.get(source) ?? 0) + 1)

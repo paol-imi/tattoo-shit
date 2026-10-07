@@ -5,6 +5,7 @@ import { computed, ref } from 'vue'
 import { withBase } from 'vitepress'
 import type { Carta, NodoBreve } from '../bacheca.data'
 import Ornamento from './Ornamento.vue'
+import { pallini } from '../../shared/nota.ts'
 
 const props = defineProps<{
   carta: Carta
@@ -20,7 +21,6 @@ const props = defineProps<{
 const emit = defineEmits<{ filtra: [slug: string] }>()
 
 const TIPI: Record<string, string> = { idea: 'Idea', spunto: 'Spunto' }
-const ETICHETTE_CHIP: Record<string, string> = { concetto: 'concetto', simbolo: 'simbolo', fonte: 'fonte', emozione: 'emozione' }
 
 const c = computed(() => props.carta)
 // di default il testo viene solo da ciò che è validato (mai da un blocco proposta)
@@ -64,7 +64,7 @@ const meta = computed(() => [c.value.stato.replace(/-/g, ' '), c.value.formato?.
         class="tavola-risonanza"
         :title="`risonanza ${c.risonanza} su 5`"
         :aria-label="`risonanza ${c.risonanza} su 5`"
-      >{{ '●'.repeat(c.risonanza) }}{{ '○'.repeat(5 - c.risonanza) }}</span>
+      >{{ pallini(c.risonanza) }}</span>
     </header>
 
     <p v-if="prov === 'parziale'" class="tavola-prov parziale">
@@ -104,7 +104,7 @@ const meta = computed(() => [c.value.stato.replace(/-/g, ' '), c.value.formato?.
           class="chip"
           :class="[`chip-${n.tipo}`, { attivo: attivi?.includes(n.slug) }]"
           :aria-pressed="attivi?.includes(n.slug) ? 'true' : 'false'"
-          :title="`Mostra solo le carte legate a: ${n.titolo} (${ETICHETTE_CHIP[n.tipo] ?? n.tipo})`"
+          :title="`Mostra solo le carte legate a: ${n.titolo} (${n.tipo})`"
           @click="emit('filtra', n.slug)"
         >{{ n.titolo }}</button>
         <a

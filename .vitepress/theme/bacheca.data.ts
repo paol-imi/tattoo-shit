@@ -6,6 +6,7 @@ import {
   note, perTitolo, collegamentiFm, citazioniDi, pinDi, primeFrasi, fraseTraVirgolette, sezione, rapportiPin,
   provenienza, proposteDi, senzaProposte, proposte as leProposte, collegamentoProposto, STATI, type Nota,
 } from '../atlante'
+import { risonanzaDi } from '../shared/nota.ts'
 
 export interface NodoBreve { titolo: string; tipo: string; link: string }
 export interface Carta {
@@ -103,7 +104,6 @@ export default defineLoader({
       const col = collegamentiFm(n)
       const chip = ['concetti', 'simboli', 'fonti', 'emozioni'].flatMap((c) => col[c] ?? []).filter(usa)
       const tuttiNodi = Object.values(col).flat().filter(usa)
-      const r = Number(n.fm.risonanza)
       const simbolo = (col.simboli ?? []).find((s) => ORNAMENTI[s])
       return {
         slug: n.slug,
@@ -112,7 +112,7 @@ export default defineLoader({
         tipo: n.tipo as Carta['tipo'],
         stato: n.fm.stato ?? '',
         formato: n.fm.formato || null,
-        risonanza: n.fm.risonanza != null && r >= 1 && r <= 5 ? r : null,
+        risonanza: risonanzaDi(n.fm.risonanza),
         pin: pinDi(n.corpo).map((p) => ({ ...p, rapporto: rapporti[p.id] })),
         testo: testoDi(n),
         testoValidato: testoDi({ ...n, corpo: senzaProposte(n.corpo) }),

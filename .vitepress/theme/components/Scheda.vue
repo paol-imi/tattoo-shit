@@ -5,6 +5,7 @@ import { computed } from 'vue'
 import { useData, withBase } from 'vitepress'
 import { data as schede } from '../schede.data'
 import { useProposte } from '../proposte'
+import { risonanzaDi, pallini } from '../../shared/nota.ts'
 
 // di default si contano solo carte e collegamenti validati; le proposte di Claude con l'interruttore acceso
 const mostra = useProposte()
@@ -71,17 +72,14 @@ const provenienza = computed(() => {
 })
 const proposte = computed(() => schede.proposte[page.value.filePath] ?? 0)
 
-const risonanza = computed(() => {
-  const r = Number(frontmatter.value.risonanza)
-  return frontmatter.value.tipo === 'idea' && frontmatter.value.risonanza != null && r >= 1 && r <= 5 ? r : null
-})
+const risonanza = computed(() => (frontmatter.value.tipo === 'idea' ? risonanzaDi(frontmatter.value.risonanza) : null))
 </script>
 
 <template>
   <p v-if="voci.length" class="scheda">
     <span v-for="v in voci" :key="v" class="scheda-voce">{{ v }}</span>
     <span v-if="risonanza" class="scheda-voce" :aria-label="`risonanza ${risonanza} su 5`">
-      {{ '●'.repeat(risonanza) }}{{ '○'.repeat(5 - risonanza) }}
+      {{ pallini(risonanza) }}
     </span>
     <a
       v-if="provenienza && !provenienza.validata"

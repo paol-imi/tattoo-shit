@@ -20,6 +20,10 @@ function attuali(): Proposte {
 
 const slugDi = (rel: string) => slugDaUrl('/' + rel)
 const interno = (href: string) => !!href && !/^(https?:|mailto:|#)/.test(href) && /\.md(#|$)/.test(href)
+// un indirizzo con una sequenza % malformata non è un collegamento a una nota
+const slugDiHref = (href: string) => {
+  try { return slugDaUrl(decodeURI(href)) } catch { return null }
+}
 
 export function collegamenti(md: MarkdownRenderer) {
   md.core.ruler.push('collegamenti-proposti', (state) => {
@@ -45,7 +49,8 @@ export function collegamenti(md: MarkdownRenderer) {
         const a = fig.findIndex((x, j) => j > k && x.type === 'link_close')
         if (a < 0) break
         const href = fig[k].attrGet('href') ?? ''
-        link.push({ da: k, a, proposto: interno(href) && collegamentoProposto(p, da, slugDaUrl(decodeURI(href))) })
+        const dest = interno(href) ? slugDiHref(href) : null
+        link.push({ da: k, a, proposto: !!dest && collegamentoProposto(p, da, dest) })
         k = a
       }
       if (!link.some((l) => l.proposto)) continue

@@ -63,11 +63,13 @@ const aperti = new Set(['nucleo', 'percorso', 'idea', 'ricerca'])
 
 const sidebar: DefaultTheme.SidebarItem[] = ORDINE_GRUPPI.map((g) => ({
   text: ETICHETTE[g],
-  collapsed: aperti.has(g) ? false : true,
+  collapsed: !aperti.has(g),
   items: (gruppi[g] ?? (() => ordinate(g)))(),
 })).filter((g) => g.items.length)
 
 const INTERRUTTORE = `(function(){try{var d=document.documentElement,q=new URLSearchParams(location.search).get('proposte'),v=q==='1'?true:q==='0'?false:null;if(v===null){try{v=localStorage.getItem('atlante-proposte')==='1'}catch(e){v=false}}if(v)d.classList.add('mostra-proposte')}catch(e){}})()`
+
+const SENZA_BARRA_FINALE = String.raw`if(/[^/]\/$/.test(location.pathname))location.replace(location.pathname.slice(0,-1)+location.search+location.hash)`
 
 const percorsi = delGruppo('percorso').sort(perTitolo).map(voce)
 
@@ -86,6 +88,14 @@ export default defineConfig({
     // La classe su <html> c'è prima del primo disegno: niente lampi. I componenti la leggono dopo il montaggio.
     ['script', {}, INTERRUTTORE],
   ],
+
+  // GitHub Pages serve /pagina.html anche come /pagina, ma non come /pagina/: lì risponde con il 404.
+  // Nel 404, prima di tutto, un indirizzo che finisce con la barra la perde (le cartelle con index.html
+  // non arrivano mai qui, quindi niente giri a vuoto).
+  transformHtml(html, _id, { page }) {
+    if (page !== '404.md') return
+    return html.replace('<head>', `<head><script>${SENZA_BARRA_FINALE}</script>`)
+  },
 
   // il titolo della pagina viene dal campo "titolo" del frontmatter
   transformPageData(pageData) {
@@ -136,12 +146,14 @@ export default defineConfig({
     search: {
       provider: 'local',
       options: {
-        // l'indice contiene solo il validato: niente note proposte, niente blocchi proposta né collegamenti proposti
+        // l'indice contiene solo il validato: niente note proposte, niente blocchi proposta né collegamenti proposti.
+        // Le pagine fatte solo di un componente (Bacheca, Testi, Mappa, Da validare) non hanno testo da indicizzare;
+        // per togliere dalla ricerca una pagina basta `search: false` nel suo frontmatter.
         _render(src, env, md) {
           const e: any = Object.assign(env, { perLaRicerca: true })
           const html = md.render(src, e)
           const fm = e.frontmatter ?? {}
-          if (fm.search === false || !provenienza({ fm }).validata || env.relativePath === 'da-validare.md') return ''
+          if (fm.search === false || !provenienza({ fm }).validata) return ''
           return html
         },
         translations: {

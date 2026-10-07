@@ -2,7 +2,7 @@
 // (a) le note con `validata: false`; (b) i blocchi proposta dentro le note validate;
 // (c) i collegamenti aggiunti in migrazione, dall'elenco nel diario della fase 1.
 // Tutto si rigenera a ogni build, leggendo le note.
-import { defineLoader, createMarkdownRenderer } from 'vitepress'
+import { defineLoader, createMarkdownRenderer, type SiteConfig } from 'vitepress'
 import {
   note, perTitolo, sintesi, primeFrasi, provenienza, proposteDi, collegamentiProposti, linkDi,
   ROOT, BASE, DIARIO_MIGRAZIONE, ETICHETTE_ORIGINE, type Nota,
@@ -54,15 +54,17 @@ function sintesiGrezza(n: Nota): string {
   return sintesi(n.corpo)
 }
 
-let renderer: Awaited<ReturnType<typeof createMarkdownRenderer>> | undefined
-
 export default defineLoader({
   watch: ['../../**/*.md'],
   async load(): Promise<DatiValidare> {
-    renderer ??= await createMarkdownRenderer(ROOT, {}, BASE)
-    const md = renderer
-    const html = (testo: string, rel: string) => md.render(testo, { cleanUrls: true, relativePath: rel })
-    const tutte = note().filter((n) => !n.archiviata && TIPI[n.tipo])
+    // lo stesso renderer delle pagine, con la configurazione markdown del sito (plugin compresi):
+    // VitePress lo crea una volta sola e qui lo riprende
+    const sito = (globalThis as { VITEPRESS_CONFIG?: SiteConfig }).VITEPRESS_CONFIG
+    const md = await createMarkdownRenderer(sito?.srcDir ?? ROOT, sito?.markdown ?? {}, sito?.site.base ?? BASE, sito?.logger)
+    const cleanUrls = sito?.cleanUrls ?? true
+    const html = (testo: string, rel: string) => md.render(testo, { cleanUrls, relativePath: rel })
+    const tutteLeNote = note()
+    const tutte = tutteLeNote.filter((n) => !n.archiviata && TIPI[n.tipo])
 
     const daValidare = tutte.filter((n) => !provenienza(n).validata).sort((a, b) => rango(a) - rango(b) || perTitolo(a, b))
     const noteOut = daValidare.map((n) => ({
@@ -90,9 +92,9 @@ export default defineLoader({
       )
 
     const collegamenti = collegamentiProposti().map((c) => ({
-      html: md.renderInline(c.md, { cleanUrls: true, relativePath: DIARIO_MIGRAZIONE }),
+      html: md.renderInline(c.md, { cleanUrls, relativePath: DIARIO_MIGRAZIONE }),
     }))
-    const diario = note().find((n) => n.rel === DIARIO_MIGRAZIONE)
+    const diario = tutteLeNote.find((n) => n.rel === DIARIO_MIGRAZIONE)
 
     return {
       note: noteOut,

@@ -60,7 +60,7 @@ export const SOTTOCARTELLE_FONTI: [string, string][] = [
 ]
 
 // --- frontmatter: chiavi semplici, liste inline, come in scripts/verifica.mjs
-export function frontmatter(testo: string): { fm: Record<string, any>; corpo: string } {
+function frontmatter(testo: string): { fm: Record<string, any>; corpo: string } {
   const m = testo.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?/)
   if (!m) return { fm: {}, corpo: testo }
   const fm: Record<string, any> = {}
@@ -142,7 +142,7 @@ export const chiave = (t: string) => t.replace(/^["“«]/, '').replace(ARTICOLO
 export const perTitolo = (a: Nota, b: Nota) => chiave(a.titolo).localeCompare(chiave(b.titolo), 'it')
 
 /** Data di ingresso nel repository (dalla storia git), per ordinare il diario a parità di data. */
-export function aggiuntoIl(rel: string): number {
+function aggiuntoIl(rel: string): number {
   try {
     const out = execFileSync('git', ['log', '--diff-filter=A', '--follow', '--format=%at', '--', rel], {
       cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'],
@@ -209,7 +209,7 @@ export function sezione(corpo: string, nome: string): string {
 }
 
 /** Markdown in linea → testo semplice. */
-export function testoSemplice(md: string): string {
+function testoSemplice(md: string): string {
   return md
     .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
     .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
@@ -240,14 +240,13 @@ export function pinDi(corpo: string): Pin[] {
 //   > **Proposta di Claude, da validare.**
 //   >
 //   > il testo proposto…
-export const ORIGINI = ['seme', 'mia', 'claude']
 export const ETICHETTE_ORIGINE: Record<string, string> = {
   seme: 'dal seme', mia: 'tua', claude: 'proposta di Claude',
 }
-export const ETICHETTA_PROPOSTA = /^\*\*Proposta di Claude, da validare\.\*\*[ \t]*/
+const ETICHETTA_PROPOSTA = /^\*\*Proposta di Claude, da validare\.\*\*[ \t]*/
 const AVVISO = /^\[!(\w+)\][ \t]*$/i
 
-export interface Provenienza { origine: string; validata: boolean }
+interface Provenienza { origine: string; validata: boolean }
 export function provenienza(n: { fm: Record<string, any> }): Provenienza {
   const origine = String(n.fm.origine || 'seme')
   const v = n.fm.validata
@@ -255,7 +254,7 @@ export function provenienza(n: { fm: Record<string, any> }): Provenienza {
 }
 
 /** Un pezzo di corpo: testo, una citazione (`>`), un avviso (`> [!…]`) o un blocco proposta, con la sezione in cui sta. */
-export interface Blocco { tipo: 'testo' | 'citazione' | 'avviso' | 'proposta'; righe: string[]; sezione: string }
+interface Blocco { tipo: 'testo' | 'citazione' | 'avviso' | 'proposta'; righe: string[]; sezione: string }
 
 /** Il corpo diviso in blocchi. Le righe `>` consecutive (fuori dai blocchi di codice) fanno un blocco solo. */
 export function blocchi(corpo: string): Blocco[] {
@@ -304,7 +303,7 @@ export function proposteDi(corpo: string): Proposta[] {
 }
 
 /** Una citazione trovata in una nota: il testo (a capo conservati), se c'è il riferimento, e se sta in un blocco proposta. */
-export interface Citazione { testo: string; riferimento: string | null; proposta: boolean }
+interface Citazione { testo: string; riferimento: string | null; proposta: boolean }
 
 function testoCitazione(righe: string[]): string {
   // le righe che finiscono con "\" vanno a capo; una riga vuota separa le strofe; il resto si unisce
@@ -351,7 +350,7 @@ export function citazioniDi(n: Nota): Citazione[] {
 // --- i collegamenti aggiunti da Claude in migrazione: una sola fonte, l'elenco nel diario della fase 1.
 // Ogni voce è `- [A](…) → [B](…)` (o `↔`); quando la approvo o la tolgo prende in coda "— validato il …" o "— tolto il …".
 export const DIARIO_MIGRAZIONE = 'diario/2026-10-04-fase-1.md'
-export interface CollegamentoProposto { md: string; coppie: [string, string][] }
+interface CollegamentoProposto { md: string; coppie: [string, string][] }
 
 export const slugDaUrl = (u: string) => {
   const p = u.split('#')[0].replace(/\/$/, '')

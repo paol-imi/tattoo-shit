@@ -8,6 +8,7 @@ import {
   note, perTitolo, sintesi, provenienza, proposteDi, collegamentiProposti, CAMPI_LINK,
   STATI, ETICHETTE_STATO, STATI_RICERCA, ETICHETTE_STATO_RICERCA,
 } from '../atlante'
+import { risonanzaDi } from '../shared/nota.ts'
 
 export interface IdeaHome {
   titolo: string
@@ -61,18 +62,15 @@ export default defineLoader({
       etichetta: ETICHETTE_STATO[stato],
       idee: idee
         .filter((n) => n.fm.stato === stato)
-        .map((n) => {
-          const r = Number(n.fm.risonanza)
-          return {
-            titolo: n.titolo,
-            link: n.link,
-            stato,
-            formato: n.fm.formato || null,
-            risonanza: n.fm.risonanza != null && Number.isFinite(r) ? r : null,
-            concetto: sintesi(n.corpo, 'Concetto'),
-            validata: provenienza(n).validata,
-          }
-        }),
+        .map((n) => ({
+          titolo: n.titolo,
+          link: n.link,
+          stato,
+          formato: n.fm.formato || null,
+          risonanza: risonanzaDi(n.fm.risonanza),
+          concetto: sintesi(n.corpo, 'Concetto'),
+          validata: provenienza(n).validata,
+        })),
     }))
 
     // piste aperte: tutte le ricerche non fatte, prima quelle in corso
