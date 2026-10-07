@@ -16,6 +16,15 @@ creato: 2026-10-04
 
 Il saggio agisce e non rivendica; il miglior leader scompare.
 
+## Citazione
+
+> [!NOTE]
+> **Proposta di Claude, da validare.**
+>
+> > Il Tao che può essere detto non è l'eterno Tao.
+>
+> — Tao Te Ching, cap. 1
+
 ## Collegamenti
 
 - **Domande:** [Cosa posso conoscere?](/domande/cosa-posso-conoscere.md) · [Come devo vivere?](/domande/come-vivere.md)

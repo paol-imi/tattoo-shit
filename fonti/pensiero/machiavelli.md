@@ -14,6 +14,15 @@ creato: 2026-10-04
 
 Virtù e fortuna (*Il Principe*, cap. XXV).
 
+## Citazione
+
+> [!NOTE]
+> **Proposta di Claude, da validare.**
+>
+> > La fortuna sia arbitra della metà delle azioni nostre, ma […] ne lasci governare l'altra metà, o presso, a noi.
+>
+> — Il Principe, cap. XXV
+
 ## Collegamenti
 
 - **Domande:** [Come devo vivere?](/domande/come-vivere.md) · [Come stare con gli altri?](/domande/come-stare-con-gli-altri.md)

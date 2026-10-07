@@ -25,6 +25,15 @@ Tutte e tre le cantiche finiscono con la parola "stelle":
 - il Purgatorio, "puro e disposto a salire a le stelle";
 - il Paradiso, con "l'amor che move il sole e l'altre stelle".
 
+## Citazione
+
+> [!NOTE]
+> **Proposta di Claude, da validare.**
+>
+> > E quindi uscimmo a riveder le stelle.
+>
+> — Inferno XXXIV, 139
+
 ## Collegamenti
 
 - **Domande:** [Cosa c'è oltre?](/domande/cosa-c-e-oltre.md) · [Perché soffro?](/domande/perche-soffro.md)

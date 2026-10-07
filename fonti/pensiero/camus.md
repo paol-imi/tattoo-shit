@@ -21,6 +21,15 @@ L'assurdo, Sisifo, rivolta-libertà-passione, il passaggio dall'io al noi (*L'uo
 
 **Dettaglio chiave dal *Mito di Sisifo*:** il momento che interessa a Camus non è la spinta in salita, ma la **discesa**, quando Sisifo torna a riprendere il masso, consapevole. È l'ora della coscienza, quella in cui è superiore al proprio destino.
 
+## Citazione
+
+> [!NOTE]
+> **Proposta di Claude, da validare.**
+>
+> > Bisogna immaginare Sisifo felice.
+>
+> — Il mito di Sisifo (1942), ultima frase
+
 ## Collegamenti
 
 - **Domande:** [Che senso ha?](/domande/che-senso-ha.md) · [Come devo vivere?](/domande/come-vivere.md)

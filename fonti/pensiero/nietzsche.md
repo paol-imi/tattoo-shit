@@ -18,6 +18,15 @@ creato: 2026-10-04
 
 Le tre metamorfosi, amor fati, l'eterno ritorno, lo sguardo nell'abisso.
 
+## Citazione
+
+> [!NOTE]
+> **Proposta di Claude, da validare.**
+>
+> > Amor fati: questo sia d'ora innanzi il mio amore!
+>
+> — La gaia scienza, § 276
+
 ## Collegamenti
 
 - **Domande:** [Che senso ha?](/domande/che-senso-ha.md) · [Come devo vivere?](/domande/come-vivere.md)

@@ -20,6 +20,15 @@ creato: 2026-10-04
 
 Quattro difese contro il peso della coscienza: isolamento, ancoraggio, distrazione, sublimazione. (La sublimazione è l'arte: anche un tatuaggio.)
 
+## Citazione
+
+> [!NOTE]
+> **Proposta di Claude, da validare.**
+>
+> > Conoscete voi stessi, siate infecondi, e lasciate che la terra resti silenziosa dopo di voi.
+>
+> — L'ultimo Messia (1933), finale
+
 ## Collegamenti
 
 - **Domande:** [Perché soffro?](/domande/perche-soffro.md) · [Che senso ha?](/domande/che-senso-ha.md)

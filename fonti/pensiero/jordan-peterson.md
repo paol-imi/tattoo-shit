@@ -18,6 +18,15 @@ creato: 2026-10-04
 
 Il viaggio dell'eroe: entrare volontariamente nella caverna del drago (il caos, l'ignoto) per recuperare l'oro; ordine e caos; prendersi sulle spalle il proprio peso.
 
+## Citazione
+
+> [!NOTE]
+> **Proposta di Claude, da validare.**
+>
+> > Metti perfettamente in ordine la tua casa prima di criticare il mondo.
+>
+> — 12 regole per la vita (2018), regola 6
+
 ## Collegamenti
 
 - **Domande:** [Come devo vivere?](/domande/come-vivere.md) · [Chi sono?](/domande/chi-sono.md)

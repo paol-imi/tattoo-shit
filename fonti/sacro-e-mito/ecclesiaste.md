@@ -14,6 +14,15 @@ creato: 2026-10-04
 
 Vanità delle vanità.
 
+## Citazione
+
+> [!NOTE]
+> **Proposta di Claude, da validare.**
+>
+> > Vanità delle vanità, tutto è vanità.
+>
+> — Qoèlet (Ecclesiaste) 1, 2
+
 ## Collegamenti
 
 - **Domande:** [Che senso ha?](/domande/che-senso-ha.md) · [Perché soffro?](/domande/perche-soffro.md)

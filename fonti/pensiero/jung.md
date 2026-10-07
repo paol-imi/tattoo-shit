@@ -16,6 +16,15 @@ creato: 2026-10-04
 
 L'ombra, il Sé, l'individuazione.
 
+## Citazione
+
+> [!NOTE]
+> **Proposta di Claude, da validare.**
+>
+> > Non si diventa illuminati immaginando figure di luce, ma rendendo cosciente l'oscurità.
+>
+> — L'albero filosofico (1945), in Studi sull'alchimia, Opere 13, § 335
+
 ## Collegamenti
 
 - **Domande:** [Chi sono?](/domande/chi-sono.md)

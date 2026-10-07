@@ -14,6 +14,15 @@ creato: 2026-10-04
 
 Memento mori, il tempo come unico vero possesso. Stoicismo.
 
+## Citazione
+
+> [!NOTE]
+> **Proposta di Claude, da validare.**
+>
+> > Tutto, Lucilio, è d'altri: solo il tempo è nostro.
+>
+> — Lettere a Lucilio, 1, 3
+
 ## Collegamenti
 
 - **Domande:** [Come devo vivere?](/domande/come-vivere.md) · [Che senso ha?](/domande/che-senso-ha.md)

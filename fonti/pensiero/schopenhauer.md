@@ -16,6 +16,15 @@ creato: 2026-10-04
 
 Sullo sfondo della genealogia del pensiero di Rust Cohle in True Detective, insieme a Zapffe e Ligotti.
 
+## Citazione
+
+> [!NOTE]
+> **Proposta di Claude, da validare.**
+>
+> > La vita oscilla, come un pendolo, di qua e di là, tra il dolore e la noia.
+>
+> — Il mondo come volontà e rappresentazione, § 57
+
 ## Collegamenti
 
 - **Domande:** [Perché soffro?](/domande/perche-soffro.md) · [Cosa è reale?](/domande/cosa-e-reale.md)

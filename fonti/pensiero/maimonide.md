@@ -16,6 +16,15 @@ creato: 2026-10-04
 
 Gli otto livelli della carità.
 
+## Citazione
+
+> [!NOTE]
+> **Proposta di Claude, da validare.**
+>
+> > Il silenzio è lode per te.
+>
+> — Guida dei perplessi, I, 59 (cita Salmi 65, 2)
+
 ## Collegamenti
 
 - **Domande:** [Cosa c'è oltre?](/domande/cosa-c-e-oltre.md) · [Come stare con gli altri?](/domande/come-stare-con-gli-altri.md)

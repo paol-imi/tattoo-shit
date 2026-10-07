@@ -20,6 +20,15 @@ creato: 2026-10-04
 
 Rust Cohle: pessimismo radicale, ricerca della verità a ogni costo, il tempo come cerchio piatto, e nel finale l'uscita dal buio verso le stelle.
 
+## Citazione
+
+> [!NOTE]
+> **Proposta di Claude, da validare.**
+>
+> > Una volta c'era solo il buio. Se vuoi saperlo, la luce sta vincendo.
+>
+> — True Detective, stagione 1, ep. 8 «Form and Void» (2014): Rust Cohle
+
 ## Collegamenti
 
 - **Domande:** [Perché soffro?](/domande/perche-soffro.md) · [Che senso ha?](/domande/che-senso-ha.md) · [Cosa c'è oltre?](/domande/cosa-c-e-oltre.md)

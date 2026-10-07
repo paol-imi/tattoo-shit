@@ -17,6 +17,15 @@ creato: 2026-10-04
 
 Corrente. Distinzione tra ciò che dipende da noi e ciò che non dipende.
 
+## Citazione
+
+> [!NOTE]
+> **Proposta di Claude, da validare.**
+>
+> > Delle cose, alcune dipendono da noi, altre non dipendono da noi.
+>
+> — Epitteto, Manuale, 1
+
 ## Collegamenti
 
 - **Domande:** [Come devo vivere?](/domande/come-vivere.md) · [Perché soffro?](/domande/perche-soffro.md)

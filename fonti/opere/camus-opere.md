@@ -16,6 +16,15 @@ creato: 2026-10-04
 
 Le due opere di Camus da cui vengono l'assurdo, la discesa di Sisifo e la rivolta. Vedi Camus.
 
+## Citazione
+
+> [!NOTE]
+> **Proposta di Claude, da validare.**
+>
+> > Mi rivolto, dunque siamo.
+>
+> — L'uomo in rivolta (1951), cap. I
+
 ## Collegamenti
 
 - **Domande:** [Che senso ha?](/domande/che-senso-ha.md) · [Come stare con gli altri?](/domande/come-stare-con-gli-altri.md)

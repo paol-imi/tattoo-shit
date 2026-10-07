@@ -16,6 +16,15 @@ creato: 2026-10-04
 
 Nietzsche. Le tre metamorfosi.
 
+## Citazione
+
+> [!NOTE]
+> **Proposta di Claude, da validare.**
+>
+> > Bisogna avere ancora un caos dentro di sé per partorire una stella danzante.
+>
+> — Così parlò Zarathustra, Prologo, 5
+
 ## Collegamenti
 
 - **Domande:** [Come devo vivere?](/domande/come-vivere.md) · [Che senso ha?](/domande/che-senso-ha.md)

@@ -19,6 +19,15 @@ creato: 2026-10-04
 
 La cittadella interiore; l'ostacolo è la via; la vite che dà l'uva senza chiedere (*Meditazioni* V.6). Corrente: stoicismo.
 
+## Citazione
+
+> [!NOTE]
+> **Proposta di Claude, da validare.**
+>
+> > Ciò che ostacola l'azione fa avanzare l'azione. Ciò che sta sulla via diventa la via.
+>
+> — Pensieri (A se stesso), V, 20
+
 ## Collegamenti
 
 - **Domande:** [Come devo vivere?](/domande/come-vivere.md) · [Perché soffro?](/domande/perche-soffro.md)

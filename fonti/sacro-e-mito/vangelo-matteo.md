@@ -16,6 +16,15 @@ creato: 2026-10-04
 
 La sinistra che non sa cosa fa la destra (6,3).
 
+## Citazione
+
+> [!NOTE]
+> **Proposta di Claude, da validare.**
+>
+> > Non sappia la tua sinistra ciò che fa la tua destra.
+>
+> — Matteo 6, 3
+
 ## Collegamenti
 
 - **Domande:** [Come stare con gli altri?](/domande/come-stare-con-gli-altri.md) · [Come devo vivere?](/domande/come-vivere.md)

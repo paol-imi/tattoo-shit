@@ -14,6 +14,15 @@ creato: 2026-10-04
 
 Plutarco riporta un'iscrizione del tempio di Sais: la dea dice di essere tutto ciò che è stato, è e sarà, e che nessun mortale ha mai sollevato il suo velo.
 
+## Citazione
+
+> [!NOTE]
+> **Proposta di Claude, da validare.**
+>
+> > Io sono tutto ciò che è stato, che è e che sarà, e nessun mortale ha mai sollevato il mio velo.
+>
+> — Plutarco, Iside e Osiride, 9
+
 ## Collegamenti
 
 - **Domande:** [Cosa posso conoscere?](/domande/cosa-posso-conoscere.md) · [Cosa c'è oltre?](/domande/cosa-c-e-oltre.md) · [Cosa è reale?](/domande/cosa-e-reale.md)
