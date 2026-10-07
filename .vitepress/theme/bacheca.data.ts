@@ -4,9 +4,10 @@
 import { defineLoader } from 'vitepress'
 import {
   note, perTitolo, collegamentiFm, citazioniDi, pinDi, primeFrasi, fraseTraVirgolette, sezione, rapportiPin,
-  provenienza, proposteDi, senzaProposte, proposte as leProposte, collegamentoProposto, STATI, type Nota,
+  proposteDi, senzaProposte, proposte as leProposte, collegamentoProposto, type Nota,
 } from '../atlante'
-import { risonanzaDi } from '../shared/nota.ts'
+import { STATI, STATI_SPUNTO, leggibile } from '../shared/tipi.ts'
+import { provenienza, risonanzaDi } from '../shared/nota.ts'
 
 export interface NodoBreve { titolo: string; tipo: string; link: string }
 export interface Carta {
@@ -51,11 +52,6 @@ const ORNAMENTI: Record<string, string> = {
   stelle: 'stella', occhi: 'occhio', clessidra: 'clessidra', ouroboros: 'ouroboros', spirale: 'spirale',
   porta: 'porta', velo: 'velo', ruote: 'ruota', 'albero-della-vita-simbolo': 'albero', 'alce-irlandese': 'stella',
   scala: 'scala', lampada: 'lampada', chiave: 'porta', sole: 'sole', viandante: 'stella',
-}
-const STATI_SPUNTO = ['esplorato', 'grezzo', 'confluito']
-export const ETICHETTA_STATO: Record<string, string> = {
-  tatuata: 'tatuata', scelta: 'scelta', forte: 'forte', 'in-esplorazione': 'in esplorazione', seme: 'seme',
-  esplorato: 'esplorato', grezzo: 'grezzo', confluito: 'confluito',
 }
 const rango = (n: Nota) => {
   const s = n.fm.stato
@@ -120,7 +116,7 @@ export default defineLoader({
         nodi: [...new Set(tuttiNodi)],
         nodiProposti: [...new Set(tuttiNodi)].filter((s) => collegamentoProposto(prop, n.slug, s)),
         ornamento: simbolo ? ORNAMENTI[simbolo] : 'sole',
-        ...provenienza(n),
+        ...provenienza(n.fm),
         proposte: proposteDi(n.corpo).length,
       }
     })
@@ -131,7 +127,7 @@ export default defineLoader({
     carte.sort((a, b) => peso(b) - peso(a) || rango(perNota.get(a.slug)!) - rango(perNota.get(b.slug)!) || perTitolo(perNota.get(a.slug)!, perNota.get(b.slug)!))
 
     const stati = [...STATI, ...STATI_SPUNTO]
-      .map((s) => ({ stato: s, etichetta: ETICHETTA_STATO[s] ?? s, n: carte.filter((c) => c.stato === s).length }))
+      .map((s) => ({ stato: s, etichetta: leggibile(s), n: carte.filter((c) => c.stato === s).length }))
       .filter((s) => s.n)
     const daValidare = carte.filter(daValidareC).length
     return { carte, nodi, stati, validazione: { validate: carte.length - daValidare, daValidare } }

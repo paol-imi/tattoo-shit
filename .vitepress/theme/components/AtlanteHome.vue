@@ -7,6 +7,7 @@ import { data } from '../home.data'
 import { data as bacheca } from '../bacheca.data'
 import { useProposte } from '../proposte'
 import { pallini } from '../../shared/nota.ts'
+import { leggibile } from '../../shared/tipi.ts'
 import Ornamento from './Ornamento.vue'
 import Tavola from './Tavola.vue'
 
@@ -110,7 +111,7 @@ const porte = computed(() => {
           <li v-for="i in s.idee" :key="i.link" class="idea">
             <a class="titolo" :href="withBase(i.link)">{{ i.titolo }}</a>
             <span class="dettagli">
-              <span :class="{ vuoto: !i.formato }">{{ i.formato ? i.formato.replace(/-/g, ' ') : 'formato da definire' }}</span>
+              <span :class="{ vuoto: !i.formato }">{{ i.formato ? leggibile(i.formato) : 'formato da definire' }}</span>
               <span class="sep" aria-hidden="true">·</span>
               <span v-if="i.risonanza" class="risonanza" :title="`risonanza ${i.risonanza} su 5`" :aria-label="`risonanza ${i.risonanza} su 5`">{{ pallini(i.risonanza) }}</span>
               <span v-else class="vuoto">risonanza da sentire</span>

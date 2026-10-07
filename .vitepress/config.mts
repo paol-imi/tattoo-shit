@@ -1,9 +1,12 @@
 import { defineConfig, type DefaultTheme } from 'vitepress'
 import {
-  note, diario, perTitolo, ETICHETTE, ORDINE_GRUPPI, STATI, ETICHETTE_STATO, STATI_RICERCA,
-  ETICHETTE_STATO_RICERCA, SOTTOCARTELLE_FONTI, REWRITES, BASE, provenienza,
-  type Nota,
+  note, diario, perTitolo, REWRITES, BASE, type Nota,
 } from './atlante'
+import {
+  ETICHETTE_GRUPPO, ORDINE_GRUPPI, STATI, ETICHETTE_STATO, STATI_RICERCA, ETICHETTE_STATO_RICERCA, SOTTOCARTELLE_FONTI,
+} from './shared/tipi.ts'
+import { provenienza } from './shared/nota.ts'
+import { SCRIPT_INTERRUTTORE } from './shared/proposte.ts'
 import { pinterest } from './pinterest'
 import { proposta } from './proposta'
 import { collegamenti } from './collegamenti'
@@ -13,13 +16,13 @@ const REPO = 'https://github.com/paol-imi/tattoo-shit'
 // --- barra laterale e menu, generati dalle cartelle a ogni build
 // Solo ciò che è validato: le note proposte da Claude si aprono dal loro indirizzo,
 // dalla pagina Da validare o con l'interruttore "proposte" acceso.
-const tutte = note().filter((n) => n.archiviata || provenienza(n).validata)
+const tutte = note().filter((n) => n.archiviata || provenienza(n.fm).validata)
 const voce = (n: Nota): DefaultTheme.SidebarItem => ({ text: n.titolo, link: n.link })
 const delGruppo = (g: string) => tutte.filter((n) => n.gruppo === g)
 const ordinate = (g: string) => delGruppo(g).sort(perTitolo).map(voce)
 
 // idee e ricerche: un sottogruppo per stato, nell'ordine dato (gli stati sconosciuti in coda)
-function perStato(gruppo: string, stati: string[], etichette: Record<string, string>): DefaultTheme.SidebarItem[] {
+function perStato(gruppo: string, stati: string[], etichette: Readonly<Record<string, string>>): DefaultTheme.SidebarItem[] {
   const tutteDelGruppo = delGruppo(gruppo)
   const altri = [...new Set(tutteDelGruppo.map((n) => n.fm.stato))].filter((s) => !stati.includes(s))
   return [...stati, ...altri]
@@ -62,12 +65,11 @@ const gruppi: Record<string, () => DefaultTheme.SidebarItem[]> = {
 const aperti = new Set(['nucleo', 'percorso', 'idea', 'ricerca'])
 
 const sidebar: DefaultTheme.SidebarItem[] = ORDINE_GRUPPI.map((g) => ({
-  text: ETICHETTE[g],
+  text: ETICHETTE_GRUPPO[g],
   collapsed: !aperti.has(g),
   items: (gruppi[g] ?? (() => ordinate(g)))(),
 })).filter((g) => g.items.length)
 
-const INTERRUTTORE = `(function(){try{var d=document.documentElement,q=new URLSearchParams(location.search).get('proposte'),v=q==='1'?true:q==='0'?false:null;if(v===null){try{v=localStorage.getItem('atlante-proposte')==='1'}catch(e){v=false}}if(v)d.classList.add('mostra-proposte')}catch(e){}})()`
 
 const SENZA_BARRA_FINALE = String.raw`if(/[^/]\/$/.test(location.pathname))location.replace(location.pathname.slice(0,-1)+location.search+location.hash)`
 
@@ -86,7 +88,7 @@ export default defineConfig({
     ['meta', { name: 'theme-color', content: '#111111' }],
     // le proposte di Claude: spente di default; ?proposte=1 (o 0) le forza, altrimenti vale la preferenza salvata.
     // La classe su <html> c'è prima del primo disegno: niente lampi. I componenti la leggono dopo il montaggio.
-    ['script', {}, INTERRUTTORE],
+    ['script', {}, SCRIPT_INTERRUTTORE],
   ],
 
   // GitHub Pages serve /pagina.html anche come /pagina, ma non come /pagina/: lì risponde con il 404.
@@ -153,7 +155,7 @@ export default defineConfig({
           const e: any = Object.assign(env, { perLaRicerca: true })
           const html = md.render(src, e)
           const fm = e.frontmatter ?? {}
-          if (fm.search === false || !provenienza({ fm }).validata) return ''
+          if (fm.search === false || !provenienza(fm).validata) return ''
           return html
         },
         translations: {

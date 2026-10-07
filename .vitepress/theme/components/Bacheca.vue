@@ -9,6 +9,7 @@ import { data } from '../bacheca.data'
 import { filtriNellUrl } from '../url'
 import { useProposte } from '../proposte'
 import Tavola from './Tavola.vue'
+import { ETICHETTE_GRUPPO as ETICHETTE_TIPO } from '../../shared/tipi.ts'
 
 type C = (typeof data.carte)[number]
 const mostra = useProposte()
@@ -41,10 +42,6 @@ const VALIDAZIONE = [
 const stati = computed(() =>
   data.stati.map((s) => ({ ...s, n: base.value.filter((c) => c.stato === s.stato).length })).filter((s) => s.n),
 )
-const ETICHETTE_TIPO: Record<string, string> = {
-  concetto: 'Concetti', simbolo: 'Simboli', fonte: 'Fonti', emozione: 'Emozioni',
-  stile: 'Stile', percorso: 'Percorsi', idea: 'Idee', spunto: 'Spunti', ricerca: 'Ricerche',
-}
 
 const norma = (s: string) => s.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '')
 const testoCarta = computed(() => new Map(

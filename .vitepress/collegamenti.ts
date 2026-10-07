@@ -8,7 +8,8 @@
 // Per l'indice della ricerca (env.perLaRicerca) i collegamenti proposti si tolgono del tutto.
 // Il markdown non cambia: GitHub mostra tutto.
 import type { MarkdownRenderer } from 'vitepress'
-import { proposte, collegamentoProposto, slugDaUrl, type Proposte } from './atlante'
+import { proposte, collegamentoProposto, type Proposte } from './atlante'
+import { slugDaUrl, slugDaRel } from './shared/nota.ts'
 
 // le proposte si rileggono dalle note al massimo ogni pochi secondi (in sviluppo le note cambiano)
 let memo: { t: number; p: Proposte } | undefined
@@ -18,7 +19,6 @@ function attuali(): Proposte {
   return memo.p
 }
 
-const slugDi = (rel: string) => slugDaUrl('/' + rel)
 const interno = (href: string) => !!href && !/^(https?:|mailto:|#)/.test(href) && /\.md(#|$)/.test(href)
 // un indirizzo con una sequenza % malformata non è un collegamento a una nota
 const slugDiHref = (href: string) => {
@@ -33,7 +33,7 @@ export function collegamenti(md: MarkdownRenderer) {
     const inizio = t.findIndex((x, i) => x.type === 'heading_open' && x.tag === 'h2' && t[i + 1]?.content.trim() === 'Collegamenti')
     if (inizio < 0) return
     const p = attuali()
-    const da = slugDi(rel)
+    const da = slugDaRel(rel)
     const ricerca = !!state.env.perLaRicerca
     const html = (c: string) => Object.assign(new state.Token('html_inline', '', 0), { content: c })
     const testo = (c: string) => Object.assign(new state.Token('text', '', 0), { content: c })

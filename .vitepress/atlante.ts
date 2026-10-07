@@ -4,6 +4,10 @@ import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs'
 import { join, dirname, relative, resolve, basename, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { execFileSync } from 'node:child_process'
+import { tipoDi, CAMPI_LINK } from './shared/tipi.ts'
+import { provenienza, slugDaUrl } from './shared/nota.ts'
+import { ETICHETTA_PROPOSTA } from './shared/proposte.ts'
+import { RE_VOCE_PIN, RAPPORTO_PREDEFINITO } from './shared/pin.ts'
 
 export const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 /** Il percorso del sito su GitHub Pages. */
@@ -30,34 +34,6 @@ export interface Nota {
   corpo: string
   archiviata: boolean
 }
-
-const TIPO_DA_CARTELLA: Record<string, string> = {
-  emozioni: 'emozione', concetti: 'concetto', fonti: 'fonte', simboli: 'simbolo', stile: 'stile',
-  percorsi: 'percorso', spunti: 'spunto', idee: 'idea', ricerche: 'ricerca', diario: 'diario', inbox: 'inbox',
-  _archivio: 'archivio',
-}
-
-export const ETICHETTE: Record<string, string> = {
-  nucleo: 'Nucleo', percorso: 'Percorsi', idea: 'Idee', spunto: 'Spunti', ricerca: 'Ricerche', emozione: 'Emozioni',
-  concetto: 'Concetti', fonte: 'Fonti', simbolo: 'Simboli', stile: 'Stile', inbox: 'Inbox',
-  diario: 'Diario', archivio: 'Archivio',
-}
-export const ORDINE_GRUPPI = Object.keys(ETICHETTE)
-
-export const STATI = ['tatuata', 'scelta', 'forte', 'in-esplorazione', 'seme']
-export const ETICHETTE_STATO: Record<string, string> = {
-  tatuata: 'Tatuate', scelta: 'Scelte', forte: 'Forti', 'in-esplorazione': 'In esplorazione', seme: 'Semi',
-}
-
-// le ricerche (piste da esplorare): prima quelle aperte
-export const STATI_RICERCA = ['in-corso', 'da-fare', 'fatta']
-export const ETICHETTE_STATO_RICERCA: Record<string, string> = {
-  'in-corso': 'In corso', 'da-fare': 'Da fare', fatta: 'Fatte',
-}
-
-export const SOTTOCARTELLE_FONTI: [string, string][] = [
-  ['pensiero', 'Pensiero'], ['sacro-e-mito', 'Sacro e mito'], ['opere', 'Opere'], ['arte', 'Arte'],
-]
 
 // --- frontmatter: chiavi semplici, liste inline, come in scripts/verifica.mjs
 function frontmatter(testo: string): { fm: Record<string, any>; corpo: string } {
@@ -106,7 +82,7 @@ export function note(): Nota[] {
       const { fm, corpo } = frontmatter(readFileSync(join(ROOT, rel), 'utf8'))
       const cartella = rel.split('/')[0]
       const archiviata = cartella === '_archivio'
-      const tipo = fm.tipo || (rel === 'nucleo.md' ? 'nucleo' : TIPO_DA_CARTELLA[cartella]) || 'altro'
+      const tipo = tipoDi(rel, fm.tipo)
       const slug = /(^|\/)(index|README)\.md$/.test(rel) ? basename(dirname(rel)) : basename(rel, '.md')
       return {
         rel, fm, corpo, slug, tipo, archiviata,
@@ -183,12 +159,6 @@ export function sintesi(corpo: string, sezione?: string): string {
 
 // --- per Bacheca, Testi e Mappa
 
-/** I campi del frontmatter che collegano a un'altra nota, con il tipo della nota di arrivo. */
-export const CAMPI_LINK: Record<string, string> = {
-  emozioni: 'emozione', concetti: 'concetto', fonti: 'fonte', simboli: 'simbolo', stile: 'stile',
-  percorsi: 'percorso', spunti: 'spunto', idee: 'idea', ricerche: 'ricerca',
-}
-
 const lista = (v: any): string[] => (Array.isArray(v) ? v : v ? [String(v)] : []).filter(Boolean)
 
 /** Gli slug collegati dal frontmatter, per campo. Il campo singolo `fonte` degli spunti va in testa alle fonti. */
@@ -224,34 +194,12 @@ export interface Pin { id: string; descrizione: string }
 /** I pin della sezione `## Pinterest`: voci di elenco fatte solo del link al pin. */
 export function pinDi(corpo: string): Pin[] {
   const out: Pin[] = []
-  for (const [, desc, id] of sezione(corpo, 'Pinterest').matchAll(
-    /^\s*[-*]\s+\[([^\]]*)\]\(https:\/\/www\.pinterest\.com\/pin\/(\d+)\/?\)\s*$/gm,
-  )) out.push({ id, descrizione: testoSemplice(desc) })
+  for (const [, desc, id] of sezione(corpo, 'Pinterest').matchAll(RE_VOCE_PIN)) out.push({ id, descrizione: testoSemplice(desc) })
   return out
 }
 
-// --- provenienza: chi ha portato una cosa e se l'ho approvata
-// Nel frontmatter: `origine` (seme | mia | claude) e `validata` (true | false).
-// Obbligatori su spunti, idee e ricerche; sulle note di mappa valgono, se mancano, seme e true.
-// Il sito guarda solo `validata`: "mia" è sempre validata, ma "seme" no (il seme l'ha compilato Claude in chat,
-// e le sue idee sono proposte da validare) e "claude" parte da false.
-// Dentro una nota validata, i passi proposti da Claude stanno in un blocco "proposta":
-//   > [!NOTE]
-//   > **Proposta di Claude, da validare.**
-//   >
-//   > il testo proposto…
-export const ETICHETTE_ORIGINE: Record<string, string> = {
-  seme: 'dal seme', mia: 'tua', claude: 'proposta di Claude',
-}
-const ETICHETTA_PROPOSTA = /^\*\*Proposta di Claude, da validare\.\*\*[ \t]*/
+// --- i blocchi proposta di Claude, dentro le note validate
 const AVVISO = /^\[!(\w+)\][ \t]*$/i
-
-interface Provenienza { origine: string; validata: boolean }
-export function provenienza(n: { fm: Record<string, any> }): Provenienza {
-  const origine = String(n.fm.origine || 'seme')
-  const v = n.fm.validata
-  return { origine, validata: v == null ? origine !== 'claude' : String(v) === 'true' }
-}
 
 /** Un pezzo di corpo: testo, una citazione (`>`), un avviso (`> [!…]`) o un blocco proposta, con la sezione in cui sta. */
 interface Blocco { tipo: 'testo' | 'citazione' | 'avviso' | 'proposta'; righe: string[]; sezione: string }
@@ -352,13 +300,6 @@ export function citazioniDi(n: Nota): Citazione[] {
 export const DIARIO_MIGRAZIONE = 'diario/2026-10-04-fase-1.md'
 interface CollegamentoProposto { md: string; coppie: [string, string][] }
 
-export const slugDaUrl = (u: string) => {
-  const p = u.split('#')[0].replace(/\/$/, '')
-  const parti = p.split('/')
-  const ultimo = parti[parti.length - 1]
-  return /^(index|README)\.md$/.test(ultimo) ? parti[parti.length - 2] : ultimo.replace(/\.md$/, '')
-}
-
 export function collegamentiProposti(): CollegamentoProposto[] {
   const p = join(ROOT, DIARIO_MIGRAZIONE)
   if (!existsSync(p)) return []
@@ -429,7 +370,7 @@ const FANNO_PARTE = /fanno parte della proposta/i
 export function proposte(tutte: Nota[] = note()): Proposte {
   const attive = tutte.filter((n) => !n.archiviata)
   const perSlug = new Map(attive.map((n) => [n.slug, n]))
-  const nonValidate = new Set(attive.filter((n) => !provenienza(n).validata).map((n) => n.slug))
+  const nonValidate = new Set(attive.filter((n) => !provenienza(n.fm).validata).map((n) => n.slug))
   const coppie = new Set<string>()
   for (const c of collegamentiProposti()) for (const [a, b] of c.coppie) coppie.add(chiaveCoppia(a, b))
   for (const n of attive) {
@@ -497,5 +438,5 @@ export async function rapportiPin(ids: string[]): Promise<Record<string, number>
       // senza rete: resta il rapporto predefinito
     }
   }
-  return Object.fromEntries(ids.map((id) => [id, rapporti.get(id) ?? 4 / 3]))
+  return Object.fromEntries(ids.map((id) => [id, rapporti.get(id) ?? RAPPORTO_PREDEFINITO]))
 }

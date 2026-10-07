@@ -2,8 +2,7 @@
 // (`- [descrizione](https://www.pinterest.com/pin/ID/)`) diventa l'embed ufficiale
 // di Pinterest, con la descrizione come didascalia. Su GitHub resta il link.
 import type { MarkdownRenderer } from 'vitepress'
-
-const PIN = /^https:\/\/www\.pinterest\.com\/pin\/(\d+)\/?$/
+import { RE_PIN, urlPin, urlEmbedPin } from './shared/pin.ts'
 
 export function pinterest(md: MarkdownRenderer) {
   md.core.ruler.push('pinterest', (state) => {
@@ -21,19 +20,19 @@ export function pinterest(md: MarkdownRenderer) {
       const figli = (inl.children ?? []).filter((c) => !(c.type === 'text' && !c.content.trim()))
       if (figli[0]?.type !== 'link_open' || figli[figli.length - 1]?.type !== 'link_close') continue
       if (figli.filter((c) => c.type === 'link_open').length !== 1) continue
-      const id = (figli[0].attrGet('href') ?? '').match(PIN)?.[1]
+      const id = (figli[0].attrGet('href') ?? '').match(RE_PIN)?.[1]
       if (!id) continue
 
       const interno = figli.slice(1, -1)
       const didascalia = md.renderer.renderInline(interno, md.options, state.env)
       const titolo = md.utils.escapeHtml(interno.map((c) => c.content ?? '').join('').trim() || 'Pin di Pinterest')
-      const url = `https://www.pinterest.com/pin/${id}/`
+      const url = urlPin(id)
 
       const html = new state.Token('html_block', '', 0)
       html.block = true
       html.content =
         `<figure class="pin">` +
-        `<iframe class="pin-embed" src="https://assets.pinterest.com/ext/embed.html?id=${id}" ` +
+        `<iframe class="pin-embed" src="${urlEmbedPin(id)}" ` +
         `title="${titolo}" width="345" height="520" loading="lazy" frameborder="0" scrolling="no"></iframe>` +
         `<figcaption><a href="${url}" target="_blank" rel="noreferrer">${didascalia}</a></figcaption>` +
         `</figure>\n`

@@ -4,11 +4,9 @@
 import { defineLoader } from 'vitepress'
 import mappa from './mappa.data'
 import testi from './testi.data'
-import {
-  note, perTitolo, sintesi, provenienza, proposteDi, collegamentiProposti, CAMPI_LINK,
-  STATI, ETICHETTE_STATO, STATI_RICERCA, ETICHETTE_STATO_RICERCA,
-} from '../atlante'
-import { risonanzaDi } from '../shared/nota.ts'
+import { note, perTitolo, sintesi, proposteDi, collegamentiProposti } from '../atlante'
+import { STATI, ETICHETTE_STATO, STATI_RICERCA, ETICHETTE_STATO_RICERCA, TIPI_MAPPA } from '../shared/tipi.ts'
+import { provenienza, risonanzaDi } from '../shared/nota.ts'
 
 export interface IdeaHome {
   titolo: string
@@ -54,7 +52,7 @@ export default defineLoader({
     const percorsi = tutte
       .filter((n) => n.gruppo === 'percorso')
       .sort(perTitolo)
-      .map((n) => ({ titolo: n.titolo, link: n.link, sintesi: sintesi(n.corpo), validata: provenienza(n).validata }))
+      .map((n) => ({ titolo: n.titolo, link: n.link, sintesi: sintesi(n.corpo), validata: provenienza(n.fm).validata }))
 
     const idee = tutte.filter((n) => n.gruppo === 'idea').sort(perTitolo)
     const stati = STATI.map((stato) => ({
@@ -69,7 +67,7 @@ export default defineLoader({
           formato: n.fm.formato || null,
           risonanza: risonanzaDi(n.fm.risonanza),
           concetto: sintesi(n.corpo, 'Concetto'),
-          validata: provenienza(n).validata,
+          validata: provenienza(n.fm).validata,
         })),
     }))
 
@@ -83,7 +81,7 @@ export default defineLoader({
         link: n.link,
         stato: ETICHETTE_STATO_RICERCA[n.fm.stato] ?? n.fm.stato ?? 'senza stato',
         oggetto: n.fm.oggetto || sintesi(n.corpo),
-        validata: provenienza(n).validata,
+        validata: provenienza(n.fm).validata,
       }))
 
     const conteggi = [
@@ -91,7 +89,7 @@ export default defineLoader({
       ['stile', 'stili'], ['spunto', 'spunti'], ['ricerca', 'ricerche'],
     ].map(([g, etichetta]) => {
       const delGruppo = tutte.filter((n) => n.gruppo === g)
-      return { etichetta, n: delGruppo.length, validate: delGruppo.filter((n) => provenienza(n).validata).length }
+      return { etichetta, n: delGruppo.length, validate: delGruppo.filter((n) => provenienza(n.fm).validata).length }
     })
 
     const m = (mappa as any).load()
@@ -106,11 +104,10 @@ export default defineLoader({
       archi: m.archi.filter((a: any) => !a.proposto && nodiV.has(a.source) && nodiV.has(a.target)).length,
     }
 
-    const tipi = new Set([...Object.values(CAMPI_LINK), 'nucleo'])
-    const attive = tutte.filter((n) => !n.archiviata && tipi.has(n.tipo))
+    const attive = tutte.filter((n) => !n.archiviata && TIPI_MAPPA.has(n.tipo))
     const daValidare =
-      attive.filter((n) => !provenienza(n).validata).length +
-      attive.filter((n) => provenienza(n).validata).reduce((t, n) => t + proposteDi(n.corpo).length, 0) +
+      attive.filter((n) => !provenienza(n.fm).validata).length +
+      attive.filter((n) => provenienza(n.fm).validata).reduce((t, n) => t + proposteDi(n.corpo).length, 0) +
       collegamentiProposti().length
 
     return { formula, percorsi, stati, piste, conteggi, porte, porteValidate, daValidare }

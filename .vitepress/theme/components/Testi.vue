@@ -31,7 +31,6 @@ const MISURE = [
   { v: 'media', t: 'Medie' },
   { v: 'lunga', t: 'Lunghe' },
 ]
-const TIPI: Record<string, string> = { spunto: 'spunto', idea: 'idea', ricerca: 'ricerca' }
 const perSlug = Object.fromEntries(data.fonti.map((f) => [f.slug, f]))
 
 const gruppi = computed(() => {
@@ -129,7 +128,7 @@ function apri(id: string) {
             da
             <template v-for="(nota, i) in t.note" :key="nota.link">
               <a :href="withBase(nota.link)">{{ nota.titolo }}</a>
-              <span class="saggio-tipo"> ({{ TIPI[nota.tipo] ?? nota.tipo }})</span><span v-if="i < t.note.length - 1">, </span>
+              <span class="saggio-tipo"> ({{ nota.tipo }})</span><span v-if="i < t.note.length - 1">, </span>
             </template>
           </span>
         </figcaption>

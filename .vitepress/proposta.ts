@@ -12,8 +12,7 @@
 // è fatta solo di blocchi proposta prende la classe `solo-proposte`, così sparisce con loro.
 // Per l'indice della ricerca (env.perLaRicerca) i blocchi proposta si tolgono del tutto.
 import type { MarkdownRenderer } from 'vitepress'
-
-const ETICHETTA = /^\*\*Proposta di Claude, da validare\.\*\*[ \t]*\n?/
+import { ETICHETTA_PROPOSTA as ETICHETTA } from './shared/proposte.ts'
 
 export function proposta(md: MarkdownRenderer) {
   md.core.ruler.after('github-alerts', 'proposta-di-claude', (state) => {

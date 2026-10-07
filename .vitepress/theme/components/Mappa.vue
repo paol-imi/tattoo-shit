@@ -7,23 +7,18 @@ import { computed, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vu
 import { withBase, useRouter } from 'vitepress'
 import { data, type NodoMappa, type ArcoMappa } from '../mappa.data'
 import { useProposte } from '../proposte'
+import { ETICHETTE_GRUPPO, ETICHETTE_TIPO as ETICHETTA } from '../../shared/tipi.ts'
+import { cambiaQuery } from '../../shared/indirizzo.ts'
 
-const TIPI = [
-  { tipo: 'idea', etichetta: 'Idee', forma: 'rombo' },
-  { tipo: 'spunto', etichetta: 'Spunti', forma: 'rombo' },
-  { tipo: 'ricerca', etichetta: 'Ricerche', forma: 'rombo' },
-  { tipo: 'concetto', etichetta: 'Concetti', forma: 'cerchio' },
-  { tipo: 'emozione', etichetta: 'Emozioni', forma: 'cerchio' },
-  { tipo: 'simbolo', etichetta: 'Simboli', forma: 'cerchio' },
-  { tipo: 'fonte', etichetta: 'Fonti', forma: 'cerchio' },
-  { tipo: 'stile', etichetta: 'Stile', forma: 'cerchio' },
-  { tipo: 'percorso', etichetta: 'Percorsi e nucleo', forma: 'anello' },
+// la legenda: i gruppi della mappa, con la forma del segno (il nucleo sta con i percorsi)
+const FORME: [string, string][] = [
+  ['idea', 'rombo'], ['spunto', 'rombo'], ['ricerca', 'rombo'], ['concetto', 'cerchio'], ['emozione', 'cerchio'],
+  ['simbolo', 'cerchio'], ['fonte', 'cerchio'], ['stile', 'cerchio'], ['percorso', 'anello'],
 ]
-const FORMA: Record<string, string> = Object.fromEntries(TIPI.map((t) => [t.tipo, t.forma]))
-const ETICHETTA: Record<string, string> = {
-  idea: 'Idea', spunto: 'Spunto', ricerca: 'Ricerca', concetto: 'Concetto', emozione: 'Emozione',
-  simbolo: 'Simbolo', fonte: 'Fonte', stile: 'Stile', percorso: 'Percorso', nucleo: 'Nucleo',
-}
+const TIPI = FORME.map(([tipo, forma]) => ({
+  tipo, forma, etichetta: tipo === 'percorso' ? 'Percorsi e nucleo' : ETICHETTE_GRUPPO[tipo],
+}))
+const FORMA: Record<string, string> = Object.fromEntries(FORME)
 const gruppoDi = (tipo: string) => (tipo === 'nucleo' ? 'percorso' : tipo)
 
 // --- la vista: di default solo i nodi validati e i fili validati tra loro (il grado si riconta)
@@ -133,10 +128,7 @@ function scegli(n?: N) {
   focalizza(nodo)
 }
 function aggiornaUrl(id: string | null) {
-  const q = new URLSearchParams(location.search)
-  id ? q.set('nodo', id) : q.delete('nodo')
-  const s = q.toString()
-  history.replaceState(history.state, '', location.pathname + (s ? `?${s}` : ''))
+  cambiaQuery((q) => (id ? q.set('nodo', id) : q.delete('nodo')))
 }
 function riparti() {
   scelto.value = null

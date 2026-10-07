@@ -3,9 +3,9 @@
 // proposta: il link viene da una nota non validata, solo da blocchi proposta, o è un collegamento proposto;
 // di default il sito non lo mostra (si vede con le proposte di Claude accese).
 import { defineLoader } from 'vitepress'
-import {
-  note, linkInterni, perTitolo, senzaProposte, proposte, collegamentoProposto, slugDaUrl, ETICHETTE, ORDINE_GRUPPI, type Nota,
-} from '../atlante'
+import { note, linkInterni, perTitolo, senzaProposte, proposte, collegamentoProposto, type Nota } from '../atlante'
+import { ETICHETTE_GRUPPO, ORDINE_GRUPPI } from '../shared/tipi.ts'
+import { slugDaRel } from '../shared/nota.ts'
 
 export interface GruppoBacklink {
   gruppo: string
@@ -33,14 +33,13 @@ export default defineLoader({
       }
       for (const dest of linkInterni(n.rel, senzaProposte(n.corpo))) validati.add(`${n.rel}|${dest}`)
     }
-    const slug = (rel: string) => slugDaUrl('/' + rel)
     const proposta = (n: Nota, dest: string) =>
-      !n.archiviata && (!validati.has(`${n.rel}|${dest}`) || collegamentoProposto(prop, n.slug, slug(dest)))
+      !n.archiviata && (!validati.has(`${n.rel}|${dest}`) || collegamentoProposto(prop, n.slug, slugDaRel(dest)))
     const out: Backlink = {}
     for (const [dest, da] of entranti) {
       out[dest] = ORDINE_GRUPPI.map((gruppo) => ({
         gruppo,
-        etichetta: ETICHETTE[gruppo],
+        etichetta: ETICHETTE_GRUPPO[gruppo],
         note: [...da]
           .filter((n) => n.gruppo === gruppo)
           .sort(perTitolo)

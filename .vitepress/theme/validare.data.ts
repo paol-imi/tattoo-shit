@@ -4,9 +4,10 @@
 // Tutto si rigenera a ogni build, leggendo le note.
 import { defineLoader, createMarkdownRenderer, type SiteConfig } from 'vitepress'
 import {
-  note, perTitolo, sintesi, primeFrasi, provenienza, proposteDi, collegamentiProposti, linkDi,
-  ROOT, BASE, DIARIO_MIGRAZIONE, ETICHETTE_ORIGINE, type Nota,
+  note, perTitolo, sintesi, primeFrasi, proposteDi, collegamentiProposti, linkDi, ROOT, BASE, DIARIO_MIGRAZIONE, type Nota,
 } from '../atlante'
+import { ETICHETTE_TIPO, ETICHETTE_ORIGINE, TIPI_MAPPA } from '../shared/tipi.ts'
+import { provenienza } from '../shared/nota.ts'
 
 export interface NotaDaValidare {
   titolo: string
@@ -37,10 +38,6 @@ export interface DatiValidare {
 declare const data: DatiValidare
 export { data }
 
-const TIPI: Record<string, string> = {
-  nucleo: 'Nucleo', idea: 'Idea', spunto: 'Spunto', ricerca: 'Ricerca', emozione: 'Emozione', concetto: 'Concetto',
-  fonte: 'Fonte', simbolo: 'Simbolo', stile: 'Stile', percorso: 'Percorso',
-}
 const ORDINE = ['nucleo', 'idea', 'spunto', 'ricerca', 'percorso', 'concetto', 'simbolo', 'fonte', 'emozione', 'stile']
 const rango = (n: Nota) => (ORDINE.includes(n.tipo) ? ORDINE.indexOf(n.tipo) : ORDINE.length)
 
@@ -64,27 +61,27 @@ export default defineLoader({
     const cleanUrls = sito?.cleanUrls ?? true
     const html = (testo: string, rel: string) => md.render(testo, { cleanUrls, relativePath: rel })
     const tutteLeNote = note()
-    const tutte = tutteLeNote.filter((n) => !n.archiviata && TIPI[n.tipo])
+    const tutte = tutteLeNote.filter((n) => !n.archiviata && TIPI_MAPPA.has(n.tipo))
 
-    const daValidare = tutte.filter((n) => !provenienza(n).validata).sort((a, b) => rango(a) - rango(b) || perTitolo(a, b))
+    const daValidare = tutte.filter((n) => !provenienza(n.fm).validata).sort((a, b) => rango(a) - rango(b) || perTitolo(a, b))
     const noteOut = daValidare.map((n) => ({
       titolo: n.titolo,
       link: n.link,
       tipo: n.tipo,
-      etichetta: TIPI[n.tipo],
+      etichetta: ETICHETTE_TIPO[n.tipo],
       sintesi: sintesiDi(n),
-      origine: ETICHETTE_ORIGINE[provenienza(n).origine] ?? provenienza(n).origine,
-      seme: provenienza(n).origine === 'seme',
+      origine: ETICHETTE_ORIGINE[provenienza(n.fm).origine] ?? provenienza(n.fm).origine,
+      seme: provenienza(n.fm).origine === 'seme',
       creato: n.fm.creato ? String(n.fm.creato) : null,
     }))
 
     const proposte: PropostaDentro[] = tutte
-      .filter((n) => provenienza(n).validata)
+      .filter((n) => provenienza(n.fm).validata)
       .sort((a, b) => rango(a) - rango(b) || perTitolo(a, b))
       .flatMap((n) =>
         proposteDi(n.corpo).map((p) => ({
           id: `${n.slug}-${p.n}`,
-          nota: { titolo: n.titolo, link: n.link, tipo: n.tipo, etichetta: TIPI[n.tipo] },
+          nota: { titolo: n.titolo, link: n.link, tipo: n.tipo, etichetta: ETICHETTE_TIPO[n.tipo] },
           sezione: p.sezione,
           ancora: `#proposta-${p.n}`,
           html: html(p.md, n.rel),

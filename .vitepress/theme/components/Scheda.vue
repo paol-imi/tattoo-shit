@@ -5,53 +5,48 @@ import { computed } from 'vue'
 import { useData, withBase } from 'vitepress'
 import { data as schede } from '../schede.data'
 import { useProposte } from '../proposte'
-import { risonanzaDi, pallini } from '../../shared/nota.ts'
+import {
+  tipoDi, leggibile, ETICHETTE_TIPO, SOTTOCARTELLE_FONTI, TIPI_MAPPA, TIPI_TERRITORIO, ETICHETTE_ORIGINE,
+  ETICHETTE_ORIGINE_DA_VALIDARE,
+} from '../../shared/tipi.ts'
+import { provenienza as provenienzaDi, slugDaRel, risonanzaDi, pallini } from '../../shared/nota.ts'
 
 // di default si contano solo carte e collegamenti validati; le proposte di Claude con l'interruttore acceso
 const mostra = useProposte()
 
 const { frontmatter, page } = useData()
 
-const TIPI: Record<string, string> = {
-  nucleo: 'Nucleo', percorso: 'Percorso', idea: 'Idea', spunto: 'Spunto', emozione: 'Emozione',
-  concetto: 'Concetto', fonte: 'Fonte', simbolo: 'Simbolo', stile: 'Stile', diario: 'Diario',
-  ricerca: 'Ricerca',
-}
-const FONTI: Record<string, string> = {
-  pensiero: 'pensiero', 'sacro-e-mito': 'sacro e mito', opere: 'opere', arte: 'arte',
-}
+const archiviata = computed(() => page.value.filePath.startsWith('_archivio/'))
+const tipo = computed(() => tipoDi(page.value.filePath, frontmatter.value.tipo))
 
 const voci = computed(() => {
   const fm = frontmatter.value
-  const rel = page.value.filePath
   const out: string[] = []
-  if (rel.startsWith('_archivio/')) out.push('Archivio')
-  const tipo = fm.tipo ?? (rel.startsWith('diario/') ? 'diario' : null)
-  if (tipo && TIPI[tipo]) out.push(TIPI[tipo])
-  if (tipo === 'fonte') {
-    const sotto = rel.split('/')[1]
-    if (FONTI[sotto]) out.push(FONTI[sotto])
+  if (archiviata.value) out.push('Archivio')
+  const t = tipo.value
+  if (ETICHETTE_TIPO[t]) out.push(ETICHETTE_TIPO[t])
+  if (t === 'fonte') {
+    const sotto = SOTTOCARTELLE_FONTI.find(([cartella]) => cartella === page.value.filePath.split('/')[1])
+    if (sotto) out.push(sotto[1].toLowerCase())
   }
-  if (tipo === 'idea' || tipo === 'spunto' || tipo === 'ricerca') {
-    if (fm.stato) out.push(String(fm.stato).replace(/-/g, ' '))
-    if (fm.formato) out.push(String(fm.formato).replace(/-/g, ' '))
+  if (TIPI_TERRITORIO.has(t)) {
+    if (fm.stato) out.push(leggibile(fm.stato))
+    if (fm.formato) out.push(leggibile(fm.formato))
   }
-  if (tipo === 'diario' && fm.data) {
+  if (t === 'diario' && fm.data) {
     out.push(new Date(fm.data).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }))
   }
   return out
 })
 
 // in coda: dove ritrovare la nota sulla mappa e, per i nodi, le tavole della bacheca legate a lei
-const SULLA_MAPPA = new Set(['percorso', 'idea', 'spunto', 'emozione', 'concetto', 'fonte', 'simbolo', 'stile', 'ricerca'])
+// (il nucleo è sulla mappa, ma la sua riga non porta il rimando)
 const vai = computed(() => {
-  const rel = page.value.filePath
-  const tipo = frontmatter.value.tipo
-  if (rel.startsWith('_archivio/') || !SULLA_MAPPA.has(tipo)) return null
-  const parti = rel.split('/')
-  const slug = /^(index|README)\.md$/.test(parti[parti.length - 1]) ? parti[parti.length - 2] : parti[parti.length - 1].replace(/\.md$/, '')
+  const t = tipo.value
+  if (archiviata.value || !TIPI_MAPPA.has(t) || t === 'nucleo') return null
+  const slug = slugDaRel(page.value.filePath)
   const presenze = mostra.value ? schede.presenze : schede.presenzeValidate
-  const n = tipo === 'idea' || tipo === 'spunto' ? 0 : presenze[slug] ?? 0
+  const n = t === 'idea' || t === 'spunto' ? 0 : presenze[slug] ?? 0
   // una nota non validata, a proposte spente, non è sulla mappa
   const sullaMappa = mostra.value || !provenienza.value || provenienza.value.validata
   return { mappa: sullaMappa ? withBase(`/mappa?nodo=${slug}`) : null, bacheca: n ? withBase(`/bacheca?nodo=${slug}`) : null, n }
@@ -59,20 +54,20 @@ const vai = computed(() => {
 
 // provenienza: sempre per spunti, idee e ricerche; sulle note di mappa solo se dichiarata.
 // Conta solo `validata`: anche ciò che viene dal seme (compilato da Claude in chat) può essere una proposta.
-const TERRITORIO = new Set(['idea', 'spunto', 'ricerca'])
-const ORIGINI: Record<string, string> = { seme: 'dal seme', mia: 'tua', claude: 'proposta di Claude' }
 const provenienza = computed(() => {
   const fm = frontmatter.value
-  if (page.value.filePath.startsWith('_archivio/')) return null
-  if (!TERRITORIO.has(fm.tipo) && fm.origine == null && fm.validata == null) return null
-  const origine = String(fm.origine ?? 'seme')
-  const validata = fm.validata == null ? origine !== 'claude' : String(fm.validata) === 'true'
-  const daValidare = origine === 'seme' ? 'dal seme, proposta di Claude' : origine === 'mia' ? 'tua' : 'proposta di Claude'
-  return { origine: ORIGINI[origine] ?? origine, validata, daValidare }
+  if (archiviata.value) return null
+  if (!TIPI_TERRITORIO.has(tipo.value) && fm.origine == null && fm.validata == null) return null
+  const { origine, validata } = provenienzaDi(fm)
+  return {
+    origine: ETICHETTE_ORIGINE[origine] ?? origine,
+    validata,
+    daValidare: ETICHETTE_ORIGINE_DA_VALIDARE[origine] ?? ETICHETTE_ORIGINE_DA_VALIDARE.claude,
+  }
 })
 const proposte = computed(() => schede.proposte[page.value.filePath] ?? 0)
 
-const risonanza = computed(() => (frontmatter.value.tipo === 'idea' ? risonanzaDi(frontmatter.value.risonanza) : null))
+const risonanza = computed(() => (tipo.value === 'idea' ? risonanzaDi(frontmatter.value.risonanza) : null))
 </script>
 
 <template>

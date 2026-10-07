@@ -1,7 +1,9 @@
 // Dati della Mappa: le note come nodi, i collegamenti del frontmatter come archi.
 // Il nucleo, che non ha collegamenti nel frontmatter, si lega alle note che cita nel corpo.
 import { defineLoader } from 'vitepress'
-import { note, collegamentiFm, linkInterni, CAMPI_LINK, provenienza, proposte, chiaveCoppia } from '../atlante'
+import { note, collegamentiFm, linkInterni, proposte, chiaveCoppia } from '../atlante'
+import { TIPI_MAPPA } from '../shared/tipi.ts'
+import { provenienza } from '../shared/nota.ts'
 
 export interface NodoMappa {
   id: string; titolo: string; tipo: string; link: string; grado: number
@@ -15,13 +17,11 @@ export interface DatiMappa { nodi: NodoMappa[]; archi: ArcoMappa[] }
 declare const data: DatiMappa
 export { data }
 
-const TIPI = new Set([...Object.values(CAMPI_LINK), 'nucleo'])
-
 export default defineLoader({
   watch: ['../../**/*.md'],
   load(): DatiMappa {
     const tutteLeNote = note()
-    const tutte = tutteLeNote.filter((n) => !n.archiviata && TIPI.has(n.tipo))
+    const tutte = tutteLeNote.filter((n) => !n.archiviata && TIPI_MAPPA.has(n.tipo))
     const perSlug = new Map(tutte.map((n) => [n.slug, n]))
     const perRel = new Map(tutte.map((n) => [n.rel, n]))
     const archi = new Map<string, ArcoMappa>()
@@ -47,7 +47,7 @@ export default defineLoader({
     }
     return {
       nodi: tutte.map((n) => ({
-        id: n.slug, titolo: n.titolo, tipo: n.tipo, link: n.link, grado: grado.get(n.slug) ?? 0, validata: provenienza(n).validata,
+        id: n.slug, titolo: n.titolo, tipo: n.tipo, link: n.link, grado: grado.get(n.slug) ?? 0, validata: provenienza(n.fm).validata,
       })),
       archi: [...archi.values()],
     }

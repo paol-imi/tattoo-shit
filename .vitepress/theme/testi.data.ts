@@ -1,7 +1,8 @@
 // Dati di Testi: tutte le citazioni trovate in spunti, idee e ricerche,
 // con la nota da cui vengono e la fonte. Le citazioni uguali in più note si uniscono.
 import { defineLoader } from 'vitepress'
-import { note, perTitolo, citazioniDi, collegamentiFm, chiave, provenienza } from '../atlante'
+import { note, perTitolo, citazioniDi, collegamentiFm, chiave } from '../atlante'
+import { provenienza } from '../shared/nota.ts'
 
 export interface Testo {
   id: string
@@ -42,7 +43,7 @@ export default defineLoader({
     const perTesto = new Map<string, Testo>()
     for (const n of sorgenti) {
       const fonte = (collegamentiFm(n).fonti ?? []).find((s) => perSlug.get(s)?.tipo === 'fonte') ?? null
-      const validata = provenienza(n).validata
+      const validata = provenienza(n.fm).validata
       for (const c of citazioniDi(n)) {
         const k = norma(c.testo)
         const proposta = c.proposta || !validata
