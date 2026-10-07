@@ -7,7 +7,7 @@ import { RE_PIN, urlPin, urlEmbedPin } from './shared/pin.ts'
 export function pinterest(md: MarkdownRenderer) {
   md.core.ruler.push('pinterest', (state) => {
     const t = state.tokens
-    const liste: any[] = []
+    const liste: typeof t = []
     for (let i = 0; i < t.length; i++) {
       const tok = t[i]
       if (tok.type === 'bullet_list_open' || tok.type === 'ordered_list_open') { liste.push(tok); continue }

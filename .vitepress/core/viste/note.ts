@@ -17,9 +17,9 @@ export interface GruppoBacklink {
   etichetta: string
   note: { titolo: string; link: string; proposta: boolean }[]
 }
-export type Backlink = Record<string, GruppoBacklink[]>
+type Backlink = Record<string, GruppoBacklink[]>
 
-export const backlink = (a: Archivio): Backlink => memo(a, 'backlink', () => {
+const backlink = (a: Archivio): Backlink => memo(a, 'backlink', () => {
   const tutte = a.note
   const perRel = new Map(tutte.map((n) => [n.rel, n]))
   const prop = proposte(a)
@@ -53,13 +53,13 @@ export const backlink = (a: Archivio): Backlink => memo(a, 'backlink', () => {
 // - presenze: quante carte della Bacheca sono legate a ciascuna nota (per slug), con le proposte di Claude;
 // - presenzeValidate: lo stesso, contando solo carte e collegamenti validati (la vista di default);
 // - proposte: quanti blocchi "proposta di Claude" ci sono in ciascuna pagina (per percorso del file).
-export interface DatiSchede {
+interface DatiSchede {
   presenze: Record<string, number>
   presenzeValidate: Record<string, number>
   proposte: Record<string, number>
 }
 
-export const schede = (a: Archivio): DatiSchede => memo(a, 'schede', () => {
+const schede = (a: Archivio): DatiSchede => memo(a, 'schede', () => {
   const proposte: Record<string, number> = {}
   for (const n of a.note) {
     const p = proposteDi(n.corpo).length

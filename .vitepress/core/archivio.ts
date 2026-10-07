@@ -32,7 +32,7 @@ export const REWRITES: Readonly<Record<string, string>> = {
 export type Valore = string | string[] | null
 export type Frontmatter = Record<string, Valore>
 
-export function frontmatter(testo: string): { fm: Frontmatter; corpo: string; rigaCorpo: number } {
+function frontmatter(testo: string): { fm: Frontmatter; corpo: string; rigaCorpo: number } {
   const m = testo.match(/^---\n([\s\S]*?)\n---[ \t]*(?:\n|$)/)
   if (!m) return { fm: {}, corpo: testo, rigaCorpo: 0 }
   const fm: Frontmatter = {}

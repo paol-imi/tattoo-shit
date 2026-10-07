@@ -1,5 +1,5 @@
 import { defineConfig, type DefaultTheme } from 'vitepress'
-import { archivio, diario, perTitolo, REWRITES, BASE, type Nota } from './core/archivio.ts'
+import { archivio, diario, perTitolo, testoFm, REWRITES, BASE, type Nota, type Valore } from './core/archivio.ts'
 import { datiPagina } from './core/viste/note.ts'
 import {
   ETICHETTE_GRUPPO, ORDINE_GRUPPI, STATI, ETICHETTE_STATO, STATI_RICERCA, ETICHETTE_STATO_RICERCA, SOTTOCARTELLE_FONTI,
@@ -23,10 +23,12 @@ const ordinate = (g: string) => delGruppo(g).sort(perTitolo).map(voce)
 // idee e ricerche: un sottogruppo per stato, nell'ordine dato (gli stati sconosciuti in coda)
 function perStato(gruppo: string, stati: string[], etichette: Readonly<Record<string, string>>): DefaultTheme.SidebarItem[] {
   const tutteDelGruppo = delGruppo(gruppo)
-  const altri = [...new Set(tutteDelGruppo.map((n) => n.fm.stato))].filter((s) => !stati.includes(s))
-  return [...stati, ...altri]
+  // lo stato com'è nel frontmatter: null se manca
+  const noti: readonly Valore[] = stati
+  const altri = [...new Set(tutteDelGruppo.map((n) => n.fm.stato))].filter((s) => !noti.includes(s))
+  return [...noti, ...altri]
     .map((stato) => ({
-      text: etichette[stato] ?? stato ?? 'Senza stato',
+      text: etichette[String(stato)] ?? testoFm(stato) ?? 'Senza stato',
       collapsed: false,
       items: tutteDelGruppo.filter((n) => n.fm.stato === stato).sort(perTitolo).map(voce),
     }))
@@ -153,7 +155,7 @@ export default defineConfig({
         // Le pagine fatte solo di un componente (Bacheca, Testi, Mappa, Da validare) non hanno testo da indicizzare;
         // per togliere dalla ricerca una pagina basta `search: false` nel suo frontmatter.
         _render(src, env, md) {
-          const e: any = Object.assign(env, { perLaRicerca: true })
+          const e = Object.assign(env, { perLaRicerca: true })
           const html = md.render(src, e)
           const fm = e.frontmatter ?? {}
           if (fm.search === false || !provenienza(fm).validata) return ''

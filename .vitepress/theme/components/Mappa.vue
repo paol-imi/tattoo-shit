@@ -4,6 +4,7 @@
 // Di default solo ciò che è validato. Con l'interruttore "proposte" acceso tornano le proposte di Claude
 // non ancora approvate: nodi chiari con il contorno tratteggiato, fili tratteggiati.
 import { computed, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
+import type ForceGraph from 'force-graph'
 import { withBase, useRouter } from 'vitepress'
 import { data, type NodoMappa, type ArcoMappa } from '../mappa.data'
 import { useProposte } from '../proposte'
@@ -66,8 +67,10 @@ watch(suggeriti, () => (evidenziato.value = 0))
 
 // --- stato del grafo
 type N = NodoMappa & { x?: number; y?: number }
+// un filo nel grafo: force-graph sostituisce gli id di source e target con i nodi
+type L = Omit<ArcoMappa, 'source' | 'target'> & { source: N; target: N }
 const contenitore = ref<HTMLElement>()
-const grafo = shallowRef<any>()
+const grafo = shallowRef<ForceGraph<N, L>>()
 const scelto = ref<N | null>(null) // il nodo selezionato (clic su touch, ricerca, ?nodo=)
 const sopra = ref<N | null>(null) // il nodo sotto il puntatore
 const attivo = computed(() => sopra.value ?? scelto.value)
@@ -150,7 +153,8 @@ function datiGrafo() {
     nodiGrafo.set(n.id, nuovo)
     return nuovo
   })
-  return { nodes, links: vista.value.archi.map((a) => ({ ...a })) }
+  // i fili partono con gli id: force-graph li sostituisce con i nodi
+  return { nodes, links: vista.value.archi.map((a) => ({ ...a })) as unknown as L[] }
 }
 let rinquadra = false
 
@@ -158,7 +162,7 @@ onMounted(async () => {
   const { default: ForceGraph } = await import('force-graph')
   const el = contenitore.value!
   leggiColori()
-  const g = new ForceGraph(el)
+  const g = new ForceGraph<N, L>(el)
     .graphData(datiGrafo())
     .nodeId('id')
     .width(el.clientWidth)
@@ -170,14 +174,14 @@ onMounted(async () => {
     .minZoom(0.3)
     .maxZoom(12)
     .nodeVisibility((n: N) => !spenti.value.has(gruppoDi(n.tipo)))
-    .linkVisibility((l: any) => !spenti.value.has(gruppoDi(l.source.tipo ?? '')) && !spenti.value.has(gruppoDi(l.target.tipo ?? '')))
-    .linkColor((l: any) => {
+    .linkVisibility((l: L) => !spenti.value.has(gruppoDi(l.source.tipo ?? '')) && !spenti.value.has(gruppoDi(l.target.tipo ?? '')))
+    .linkColor((l: L) => {
       const a = attivo.value
       if (!a) return l.proposto ? colori.arcoProposto : colori.arco
       return l.source.id === a.id || l.target.id === a.id ? colori.arcoForte : 'rgba(0,0,0,0)'
     })
-    .linkLineDash((l: any) => (l.proposto ? [2.2, 1.6] : null))
-    .linkWidth((l: any) => (attivo.value && (l.source.id === attivo.value.id || l.target.id === attivo.value.id) ? 1.4 : 0.6))
+    .linkLineDash((l: L) => (l.proposto ? [2.2, 1.6] : null))
+    .linkWidth((l: L) => (attivo.value && (l.source.id === attivo.value.id || l.target.id === attivo.value.id) ? 1.4 : 0.6))
     .nodeCanvasObject((n: N, ctx: CanvasRenderingContext2D, k: number) => disegna(n, ctx, k))
     .onRenderFramePost((ctx: CanvasRenderingContext2D, k: number) => etichette(ctx, k))
     .nodePointerAreaPaint((n: N, colore: string, ctx: CanvasRenderingContext2D, k: number) => {
@@ -198,7 +202,7 @@ onMounted(async () => {
     })
     .onBackgroundClick(() => { if (scelto.value) { scelto.value = null; aggiornaUrl(null) } })
   g.d3Force('charge')?.strength(-46).distanceMax(320)
-  g.d3Force('link')?.distance((l: any) => (l.source.tipo === 'nucleo' || l.target.tipo === 'nucleo' ? 70 : 34))
+  g.d3Force('link')?.distance((l: L) => (l.source.tipo === 'nucleo' || l.target.tipo === 'nucleo' ? 70 : 34))
   grafo.value = g
   // dopo il riscaldamento le posizioni ci sono già: si inquadra subito, poi di nuovo a riposo
   let inquadrata = false
