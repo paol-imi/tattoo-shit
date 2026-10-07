@@ -30,7 +30,9 @@ Le idee erano sparse tra Pinterest, chat, appunti e immagini generate. Qui stann
 |---|---|
 | [emozioni/](emozioni/) | stati interiori: dolore, vuoto, lucidità, meraviglia… |
 | [concetti/](concetti/) | idee filosofiche e temi: assurdo, amor fati, soglia… |
-| [fonti/](fonti/) | da dove vengono le cose: [pensiero](fonti/pensiero/), [sacro e mito](fonti/sacro-e-mito/), [opere](fonti/opere/), [arte](fonti/arte/) |
+| [domande/](domande/) | le grandi domande, ciascuna con il coro delle voci che rispondono: chi sono?, perché soffro?… |
+| [fonti/](fonti/) | da dove vengono le cose: [pensiero](fonti/pensiero/), [sacro e mito](fonti/sacro-e-mito/), [opere](fonti/opere/), [arte](fonti/arte/), [psicologia](fonti/psicologia/), [scienza](fonti/scienza/) |
+| [discipline/](discipline/) | da quale sapere vengono le fonti, con i loro filoni: filosofia, psicologia, scienza… |
 | [simboli/](simboli/) | motivi visivi: ouroboros, velo, porta, occhi… |
 | [stile/](stile/) | tecniche e composizione: incisione, patchwork… |
 | [percorsi/](percorsi/) | fili narrativi che attraversano tutto |

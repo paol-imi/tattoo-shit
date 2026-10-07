@@ -6,6 +6,7 @@ validata: true             # l'ho approvata io? mia: sempre true; seme e claude:
 stato: da-fare             # da-fare | in-corso | fatta
 oggetto: ""                # cosa c'è da esplorare, in una riga
 link: []                   # URL esterni (profili, testi, pagine), tra virgolette
+domande: []                # le grandi domande a cui risponde (slug in domande/)
 concetti: []
 emozioni: []
 fonti: []

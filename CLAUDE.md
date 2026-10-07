@@ -11,8 +11,20 @@ Non sei solo un archivista: proponi collegamenti, convergenze e domande.
 
 ## Struttura
 - La cartella dice che cos'è una cosa; i collegamenti dicono a cosa è legata.
-- Mappa (un file ciascuna): `emozioni/`, `concetti/`, `fonti/{pensiero,sacro-e-mito,opere,arte}/`,
+- Mappa (un file ciascuna): `emozioni/`, `concetti/`, `fonti/{pensiero,sacro-e-mito,opere,arte,psicologia,scienza}/`,
   `simboli/`, `stile/`, `percorsi/`.
+- `domande/`: le 8 grandi domande (`tipo: domanda`), con il `## Coro` delle voci che rispondono.
+- `discipline/`: le 7 discipline (`tipo: disciplina`), con i `## Filoni`, una riga ciascuno e formato fisso:
+  ``- **Nome** (`id`, periodo): *motto*``. Gli id dei filoni non coincidono con nessuno slug.
+- Attributi delle fonti (facoltativi, valori singoli, non sono collegamenti):
+  `disciplina` (slug in `discipline/`; se manca la dice la cartella: pensiero→filosofia, sacro-e-mito→religioni-e-mito,
+  arte, psicologia e scienza→omonime; in `fonti/opere/` è obbligatorio), `filone` (id di un filone della disciplina),
+  `forma` (`autore | opera | mito | concetto`; se manca: opere e arte→opera, sacro-e-mito→mito, altrimenti autore),
+  `anno` (intero, negativo = a.C.).
+- `autore` (sulle opere) e `influenzato-da`: slug già presenti nei collegamenti; generano i legami
+  "autore di" e "influenza" e non vanno ripetuti in `## Collegamenti`.
+- `## Citazione` (facoltativa, prima di `## Collegamenti`): `> citazione breve` (max ~30 parole),
+  poi `— Fonte (opera, capitolo/anno)`; se incerta, "(da verificare)" sulla riga della fonte.
 - Territorio (una cartella ciascuno, con `index.md` e `img/`): `spunti/<slug>/`, `idee/<slug>/`.
 - Piste da esplorare (una cartella ciascuna, con `index.md` e, se serve, `img/`): `ricerche/<slug>/`.
   Un profilo, un libro, un artista, un tema da approfondire. Frontmatter con `stato`
@@ -28,7 +40,8 @@ Non sei solo un archivista: proponi collegamenti, convergenze e domande.
   `[Sisifo](/fonti/sacro-e-mito/sisifo.md)`, `[Il grimorio](/idee/grimorio/index.md)`.
   Funzionano sia su GitHub sia in VitePress. Niente `[[wikilink]]`.
 - Nel frontmatter i collegamenti sono slug semplici, raggruppati per tipo
-  (`emozioni`, `concetti`, `fonti`, `simboli`, `stile`, `percorsi`, `spunti`, `idee`, `ricerche`).
+  (`domande`, `emozioni`, `concetti`, `fonti`, `simboli`, `stile`, `percorsi`, `spunti`, `idee`, `ricerche`).
+  In `## Collegamenti` le Domande vanno per prime: `- **Domande:** [Chi sono?](/domande/chi-sono.md)`.
 - Gli stessi collegamenti vanno anche nella sezione `## Collegamenti` del corpo: i due elenchi devono coincidere.
 - Ogni nota nuova va collegata ad almeno due nodi esistenti, e i collegamenti vanno resi
   bidirezionali dove ha senso (aggiorna anche la nota di arrivo).
@@ -56,7 +69,9 @@ Non sei solo un archivista: proponi collegamenti, convergenze e domande.
 
   Su GitHub è una nota con l'etichetta in grassetto; sul sito un blocco con il filetto rosso.
   La pagina [Da validare](https://paol-imi.github.io/tattoo-shit/da-validare) raccoglie da sola note non validate,
-  blocchi proposta e i collegamenti aggiunti in migrazione (elenco nel diario della fase 1).
+  blocchi proposta e i collegamenti proposti tra note validate: l'elenco del diario della fase 1 e ogni elenco
+  `- Collegamenti proposti:` di un diario (voci `  - [A](…) → [B](…)`). Una citazione scelta da te
+  su una nota validata va in un blocco proposta.
 - Il sito di default mostra solo il validato: le proposte (note, blocchi, collegamenti di migrazione e quelli che un blocco
   dice "fanno parte della proposta") si vedono con l'interruttore "proposte" in alto o nella pagina Da validare.
 

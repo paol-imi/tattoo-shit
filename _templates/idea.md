@@ -7,6 +7,7 @@ stato: seme                # seme | in-esplorazione | forte | scelta | tatuata |
 formato:                   # pezzo-singolo | patchwork | sleeve | schiena | serie
 placement: []              # avambraccio, spalla, schiena, polpaccio, fianco…
 stile: []
+domande: []                # le grandi domande a cui risponde (slug in domande/)
 concetti: []
 emozioni: []
 simboli: []

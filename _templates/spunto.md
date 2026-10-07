@@ -5,6 +5,7 @@ origine: mia               # seme (dal documento d'origine, compilato da Claude)
 validata: true             # l'ho approvata io? mia: sempre true; seme e claude: false finché non dico sì
 fonte: slug-della-fonte
 formato: frase             # frase | scena | immagine | mito | opera | pin | sensazione
+domande: []                # le grandi domande a cui risponde (slug in domande/)
 concetti: []
 emozioni: []
 simboli: []
