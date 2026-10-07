@@ -4,7 +4,7 @@ import { memo, perTitolo, testoFm, type Archivio, type Nota } from '../archivio.
 import { sintesi } from '../testo.ts'
 import { proposteDi } from '../blocchi.ts'
 import { collegamentiProposti } from '../proposte.ts'
-import { datiMappa } from './mappa.ts'
+import { datiAtlante } from './atlante.ts'
 import { datiTesti } from './testi.ts'
 import { STATI, ETICHETTE_STATO, STATI_RICERCA, ETICHETTE_STATO_RICERCA, TIPI_MAPPA } from '../../shared/tipi.ts'
 import { provenienza, risonanzaDi } from '../../shared/nota.ts'
@@ -26,7 +26,7 @@ export interface PistaHome {
   oggetto: string
   validata: boolean
 }
-export interface Porte { testi: number; fonti: number; nodi: number; archi: number }
+export interface Porte { testi: number; fonti: number; domande: number; nodi: number; archi: number }
 export interface DatiHome {
   formula: string
   percorsi: { titolo: string; link: string; sintesi: string; validata: boolean }[]
@@ -34,7 +34,7 @@ export interface DatiHome {
   piste: PistaHome[]
   /** n: tutte le note; validate: solo quelle validate (la vista di default) */
   conteggi: { etichetta: string; n: number; validate: number }[]
-  /** per le tre porte: quanti testi, quante note e fili sulla mappa; con le proposte e senza */
+  /** per le tre porte: quanti testi, quante domande, nodi e fili sulla mappa; con le proposte e senza */
   porte: Porte
   porteValidate: Porte
   /** quante cose proposte da Claude aspettano un sì o un no (note, blocchi, collegamenti) */
@@ -97,16 +97,20 @@ export const datiHome = (a: Archivio): DatiHome => memo(a, 'home', () => {
     return { etichetta, n: delGruppo.length, validate: delGruppo.filter(validata).length }
   })
 
-  const m = datiMappa(a)
+  // la Mappa è l'Atlante dei concetti: le domande, i nodi e i fili (i legami); validati come li filtra il sito
+  const m = datiAtlante(a)
   const t = datiTesti(a)
-  const porte = { testi: t.testi.length, fonti: t.fonti.length, nodi: m.nodi.length, archi: m.archi.length }
+  const porte = {
+    testi: t.testi.length, fonti: t.fonti.length, domande: m.domande.length, nodi: m.nodi.length, archi: m.legami.length,
+  }
   const nodiV = new Set(m.nodi.filter((n) => n.validata).map((n) => n.id))
   const testiV = t.testi.filter((x) => !x.proposta)
   const porteValidate = {
     testi: testiV.length,
     fonti: new Set(testiV.map((x) => x.fonte).filter(Boolean)).size,
+    domande: m.domande.filter((q) => q.validata !== false).length,
     nodi: nodiV.size,
-    archi: m.archi.filter((x) => !x.proposto && nodiV.has(x.source) && nodiV.has(x.target)).length,
+    archi: m.legami.filter((x) => !x.proposto && nodiV.has(x.da) && nodiV.has(x.a)).length,
   }
 
   const attive = tutte.filter((n) => !n.archiviata && TIPI_MAPPA.has(n.tipo))

@@ -47,8 +47,8 @@ const porte = computed(() => {
     },
     {
       link: '/mappa', nome: 'Mappa', ornamento: 'costellazione',
-      dice: 'Il cielo delle note: ogni nota una stella, ogni collegamento un filo. Esplora i vicini, apri le note.',
-      conta: `${p.nodi} note · ${p.archi} fili`,
+      dice: 'L\'Atlante dei concetti: le grandi domande e le voci che rispondono, in tavole, sulla ruota, nel firmamento.',
+      conta: `${p.domande} domande · ${p.nodi} voci · ${p.archi} fili`,
     },
   ]
 })

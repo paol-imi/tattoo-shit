@@ -13,7 +13,7 @@ import { proposte, collegamentoProposto, chiaveCoppia } from '../proposte.ts'
 import { blocchi, senzaProposte } from '../blocchi.ts'
 import { trovaSezione, sintesi, testoSemplice } from '../testo.ts'
 import { noteDiscipline, filoni, citazioneDi, annoDi, filoneDi, autoriDi, influenzatoDaDi } from '../discipline.ts'
-import { disciplinaDi, formaDi, DISCIPLINE } from '../../shared/tipi.ts'
+import { disciplinaDi, formaDi, DISCIPLINE, TIPI_NODO_ATLANTE } from '../../shared/tipi.ts'
 import { provenienza } from '../../shared/nota.ts'
 
 export interface DomandaAtlante {
@@ -80,8 +80,6 @@ export interface DatiAtlante {
   costellazioni: CostellazioneAtlante[]
 }
 
-/** I tipi di nota che diventano nodi. */
-const TIPI_NODO: ReadonlySet<string> = new Set(['emozione', 'concetto', 'fonte', 'simbolo', 'idea', 'spunto', 'ricerca'])
 /** L'ordine delle domande sulla ruota (le altre, se ne nascono, in coda). */
 const ORDINE_DOMANDE = ['chi-sono', 'perche-soffro', 'che-senso-ha', 'come-vivere', 'cosa-posso-conoscere', 'cosa-c-e-oltre', 'come-stare-con-gli-altri', 'cosa-e-reale']
 /** La posizione di un id in un ordine dato; gli id sconosciuti in coda. */
@@ -135,7 +133,7 @@ export const datiAtlante = (a: Archivio): DatiAtlante => memo(a, 'atlante', () =
   }))
 
   // --- nodi
-  const noteNodo = attive.filter((n) => TIPI_NODO.has(n.tipo))
+  const noteNodo = attive.filter((n) => TIPI_NODO_ATLANTE.has(n.tipo))
   const nodi: NodoAtlante[] = []
   const perId = new Map<string, NodoAtlante>()
   for (const n of noteNodo) {

@@ -38,6 +38,8 @@ export const CAMPI_LINK: Readonly<Record<string, string>> = {
 
 /** I tipi che stanno sulla mappa (e hanno una provenienza): quelli collegabili dal frontmatter, più il nucleo e le discipline. */
 export const TIPI_MAPPA: ReadonlySet<string> = new Set([...Object.values(CAMPI_LINK), 'nucleo', 'disciplina'])
+/** I tipi di nota che diventano nodi dell'Atlante dei concetti (la pagina Mappa); le domande vi stanno a parte. */
+export const TIPI_NODO_ATLANTE: ReadonlySet<string> = new Set(['emozione', 'concetto', 'fonte', 'simbolo', 'idea', 'spunto', 'ricerca'])
 
 /** Le sottocartelle di `fonti/`, con il nome da mostrare. */
 export const SOTTOCARTELLE_FONTI: readonly (readonly [string, string])[] = [

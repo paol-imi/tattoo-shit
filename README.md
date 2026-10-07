@@ -76,10 +76,10 @@ Il sito ha tre porte, in alto nel menu e in home, più la pagina Da validare. Di
 
 - **[Bacheca](https://paol-imi.github.io/tattoo-shit/bacheca):** tutte le idee e gli spunti come tavole, con i pin e le parole. Tocca un chip (un simbolo, una fonte, un concetto) per vedere solo ciò che vi è legato; i filtri stanno nell'indirizzo e si possono condividere.
 - **[Testi](https://paol-imi.github.io/tattoo-shit/testi):** ogni citazione dell'archivio, per fonte. Le candidate al lettering.
-- **[Mappa](https://paol-imi.github.io/tattoo-shit/mappa):** il grafo delle note. Passa sopra un nodo per accendere i vicini, cliccalo per aprire la nota.
+- **[Mappa](https://paol-imi.github.io/tattoo-shit/mappa):** l'Atlante dei concetti. Le grandi domande e le voci che rispondono, in tre viste: Tavole (scegli una domanda, si aprono le colonne delle discipline che rispondono), Ruota (anelli da girare attorno alle domande) e Firmamento (le discipline come regioni di un cielo, le domande come costellazioni). Tocca una voce per la sua scheda, da lì apri la nota.
 - **[Da validare](https://paol-imi.github.io/tattoo-shit/da-validare):** ciò che Claude ha proposto e non ho ancora approvato, sempre tutto. Non è nel menu: ci si arriva dall'interruttore acceso (o dal menu del telefono). Con le proposte accese, sulla bacheca e sulla mappa sono tratteggiate in rosso.
 
-Da ogni nota, la riga in testa porta alla sua posizione sulla mappa e alle tavole della bacheca legate a lei.
+Da ogni nota dell'Atlante (e da ogni domanda), la riga in testa porta alla sua posizione sulla mappa; dai nodi, anche alle tavole della bacheca legate a lei.
 
 ## Strumenti
 

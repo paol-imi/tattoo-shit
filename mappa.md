@@ -3,8 +3,16 @@ titolo: "Mappa"
 layout: page
 sidebar: false
 aside: false
+footer: false
 pageClass: atl-visiva
-description: "Il grafo di tutte le note: i nodi sono le note, i fili i collegamenti."
+description: "L'Atlante dei concetti: le grandi domande e le voci che rispondono, in tre viste (Tavole, Ruota, Firmamento)."
 ---
 
-<Mappa />
+<script setup>
+import { data } from './.vitepress/theme/atlante.data'
+import { useProposte } from './.vitepress/theme/proposte'
+
+const mostra = useProposte()
+</script>
+
+<MappaAtlante :dati="data" :mostra-proposte="mostra" />
