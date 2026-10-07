@@ -182,7 +182,7 @@ const colonne = computed(() => {
             :key="s"
             type="button"
             class="chip"
-            :class="[`chip-${data.nodi[s].tipo}`, { attivo: nodo.includes(s) }]"
+            :class="[`tipo-${data.nodi[s].tipo}`, { attivo: nodo.includes(s) }]"
             :aria-pressed="nodo.includes(s) ? 'true' : 'false'"
             @click="filtra(s)"
           >{{ data.nodi[s].titolo }} <span class="conta">{{ n }}</span></button>
@@ -200,7 +200,7 @@ const colonne = computed(() => {
               :key="s"
               type="button"
               class="chip"
-              :class="[`chip-${g.tipo}`, { attivo: nodo.includes(s) }]"
+              :class="[`tipo-${g.tipo}`, { attivo: nodo.includes(s) }]"
               :aria-pressed="nodo.includes(s) ? 'true' : 'false'"
               @click="filtra(s)"
             >{{ data.nodi[s].titolo }} <span class="conta">{{ n }}</span></button>

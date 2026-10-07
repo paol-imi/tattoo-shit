@@ -103,7 +103,7 @@ const meta = computed(() => [c.value.stato, c.value.formato].filter(Boolean).map
           v-if="filtrabile"
           type="button"
           class="chip"
-          :class="[`chip-${n.tipo}`, { attivo: attivi?.includes(n.slug) }]"
+          :class="[`tipo-${n.tipo}`, { attivo: attivi?.includes(n.slug) }]"
           :aria-pressed="attivi?.includes(n.slug) ? 'true' : 'false'"
           :title="`Mostra solo le carte legate a: ${n.titolo} (${n.tipo})`"
           @click="emit('filtra', n.slug)"
@@ -111,7 +111,7 @@ const meta = computed(() => [c.value.stato, c.value.formato].filter(Boolean).map
         <a
           v-else
           class="chip"
-          :class="`chip-${n.tipo}`"
+          :class="`tipo-${n.tipo}`"
           :href="withBase(`/bacheca?nodo=${n.slug}`)"
           :title="`La bacheca filtrata per: ${n.titolo}`"
         >{{ n.titolo }}</a>

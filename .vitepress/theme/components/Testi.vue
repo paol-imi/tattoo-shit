@@ -73,7 +73,7 @@ function apri(id: string) {
             v-for="f in fonti"
             :key="f.slug"
             type="button"
-            class="chip chip-fonte"
+            class="chip tipo-fonte"
             :class="{ attivo: fonte === f.slug }"
             :aria-pressed="fonte === f.slug ? 'true' : 'false'"
             @click="fonte = fonte === f.slug ? '' : f.slug"

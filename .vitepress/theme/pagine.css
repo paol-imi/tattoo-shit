@@ -1,34 +1,5 @@
 /* Bacheca, Testi, Mappa: le tre pagine visive. Carta, inchiostro, rubrica. */
 
-:root {
-  /* i colori dei tipi di nota (mappa, chip): palette categoriale validata, stessi passi in chiaro e scuro */
-  --mappa-concetto: #2a78d6;
-  --mappa-spunto: #eb6834;
-  --mappa-simbolo: #1baf7a;
-  --mappa-ricerca: #eda100;
-  --mappa-emozione: #e87ba4;
-  --mappa-stile: #008300;
-  --mappa-fonte: #4a3aa7;
-  --mappa-idea: #e34948;
-  --mappa-percorso: var(--vp-c-text-1);
-  --mappa-arco: rgba(27, 26, 23, 0.16);
-  --mappa-arco-forte: rgba(140, 47, 36, 0.75);
-  --atl-cornice: #cfc8b8;
-}
-.dark {
-  --mappa-concetto: #3987e5;
-  --mappa-spunto: #d95926;
-  --mappa-simbolo: #199e70;
-  --mappa-ricerca: #c98500;
-  --mappa-emozione: #d55181;
-  --mappa-stile: #008300;
-  --mappa-fonte: #9085e9;
-  --mappa-idea: #e66767;
-  --mappa-arco: rgba(233, 229, 220, 0.14);
-  --mappa-arco-forte: rgba(224, 138, 120, 0.85);
-  --atl-cornice: #3a3833;
-}
-
 .vh {
   position: absolute !important;
   width: 1px; height: 1px;
@@ -52,7 +23,6 @@
   margin: 0 0 10px;
   font-size: 12px;
   letter-spacing: 0.28em;
-  text-transform: uppercase;
   color: var(--atl-rubrica);
 }
 .atl-testata h1 {
@@ -84,9 +54,7 @@
 .filtri-etichetta {
   flex: none;
   min-width: 84px;
-  font-size: 11px;
   letter-spacing: 0.16em;
-  text-transform: uppercase;
   color: var(--vp-c-text-3);
 }
 .porte-elenco { display: flex; flex-wrap: wrap; gap: 8px; flex: 1; min-width: 0; }
@@ -142,6 +110,18 @@
 .conta { font-size: 0.85em; color: var(--vp-c-text-3); font-variant-numeric: tabular-nums; margin-left: 2px; }
 [aria-pressed='true'] > .conta, .attivo > .conta { color: inherit; opacity: 0.7; }
 
+/* il colore di ogni tipo di nota: la classe tipo-<tipo> imposta --tipo-colore,
+   che usano il pallino dei chip e il segno della mappa */
+.tipo-concetto { --tipo-colore: var(--mappa-concetto); }
+.tipo-simbolo { --tipo-colore: var(--mappa-simbolo); }
+.tipo-fonte { --tipo-colore: var(--mappa-fonte); }
+.tipo-emozione { --tipo-colore: var(--mappa-emozione); }
+.tipo-stile { --tipo-colore: var(--mappa-stile); }
+.tipo-percorso { --tipo-colore: var(--mappa-percorso); }
+.tipo-idea { --tipo-colore: var(--mappa-idea); }
+.tipo-spunto { --tipo-colore: var(--mappa-spunto); }
+.tipo-ricerca { --tipo-colore: var(--mappa-ricerca); }
+
 /* chip: il nodo, con il segno del suo tipo (lo stesso della mappa) */
 .chip {
   display: inline-flex;
@@ -165,14 +145,8 @@
   flex: none;
   width: 7px; height: 7px;
   border-radius: 50%;
-  background: var(--chip-colore, var(--vp-c-text-3));
+  background: var(--tipo-colore, var(--vp-c-text-3));
 }
-.chip-concetto { --chip-colore: var(--mappa-concetto); }
-.chip-simbolo { --chip-colore: var(--mappa-simbolo); }
-.chip-fonte { --chip-colore: var(--mappa-fonte); }
-.chip-emozione { --chip-colore: var(--mappa-emozione); }
-.chip-stile { --chip-colore: var(--mappa-stile); }
-.chip-percorso { --chip-colore: var(--mappa-percorso); }
 a.chip:hover, button.chip:hover { border-color: var(--vp-c-text-2); }
 .chip.attivo { background: var(--vp-c-text-1); border-color: var(--vp-c-text-1); color: var(--vp-c-bg); }
 .chip.rimuovi::before { display: none; }
@@ -235,18 +209,17 @@ button.altri {
   transition: border-color 0.25s, transform 0.25s;
 }
 .tavola:hover { border-color: var(--vp-c-text-3); }
-.tavola-testa {
+/* la testa: tipo · stato · risonanza (anche nelle carte di Da validare) */
+.tavola-testa, .validare-carta-testa, .validare-proposta figcaption {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   gap: 2px 0;
-  font-size: 11px;
+  margin: 0;
   line-height: 16px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
   color: var(--vp-c-text-3);
 }
-.tavola-testa > * + *::before { content: '·'; margin: 0 0.55em; color: var(--vp-c-text-3); }
+.tavola-testa > * + *::before, .validare-carta-testa > * + *::before { content: '·'; margin: 0 0.55em; color: var(--vp-c-text-3); }
 .tavola-tipo { color: var(--atl-rubrica); font-weight: 600; }
 .tavola-risonanza { letter-spacing: 0.12em; color: var(--atl-rubrica); }
 .tavola-titolo {
@@ -263,6 +236,7 @@ button.altri {
 
 .tavola-pin { position: relative; z-index: 1; margin: 0 -8px; }
 .pin-cornice {
+  position: relative;
   container-type: inline-size;
   background:
     repeating-linear-gradient(135deg, transparent 0 6px, color-mix(in srgb, var(--vp-c-text-1) 5%, transparent) 6px 7px),
@@ -271,6 +245,8 @@ button.altri {
   overflow: hidden;
 }
 .pin-cornice iframe {
+  position: relative;
+  z-index: 1;
   display: block;
   width: 100%;
   height: calc(100cqw * var(--rapporto, 1.333) + 80px);
@@ -319,16 +295,16 @@ button.altri {
 .tavola.tipografica .tavola-chip { justify-content: center; }
 .tavola-chip li { margin: 0; min-width: 0; max-width: 100%; }
 .tavola-chip .chip { font-size: 12px; padding: 1px 9px 1px 7px; }
-.tavola-apri {
+/* il rimando "Apri la nota", in fondo alla carta (anche in Da validare) */
+.tavola-apri, .validare-apri {
   position: relative;
-  z-index: 1;
   align-self: flex-end;
   font-size: 12px;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
   color: var(--vp-c-text-3);
   text-decoration: none;
 }
+.tavola-apri { z-index: 1; }
 .tavola-apri:hover, .tavola:hover .tavola-apri { color: var(--atl-rubrica); }
 
 /* --- Testi: saggi di stampa */
@@ -412,8 +388,7 @@ button.altri {
 }
 .saggio figcaption::before { content: '—'; color: var(--atl-rubrica); }
 .saggio-rif { font-variant: small-caps; letter-spacing: 0.04em; color: var(--vp-c-text-2); font-size: 14px; }
-.saggio-da a { color: var(--vp-c-text-2); text-decoration: underline; text-decoration-color: var(--vp-c-divider); text-underline-offset: 3px; }
-.saggio-da a:hover { color: var(--atl-rubrica); text-decoration-color: currentColor; }
+.saggio-da a { color: var(--vp-c-text-2); }
 .saggio-tipo { font-style: italic; }
 
 /* --- Mappa */
@@ -446,7 +421,7 @@ button.altri {
 }
 .mappa-suggeriti li[aria-selected='true'] { background: var(--vp-c-bg-soft); }
 .mappa-suggeriti .nome { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: var(--atl-serif); font-size: 16px; }
-.mappa-suggeriti .tipo { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--vp-c-text-3); }
+.mappa-suggeriti .tipo { letter-spacing: 0.1em; color: var(--vp-c-text-3); }
 
 .legenda { display: flex; flex-wrap: wrap; gap: 4px 6px; flex: 2 1 420px; min-width: 0; }
 .legenda-voce {
@@ -463,18 +438,9 @@ button.altri {
 .legenda-voce:hover { border-color: var(--vp-c-divider); }
 .legenda-voce.spento { opacity: 0.38; text-decoration: line-through; text-decoration-color: var(--vp-c-text-3); }
 
-.segno { flex: none; display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--segno, var(--vp-c-text-2)); }
+.segno { flex: none; display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--tipo-colore, var(--vp-c-text-2)); }
 .segno.forma-rombo { width: 9px; height: 9px; border-radius: 1px; transform: rotate(45deg); }
-.segno.forma-anello { background: var(--vp-c-bg); box-shadow: inset 0 0 0 2.5px var(--segno); }
-.segno-idea { --segno: var(--mappa-idea); }
-.segno-spunto { --segno: var(--mappa-spunto); }
-.segno-ricerca { --segno: var(--mappa-ricerca); }
-.segno-concetto { --segno: var(--mappa-concetto); }
-.segno-emozione { --segno: var(--mappa-emozione); }
-.segno-simbolo { --segno: var(--mappa-simbolo); }
-.segno-fonte { --segno: var(--mappa-fonte); }
-.segno-stile { --segno: var(--mappa-stile); }
-.segno-percorso { --segno: var(--mappa-percorso); }
+.segno.forma-anello { background: var(--vp-c-bg); box-shadow: inset 0 0 0 2.5px var(--tipo-colore); }
 
 .mappa-cornice {
   position: relative;
@@ -525,10 +491,10 @@ button.altri {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 .mappa-scheda p { margin: 0; }
-.mappa-scheda-tipo { display: flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--vp-c-text-3); }
+.mappa-scheda-tipo { display: flex; align-items: center; gap: 8px; letter-spacing: 0.12em; color: var(--vp-c-text-3); }
 .mappa-scheda-titolo { margin-top: 4px !important; font-family: var(--atl-serif); font-size: 21px; line-height: 1.2; font-weight: 600; }
 .mappa-scheda-vicini { margin-top: 8px !important; font-size: 13px; line-height: 20px; color: var(--vp-c-text-3); }
-.mappa-scheda-vicini button { color: var(--vp-c-text-2); text-decoration: underline; text-decoration-color: var(--vp-c-divider); text-underline-offset: 3px; text-align: left; }
+.mappa-scheda-vicini button { color: var(--vp-c-text-2); text-align: left; }
 .mappa-scheda-vicini button:hover { color: var(--atl-rubrica); }
 .mappa-scheda-apri { display: inline-block; margin-top: 10px; font-size: 13px; font-weight: 600; color: var(--atl-rubrica); text-decoration: none; }
 .mappa-scheda-apri:hover { text-decoration: underline; text-underline-offset: 3px; }
@@ -540,8 +506,6 @@ button.altri {
 .mappa-elenco-gruppo a { color: var(--vp-c-text-1); text-decoration: none; }
 .mappa-elenco-gruppo a:hover { color: var(--atl-rubrica); text-decoration: underline; }
 
-.pin-cornice { position: relative; }
-.pin-cornice iframe { position: relative; z-index: 1; }
 .pin-attesa {
   position: absolute;
   top: 50%;
@@ -591,8 +555,6 @@ button.altri {
 
 /* --- Provenienza: le proposte di Claude non ancora approvate.
    Un solo segno in tutto il sito: il rosso della rubrica e il tratteggio, come una nota a margine a matita. */
-:root { --mappa-arco-proposto: rgba(140, 47, 36, 0.5); --atl-proposta-fondo: rgba(140, 47, 36, 0.045); }
-.dark { --mappa-arco-proposto: rgba(224, 138, 120, 0.55); --atl-proposta-fondo: rgba(208, 113, 95, 0.07); }
 
 /* il blocco proposta dentro le note */
 .vp-doc .proposta.custom-block {
@@ -619,8 +581,6 @@ button.altri {
   margin: 0 0 6px;
   font-size: 11.5px;
   line-height: 20px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
 }
 .proposta-chi { color: var(--atl-rubrica); font-weight: 700; }
 .proposta-stato { color: var(--vp-c-text-3); font-weight: 500; }
@@ -652,7 +612,7 @@ button.altri {
   box-shadow: inset 0 0 0 4px var(--vp-c-bg-elv), inset 0 0 0 5px color-mix(in srgb, var(--atl-rubrica) 22%, transparent);
 }
 .tavola.da-validare:hover { border-color: var(--atl-rubrica); border-style: solid; }
-.tavola-prov { position: relative; z-index: 1; margin: -4px 0 -6px; font-size: 10.5px; line-height: 16px; letter-spacing: 0.14em; text-transform: uppercase; }
+.tavola-prov { position: relative; z-index: 1; margin: -4px 0 -6px; font-size: 10.5px; line-height: 16px; }
 .vp-doc .tavola .tavola-prov { margin: -4px 0 -6px; }
 .tavola-prov.proposta {
   align-self: flex-start;
@@ -685,7 +645,6 @@ button.altri {
   border-radius: 999px;
   font-size: 10.5px;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
   color: var(--atl-rubrica);
   text-decoration: none;
   white-space: nowrap;
@@ -700,9 +659,7 @@ button.altri {
 .filo-proposto { flex: none; width: 16px; height: 0; border-top: 1.5px dashed var(--atl-rubrica); }
 .mappa-scheda-proposta {
   margin-top: 6px !important;
-  font-size: 11px;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
   font-weight: 700;
   color: var(--atl-rubrica);
 }
@@ -764,13 +721,6 @@ button.altri {
 }
 .validare-titolo .conta { font-family: var(--vp-font-family-base); font-size: 15px; font-weight: 400; }
 .validare-nota { max-width: 760px; margin: 8px 0 22px; font-size: 15px; line-height: 1.6; color: var(--vp-c-text-2); }
-.validare-nota a, .validare-collegamenti a, .validare-proposta-testo a {
-  color: var(--vp-c-text-1);
-  text-decoration: underline;
-  text-decoration-color: var(--vp-c-divider);
-  text-underline-offset: 3px;
-}
-.validare-nota a:hover, .validare-collegamenti a:hover, .validare-proposta-testo a:hover { color: var(--atl-rubrica); text-decoration-color: currentColor; }
 .validare-vuoto { margin: 0; font-family: var(--atl-serif); font-style: italic; color: var(--vp-c-text-3); }
 
 .validare-carte { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 20px; }
@@ -787,19 +737,6 @@ button.altri {
   transition: border-color 0.2s;
 }
 .validare-carta:hover { border-style: solid; }
-.validare-carta-testa, .validare-proposta figcaption {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 2px 0;
-  margin: 0;
-  font-size: 11px;
-  line-height: 16px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--vp-c-text-3);
-}
-.validare-carta-testa > * + *::before { content: '·'; margin: 0 0.55em; color: var(--vp-c-text-3); }
 .validare-tipo { color: var(--vp-c-text-1); font-weight: 600; }
 .validare-segno:first-of-type { color: var(--atl-rubrica); font-weight: 700; }
 .validare-carta-titolo { margin: 0; font-family: var(--atl-serif); font-size: 22px; line-height: 1.2; font-weight: 600; }
@@ -807,16 +744,7 @@ button.altri {
 .validare-carta-titolo a::after { content: ''; position: absolute; inset: 0; }
 .validare-carta-titolo a:hover { color: var(--atl-rubrica); }
 .validare-sintesi { margin: 0; font-family: var(--atl-serif); font-style: italic; font-size: 17px; line-height: 1.45; color: var(--vp-c-text-2); }
-.validare-apri {
-  position: relative;
-  align-self: flex-end;
-  margin-top: auto;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--vp-c-text-3);
-  text-decoration: none;
-}
+.validare-apri { margin-top: auto; }
 .validare-carta:hover .validare-apri, .validare-apri:hover { color: var(--atl-rubrica); }
 
 .validare-proposte { display: flex; flex-direction: column; gap: 36px; max-width: 820px; }

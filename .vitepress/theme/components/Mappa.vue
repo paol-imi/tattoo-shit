@@ -372,7 +372,7 @@ function etichetta(n: N, ctx: CanvasRenderingContext2D, k: number, a: N | null, 
             @mousedown.prevent="scegli(n)"
             @mouseenter="evidenziato = i"
           >
-            <span class="segno" :class="[`segno-${gruppoDi(n.tipo)}`, `forma-${n.tipo === 'nucleo' ? 'anello' : FORMA[n.tipo]}`]" aria-hidden="true" />
+            <span class="segno" :class="[`tipo-${gruppoDi(n.tipo)}`, `forma-${n.tipo === 'nucleo' ? 'anello' : FORMA[n.tipo]}`]" aria-hidden="true" />
             <span class="nome">{{ n.titolo }}</span>
             <span class="tipo">{{ ETICHETTA[n.tipo] }}</span>
           </li>
@@ -388,7 +388,7 @@ function etichetta(n: N, ctx: CanvasRenderingContext2D, k: number, a: N | null, 
           :aria-pressed="spenti.has(t.tipo) ? 'false' : 'true'"
           @click="alterna(t.tipo)"
         >
-          <span class="segno" :class="[`segno-${t.tipo}`, `forma-${t.forma}`]" aria-hidden="true" />
+          <span class="segno" :class="[`tipo-${t.tipo}`, `forma-${t.forma}`]" aria-hidden="true" />
           {{ t.etichetta }} <span class="conta">{{ conta[t.tipo] }}</span>
         </button>
         <a v-if="mostra && (nProposte || nFiliProposti)" class="legenda-voce legenda-proposta" :href="withBase('/da-validare')" title="Ciò che Claude ha proposto e tu non hai ancora approvato">
@@ -406,7 +406,7 @@ function etichetta(n: N, ctx: CanvasRenderingContext2D, k: number, a: N | null, 
       <button v-if="pronto" type="button" class="mappa-riparti" @click="riparti">Vedi tutto</button>
       <aside v-if="attivo" class="mappa-scheda" aria-live="polite">
         <p class="mappa-scheda-tipo">
-          <span class="segno" :class="[`segno-${gruppoDi(attivo.tipo)}`, `forma-${attivo.tipo === 'nucleo' ? 'anello' : FORMA[attivo.tipo]}`]" aria-hidden="true" />
+          <span class="segno" :class="[`tipo-${gruppoDi(attivo.tipo)}`, `forma-${attivo.tipo === 'nucleo' ? 'anello' : FORMA[attivo.tipo]}`]" aria-hidden="true" />
           {{ ETICHETTA[attivo.tipo] }} · {{ attivo.grado }} {{ attivo.grado === 1 ? 'collegamento' : 'collegamenti' }}
         </p>
         <p v-if="!attivo.validata" class="mappa-scheda-proposta">Proposta di Claude · da validare</p>
