@@ -2,7 +2,7 @@
 // Una sola fonte per configurazione, data loader, componenti Vue e scripts/verifica.mjs. Niente Node qui.
 
 /** Il tipo di una nota che non lo dichiara, dalla sua cartella. */
-export const TIPO_DA_CARTELLA: Readonly<Record<string, string>> = {
+const TIPO_DA_CARTELLA: Readonly<Record<string, string>> = {
   emozioni: 'emozione', concetti: 'concetto', fonti: 'fonte', simboli: 'simbolo', stile: 'stile',
   percorsi: 'percorso', spunti: 'spunto', idee: 'idea', ricerche: 'ricerca', diario: 'diario', inbox: 'inbox',
   _archivio: 'archivio',

@@ -8,16 +8,9 @@
 // Per l'indice della ricerca (env.perLaRicerca) i collegamenti proposti si tolgono del tutto.
 // Il markdown non cambia: GitHub mostra tutto.
 import type { MarkdownRenderer } from 'vitepress'
-import { proposte, collegamentoProposto, type Proposte } from './atlante'
+import { archivio } from './core/archivio.ts'
+import { proposte, collegamentoProposto } from './core/proposte.ts'
 import { slugDaUrl, slugDaRel } from './shared/nota.ts'
-
-// le proposte si rileggono dalle note al massimo ogni pochi secondi (in sviluppo le note cambiano)
-let memo: { t: number; p: Proposte } | undefined
-function attuali(): Proposte {
-  const ora = Date.now()
-  if (!memo || ora - memo.t > 3000) memo = { t: ora, p: proposte() }
-  return memo.p
-}
 
 const interno = (href: string) => !!href && !/^(https?:|mailto:|#)/.test(href) && /\.md(#|$)/.test(href)
 // un indirizzo con una sequenza % malformata non è un collegamento a una nota
@@ -32,7 +25,8 @@ export function collegamenti(md: MarkdownRenderer) {
     const t = state.tokens
     const inizio = t.findIndex((x, i) => x.type === 'heading_open' && x.tag === 'h2' && t[i + 1]?.content.trim() === 'Collegamenti')
     if (inizio < 0) return
-    const p = attuali()
+    // l'archivio è in cache finché le note non cambiano: qui non si rilegge niente
+    const p = proposte(archivio())
     const da = slugDaRel(rel)
     const ricerca = !!state.env.perLaRicerca
     const html = (c: string) => Object.assign(new state.Token('html_inline', '', 0), { content: c })

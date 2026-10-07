@@ -1,22 +1,20 @@
 import { defineConfig, type DefaultTheme } from 'vitepress'
-import {
-  note, diario, perTitolo, REWRITES, BASE, type Nota,
-} from './atlante'
+import { archivio, diario, perTitolo, REWRITES, BASE, type Nota } from './core/archivio.ts'
 import {
   ETICHETTE_GRUPPO, ORDINE_GRUPPI, STATI, ETICHETTE_STATO, STATI_RICERCA, ETICHETTE_STATO_RICERCA, SOTTOCARTELLE_FONTI,
 } from './shared/tipi.ts'
 import { provenienza } from './shared/nota.ts'
 import { SCRIPT_INTERRUTTORE } from './shared/proposte.ts'
-import { pinterest } from './pinterest'
-import { proposta } from './proposta'
-import { collegamenti } from './collegamenti'
+import { pinterest } from './pinterest.ts'
+import { proposta } from './proposta.ts'
+import { collegamenti } from './collegamenti.ts'
 
 const REPO = 'https://github.com/paol-imi/tattoo-shit'
 
 // --- barra laterale e menu, generati dalle cartelle a ogni build
 // Solo ciò che è validato: le note proposte da Claude si aprono dal loro indirizzo,
 // dalla pagina Da validare o con l'interruttore "proposte" acceso.
-const tutte = note().filter((n) => n.archiviata || provenienza(n.fm).validata)
+const tutte = archivio().note.filter((n) => n.archiviata || provenienza(n.fm).validata)
 const voce = (n: Nota): DefaultTheme.SidebarItem => ({ text: n.titolo, link: n.link })
 const delGruppo = (g: string) => tutte.filter((n) => n.gruppo === g)
 const ordinate = (g: string) => delGruppo(g).sort(perTitolo).map(voce)
