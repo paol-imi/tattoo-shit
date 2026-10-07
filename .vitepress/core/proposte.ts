@@ -6,22 +6,29 @@ import { proposteDi } from './blocchi.ts'
 import { testoSemplice } from './testo.ts'
 import { provenienza, slugDaUrl } from '../shared/nota.ts'
 
-// --- i collegamenti aggiunti da Claude in migrazione: una sola fonte, l'elenco nel diario della fase 1.
-// Ogni voce è `- [A](…) → [B](…)` (o `↔`); quando la approvo o la tolgo prende in coda "— validato il …" o "— tolto il …".
+// --- i collegamenti proposti da Claude tra note già validate: una sola fonte, gli elenchi nei diari.
+// Un diario ne ha uno se ha una riga `- Collegamenti aggiunti in migrazione…` (fase 1) o `- Collegamenti proposti:`,
+// seguita da voci indentate `  - [A](…) → [B](…)` (o `↔`); quando la approvo o la tolgo, la voce prende in coda
+// "— validato il …" o "— tolto il …".
+/** Il diario della fase 1, il primo con un elenco di collegamenti proposti (per compatibilità). */
 export const DIARIO_MIGRAZIONE = 'diario/2026-10-04-fase-1.md'
-export interface CollegamentoProposto { md: string; coppie: [string, string][] }
+export interface CollegamentoProposto {
+  md: string
+  coppie: [string, string][]
+  /** il percorso dalla radice del diario che lo elenca (per risolvere i link della voce) */
+  diario: string
+}
 
-/** I collegamenti di migrazione ancora da validare. */
-export function collegamentiProposti(a: Archivio): CollegamentoProposto[] {
-  return memo(a, 'collegamentiProposti', () => {
-    const diario = a.perRel.get(DIARIO_MIGRAZIONE)
-    if (!diario) return []
-    const righe = diario.corpo.split('\n')
-    const i = righe.findIndex((r) => /^- Collegamenti aggiunti in migrazione/.test(r))
-    if (i < 0) return []
-    const out: CollegamentoProposto[] = []
-    for (const r of righe.slice(i + 1)) {
-      const m = r.match(/^\s{2,}[-*]\s+(.+)$/)
+const INIZIO_ELENCO = /^- Collegamenti (aggiunti in migrazione|proposti:)/
+
+/** Le voci da validare degli elenchi di collegamenti proposti in un diario. */
+function propostiNelDiario(rel: string, corpo: string): CollegamentoProposto[] {
+  const out: CollegamentoProposto[] = []
+  const righe = corpo.split('\n')
+  righe.forEach((r, i) => {
+    if (!INIZIO_ELENCO.test(r)) return
+    for (const voce of righe.slice(i + 1)) {
+      const m = voce.match(/^\s{2,}[-*]\s+(.+)$/)
       if (!m) break
       const md = m[1].trim()
       if (/—\s*(validat[oa]|tolt[oa]) il/i.test(md)) continue
@@ -29,10 +36,20 @@ export function collegamentiProposti(a: Archivio): CollegamentoProposto[] {
       const slug = (s = '') => [...s.matchAll(/\]\(([^)\s]+)\)/g)].map((x) => slugDaUrl(x[1]))
       const coppie: [string, string][] = []
       for (const da of slug(sx)) for (const verso of slug(dx)) coppie.push([da, verso])
-      out.push({ md, coppie })
+      out.push({ md, coppie, diario: rel })
     }
-    return out
   })
+  return out
+}
+
+/** I collegamenti proposti ancora da validare, da tutti i diari (dal più vecchio). */
+export function collegamentiProposti(a: Archivio): CollegamentoProposto[] {
+  return memo(a, 'collegamentiProposti', () =>
+    a.note
+      .filter((n) => n.gruppo === 'diario')
+      .sort((x, y) => x.rel.localeCompare(y.rel))
+      .flatMap((n) => propostiNelDiario(n.rel, n.corpo)),
+  )
 }
 
 /** La chiave di un collegamento, senza verso. */

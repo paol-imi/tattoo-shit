@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // Verifica il repository: slug unici, link rotti, note orfane,
-// coerenza tra frontmatter e sezione "## Collegamenti", provenienza (origine e validata). Stampa un riepilogo.
+// coerenza tra frontmatter e sezione "## Collegamenti", provenienza (origine e validata),
+// schema dell'atlante (disciplina, filone, forma, anno, autore, influenzato-da). Stampa un riepilogo.
 // Uso: node scripts/verifica.mjs
 //
 // Legge le note con lo stesso codice del sito (.vitepress/core, .vitepress/shared: TypeScript che Node
@@ -17,7 +18,10 @@ if (!process.features.typescript) {
 const { archivio, ROOT, urlNelCorpo, risolvi, risolviNota, listaFm } = await import('../.vitepress/core/archivio.ts')
 const { proposteDi, etichetteSbagliate } = await import('../.vitepress/core/blocchi.ts')
 const { trovaSezione } = await import('../.vitepress/core/testo.ts')
-const { CAMPI_LINK, ORIGINI, TIPI_TERRITORIO } = await import('../.vitepress/shared/tipi.ts')
+const { CAMPI_LINK, ORIGINI, TIPI_TERRITORIO, FORME, disciplinaDi } = await import('../.vitepress/shared/tipi.ts')
+const { noteDiscipline, filoni, righeFiloniIllegibili, annoDi, filoneDi, autoriDi, influenzatoDaDi } =
+  await import('../.vitepress/core/discipline.ts')
+const { collegamentiProposti, chiaveCoppia } = await import('../.vitepress/core/proposte.ts')
 const { provenienza } = await import('../.vitepress/shared/nota.ts')
 
 const NON_ANALIZZARE = new Set(['diario/2026-10-04-seed.md', 'CLAUDE.md'])
@@ -41,7 +45,8 @@ for (const n of archivio().file) {
   else perSlug.set(n.slug, n)
 }
 // le note in _archivio/ restano fuori dai controlli su grafo e orfani (i link rotti si controllano comunque)
-const grafo = [...note.values()].filter((n) => CAMPO[n.tipo] && !n.archiviata)
+// (le discipline non sono collegabili dal frontmatter, ma collegano le loro fonti rappresentative)
+const grafo = [...note.values()].filter((n) => (CAMPO[n.tipo] || n.tipo === 'disciplina') && !n.archiviata)
 
 // --- link nel testo
 const entranti = new Map([...note.keys()].map((rel) => [rel, new Set()]))
@@ -78,6 +83,46 @@ for (const n of grafo) {
   if (soloCorpo.length) errori.push(`${n.rel}: in Collegamenti ma non nel frontmatter: ${soloCorpo.join(', ')}`)
   if (daFm.size < 2) avvisi.push(`${n.rel}: meno di due collegamenti`)
   vicini.set(n.slug, daFm)
+}
+
+// --- schema dell'atlante: discipline, filoni e campi di classificazione (non sono collegamenti)
+// disciplina: slug di una nota in discipline/, solo sulle fonti; se manca vale quella della sottocartella,
+// in fonti/opere è obbligatoria. Si controlla solo quando discipline/ ha delle note.
+const discipline = noteDiscipline(archivio()).filter((d) => note.has(d.rel))
+const slugDiscipline = new Set(discipline.map((d) => d.slug))
+for (const d of discipline) {
+  for (const r of righeFiloniIllegibili(d)) errori.push(`${d.rel}: riga di "## Filoni" fuori formato (- **Nome** (\`id\`, periodo): *motto*): ${r.trim()}`)
+}
+// filoni: id unici e diversi da ogni slug di nota
+const filonePerId = new Map()
+for (const f of filoni(archivio())) {
+  if (perSlug.has(f.id)) errori.push(`discipline/${f.disciplina}.md: il filone "${f.id}" ha lo stesso nome della nota ${perSlug.get(f.id).rel}`)
+  if (filonePerId.has(f.id)) errori.push(`filone "${f.id}" ripetuto: in ${filonePerId.get(f.id).disciplina} e in ${f.disciplina}`)
+  else filonePerId.set(f.id, f)
+}
+for (const n of grafo) {
+  const fm = n.fm
+  const èFonte = n.tipo === 'fonte'
+  if (fm.disciplina != null && !èFonte) errori.push(`${n.rel}: "disciplina" va solo sulle fonti`)
+  const disciplina = disciplinaDi(n.rel, fm)
+  if (èFonte && slugDiscipline.size) {
+    if (disciplina == null) errori.push(`${n.rel}: manca "disciplina" (obbligatoria in fonti/opere)`)
+    else if (!slugDiscipline.has(disciplina)) errori.push(`${n.rel}: "disciplina" vale "${disciplina}", che non è una nota in discipline/`)
+  }
+  const filone = filoneDi(n)
+  if (filone != null) {
+    const f = filonePerId.get(filone)
+    if (!f) errori.push(`${n.rel}: "filone" vale "${filone}", che non è un filone di nessuna disciplina`)
+    else if (f.disciplina !== disciplina) errori.push(`${n.rel}: il filone "${filone}" è di ${f.disciplina}, la nota è di ${disciplina ?? 'nessuna disciplina'}`)
+  }
+  if (fm.forma != null && !FORME.includes(fm.forma)) errori.push(`${n.rel}: "forma" vale "${fm.forma}", ammessi: ${FORME.join(', ')}`)
+  if (fm.anno != null && annoDi(n) == null) errori.push(`${n.rel}: "anno" vale "${fm.anno}", serve un intero (negativo = a.C.)`)
+  const fonti = new Set([...listaFm(fm.fonte), ...listaFm(fm.fonti)])
+  const fuori = autoriDi(n).filter((s) => !fonti.has(s))
+  if (fuori.length) errori.push(`${n.rel}: "autore" deve stare anche in "fonti": ${fuori.join(', ')}`)
+  const collegati = vicini.get(n.slug) ?? new Set()
+  const nonCollegati = influenzatoDaDi(n).filter((s) => !collegati.has(s))
+  if (nonCollegati.length) errori.push(`${n.rel}: "influenzato-da" deve stare anche nei collegamenti: ${nonCollegati.join(', ')}`)
 }
 
 // --- provenienza: "origine" (seme | mia | claude) e "validata" (true | false)
@@ -134,15 +179,28 @@ async function bloccoPropostaSulSito(tutte) {
   return out
 }
 
-// collegamenti a senso unico (solo avviso: la bidirezionalità vale "dove ha senso")
+// collegamenti a senso unico (solo avviso: la bidirezionalità vale "dove ha senso").
+// Non si segnalano: le proposte (una nota non validata ai due capi, o un collegamento proposto in un diario:
+// il ritorno si aggiunge quando le approvo), i collegamenti verso domande e discipline e quelli
+// che partono da una disciplina (le fonti non tornano alla disciplina con un collegamento: la dicono nel campo).
+const coppieProposte = new Set(collegamentiProposti(archivio()).flatMap((c) => c.coppie.map(([x, y]) => chiaveCoppia(x, y))))
+const senzaRitorno = new Set(['domanda', 'disciplina'])
+const validata = (s) => provenienza(perSlug.get(s).fm).validata
 for (const [s, vs] of vicini) {
-  for (const v of vs) if (vicini.has(v) && !vicini.get(v).has(s)) avvisi.push(`collegamento a senso unico: ${s} → ${v}`)
+  if (perSlug.get(s).tipo === 'disciplina' || !validata(s)) continue
+  for (const v of vs) {
+    if (!vicini.has(v) || vicini.get(v).has(s)) continue
+    if (senzaRitorno.has(perSlug.get(v).tipo) || !validata(v) || coppieProposte.has(chiaveCoppia(s, v))) continue
+    avvisi.push(`collegamento a senso unico: ${s} → ${v}`)
+  }
 }
 
 // --- orfani: note senza nessun link entrante
 for (const n of note.values()) {
   // README e home del sito (index.md alla radice) non hanno bisogno di link entranti
   if (èReadme(n) || n.rel === 'index.md' || n.archiviata) continue
+  // una disciplina con le sue fonti rappresentative è collegata anche senza link entranti
+  if (n.tipo === 'disciplina' && !n.archiviata && (vicini.get(n.slug)?.size ?? 0) > 0) continue
   if (entranti.get(n.rel).size === 0) errori.push(`nota orfana (nessun link entrante): ${n.rel}`)
 }
 
