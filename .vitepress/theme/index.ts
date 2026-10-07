@@ -1,4 +1,4 @@
-import { defineComponent, h, nextTick } from 'vue'
+import { defineComponent, h } from 'vue'
 import DefaultTheme from 'vitepress/theme'
 import { onContentUpdated, type Theme } from 'vitepress'
 import CollegatoDa from './components/CollegatoDa.vue'
@@ -11,18 +11,31 @@ import DaValidare from './components/DaValidare.vue'
 import Interruttore from './components/Interruttore.vue'
 import './style.css'
 import './pagine.css'
+import { CLASSE_PROPOSTE } from '../shared/proposte.ts'
 
-// nell'indice "In questa pagina", le voci dei titoli fatti solo di proposte seguono il loro titolo
+// Nell'indice "In questa pagina" le voci dei titoli fatti solo di proposte (h2.solo-proposte, vedi
+// ../proposta.ts) seguono il loro titolo: nascoste finché le proposte sono spente. L'indice c'è due volte,
+// a lato e, sul telefono, nel menu a tendina che VitePress disegna solo quando si apre: per questo
+// la regola è un foglio di stile della pagina, aggiornato a ogni cambio di contenuto, e non una classe.
+const ID_STILE = 'atlante-indice-proposte'
 function segnaIndice() {
-  for (const t of document.querySelectorAll<HTMLElement>('.vp-doc h2.solo-proposte[id]')) {
-    document.querySelector(`.VPDocAsideOutline a.outline-link[href="#${CSS.escape(t.id)}"]`)?.parentElement?.classList.add('solo-proposte')
+  const titoli = [...document.querySelectorAll<HTMLElement>('.vp-doc h2.solo-proposte[id]')]
+  let stile = document.getElementById(ID_STILE)
+  if (!stile) {
+    stile = document.createElement('style')
+    stile.id = ID_STILE
+    document.head.appendChild(stile)
   }
+  stile.textContent = titoli.length
+    ? titoli.map((t) => `html:not(.${CLASSE_PROPOSTE}) li:has(> .outline-link[href="#${CSS.escape(t.id)}"])`).join(',\n') +
+      ' { display: none; }'
+    : ''
 }
 
 const Layout = defineComponent({
   name: 'AtlanteLayout',
   setup() {
-    onContentUpdated(() => nextTick(() => requestAnimationFrame(segnaIndice)))
+    onContentUpdated(segnaIndice)
     return () =>
       h(DefaultTheme.Layout, null, {
         'doc-before': () => h(Scheda),
