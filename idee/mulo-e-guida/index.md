@@ -17,7 +17,7 @@ idee: [elmo-e-vite]
 ricerche: []
 risonanza:
 creato: 2026-10-06
-aggiornato: 2026-10-06
+aggiornato: 2026-10-07
 ---
 
 # Il mulo e la guida
@@ -30,7 +30,7 @@ La resilienza vera non è il cavallo impennato del quadro ufficiale: è il passo
 
 Dalla tua lista nel [seme](/diario/2026-10-04-seed.md), dove "resilienza napoleonica" sta tra "sacrificio anonimo" e "il condottiero". È l'unico personaggio della tua lista che non ha ancora un'idea.
 
-**Il momento:** [Napoleone](/fonti/pensiero/napoleone.md) attraversa il Gran San Bernardo nel maggio 1800. David lo dipinge su un cavallo che s'impenna, con i nomi incisi sulle rocce: BONAPARTE, HANNIBAL, KAROLVS MAGNVS. Mezzo secolo dopo Paul Delaroche (1848-1850, Louvre) lo dipinge com'era: su un mulo, infreddolito, guidato a piedi da una guida del posto, Pierre-Nicolas Dorsaz. Secondo la Fondation Napoléon, in una gola il mulo perse l'appoggio e sarebbe precipitato se la guida non l'avesse tenuto; Dorsaz fu ricompensato.
+**Il momento:** [Napoleone](/fonti/pensiero/napoleone.md) attraversa il Gran San Bernardo nel maggio 1800. David lo dipinge su un cavallo che s'impenna, con i nomi incisi sulle rocce: BONAPARTE, HANNIBAL, KAROLVS MAGNVS. Mezzo secolo dopo Paul Delaroche lo dipinge com'era, in due versioni (1848, Louvre; 1850, Walker Art Gallery di Liverpool; da verificare): su un mulo, infreddolito, guidato a piedi da una guida del posto, Pierre-Nicolas Dorsaz. Secondo la Fondation Napoléon, in una gola il mulo perse l'appoggio e sarebbe precipitato se la guida non l'avesse tenuto; Dorsaz fu ricompensato.
 
 ## Composizione
 

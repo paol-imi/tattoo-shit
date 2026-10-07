@@ -13,11 +13,11 @@ simboli: []
 fonti: [true-detective-s1]
 spunti: [true-detective-coscienza]
 percorsi: [peso-sguardo-oltre]
-idee: [luce-contro-buio]
+idee: [luce-contro-buio, la-notte-che-mi-copre]
 ricerche: []
 risonanza:
 creato: 2026-10-06
-aggiornato: 2026-10-06
+aggiornato: 2026-10-07
 ---
 
 # Il buio sotto il buio
@@ -84,4 +84,4 @@ _Nessun pin collegato._
 - **Stile:** [Blackwork](/stile/blackwork.md) · [Dissolvenze](/stile/dissolvenze.md)
 - **Percorsi:** [Il peso → lo sguardo → l'oltre](/percorsi/peso-sguardo-oltre.md)
 - **Spunti:** [La coscienza come passo falso](/spunti/true-detective-coscienza/index.md)
-- **Idee:** [La luce sta vincendo](/idee/luce-contro-buio/index.md)
+- **Idee:** [La luce sta vincendo](/idee/luce-contro-buio/index.md) · [La notte che mi copre](/idee/la-notte-che-mi-copre/index.md)

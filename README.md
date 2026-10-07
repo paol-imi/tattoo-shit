@@ -70,7 +70,7 @@ Sul sito, di default, si vede solo ciò che ho validato: niente note proposte, n
 
 ## Come navigare il sito
 
-Il sito ha tre porte, in alto nel menu e in home. Di default mostrano solo ciò che ho validato; l'interruttore **proposte**, in alto a destra, aggiunge le proposte di Claude.
+Il sito ha tre porte, in alto nel menu e in home, più la pagina Da validare. Di default mostrano solo ciò che ho validato; l'interruttore **proposte**, in alto a destra, aggiunge le proposte di Claude.
 
 - **[Bacheca](https://paol-imi.github.io/tattoo-shit/bacheca):** tutte le idee e gli spunti come tavole, con i pin e le parole. Tocca un chip (un simbolo, una fonte, un concetto) per vedere solo ciò che vi è legato; i filtri stanno nell'indirizzo e si possono condividere.
 - **[Testi](https://paol-imi.github.io/tattoo-shit/testi):** ogni citazione dell'archivio, per fonte. Le candidate al lettering.
@@ -83,7 +83,8 @@ Da ogni nota, la riga in testa porta alla sua posizione sulla mappa e alle tavol
 
 ```sh
 npm install                              # una volta sola
-node scripts/verifica.mjs                # slug unici, link rotti, note orfane, riepilogo
+node scripts/verifica.mjs                # slug unici, link rotti, note orfane, frontmatter = Collegamenti,
+                                         # origine e validata, riepilogo
 node scripts/immagini.mjs <file…>        # ridimensiona le mie immagini (2000 px, WebP 85)
 npm run docs:dev                         # il sito in locale, su http://localhost:5173/tattoo-shit/
 npm run docs:build                       # build del sito: deve passare (segnala anche i link morti)
@@ -96,6 +97,8 @@ Il sito è pubblico su <https://paol-imi.github.io/tattoo-shit/>: si pubblica da
 Le istruzioni permanenti per Claude Code sono in [CLAUDE.md](CLAUDE.md).
 
 ## Stato
+
+Oggi l'archivio conta 199 note; 33 note e 12 blocchi sono proposte di Claude che aspettano un mio sì o un no (i numeri aggiornati li dà `node scripts/verifica.mjs`).
 
 - **Fase 1, fondamenta e migrazione:** fatta. 157 note nate dal [seme](diario/2026-10-04-seed.md), vedi il [diario](diario/2026-10-04-fase-1.md).
 - **Primi spunti:** True Detective e Invictus, vedi il [diario](diario/2026-10-04-primi-spunti.md).

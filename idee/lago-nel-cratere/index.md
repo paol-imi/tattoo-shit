@@ -8,7 +8,7 @@ formato: pezzo-singolo
 placement: [spalla, polpaccio]
 stile: [incisione-xilografia, spazio-negativo]
 concetti: [bene-relativo]
-emozioni: [dolore, pace-interiore]
+emozioni: [dolore, pace-interiore, lucidita]
 simboli: [occhi]
 fonti: [tao-te-ching]
 spunti: []
@@ -17,7 +17,7 @@ idee: []
 ricerche: []
 risonanza:
 creato: 2026-10-06
-aggiornato: 2026-10-06
+aggiornato: 2026-10-07
 ---
 
 # Il lago nel cratere
@@ -74,7 +74,7 @@ _Nessun pin collegato._
 
 ## Collegamenti
 
-- **Emozioni:** [Dolore](/emozioni/dolore.md) · [Pace interiore](/emozioni/pace-interiore.md)
+- **Emozioni:** [Dolore](/emozioni/dolore.md) · [Pace interiore](/emozioni/pace-interiore.md) · [Lucidità](/emozioni/lucidita.md)
 - **Concetti:** [Il bene relativo](/concetti/bene-relativo.md)
 - **Fonti:** [Laozi, Tao Te Ching](/fonti/pensiero/tao-te-ching.md)
 - **Simboli:** [Gli occhi](/simboli/occhi.md)

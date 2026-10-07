@@ -11,7 +11,7 @@ creato: 2026-10-04
 
 # Michelangelo, i Prigioni
 
-Galleria dell'Accademia di Firenze (altri due al Louvre). Figure che lottano per uscire dal marmo, il non-finito. Michelangelo: la statua è già nel marmo, basta togliere il superfluo.
+Galleria dell'Accademia di Firenze (altri due al Louvre). Figure che lottano per uscire dal marmo, il non-finito. Michelangelo: la statua è già nel marmo, basta togliere il superfluo (attribuzione tradizionale, da verificare).
 
 ## Collegamenti
 
