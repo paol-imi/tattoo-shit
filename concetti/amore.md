@@ -1,7 +1,8 @@
 ---
 tipo: concetto
 titolo: "Amore"
-fonti: [divina-commedia, psiche, camus, canova-amore-psiche]
+domande: [cosa-c-e-oltre, come-stare-con-gli-altri]
+fonti: [divina-commedia, psiche, camus, canova-amore-psiche, empedocle]
 percorsi: [dall-io-al-noi, peso-sguardo-oltre]
 spunti: [true-detective-coscienza]
 idee: [sleeve-dantesca, amore-e-psiche, buio-sotto-il-buio]
@@ -14,7 +15,8 @@ L'altro "oltre". Dante finisce nell'amore che muove il sole e le altre stelle; P
 
 ## Collegamenti
 
-- **Fonti:** [Divina Commedia](/fonti/opere/divina-commedia.md) · [Psiche](/fonti/sacro-e-mito/psiche.md) · [Albert Camus](/fonti/pensiero/camus.md) · [Antonio Canova, Amore e Psiche](/fonti/arte/canova-amore-psiche.md)
+- **Domande:** [Cosa c'è oltre?](/domande/cosa-c-e-oltre.md) · [Come stare con gli altri?](/domande/come-stare-con-gli-altri.md)
+- **Fonti:** [Divina Commedia](/fonti/opere/divina-commedia.md) · [Psiche](/fonti/sacro-e-mito/psiche.md) · [Albert Camus](/fonti/pensiero/camus.md) · [Antonio Canova, Amore e Psiche](/fonti/arte/canova-amore-psiche.md) · [Empedocle](/fonti/pensiero/empedocle.md)
 - **Percorsi:** [Dall'io al noi](/percorsi/dall-io-al-noi.md) · [Il peso → lo sguardo → l'oltre](/percorsi/peso-sguardo-oltre.md)
 - **Spunti:** [La coscienza come passo falso](/spunti/true-detective-coscienza/index.md)
 - **Idee:** [Il Cammino: sleeve dantesca](/idee/sleeve-dantesca/index.md) · [Amore e Psiche](/idee/amore-e-psiche/index.md) · [Il buio sotto il buio](/idee/buio-sotto-il-buio/index.md)

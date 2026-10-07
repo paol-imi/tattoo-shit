@@ -1,6 +1,7 @@
 ---
 tipo: concetto
 titolo: "L'assurdo"
+domande: [che-senso-ha, perche-soffro]
 emozioni: [liberta, passione, vuoto]
 concetti: [rivolta, tensioni]
 fonti: [camus, friedrich-monaco]
@@ -17,6 +18,7 @@ Camus ne ricava tre conseguenze: rivolta, libertà, passione.
 
 ## Collegamenti
 
+- **Domande:** [Che senso ha?](/domande/che-senso-ha.md) · [Perché soffro?](/domande/perche-soffro.md)
 - **Emozioni:** [Libertà](/emozioni/liberta.md) · [Passione](/emozioni/passione.md) · [Vuoto](/emozioni/vuoto.md)
 - **Concetti:** [Rivolta](/concetti/rivolta.md) · [Tensioni aperte](/concetti/tensioni.md)
 - **Fonti:** [Albert Camus](/fonti/pensiero/camus.md) · [Caspar David Friedrich, Monaco in riva al mare (1808–10)](/fonti/arte/friedrich-monaco.md)

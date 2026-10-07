@@ -6,7 +6,7 @@ import { useData, withBase } from 'vitepress'
 import { useDatiPagina } from '../pagina'
 import { useProposte } from '../proposte'
 import {
-  tipoDi, leggibile, ETICHETTE_TIPO, SOTTOCARTELLE_FONTI, TIPI_MAPPA, TIPI_TERRITORIO, ETICHETTE_ORIGINE,
+  tipoDi, leggibile, ETICHETTE_TIPO, SOTTOCARTELLE_FONTI, TIPI_MAPPA, TIPI_NODO_ATLANTE, TIPI_TERRITORIO, ETICHETTE_ORIGINE,
   ETICHETTE_ORIGINE_DA_VALIDARE,
 } from '../../shared/tipi.ts'
 import { provenienza as provenienzaDi, slugDaRel, risonanzaDi, pallini } from '../../shared/nota.ts'
@@ -40,16 +40,17 @@ const voci = computed(() => {
   return out
 })
 
-// in coda: dove ritrovare la nota sulla mappa e, per i nodi, le tavole della bacheca legate a lei
-// (il nucleo è sulla mappa, ma la sua riga non porta il rimando)
+// in coda: dove ritrovare la nota sulla mappa (l'Atlante dei concetti: i suoi nodi e le domande)
+// e, per i nodi, le tavole della bacheca legate a lei
 const vai = computed(() => {
   const t = tipo.value
   if (archiviata.value || !TIPI_MAPPA.has(t) || t === 'nucleo') return null
   const slug = slugDaRel(page.value.filePath)
   const { tavole } = pagina.value
   const n = t === 'idea' || t === 'spunto' ? 0 : mostra.value ? tavole.tutte : tavole.validate
-  // una nota non validata, a proposte spente, non è sulla mappa
-  const sullaMappa = mostra.value || !provenienza.value || provenienza.value.validata
+  // stile, percorsi e discipline non sono nodi dell'Atlante; una nota non validata, a proposte spente, non è sulla mappa
+  const nellAtlante = TIPI_NODO_ATLANTE.has(t) || t === 'domanda'
+  const sullaMappa = nellAtlante && (mostra.value || !provenienza.value || provenienza.value.validata)
   return { mappa: sullaMappa ? withBase(`/mappa?nodo=${slug}`) : null, bacheca: n ? withBase(`/bacheca?nodo=${slug}`) : null, n }
 })
 

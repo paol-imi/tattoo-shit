@@ -1,0 +1,501 @@
+/* Atlante dei concetti: il foglio della mappa (dal prototipo). Tutto sotto .atl-mappa, niente regole globali.
+   Carta e oro tenue di giorno, notte e inchiostro con il tema scuro del sito (html.dark).
+   I caratteri sono quelli del sito; il maiuscoletto si fa con small-caps. Le proposte di Claude
+   (vedi filtra.ts) nel rosso della rubrica, tratteggiate. */
+.atl-mappa {
+  color-scheme: light;
+  --notte: #f0e8d6; --notte-2: #e8dec8; --notte-3: #ddd1b6; --inchiostro: #221b13; --fumo: #6c6150;
+  --oro: #86601c; --oro-tenue: rgba(134, 96, 28, .3); --evidenza: rgba(134, 96, 28, .1); --rubrica: #a3412a;
+  --filetto: rgba(34, 27, 19, .16); --ombra: rgba(60, 40, 10, .2);
+  --d-filosofia: #8a6219; --d-psicologia: #96406f; --d-religioni-e-mito: #5a4596; --d-letteratura: #2c628a; --d-arte: #9b5223;
+  --d-cinema-e-serie: #5c6a1f; --d-scienza: #1d6f80; --d-emozioni: #a3352c; --d-segni: #5d5442; --d-tue: #12795a;
+  --proposta: var(--atl-rubrica, #8c2f24);
+  --f-titolo: var(--atl-serif, Georgia, serif);
+  --f-sc: var(--atl-serif, Georgia, serif);
+  --f-ui: var(--vp-font-family-base, system-ui, sans-serif);
+  --foglio-h: 0px;
+
+  /* a tutta altezza sotto la barra di VitePress; lo sfondo esce dai margini sugli schermi larghi */
+  height: calc(100dvh - var(--vp-nav-height, 64px)); min-height: 520px; display: flex; flex-direction: column;
+  padding-inline: 16px; box-sizing: border-box; max-width: 1600px; margin-inline: auto;
+  background: var(--notte); color: var(--inchiostro);
+  box-shadow: 0 0 0 100vmax var(--notte); clip-path: inset(0 -100vmax);
+  font: 15px/1.45 var(--f-ui);
+  -webkit-text-size-adjust: 100%;
+}
+html.dark .atl-mappa {
+  color-scheme: dark;
+  --notte: #0b0e16;
+  --notte-2: #121725;
+  --notte-3: #1a2032;
+  --inchiostro: #ebe3cf;
+  --fumo: #a39c89;
+  --oro: #d3ae63;
+  --oro-tenue: rgba(211, 174, 99, .32);
+  --evidenza: rgba(211, 174, 99, .12);
+  --rubrica: #d9805f;
+  --filetto: rgba(235, 227, 207, .13);
+  --ombra: rgba(0, 0, 0, .55);
+  --d-filosofia: #e2bd70;
+  --d-psicologia: #e3a3c7;
+  --d-religioni-e-mito: #ab9de2;
+  --d-letteratura: #8fb9db;
+  --d-arte: #dc9b6e;
+  --d-cinema-e-serie: #b9c77c;
+  --d-scienza: #79cfe0;
+  --d-emozioni: #ea8a80;
+  --d-segni: #d0c8b2;
+  --d-tue: #6fdcb4;
+}
+.atl-mappa [hidden] { display: none !important; }
+.atl-mappa button { font: inherit; color: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.atl-mappa button:focus-visible, .atl-mappa a:focus-visible, .atl-mappa select:focus-visible { outline: 2px solid var(--oro); outline-offset: 2px; }
+
+/* ---------- testata */
+.atl-mappa .testa { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; padding-block: 12px 0; min-width: 0; }
+.atl-mappa .testa > * { min-width: 0; }
+.atl-mappa .riga-titolo { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.atl-mappa h1 { font: 400 clamp(26px, 6.4vw, 36px)/1.05 var(--f-titolo); margin: 0; letter-spacing: .005em; text-wrap: balance; }
+.atl-mappa h1 em { color: var(--oro); font-style: italic; }
+.atl-mappa .badge {
+  font: 500 11px/1 var(--f-ui); letter-spacing: .08em; text-transform: uppercase; color: var(--rubrica);
+  border: 1px solid currentColor; border-radius: 999px; padding: 5px 8px; background: none; min-height: 0;
+}
+.atl-mappa .spiega { margin: 0; color: var(--fumo); font-size: 13.5px; max-width: 78ch; text-wrap: pretty; }
+.atl-mappa .spiega b { color: var(--inchiostro); font-weight: 500; }
+.atl-mappa.in-cammino .spiega { display: none; }
+.atl-mappa .viste {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; max-width: 480px;
+  border: 1px solid var(--filetto); border-radius: 999px; padding: 3px;
+}
+.atl-mappa .viste button {
+  min-height: 44px; border: 0; border-radius: 999px; background: none; color: var(--fumo);
+  font: small-caps 17px/1 var(--f-sc); letter-spacing: .03em;
+}
+.atl-mappa .viste button[aria-selected="true"] { background: var(--notte-3); color: var(--oro); box-shadow: inset 0 0 0 1px var(--oro-tenue); }
+
+.atl-mappa .filo-riga {
+  position: relative; display: flex; align-items: center; gap: 6px; min-height: 44px;
+  border-block: 1px solid var(--filetto);
+}
+.atl-mappa .filo-etic { font: small-caps 15px var(--f-sc); color: var(--oro); flex: none; }
+.atl-mappa #atl-filo {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 18px); mask-image: linear-gradient(90deg, transparent, #000 18px);
+  list-style: none; margin: 0; padding: 0; display: flex; align-items: center; flex: 1; min-width: 0;
+  overflow-x: auto; scrollbar-width: none;
+}
+.atl-mappa #atl-filo::-webkit-scrollbar { display: none; }
+.atl-mappa #atl-filo li { display: flex; align-items: center; flex: none; }
+.atl-mappa #atl-filo li + li::before { content: "›"; color: var(--oro-tenue); padding-inline: 2px; }
+.atl-mappa #atl-filo button { min-height: 44px; border: 0; background: none; padding: 0 6px; color: var(--fumo); font-size: 13.5px; white-space: nowrap; }
+.atl-mappa #atl-filo button.q { font-style: italic; font-family: var(--f-titolo); font-size: 15px; }
+.atl-mappa #atl-filo li:last-child button { color: var(--inchiostro); font-weight: 500; }
+.atl-mappa #atl-filo .vuoto { color: var(--fumo); font-style: italic; font-size: 13px; white-space: nowrap; }
+.atl-mappa .btn {
+  min-height: 44px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--oro-tenue);
+  background: none; color: var(--oro); font-size: 13.5px; white-space: nowrap; flex: none;
+}
+.atl-mappa .btn.pieno { background: var(--oro); color: var(--notte); border-color: var(--oro); font-weight: 500; }
+.atl-mappa .btn .n { font-variant-numeric: tabular-nums; opacity: .8; }
+.atl-mappa .salvate {
+  position: absolute; right: 0; top: calc(100% + 4px); z-index: 26; width: min(360px, 100%);
+  background: var(--notte-2); border: 1px solid var(--oro-tenue); border-radius: 8px; box-shadow: 0 14px 40px var(--ombra);
+  padding: 8px; max-height: 50vh; overflow-y: auto;
+}
+.atl-mappa .salvate p { margin: 6px 8px; color: var(--fumo); font-size: 13px; }
+.atl-mappa .salvata { display: flex; align-items: center; gap: 4px; border-top: 1px solid var(--filetto); }
+.atl-mappa .salvata:first-of-type { border-top: 0; }
+.atl-mappa .salvata button { min-height: 44px; border: 0; background: none; text-align: left; }
+.atl-mappa .salvata .apri { flex: 1; min-width: 0; padding: 6px 8px; }
+.atl-mappa .salvata .apri span { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.atl-mappa .salvata .apri small { color: var(--fumo); font-size: 12px; }
+.atl-mappa .salvata .togli { width: 44px; color: var(--fumo); font-size: 20px; }
+
+/* ---------- corpo */
+.atl-mappa .corpo { flex: 1; min-height: 0; min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; padding-block: 10px 12px; }
+.atl-mappa .vista { min-height: 0; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+.atl-mappa .consiglio { margin: 0; font-size: 12.5px; color: var(--fumo); display: flex; gap: 7px; align-items: baseline; }
+.atl-mappa .consiglio::before { content: "✦"; color: var(--oro); font-size: 10px; flex: none; }
+
+/* ---------- Tavole: barra */
+.atl-mappa .tav-barra { display: flex; align-items: center; gap: 8px; min-width: 0; flex-wrap: wrap; }
+.atl-mappa .parti { font: small-caps 15px var(--f-sc); color: var(--fumo); flex: none; }
+.atl-mappa .modo { display: inline-grid; grid-template-columns: auto auto; gap: 2px; padding: 2px; border: 1px solid var(--filetto); border-radius: 999px; flex: none; }
+.atl-mappa .modo button { min-height: 40px; padding: 0 14px; border: 0; border-radius: 999px; background: none; color: var(--fumo); font: small-caps 15px var(--f-sc); letter-spacing: .03em; }
+.atl-mappa .modo button[aria-pressed="true"] { background: var(--notte-3); color: var(--oro); box-shadow: inset 0 0 0 1px var(--oro-tenue); }
+@media (pointer: coarse) { .atl-mappa .modo button { min-height: 44px; } }
+.atl-mappa select {
+  min-height: 44px; border-radius: 8px; border: 1px solid var(--filetto); background: var(--notte-2); color: var(--inchiostro);
+  font: 14px var(--f-ui); padding: 0 10px; max-width: 100%;
+}
+.atl-mappa .tav-barra select { flex: 1 1 100px; min-width: 0; max-width: 320px; }
+.atl-mappa .schede { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; min-width: 0; flex: none; -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); }
+.atl-mappa .schede::-webkit-scrollbar { display: none; }
+.atl-mappa .scheda {
+  flex: none; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 12px;
+  border: 1px solid var(--filetto); border-radius: 999px; background: none; color: var(--fumo); font-size: 13px; white-space: nowrap;
+}
+.atl-mappa .scheda i { width: 7px; height: 7px; border-radius: 50%; background: var(--c); }
+.atl-mappa .scheda b { font-weight: 600; color: var(--inchiostro); font-variant-numeric: tabular-nums; }
+.atl-mappa .scheda.prima { border-color: var(--oro-tenue); color: var(--inchiostro); }
+.atl-mappa .scheda.tue i { border-radius: 0; background: none; width: auto; height: auto; font-style: normal; color: var(--c); font-size: 11px; }
+.atl-mappa .scheda.tue i::before { content: "✦"; }
+.atl-mappa .scheda.zero { opacity: .5; }
+
+/* ---------- Tavole: le otto domande */
+.atl-mappa .home { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; align-content: start; padding: 4px 4px 24px; }
+.atl-mappa .q-carta {
+  position: relative; display: grid; gap: 10px; align-content: start; min-width: 0;
+  border: 1px solid var(--oro-tenue); outline: 1px solid var(--filetto); outline-offset: 3px; border-radius: 2px;
+  background: linear-gradient(var(--notte-2), var(--notte) 85%); padding: 12px 14px 14px;
+}
+.atl-mappa .q-apri { display: grid; gap: 2px; text-align: left; border: 0; background: none; padding: 0; min-height: 44px; }
+.atl-mappa .q-apri h2 { margin: 0; font: 400 clamp(26px, 7vw, 32px)/1.05 var(--f-titolo); text-wrap: balance; }
+.atl-mappa .q-apri:hover h2 { color: var(--oro); }
+.atl-mappa .q-sotto { font: italic 15.5px/1.25 var(--f-titolo); color: var(--oro); }
+.atl-mappa .q-meta { font-size: 12px; color: var(--fumo); font-variant-numeric: tabular-nums; }
+.atl-mappa .q-meta::after { content: " →"; color: var(--oro); }
+.atl-mappa .q-coro { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; border-top: 1px solid var(--filetto); }
+.atl-mappa .coro-voce {
+  display: grid; gap: 3px; width: 100%; text-align: left; border: 0; background: none; padding: 8px 0 6px; min-height: 44px;
+  border-bottom: 1px solid var(--filetto); border-radius: 0;
+}
+.atl-mappa .q-coro li:last-child .coro-voce { border-bottom: 0; }
+.atl-mappa .cv-testo { font: italic 15.5px/1.3 var(--f-titolo); color: var(--inchiostro); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-wrap: pretty; }
+.atl-mappa .cv-chi { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--fumo); min-width: 0; }
+.atl-mappa .cv-chi i { width: 6px; height: 6px; border-radius: 50%; background: var(--c); flex: none; }
+.atl-mappa .cv-chi b { font-weight: 500; color: var(--c); font-family: var(--f-sc); font-variant-caps: small-caps; font-size: 13px; letter-spacing: .03em; white-space: nowrap; }
+.atl-mappa .cv-chi span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.atl-mappa .coro-voce:hover .cv-testo { color: var(--oro); }
+.atl-mappa .q-tue { margin: 0; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.atl-mappa .q-tue > span { font: small-caps 13px var(--f-sc); color: var(--d-tue); letter-spacing: .04em; }
+
+/* banner della domanda fissata */
+.atl-mappa .q-banner { display: grid; gap: 8px; min-width: 0; padding: 8px 0 2px; border-bottom: 1px solid var(--filetto); }
+.atl-mappa .q-b-testa { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.atl-mappa .q-torna { flex: none; min-height: 44px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--oro-tenue); background: none; color: var(--oro); font-size: 13px; white-space: nowrap; }
+.atl-mappa .q-nome { min-width: 0; display: grid; text-align: left; border: 0; background: none; padding: 0; min-height: 44px; align-content: center; }
+.atl-mappa .q-nome h2 { margin: 0; font: 400 clamp(23px, 6vw, 30px)/1.05 var(--f-titolo); }
+.atl-mappa .q-nome span { font: italic 14px/1.2 var(--f-titolo); color: var(--oro); }
+.atl-mappa .q-coro-riga { display: flex; gap: 10px; overflow-x: auto; scrollbar-width: thin; padding-bottom: 4px; overscroll-behavior-x: contain; }
+.atl-mappa .q-coro-riga .coro-voce { flex: 0 0 min(250px, 78%); border: 1px solid var(--filetto); border-radius: 4px; padding: 8px 10px; background: var(--notte-2); }
+.atl-mappa .q-coro-riga .cv-testo { -webkit-line-clamp: 2; font-size: 14.5px; }
+.atl-mappa .q-banner.compatto .q-coro-riga { display: none; }
+
+/* ---------- Tavole: colonne */
+.atl-mappa .colonne {
+  flex: 1; min-height: 0; display: flex; gap: 12px; overflow-x: auto; overflow-y: hidden;
+  scroll-snap-type: x mandatory; overscroll-behavior-x: contain; padding-bottom: 4px;
+}
+.atl-mappa .colonna {
+  flex: 0 0 calc(100% - 34px); scroll-snap-align: start; min-height: 0; display: flex; flex-direction: column;
+  border: 1px solid var(--filetto); border-top: 2px solid var(--c); border-radius: 3px 3px 6px 6px;
+  background: linear-gradient(var(--notte-2), var(--notte) 70%);
+}
+.atl-mappa .colonna[data-fam="tue"] { background: linear-gradient(color-mix(in srgb, var(--d-tue) 9%, var(--notte-2)), var(--notte) 75%); border-color: color-mix(in srgb, var(--d-tue) 30%, transparent); border-top-color: var(--d-tue); }
+.atl-mappa .colonna[data-fam="domande"] { border-top: 3px double var(--oro); }
+.atl-mappa .colonna.appena { animation: atl-entra .32s ease-out both; }
+.atl-mappa .colonna.appena:nth-child(2) { animation-delay: .04s; } .atl-mappa .colonna.appena:nth-child(3) { animation-delay: .08s; }
+.atl-mappa .colonna.appena:nth-child(n+4) { animation-delay: .12s; }
+@keyframes atl-entra { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.atl-mappa .col-testa { padding: 10px 12px 8px; border-bottom: 1px solid var(--filetto); display: grid; gap: 1px; }
+.atl-mappa .col-testa h2 { margin: 0; font: small-caps 21px/1.1 var(--f-sc); color: var(--c); letter-spacing: .02em; }
+.atl-mappa .col-testa .conta { font-size: 12.5px; color: var(--fumo); font-variant-numeric: tabular-nums; }
+.atl-mappa .col-testa .ruolo { font: italic 13px var(--f-titolo); color: var(--oro); }
+.atl-mappa .col-corpo { position: relative; flex: 1; min-height: 0; overflow-y: auto; padding: 2px 6px 16px; overscroll-behavior: contain; }
+.atl-mappa .filone {
+  display: grid; gap: 1px; width: 100%; text-align: left; min-height: 44px; padding: 12px 8px 6px;
+  border: 0; border-top: 1px solid var(--filetto); background: none; border-radius: 4px;
+}
+.atl-mappa .col-corpo > .filone:first-child { border-top: 0; }
+.atl-mappa .filone .f-riga { display: flex; align-items: baseline; gap: 8px; justify-content: space-between; }
+.atl-mappa .filone .f-nome { font: 18px/1.15 var(--f-titolo); color: var(--inchiostro); }
+.atl-mappa .filone .f-periodo { font-size: 11.5px; color: var(--fumo); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.atl-mappa .filone .f-motto { font: italic 14px/1.3 var(--f-titolo); color: var(--oro); }
+.atl-mappa .filone .f-n { font-size: 12px; color: var(--oro); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.atl-mappa .filone.attivo { background: var(--evidenza); box-shadow: inset 2px 0 0 var(--oro); }
+.atl-mappa .voce {
+  position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1px 8px; width: 100%;
+  text-align: left; min-height: 44px; padding: 8px 8px 8px 18px; border: 0; background: none; border-radius: 4px;
+}
+.atl-mappa .voce::before { content: ""; position: absolute; left: 7px; top: 16px; width: 5px; height: 5px; border-radius: 50%; background: var(--c); }
+.atl-mappa .voce.tua::before { content: "✦"; background: none; width: auto; height: auto; border-radius: 0; left: 4px; top: 9px; font-size: 11px; color: var(--d-tue); }
+.atl-mappa .voce.tua .v-nome { color: var(--d-tue); }
+.atl-mappa .voce .v-nome { font-size: 15px; min-width: 0; }
+.atl-mappa .voce .v-tag { font: small-caps 12px var(--f-sc); color: var(--oro); letter-spacing: .05em; margin-left: 6px; }
+.atl-mappa .voce .v-anno { font-size: 11.5px; color: var(--fumo); font-variant-numeric: tabular-nums; white-space: nowrap; padding-top: 2px; }
+.atl-mappa .voce .v-n {
+  align-self: start; min-width: 22px; text-align: center; font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums;
+  color: var(--notte); background: var(--oro); border-radius: 999px; padding: 2px 6px;
+}
+.atl-mappa .voce .v-cit {
+  grid-column: 1 / -1; font: italic 14px/1.3 var(--f-titolo); color: var(--fumo);
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.atl-mappa .voce .v-via { grid-column: 1 / -1; font-size: 12px; color: var(--oro); }
+.atl-mappa .voce .v-prov { color: var(--rubrica); margin-left: 3px; }
+.atl-mappa .voce.attivo { background: var(--evidenza); box-shadow: inset 2px 0 0 var(--oro); }
+.atl-mappa .voce.in-fuoco::before { box-shadow: 0 0 0 3px var(--oro-tenue); }
+.atl-mappa .voce.spento { opacity: .42; }
+.atl-mappa .voce.collegato .v-nome::after { content: " ↔"; color: var(--oro); font-size: 12px; }
+.atl-mappa .col-vuota { margin: 14px 8px; font: italic 15px/1.35 var(--f-titolo); color: var(--fumo); }
+.atl-mappa .altri { margin: 10px 8px 0; min-height: 44px; width: calc(100% - 16px); border: 1px dashed var(--filetto); border-radius: 6px; background: none; color: var(--fumo); font-size: 13px; }
+.atl-mappa .q-voce {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 8px; width: 100%; text-align: left; min-height: 44px;
+  padding: 10px 8px 8px; border: 0; border-top: 1px solid var(--filetto); background: none; border-radius: 4px;
+}
+.atl-mappa .col-corpo > .q-voce:first-child { border-top: 0; }
+.atl-mappa .q-voce .qv-nome { font: 18px/1.15 var(--f-titolo); }
+.atl-mappa .q-voce .qv-n { font-size: 12px; color: var(--oro); font-variant-numeric: tabular-nums; white-space: nowrap; padding-top: 3px; }
+.atl-mappa .q-voce .qv-cit { grid-column: 1 / -1; font: italic 13.5px/1.3 var(--f-titolo); color: var(--fumo); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.atl-mappa .q-voce.attivo { background: var(--evidenza); box-shadow: inset 2px 0 0 var(--oro); }
+.atl-mappa .q-voce.attivo .qv-nome { color: var(--oro); }
+.atl-mappa .q-voce.zero { opacity: .45; }
+
+/* ---------- Ruota */
+.atl-mappa .ruota-layout { flex: 1; min-height: 0; display: grid; gap: 12px; overflow-y: auto; align-content: start; overscroll-behavior: contain; }
+.atl-mappa .ruota-scena { position: relative; display: grid; place-items: center; }
+.atl-mappa #atl-ruota-box { width: min(100%, 720px); aspect-ratio: 1; max-width: 100%; position: relative; }
+.atl-mappa #atl-ruota { display: block; width: 100%; height: 100%; touch-action: none; user-select: none; -webkit-user-select: none; }
+.atl-mappa .ruota-lato { display: grid; gap: 12px; align-content: start; min-width: 0; }
+.atl-mappa .comandi { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.atl-mappa .comandi select { flex: 1 1 120px; min-width: 0; }
+.atl-mappa .tondo {
+  width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--oro-tenue); background: none; color: var(--oro);
+  font-size: 22px; line-height: 1; display: grid; place-items: center; flex: none;
+}
+.atl-mappa .lettura-titolo { margin: 0; font: small-caps 15px var(--f-sc); color: var(--oro); letter-spacing: .03em; }
+.atl-mappa .letture { display: grid; gap: 0; }
+.atl-mappa .lettura {
+  display: grid; grid-template-columns: 10px minmax(0, 7.5em) minmax(0, 1fr); gap: 8px; align-items: baseline;
+  min-height: 44px; padding: 8px 4px; border: 0; border-top: 1px solid var(--filetto); background: none; text-align: left;
+}
+.atl-mappa .lettura i { width: 7px; height: 7px; border-radius: 50%; background: var(--c); align-self: center; }
+.atl-mappa .lettura .l-dim { font: small-caps 14px var(--f-sc); color: var(--c); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.atl-mappa .lettura .l-fil { font-size: 14px; min-width: 0; }
+.atl-mappa .lettura .l-fil small { display: block; color: var(--fumo); font-size: 12px; }
+.atl-mappa .lettura.q .l-fil { font: italic 17px/1.2 var(--f-titolo); }
+.atl-mappa .lettura.attiva { background: var(--evidenza); }
+.atl-mappa .carta {
+  border: 1px solid var(--oro-tenue); border-radius: 8px; padding: 12px 14px; background: var(--notte-2); display: grid; gap: 6px;
+}
+.atl-mappa .occhiello { margin: 0; font: small-caps 13px var(--f-sc); letter-spacing: .08em; color: var(--rubrica); }
+.atl-mappa .coppia { margin: 0; font: 22px/1.2 var(--f-titolo); display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; }
+.atl-mappa .coppia button { border: 0; background: none; padding: 0; min-height: 44px; color: var(--inchiostro); text-decoration: underline; text-decoration-color: var(--oro-tenue); text-underline-offset: 4px; }
+.atl-mappa .coppia span { color: var(--oro); }
+.atl-mappa .mondi { margin: 0; color: var(--fumo); font-size: 12.5px; }
+.atl-mappa .catena { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+.atl-mappa .catena li { display: flex; align-items: center; gap: 4px; }
+.atl-mappa .catena li + li::before { content: "→"; color: var(--oro); }
+.atl-mappa .domanda { margin: 0; font: italic 15px var(--f-titolo); color: var(--oro); }
+.atl-mappa .conv-q { margin: 0; }
+.atl-mappa .conv-q button { border: 0; background: none; padding: 0; min-height: 44px; font: 400 26px/1.1 var(--f-titolo); color: var(--inchiostro); text-align: left; }
+.atl-mappa .conv-q button:hover { color: var(--oro); }
+.atl-mappa .conv-due { display: grid; gap: 10px; }
+.atl-mappa .conv-cit { margin: 0; padding: 2px 0 2px 12px; border-left: 2px solid var(--c); display: grid; gap: 4px; }
+.atl-mappa .conv-cit p { margin: 0; font: italic 17px/1.3 var(--f-titolo); text-wrap: pretty; }
+.atl-mappa .conv-cit footer { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 8px; font-size: 12.5px; color: var(--fumo); }
+.atl-mappa .conv-cit footer button { border: 0; background: none; padding: 0; min-height: 36px; color: var(--c); font: small-caps 15px var(--f-sc); letter-spacing: .03em; text-decoration: underline; text-decoration-color: var(--filetto); text-underline-offset: 3px; }
+@media (pointer: coarse) { .atl-mappa .conv-cit footer button { min-height: 44px; } }
+.atl-mappa .conv-e { font: italic 14px var(--f-titolo); color: var(--oro); text-align: center; margin: -2px 0; }
+.atl-mappa .chip {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 4px 10px; border-radius: 999px;
+  border: 1px solid var(--filetto); background: none; font-size: 13.5px; text-align: left;
+}
+.atl-mappa .chip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--c); flex: none; }
+.atl-mappa .chip.tua::before { content: "✦"; width: auto; height: auto; background: none; color: var(--d-tue); font-size: 10px; }
+.atl-mappa .chip.tua { border-color: color-mix(in srgb, var(--d-tue) 40%, transparent); }
+.atl-mappa .chip.q { font: italic 15px var(--f-titolo); border-color: var(--oro-tenue); }
+.atl-mappa .chip.q::before { content: "?"; width: auto; height: auto; background: none; color: var(--oro); font: small-caps 13px var(--f-sc); }
+.atl-mappa .chip small { color: var(--fumo); font-size: 11.5px; font-style: normal; font-family: var(--f-ui); }
+.atl-mappa .chip:hover { border-color: var(--oro-tenue); }
+@media (pointer: coarse) { .atl-mappa .chip { min-height: 44px; } }
+.atl-mappa .chiudi-carta { justify-self: end; margin: -6px -8px -4px 0; width: 44px; height: 44px; border: 0; background: none; color: var(--fumo); font-size: 22px; }
+
+/* svg della ruota */
+.atl-mappa .r-limbo { fill: none; stroke: var(--oro-tenue); vector-effect: non-scaling-stroke; }
+.atl-mappa .r-tacca { stroke: var(--oro-tenue); vector-effect: non-scaling-stroke; }
+.atl-mappa .settore { fill: var(--c); fill-opacity: .1; stroke: var(--filetto); vector-effect: non-scaling-stroke; transition: fill-opacity .2s; }
+.atl-mappa .settore.acceso { fill-opacity: .24; }
+.atl-mappa .settore.fisso { fill-opacity: .34; stroke: var(--oro); }
+.atl-mappa .settore.spento { fill-opacity: .035; }
+.atl-mappa .disc-arco { fill: var(--c); fill-opacity: .2; stroke: var(--filetto); vector-effect: non-scaling-stroke; }
+.atl-mappa .disc-arco.fisso { fill-opacity: .45; stroke: var(--oro); }
+.atl-mappa .q-settore { fill: var(--notte-3); fill-opacity: .55; stroke: var(--oro-tenue); vector-effect: non-scaling-stroke; transition: fill .2s, fill-opacity .2s; }
+.atl-mappa .q-settore.acceso { fill: var(--oro); fill-opacity: .14; }
+.atl-mappa .q-settore.fisso { fill: var(--oro); fill-opacity: .3; stroke: var(--oro); }
+.atl-mappa .q-stella { fill: var(--oro); }
+.atl-mappa .q-raggio { stroke: var(--oro-tenue); vector-effect: non-scaling-stroke; stroke-dasharray: 1 3; }
+.atl-mappa .r-q-testo { fill: var(--inchiostro); font-family: var(--f-titolo); font-style: italic; pointer-events: none; }
+.atl-mappa .anello.attivo .bordo { stroke: var(--oro); stroke-opacity: .7; }
+.atl-mappa .bordo { fill: none; stroke: var(--filetto); vector-effect: non-scaling-stroke; }
+.atl-mappa .fascia { fill: none; stroke: transparent; }
+.atl-mappa .punto { fill: var(--c); transition: opacity .2s; }
+.atl-mappa .punto.tua { fill: var(--d-tue); }
+.atl-mappa .punto.spento { opacity: .28; }
+.atl-mappa .punto.acceso { stroke: var(--inchiostro); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.atl-mappa .punto.fuoco { stroke: var(--oro); stroke-width: 2.5; vector-effect: non-scaling-stroke; fill: var(--inchiostro); }
+.atl-mappa .r-arco { fill: var(--inchiostro); fill-opacity: .72; font-family: var(--f-sc); font-variant-caps: small-caps; pointer-events: none; }
+.atl-mappa .r-arco.disc { fill: var(--c); fill-opacity: 1; }
+.atl-mappa .r-arco.nascosto { display: none; }
+.atl-mappa .r-filo { fill: none; stroke: var(--c); stroke-opacity: .5; stroke-width: 1.1; vector-effect: non-scaling-stroke; pointer-events: none; }
+.atl-mappa .r-filo.domanda { stroke: var(--oro); stroke-opacity: .42; stroke-dasharray: 3 3; }
+.atl-mappa .r-filo.coro { stroke: var(--oro); stroke-opacity: .95; stroke-width: 2; stroke-dasharray: none; }
+.atl-mappa .r-filo.catena { stroke: var(--rubrica); stroke-opacity: .95; stroke-width: 2.4; stroke-dasharray: none; }
+.atl-mappa .r-indice { stroke: var(--oro); stroke-opacity: .55; vector-effect: non-scaling-stroke; stroke-dasharray: 2 4; }
+.atl-mappa .r-freccia { fill: var(--oro); }
+.atl-mappa .r-mezzodi { font-family: var(--f-sc); font-variant-caps: small-caps; fill: var(--inchiostro); paint-order: stroke; stroke: var(--notte); stroke-linejoin: round; pointer-events: none; }
+.atl-mappa .r-mezzodi tspan.n { fill: var(--oro); font-family: var(--f-titolo); font-style: italic; }
+.atl-mappa .r-mozzo { fill: var(--notte-3); stroke: var(--oro); stroke-opacity: .6; vector-effect: non-scaling-stroke; cursor: pointer; }
+.atl-mappa .r-mozzo-testo { font-family: var(--f-sc); font-variant-caps: small-caps; fill: var(--oro); pointer-events: none; }
+
+/* ---------- Firmamento */
+.atl-mappa .costellazioni { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; align-items: center; min-height: 44px; flex: none; }
+.atl-mappa .costellazioni::-webkit-scrollbar { display: none; }
+.atl-mappa .costellazioni > span { font: small-caps 14px var(--f-sc); color: var(--oro); flex: none; padding-inline: 2px; }
+.atl-mappa .costellazioni > span + span, .atl-mappa .costellazioni > button + span { margin-left: 8px; padding-left: 10px; border-left: 1px solid var(--filetto); }
+.atl-mappa .cost {
+  flex: none; min-height: 40px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--filetto);
+  background: none; color: var(--fumo); font: italic 14px var(--f-titolo); white-space: nowrap;
+}
+.atl-mappa .cost.q { font-size: 15.5px; }
+@media (pointer: coarse) { .atl-mappa .cost { min-height: 44px; } }
+.atl-mappa .cost[aria-pressed="true"] { color: var(--oro); border-color: var(--oro-tenue); background: var(--evidenza); }
+.atl-mappa .cost.perc[aria-pressed="true"] { color: var(--rubrica); border-color: var(--rubrica); background: none; }
+.atl-mappa .cielo-box { position: relative; flex: 1; min-height: 260px; border: 1px solid var(--filetto); border-radius: 6px; overflow: hidden; background: var(--notte); }
+.atl-mappa #atl-cielo { display: block; width: 100%; height: 100%; touch-action: none; cursor: grab; }
+.atl-mappa .livelli {
+  position: absolute; left: 8px; top: 8px; display: flex; gap: 2px; padding: 3px; border-radius: 999px;
+  background: var(--notte-2); border: 1px solid var(--filetto); opacity: .94;
+}
+.atl-mappa .livelli button { min-height: 36px; padding: 0 9px; border: 0; border-radius: 999px; background: none; color: var(--fumo); font: small-caps 13px var(--f-sc); }
+@media (pointer: coarse) { .atl-mappa .livelli button { min-height: 44px; } }
+.atl-mappa .livelli button[aria-current="true"] { color: var(--notte); background: var(--oro); }
+.atl-mappa .cielo-tasti { position: absolute; right: 8px; bottom: 8px; display: grid; gap: 8px; justify-items: end; }
+.atl-mappa .cielo-tasti .tondo { background: var(--notte-2); }
+.atl-mappa .salto-btn {
+  justify-self: end; min-height: 44px; padding: 0 16px; border-radius: 999px;
+  border: 1px solid var(--oro); background: var(--notte-2); color: var(--oro); font: small-caps 16px var(--f-sc); letter-spacing: .04em;
+}
+.atl-mappa .carta-cielo { position: absolute; left: 8px; right: 60px; top: 58px; max-width: 420px; max-height: calc(100% - 140px); overflow-y: auto; box-shadow: 0 10px 30px var(--ombra); gap: 2px; padding: 10px 12px; }
+.atl-mappa .carta-cielo .coppia { font-size: 19px; }
+.atl-mappa .carta-cielo .coppia button { min-height: 40px; }
+.atl-mappa .carta-cielo .domanda { font-size: 14px; }
+.atl-mappa .cielo-errore { position: absolute; inset: 0; display: grid; place-items: center; padding: 24px; text-align: center; color: var(--fumo); }
+
+/* ---------- Dettaglio: bottom sheet sul telefono, colonna sul desktop */
+.atl-mappa .dettaglio {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 25; box-sizing: border-box;
+  background: var(--notte-2); border-top: 1px solid var(--oro-tenue); border-radius: 16px 16px 0 0;
+  box-shadow: 0 -14px 44px var(--ombra); max-height: 38dvh; overflow-y: auto; overscroll-behavior: contain;
+  padding: 0 16px calc(18px + env(safe-area-inset-bottom, 0px));
+  transform: translateY(105%); transition: transform .28s ease, max-height .28s ease; visibility: hidden;
+}
+.atl-mappa .dettaglio.aperto { transform: none; visibility: visible; }
+.atl-mappa .dettaglio.espanso { max-height: 88dvh; }
+.atl-mappa .d-barra { position: sticky; top: 0; z-index: 1; display: flex; align-items: center; background: var(--notte-2); margin-inline: -4px; }
+.atl-mappa .d-maniglia { flex: 1; min-height: 44px; border: 0; background: none; display: grid; place-items: center; }
+.atl-mappa .d-maniglia::before { content: ""; width: 44px; height: 4px; border-radius: 2px; background: var(--oro-tenue); }
+.atl-mappa .d-chiudi { width: 44px; height: 44px; border: 0; background: none; color: var(--fumo); font-size: 24px; }
+.atl-mappa .d-occhiello { margin: 0; display: flex; align-items: center; gap: 8px; font: small-caps 14px var(--f-sc); letter-spacing: .04em; color: var(--c); flex-wrap: wrap; }
+.atl-mappa .d-occhiello i { width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+.atl-mappa .d-occhiello button { border: 0; background: none; padding: 0; min-height: 32px; color: inherit; font: inherit; text-decoration: underline; text-decoration-color: var(--filetto); text-underline-offset: 3px; }
+.atl-mappa .d-nome { margin: 2px 0 0; font: 400 30px/1.08 var(--f-titolo); text-wrap: balance; }
+.atl-mappa .d-meta { margin: 4px 0 0; font-size: 12.5px; color: var(--fumo); font-variant-numeric: tabular-nums; }
+.atl-mappa .d-meta .prov { color: var(--rubrica); }
+.atl-mappa .d-sotto { margin: 4px 0 0; font: italic 17px/1.25 var(--f-titolo); color: var(--oro); }
+.atl-mappa .d-cit { margin: 14px 0 4px; padding: 2px 0 2px 14px; border-left: 2px solid var(--oro); }
+.atl-mappa .d-cit p { margin: 0; font: italic 21px/1.3 var(--f-titolo); color: var(--inchiostro); text-wrap: pretty; }
+.atl-mappa .d-cit footer { margin-top: 6px; font-size: 12.5px; color: var(--fumo); display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: center; }
+.atl-mappa .d-cit.piccola { margin: 8px 0; border-left-color: var(--c); }
+.atl-mappa .d-cit.piccola p { font-size: 16.5px; }
+.atl-mappa .d-cit footer button { border: 0; background: none; padding: 0; min-height: 32px; color: var(--c); font: small-caps 14px var(--f-sc); letter-spacing: .03em; text-decoration: underline; text-decoration-color: var(--filetto); text-underline-offset: 3px; }
+@media (pointer: coarse) { .atl-mappa .d-cit footer button { min-height: 44px; } }
+.atl-mappa .dv { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--rubrica); border: 1px solid var(--rubrica); border-radius: 3px; padding: 1px 5px; opacity: .85; }
+.atl-mappa .d-desc { margin: 12px 0 0; font-size: 14.5px; max-width: 62ch; text-wrap: pretty; }
+.atl-mappa .d-sez { margin: 18px 0 6px; font: small-caps 16px var(--f-sc); color: var(--oro); letter-spacing: .04em; display: flex; justify-content: space-between; align-items: baseline; }
+.atl-mappa .d-sez small { font: 12px var(--f-ui); color: var(--fumo); font-variant-numeric: tabular-nums; }
+.atl-mappa .d-gruppo { padding: 8px 0; border-top: 1px solid var(--filetto); display: grid; gap: 6px; }
+.atl-mappa .d-gruppo h4 { margin: 0; font: small-caps 13.5px var(--f-sc); color: var(--c); letter-spacing: .04em; }
+.atl-mappa .d-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.atl-mappa .d-apri {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; min-height: 44px; padding: 0 14px;
+  border-radius: 999px; border: 1px solid var(--oro-tenue); color: var(--oro); text-decoration: none; font-size: 14px;
+}
+.atl-mappa .d-vuoto { color: var(--fumo); font: italic 17px/1.4 var(--f-titolo); margin: 8px 0; }
+.atl-mappa .d-vuoto + p { color: var(--fumo); font-size: 13px; }
+.atl-mappa .riapri {
+  position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(12px + env(safe-area-inset-bottom, 0px)); z-index: 24;
+  min-height: 44px; max-width: calc(100% - 32px); padding: 0 16px; border-radius: 999px; border: 1px solid var(--oro-tenue);
+  background: var(--notte-2); color: var(--inchiostro); box-shadow: 0 8px 24px var(--ombra); font-size: 14px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.atl-mappa .riapri span { color: var(--oro); }
+
+.atl-mappa .avviso {
+  position: fixed; left: 50%; top: calc(var(--vp-nav-height, 64px) + 12px); transform: translateX(-50%); z-index: 28;
+  max-width: calc(100% - 32px); box-sizing: border-box; padding: 10px 14px; border-radius: 8px;
+  background: var(--notte-3); border: 1px solid var(--oro-tenue); color: var(--inchiostro); font-size: 13.5px; box-shadow: 0 10px 30px var(--ombra);
+}
+
+@media (max-width: 999px) {
+  /* con la scheda aperta le viste si accorciano: niente resta nascosto dietro */
+  .atl-mappa.foglio .corpo { padding-bottom: calc(var(--foglio-h) + 8px); }
+  .atl-mappa.foglio .spiega, .atl-mappa.foglio .consiglio, .atl-mappa.foglio .schede { display: none; }
+}
+@media (max-width: 639px) {
+  .atl-mappa .parti { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .atl-mappa .tav-barra { flex-wrap: nowrap; }
+  .atl-mappa .modo button { padding: 0 11px; font-size: 14px; }
+  .atl-mappa .q-coro-riga .coro-voce { padding: 6px 9px; flex-basis: min(230px, 74%); }
+  .atl-mappa .q-coro-riga .cv-testo { font-size: 14px; }
+  .atl-mappa .q-banner { gap: 6px; padding-top: 4px; }
+  .atl-mappa .spiega { font-size: 13px; }
+  .atl-mappa .consiglio { font-size: 12px; }
+  .atl-mappa .col-corpo, .atl-mappa .ruota-layout, .atl-mappa .home { padding-bottom: 72px; }
+  .atl-mappa.foglio .col-corpo, .atl-mappa.foglio .ruota-layout { padding-bottom: 16px; }
+}
+@media (min-width: 640px) {
+  .atl-mappa .colonna { flex-basis: 280px; }
+  .atl-mappa .home { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .atl-mappa .conv-due { grid-template-columns: 1fr; }
+}
+@media (min-width: 820px) {
+  .atl-mappa .ruota-layout { grid-template-columns: minmax(0, 1fr) 300px; overflow: hidden; align-content: stretch; }
+  .atl-mappa .ruota-scena { min-height: 0; }
+  .atl-mappa #atl-ruota-box { width: min(100%, calc(100dvh - 250px)); }
+  .atl-mappa .ruota-lato { overflow-y: auto; min-height: 0; }
+}
+@media (min-width: 1000px) {
+  .atl-mappa .corpo { grid-template-columns: minmax(0, 1fr) 360px; }
+  .atl-mappa .dettaglio {
+    position: static; transform: none; visibility: visible; max-height: none; min-height: 0; box-shadow: none;
+    border: 1px solid var(--filetto); border-radius: 6px; padding: 16px 18px;
+  }
+  .atl-mappa .d-barra, .atl-mappa .riapri { display: none !important; }
+}
+@media (min-width: 1400px) {
+  .atl-mappa .home { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .atl-mappa *, .atl-mappa *::before, .atl-mappa *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+/* ---------- le proposte di Claude (solo con l'interruttore "proposte" acceso) */
+.atl-mappa .voce.proposta .v-nome, .atl-mappa .coro-voce.proposta .cv-chi span, .atl-mappa .chip.proposta {
+  text-decoration: underline dashed color-mix(in srgb, var(--proposta) 70%, transparent); text-underline-offset: 3px;
+}
+.atl-mappa .voce.proposta .v-nome, .atl-mappa .coro-voce.proposta .cv-chi span { color: var(--proposta); }
+.atl-mappa .voce.proposta::before { background: none; border: 1px dashed var(--proposta); width: 4px; height: 4px; }
+.atl-mappa .voce.tua.proposta::before { border: 0; color: var(--proposta); }
+.atl-mappa .q-coro-riga .coro-voce.proposta, .atl-mappa .chip.proposta { border-style: dashed; border-color: var(--proposta); }
+.atl-mappa .chip.proposta { color: var(--proposta); }
+.atl-mappa .cost.proposta { border-style: dashed; border-color: var(--proposta); }
+.atl-mappa .dv.proposta { color: var(--proposta); border: 1px dashed var(--proposta); text-transform: none; letter-spacing: 0; }
+.atl-mappa .punto.proposta { stroke: var(--proposta); stroke-width: 1.5; stroke-dasharray: 2 2; vector-effect: non-scaling-stroke; }
+.atl-mappa .r-filo.proposto { stroke: var(--proposta); stroke-opacity: .85; stroke-dasharray: 4 3; }
+.atl-mappa .d-cit.proposta { border-left-style: dashed; border-left-color: var(--proposta); }
+
+/* ---------- le classi che il sito usa altrove (.scheda, .chip, .conta): qui valgono quelle della mappa */
+.atl-mappa .scheda { margin: 0; flex-wrap: nowrap; row-gap: normal; line-height: normal; letter-spacing: normal; text-transform: none; }
+.atl-mappa .chip { max-width: 100%; line-height: 1.3; background: none; overflow-wrap: normal; text-decoration: none; }
+.atl-mappa .conta { margin-left: 0; }

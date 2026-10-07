@@ -1,6 +1,7 @@
 ---
 tipo: simbolo
 titolo: "La spirale"
+domande: [cosa-e-reale, che-senso-ha]
 concetti: [eterno-ritorno]
 fonti: [true-detective-s1]
 spunti: [true-detective-coscienza]
@@ -14,6 +15,7 @@ Il tempo circolare, True Detective.
 
 ## Collegamenti
 
+- **Domande:** [Cosa è reale?](/domande/cosa-e-reale.md) · [Che senso ha?](/domande/che-senso-ha.md)
 - **Concetti:** [Eterno ritorno](/concetti/eterno-ritorno.md)
 - **Fonti:** [True Detective, stagione 1](/fonti/opere/true-detective-s1.md)
 - **Spunti:** [La coscienza come passo falso](/spunti/true-detective-coscienza/index.md)

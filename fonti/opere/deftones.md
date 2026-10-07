@@ -2,6 +2,10 @@
 tipo: fonte
 titolo: "Deftones"
 sottotipo: opera
+disciplina: arte
+filone: musica
+anno: 2000
+domande: [perche-soffro, cosa-c-e-oltre]
 fonti: [radiohead]
 stile: [blackwork, incisione-xilografia, dotwork, spazio-negativo, dissolvenze]
 creato: 2026-10-04
@@ -17,5 +21,6 @@ Regola: niente testi riprodotti nel repo; si annotano titolo, album e cosa mi ev
 
 ## Collegamenti
 
+- **Domande:** [Perché soffro?](/domande/perche-soffro.md) · [Cosa c'è oltre?](/domande/cosa-c-e-oltre.md)
 - **Fonti:** [Radiohead](/fonti/opere/radiohead.md)
 - **Stile:** [Blackwork](/stile/blackwork.md) · [Incisione / xilografia antica](/stile/incisione-xilografia.md) · [Dotwork](/stile/dotwork.md) · [Spazio negativo](/stile/spazio-negativo.md) · [Dissolvenze](/stile/dissolvenze.md)

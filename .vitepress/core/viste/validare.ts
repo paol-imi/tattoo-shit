@@ -1,6 +1,6 @@
 // Dati della pagina Da validare: ciò che Claude ha proposto e io non ho ancora approvato.
 // (a) le note con `validata: false`; (b) i blocchi proposta dentro le note validate;
-// (c) i collegamenti aggiunti in migrazione, dall'elenco nel diario della fase 1.
+// (c) i collegamenti proposti tra note validate, dagli elenchi nei diari (fase 1 e seguenti).
 import { perTitolo, linkDi, testoFm, type Archivio, type Nota } from '../archivio.ts'
 import { sintesi, primeFrasi } from '../testo.ts'
 import { proposteDi } from '../blocchi.ts'
@@ -29,7 +29,9 @@ export interface PropostaDentro {
 export interface DatiValidare {
   note: NotaDaValidare[]
   proposte: PropostaDentro[]
-  collegamenti: { html: string }[]
+  /** ogni collegamento con il diario che lo elenca */
+  collegamenti: { html: string; diario: { titolo: string; link: string } }[]
+  /** il diario del primo collegamento proposto (o quello della fase 1) */
   diario: { titolo: string; link: string }
   totale: number
 }
@@ -86,14 +88,18 @@ export function datiValidare(a: Archivio, md: Renderer): DatiValidare {
       })),
     )
 
-  const collegamenti = collegamentiProposti(a).map((c) => ({ html: md.renderInline(c.md, DIARIO_MIGRAZIONE) }))
-  const diario = a.perRel.get(DIARIO_MIGRAZIONE)
+  const voceDiario = (rel: string) => {
+    const d = a.perRel.get(rel)
+    return { titolo: d?.titolo ?? (rel === DIARIO_MIGRAZIONE ? 'Diario della fase 1' : rel), link: d?.link ?? linkDi(rel) }
+  }
+  const proposti = collegamentiProposti(a)
+  const collegamenti = proposti.map((c) => ({ html: md.renderInline(c.md, c.diario), diario: voceDiario(c.diario) }))
 
   return {
     note: noteOut,
     proposte,
     collegamenti,
-    diario: { titolo: diario?.titolo ?? 'Diario della fase 1', link: diario?.link ?? linkDi(DIARIO_MIGRAZIONE) },
+    diario: voceDiario(proposti[0]?.diario ?? DIARIO_MIGRAZIONE),
     totale: noteOut.length + proposte.length + collegamenti.length,
   }
 }

@@ -2,6 +2,10 @@
 tipo: fonte
 titolo: "Fullmetal Alchemist: Brotherhood"
 sottotipo: opera
+disciplina: cinema-e-serie
+filone: anime-e-manga
+anno: 2009
+domande: [come-vivere, cosa-posso-conoscere]
 concetti: [scambio-equivalente, verita, sacrificio-anonimo, prezzo-della-conoscenza]
 fonti: [albero-della-vita]
 simboli: [porta, ouroboros]
@@ -15,6 +19,7 @@ Lo scambio equivalente; la Porta della Verità con l'Albero della Vita; la Verit
 
 ## Collegamenti
 
+- **Domande:** [Come devo vivere?](/domande/come-vivere.md) · [Cosa posso conoscere?](/domande/cosa-posso-conoscere.md)
 - **Concetti:** [Scambio equivalente](/concetti/scambio-equivalente.md) · [Verità](/concetti/verita.md) · [Sacrificio anonimo](/concetti/sacrificio-anonimo.md) · [Il prezzo della conoscenza](/concetti/prezzo-della-conoscenza.md)
 - **Fonti:** [Albero della Vita (Cabala)](/fonti/sacro-e-mito/albero-della-vita.md)
 - **Simboli:** [La porta](/simboli/porta.md) · [Ouroboros](/simboli/ouroboros.md)

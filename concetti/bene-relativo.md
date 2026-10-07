@@ -1,7 +1,8 @@
 ---
 tipo: concetto
 titolo: "Il bene relativo"
-fonti: [eraclito, jung]
+domande: [perche-soffro, come-vivere]
+fonti: [eraclito, jung, ombra]
 idee: [lago-nel-cratere]
 creato: 2026-10-04
 ---
@@ -14,5 +15,6 @@ Fonti: Eraclito (frammento 111: è la malattia a rendere dolce la salute, la fam
 
 ## Collegamenti
 
-- **Fonti:** [Eraclito](/fonti/pensiero/eraclito.md) · [Carl Gustav Jung](/fonti/pensiero/jung.md)
+- **Domande:** [Perché soffro?](/domande/perche-soffro.md) · [Come devo vivere?](/domande/come-vivere.md)
+- **Fonti:** [Eraclito](/fonti/pensiero/eraclito.md) · [Carl Gustav Jung](/fonti/pensiero/jung.md) · [L'ombra](/fonti/psicologia/ombra.md)
 - **Idee:** [Il lago nel cratere](/idee/lago-nel-cratere/index.md)

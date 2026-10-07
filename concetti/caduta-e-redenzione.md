@@ -1,6 +1,7 @@
 ---
 tipo: concetto
 titolo: "Caduta e redenzione"
+domande: [perche-soffro, cosa-c-e-oltre]
 fonti: [lucifero, kintsugi, fenice, icaro]
 idee: [verita-di-bernini, alzati-e-cammina]
 creato: 2026-10-04
@@ -14,5 +15,6 @@ Fonti: Lucifero "portatore di luce", l'angelo caduto, il kintsugi, la fenice.
 
 ## Collegamenti
 
+- **Domande:** [Perché soffro?](/domande/perche-soffro.md) · [Cosa c'è oltre?](/domande/cosa-c-e-oltre.md)
 - **Fonti:** [Lucifero](/fonti/sacro-e-mito/lucifero.md) · [Kintsugi](/fonti/arte/kintsugi.md) · [Fenice](/fonti/sacro-e-mito/fenice.md) · [Icaro](/fonti/sacro-e-mito/icaro.md)
 - **Idee:** [La Verità di Bernini](/idee/verita-di-bernini/index.md) · [Alzati e cammina](/idee/alzati-e-cammina/index.md)

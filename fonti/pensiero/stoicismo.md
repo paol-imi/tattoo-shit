@@ -2,6 +2,10 @@
 tipo: fonte
 titolo: "Stoicismo"
 sottotipo: pensiero
+filone: stoa
+forma: concetto
+anno: -300
+domande: [come-vivere, perche-soffro]
 emozioni: [pace-interiore]
 fonti: [marco-aurelio, seneca]
 spunti: [capitano-della-mia-anima]
@@ -13,8 +17,18 @@ creato: 2026-10-04
 
 Corrente. Distinzione tra ciò che dipende da noi e ciò che non dipende.
 
+## Citazione
+
+> [!NOTE]
+> **Proposta di Claude, da validare.**
+>
+> > Delle cose, alcune dipendono da noi, altre non dipendono da noi.
+>
+> — Epitteto, Manuale, 1
+
 ## Collegamenti
 
+- **Domande:** [Come devo vivere?](/domande/come-vivere.md) · [Perché soffro?](/domande/perche-soffro.md)
 - **Emozioni:** [Pace interiore](/emozioni/pace-interiore.md)
 - **Fonti:** [Marco Aurelio](/fonti/pensiero/marco-aurelio.md) · [Seneca](/fonti/pensiero/seneca.md)
 - **Spunti:** [Il capitano della mia anima](/spunti/capitano-della-mia-anima/index.md)

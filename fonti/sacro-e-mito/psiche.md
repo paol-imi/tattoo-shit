@@ -2,8 +2,10 @@
 tipo: fonte
 titolo: "Psiche"
 sottotipo: sacro-e-mito
+filone: miti-antichi
+domande: [cosa-c-e-oltre, come-stare-con-gli-altri, cosa-posso-conoscere]
 concetti: [amore, verita]
-fonti: [asino-d-oro, persefone, canova-amore-psiche]
+fonti: [asino-d-oro, persefone, canova-amore-psiche, hillman]
 simboli: [lampada]
 percorsi: [peso-sguardo-oltre]
 idee: [amore-e-psiche]
@@ -18,8 +20,9 @@ L'anima perde l'amore cercando la verità, attraversa il dolore e li ritrova ent
 
 ## Collegamenti
 
+- **Domande:** [Cosa c'è oltre?](/domande/cosa-c-e-oltre.md) · [Come stare con gli altri?](/domande/come-stare-con-gli-altri.md) · [Cosa posso conoscere?](/domande/cosa-posso-conoscere.md)
 - **Concetti:** [Amore](/concetti/amore.md) · [Verità](/concetti/verita.md)
-- **Fonti:** [L'asino d'oro (Apuleio)](/fonti/opere/asino-d-oro.md) · [Persefone](/fonti/sacro-e-mito/persefone.md) · [Antonio Canova, Amore e Psiche](/fonti/arte/canova-amore-psiche.md)
+- **Fonti:** [L'asino d'oro (Apuleio)](/fonti/opere/asino-d-oro.md) · [Persefone](/fonti/sacro-e-mito/persefone.md) · [Antonio Canova, Amore e Psiche](/fonti/arte/canova-amore-psiche.md) · [James Hillman](/fonti/psicologia/hillman.md)
 - **Simboli:** [La lampada](/simboli/lampada.md)
 - **Percorsi:** [Il peso → lo sguardo → l'oltre](/percorsi/peso-sguardo-oltre.md)
 - **Idee:** [Amore e Psiche](/idee/amore-e-psiche/index.md)

@@ -1,6 +1,7 @@
 ---
 tipo: emozione
 titolo: "Rabbia"
+domande: [perche-soffro, come-stare-con-gli-altri]
 concetti: [tre-metamorfosi, rivolta]
 fonti: [berserk]
 percorsi: [tre-metamorfosi-percorso]
@@ -14,6 +15,7 @@ Energia della rivolta. È il leone delle tre metamorfosi.
 
 ## Collegamenti
 
+- **Domande:** [Perché soffro?](/domande/perche-soffro.md) · [Come stare con gli altri?](/domande/come-stare-con-gli-altri.md)
 - **Concetti:** [Le tre metamorfosi](/concetti/tre-metamorfosi.md) · [Rivolta](/concetti/rivolta.md)
 - **Fonti:** [Berserk](/fonti/opere/berserk.md)
 - **Percorsi:** [Le tre metamorfosi (percorso)](/percorsi/tre-metamorfosi-percorso.md)

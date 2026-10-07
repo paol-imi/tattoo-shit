@@ -49,7 +49,7 @@ export default {
     app.component('AtlanteHome', defineAsyncComponent(() => import('./components/AtlanteHome.vue')))
     app.component('Bacheca', defineAsyncComponent(() => import('./components/Bacheca.vue')))
     app.component('Testi', defineAsyncComponent(() => import('./components/Testi.vue')))
-    app.component('Mappa', defineAsyncComponent(() => import('./components/Mappa.vue')))
+    app.component('MappaAtlante', defineAsyncComponent(() => import('./components/atlante/MappaAtlante.vue')))
     app.component('DaValidare', defineAsyncComponent(() => import('./components/DaValidare.vue')))
   },
 } satisfies Theme

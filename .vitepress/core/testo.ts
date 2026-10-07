@@ -69,7 +69,8 @@ export function fraseTraVirgolette(md: string): string | null {
 /** Una citazione trovata in una nota: il testo (a capo conservati), se c'è il riferimento, e se sta in un blocco proposta. */
 export interface Citazione { testo: string; riferimento: string | null; proposta: boolean }
 
-function testoCitazione(righe: readonly string[]): string {
+/** Il testo di una citazione dalle sue righe senza `>`: a capo dove la riga finisce con la barra rovesciata, strofe separate da una riga vuota. */
+export function testoCitazione(righe: readonly string[]): string {
   // le righe che finiscono con "\" vanno a capo; una riga vuota separa le strofe; il resto si unisce
   const strofe = righe.join('\n').split(/\n\s*\n/).map((s) =>
     s.split('\n').reduce((acc, r, i, a) => acc + r.replace(/\\$/, '') + (i === a.length - 1 ? '' : /\\$/.test(r) ? '\n' : ' '), ''),

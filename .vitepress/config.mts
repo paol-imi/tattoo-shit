@@ -63,7 +63,9 @@ const gruppi: Record<string, () => DefaultTheme.SidebarItem[]> = {
   diario: () => voceDiario,
   archivio: () => conIndice('archivio'),
 }
-const aperti = new Set(['nucleo', 'percorso', 'idea', 'ricerca'])
+// Domande e Discipline (domande/, discipline/) compaiono da sole, dopo il nucleo, quando le cartelle hanno note;
+// Psicologia e Scienza tra le fonti, da SOTTOCARTELLE_FONTI
+const aperti = new Set(['nucleo', 'domanda', 'percorso', 'idea', 'ricerca'])
 
 const sidebar: DefaultTheme.SidebarItem[] = ORDINE_GRUPPI.map((g) => ({
   text: ETICHETTE_GRUPPO[g],

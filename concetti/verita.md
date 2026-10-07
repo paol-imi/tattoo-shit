@@ -1,6 +1,7 @@
 ---
 tipo: concetto
 titolo: "Verità"
+domande: [cosa-posso-conoscere, cosa-c-e-oltre, cosa-e-reale]
 emozioni: [lucidita]
 fonti: [camus, true-detective-s1, fma-brotherhood, bernini-verita, psiche]
 simboli: [velo, lampada]
@@ -16,6 +17,7 @@ Uno dei due "oltre". Attraversa tutti i miei riferimenti: la lucidità camusiana
 
 ## Collegamenti
 
+- **Domande:** [Cosa posso conoscere?](/domande/cosa-posso-conoscere.md) · [Cosa c'è oltre?](/domande/cosa-c-e-oltre.md) · [Cosa è reale?](/domande/cosa-e-reale.md)
 - **Emozioni:** [Lucidità](/emozioni/lucidita.md)
 - **Fonti:** [Albert Camus](/fonti/pensiero/camus.md) · [True Detective, stagione 1](/fonti/opere/true-detective-s1.md) · [Fullmetal Alchemist: Brotherhood](/fonti/opere/fma-brotherhood.md) · [Gian Lorenzo Bernini, La Verità svelata dal Tempo](/fonti/arte/bernini-verita.md) · [Psiche](/fonti/sacro-e-mito/psiche.md)
 - **Simboli:** [Il velo](/simboli/velo.md) · [La lampada](/simboli/lampada.md)

@@ -30,7 +30,9 @@ Le idee erano sparse tra Pinterest, chat, appunti e immagini generate. Qui stann
 |---|---|
 | [emozioni/](emozioni/) | stati interiori: dolore, vuoto, lucidità, meraviglia… |
 | [concetti/](concetti/) | idee filosofiche e temi: assurdo, amor fati, soglia… |
-| [fonti/](fonti/) | da dove vengono le cose: [pensiero](fonti/pensiero/), [sacro e mito](fonti/sacro-e-mito/), [opere](fonti/opere/), [arte](fonti/arte/) |
+| [domande/](domande/) | le grandi domande, ciascuna con il coro delle voci che rispondono: chi sono?, perché soffro?… |
+| [fonti/](fonti/) | da dove vengono le cose: [pensiero](fonti/pensiero/), [sacro e mito](fonti/sacro-e-mito/), [opere](fonti/opere/), [arte](fonti/arte/), [psicologia](fonti/psicologia/), [scienza](fonti/scienza/) |
+| [discipline/](discipline/) | da quale sapere vengono le fonti, con i loro filoni: filosofia, psicologia, scienza… |
 | [simboli/](simboli/) | motivi visivi: ouroboros, velo, porta, occhi… |
 | [stile/](stile/) | tecniche e composizione: incisione, patchwork… |
 | [percorsi/](percorsi/) | fili narrativi che attraversano tutto |
@@ -74,10 +76,10 @@ Il sito ha tre porte, in alto nel menu e in home, più la pagina Da validare. Di
 
 - **[Bacheca](https://paol-imi.github.io/tattoo-shit/bacheca):** tutte le idee e gli spunti come tavole, con i pin e le parole. Tocca un chip (un simbolo, una fonte, un concetto) per vedere solo ciò che vi è legato; i filtri stanno nell'indirizzo e si possono condividere.
 - **[Testi](https://paol-imi.github.io/tattoo-shit/testi):** ogni citazione dell'archivio, per fonte. Le candidate al lettering.
-- **[Mappa](https://paol-imi.github.io/tattoo-shit/mappa):** il grafo delle note. Passa sopra un nodo per accendere i vicini, cliccalo per aprire la nota.
+- **[Mappa](https://paol-imi.github.io/tattoo-shit/mappa):** l'Atlante dei concetti. Le grandi domande e le voci che rispondono, in tre viste: Tavole (scegli una domanda, si aprono le colonne delle discipline che rispondono), Ruota (anelli da girare attorno alle domande) e Firmamento (le discipline come regioni di un cielo, le domande come costellazioni). Tocca una voce per la sua scheda, da lì apri la nota.
 - **[Da validare](https://paol-imi.github.io/tattoo-shit/da-validare):** ciò che Claude ha proposto e non ho ancora approvato, sempre tutto. Non è nel menu: ci si arriva dall'interruttore acceso (o dal menu del telefono). Con le proposte accese, sulla bacheca e sulla mappa sono tratteggiate in rosso.
 
-Da ogni nota, la riga in testa porta alla sua posizione sulla mappa e alle tavole della bacheca legate a lei.
+Da ogni nota dell'Atlante (e da ogni domanda), la riga in testa porta alla sua posizione sulla mappa; dai nodi, anche alle tavole della bacheca legate a lei.
 
 ## Strumenti
 
@@ -108,6 +110,7 @@ Oggi l'archivio conta 199 note; 33 note e 12 blocchi sono proposte di Claude che
 - **Validazione:** fatta. Ogni nota dice se viene dal seme, da me o da Claude, e se l'ho approvata; le proposte di Claude sono marcate e raccolte in [Da validare](https://paol-imi.github.io/tattoo-shit/da-validare), vedi il [diario](diario/2026-10-05-validazione.md).
 - **Revisione del seme:** il seme l'ha compilato Claude, e le sue idee di tatuaggio sono proposte di Claude, mai approvate: tornano da validare, vedi il [diario](diario/2026-10-05-revisione-seme.md).
 - **Nuove proposte:** nove idee proposte da Claude a partire dalle mie parole e dai miei riferimenti, sette note nuove e due varianti dentro le mie idee, tutte da valutare a pancia, vedi il [diario](diario/2026-10-06-nuove-proposte.md).
+- **Atlante dei concetti:** la mappa si legge come incrocio tra 8 domande e 7 discipline, con filoni, citazioni e 91 note nuove proposte da Claude, tutte da validare, vedi il [diario](diario/2026-10-07-atlante-dei-concetti.md).
 - **Seconda ondata, le reference:** otto idee proposte da Claude a partire da True Detective, Fullmetal Alchemist, Berserk e Napoleone, più due candidate confluite in *A se stesso*, vedi il [diario](diario/2026-10-06-nuove-proposte.md).
 - **Fase 3, Pinterest:** link alle board e triage.
 - **Fase 4, le skill di Claude Code:** `/spunto`, `/idea`, `/triage`, `/convergenze`, `/diario`…

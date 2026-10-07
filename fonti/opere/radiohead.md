@@ -2,6 +2,10 @@
 tipo: fonte
 titolo: "Radiohead"
 sottotipo: opera
+disciplina: arte
+filone: musica
+anno: 1997
+domande: [perche-soffro, come-stare-con-gli-altri]
 emozioni: [malinconia]
 fonti: [deftones]
 stile: [blackwork, incisione-xilografia, dotwork, spazio-negativo, dissolvenze]
@@ -18,6 +22,7 @@ Regola: niente testi riprodotti nel repo; si annotano titolo, album e cosa mi ev
 
 ## Collegamenti
 
+- **Domande:** [Perché soffro?](/domande/perche-soffro.md) · [Come stare con gli altri?](/domande/come-stare-con-gli-altri.md)
 - **Emozioni:** [Malinconia](/emozioni/malinconia.md)
 - **Fonti:** [Deftones](/fonti/opere/deftones.md)
 - **Stile:** [Blackwork](/stile/blackwork.md) · [Incisione / xilografia antica](/stile/incisione-xilografia.md) · [Dotwork](/stile/dotwork.md) · [Spazio negativo](/stile/spazio-negativo.md) · [Dissolvenze](/stile/dissolvenze.md)

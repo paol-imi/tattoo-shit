@@ -1,6 +1,7 @@
 ---
 tipo: concetto
 titolo: "Sacrificio anonimo"
+domande: [come-stare-con-gli-altri, come-vivere]
 concetti: [tensioni]
 fonti: [lamed-vav, maimonide, vangelo-matteo, marco-aurelio, tao-te-ching, kshitigarbha, fma-brotherhood]
 simboli: [lamed-vav-lettere, vite]
@@ -26,6 +27,7 @@ Fonti:
 
 ## Collegamenti
 
+- **Domande:** [Come stare con gli altri?](/domande/come-stare-con-gli-altri.md) · [Come devo vivere?](/domande/come-vivere.md)
 - **Concetti:** [Tensioni aperte](/concetti/tensioni.md)
 - **Fonti:** [Lamed Vav, i 36 giusti](/fonti/sacro-e-mito/lamed-vav.md) · [Maimonide](/fonti/pensiero/maimonide.md) · [Vangelo di Matteo](/fonti/sacro-e-mito/vangelo-matteo.md) · [Marco Aurelio](/fonti/pensiero/marco-aurelio.md) · [Laozi, Tao Te Ching](/fonti/pensiero/tao-te-ching.md) · [Kṣitigarbha / Jizō](/fonti/sacro-e-mito/kshitigarbha.md) · [Fullmetal Alchemist: Brotherhood](/fonti/opere/fma-brotherhood.md)
 - **Simboli:** [ל״ו](/simboli/lamed-vav-lettere.md) · [La vite](/simboli/vite.md)

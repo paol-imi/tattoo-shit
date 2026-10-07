@@ -13,7 +13,8 @@
     "docs:preview": "vitepress preview"
   },
   "devDependencies": {
-    "force-graph": "^1.52.0",
+    "d3-selection": "^3.0.0",
+    "d3-zoom": "^3.0.0",
     "sharp": "^0.35.5",
     "vitepress": "^1.6.4"
   }
