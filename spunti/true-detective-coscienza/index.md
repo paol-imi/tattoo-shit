@@ -3,6 +3,7 @@ tipo: spunto
 titolo: "La coscienza come passo falso"
 origine: seme
 validata: true
+domande: [perche-soffro, chi-sono]
 fonte: true-detective-s1
 formato: frase
 concetti: [coscienza-come-peso, assurdo, prezzo-della-conoscenza, eterno-ritorno, verita, amore]
@@ -67,6 +68,7 @@ In fase di triage cercare altri pin legati a cervi e alci, cieli stellati, spira
 
 ## Collegamenti
 
+- **Domande:** [Perché soffro?](/domande/perche-soffro.md) · [Chi sono?](/domande/chi-sono.md)
 - **Emozioni:** [Lucidità](/emozioni/lucidita.md) · [Vuoto](/emozioni/vuoto.md) · [Malinconia](/emozioni/malinconia.md)
 - **Concetti:** [La coscienza come peso](/concetti/coscienza-come-peso.md) · [L'assurdo](/concetti/assurdo.md) · [Il prezzo della conoscenza](/concetti/prezzo-della-conoscenza.md) · [Eterno ritorno](/concetti/eterno-ritorno.md) · [Verità](/concetti/verita.md) · [Amore](/concetti/amore.md)
 - **Fonti:** [True Detective, stagione 1](/fonti/opere/true-detective-s1.md) · [Peter Wessel Zapffe](/fonti/pensiero/zapffe.md) · [Thomas Ligotti](/fonti/pensiero/ligotti.md) · [Albert Camus](/fonti/pensiero/camus.md) · [Arthur Schopenhauer](/fonti/pensiero/schopenhauer.md)

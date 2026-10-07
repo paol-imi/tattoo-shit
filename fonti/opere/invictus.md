@@ -3,6 +3,10 @@ tipo: fonte
 titolo: "William Ernest Henley, Invictus (1875)"
 origine: mia
 sottotipo: opera
+disciplina: letteratura
+filone: ottocento-letterario
+anno: 1888
+domande: [come-vivere, perche-soffro]
 emozioni: [dolore]
 concetti: [battaglie-interiori]
 spunti: [capitano-della-mia-anima]
@@ -18,6 +22,7 @@ Mi interessa come possibile testo lungo: quattro quartine sull'anima che resiste
 
 ## Collegamenti
 
+- **Domande:** [Come devo vivere?](/domande/come-vivere.md) · [Perché soffro?](/domande/perche-soffro.md)
 - **Emozioni:** [Dolore](/emozioni/dolore.md)
 - **Concetti:** [Battaglie interiori](/concetti/battaglie-interiori.md)
 - **Spunti:** [Il capitano della mia anima](/spunti/capitano-della-mia-anima/index.md)

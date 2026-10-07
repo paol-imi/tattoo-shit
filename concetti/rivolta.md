@@ -1,6 +1,7 @@
 ---
 tipo: concetto
 titolo: "Rivolta"
+domande: [che-senso-ha, come-stare-con-gli-altri]
 emozioni: [rabbia]
 concetti: [assurdo]
 fonti: [camus, camus-opere]
@@ -14,6 +15,7 @@ La risposta all'assurdo. Nel Camus maturo (*L'uomo in rivolta*) la rivolta solit
 
 ## Collegamenti
 
+- **Domande:** [Che senso ha?](/domande/che-senso-ha.md) · [Come stare con gli altri?](/domande/come-stare-con-gli-altri.md)
 - **Emozioni:** [Rabbia](/emozioni/rabbia.md)
 - **Concetti:** [L'assurdo](/concetti/assurdo.md)
 - **Fonti:** [Albert Camus](/fonti/pensiero/camus.md) · [Il mito di Sisifo / L'uomo in rivolta](/fonti/opere/camus-opere.md)

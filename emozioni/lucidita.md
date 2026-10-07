@@ -1,6 +1,7 @@
 ---
 tipo: emozione
 titolo: "Lucidità"
+domande: [cosa-posso-conoscere, perche-soffro]
 concetti: [verita]
 fonti: [camus, true-detective-s1]
 percorsi: [peso-sguardo-oltre]
@@ -16,6 +17,7 @@ Vedere chiaro senza consolazioni. In Camus è l'ora della coscienza; in True Det
 
 ## Collegamenti
 
+- **Domande:** [Cosa posso conoscere?](/domande/cosa-posso-conoscere.md) · [Perché soffro?](/domande/perche-soffro.md)
 - **Concetti:** [Verità](/concetti/verita.md)
 - **Fonti:** [Albert Camus](/fonti/pensiero/camus.md) · [True Detective, stagione 1](/fonti/opere/true-detective-s1.md)
 - **Percorsi:** [Il peso → lo sguardo → l'oltre](/percorsi/peso-sguardo-oltre.md)

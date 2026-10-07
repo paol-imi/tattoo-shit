@@ -2,6 +2,8 @@
 tipo: fonte
 titolo: "Sisifo"
 sottotipo: sacro-e-mito
+filone: miti-antichi
+domande: [che-senso-ha, perche-soffro]
 emozioni: [dolore]
 concetti: [amor-fati]
 fonti: [camus, berserk, camus-opere, tiziano-sisifo, von-stuck-sisifo]
@@ -17,6 +19,7 @@ Il masso, la discesa, l'ora della coscienza.
 
 ## Collegamenti
 
+- **Domande:** [Che senso ha?](/domande/che-senso-ha.md) · [Perché soffro?](/domande/perche-soffro.md)
 - **Emozioni:** [Dolore](/emozioni/dolore.md)
 - **Concetti:** [Amor fati](/concetti/amor-fati.md)
 - **Fonti:** [Albert Camus](/fonti/pensiero/camus.md) · [Berserk](/fonti/opere/berserk.md) · [Il mito di Sisifo / L'uomo in rivolta](/fonti/opere/camus-opere.md) · [Tiziano, Sisifo](/fonti/arte/tiziano-sisifo.md) · [Franz von Stuck, Sisifo](/fonti/arte/von-stuck-sisifo.md)

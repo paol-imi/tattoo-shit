@@ -2,6 +2,9 @@
 tipo: fonte
 titolo: "Vangelo di Matteo"
 sottotipo: sacro-e-mito
+filone: tradizione-biblica
+forma: opera
+domande: [come-stare-con-gli-altri, come-vivere]
 concetti: [sacrificio-anonimo]
 percorsi: [dall-io-al-noi]
 spunti: [capitano-della-mia-anima]
@@ -15,6 +18,7 @@ La sinistra che non sa cosa fa la destra (6,3).
 
 ## Collegamenti
 
+- **Domande:** [Come stare con gli altri?](/domande/come-stare-con-gli-altri.md) · [Come devo vivere?](/domande/come-vivere.md)
 - **Concetti:** [Sacrificio anonimo](/concetti/sacrificio-anonimo.md)
 - **Percorsi:** [Dall'io al noi](/percorsi/dall-io-al-noi.md)
 - **Spunti:** [Il capitano della mia anima](/spunti/capitano-della-mia-anima/index.md)

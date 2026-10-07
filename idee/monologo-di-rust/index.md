@@ -6,6 +6,7 @@ validata: true
 stato: seme
 formato: 
 placement: []
+domande: [perche-soffro, che-senso-ha]
 stile: [blackwork, testo-e-lettering]
 concetti: []
 emozioni: []
@@ -66,6 +67,7 @@ _Nessuna immagine ancora._
 
 ## Collegamenti
 
+- **Domande:** [Perché soffro?](/domande/perche-soffro.md) · [Che senso ha?](/domande/che-senso-ha.md)
 - **Fonti:** [True Detective, stagione 1](/fonti/opere/true-detective-s1.md)
 - **Stile:** [Blackwork](/stile/blackwork.md) · [Testo e lettering](/stile/testo-e-lettering.md)
 - **Spunti:** [La coscienza come passo falso](/spunti/true-detective-coscienza/index.md)

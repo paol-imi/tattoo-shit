@@ -3,6 +3,7 @@ tipo: spunto
 titolo: "Non dormo, sogno soltanto"
 origine: mia
 validata: true
+domande: [cosa-e-reale, chi-sono]
 fonte: true-detective-s1
 formato: frase
 concetti: [soglia-e-mistero]
@@ -46,6 +47,7 @@ _Nessuna immagine ancora._
 
 ## Collegamenti
 
+- **Domande:** [Cosa è reale?](/domande/cosa-e-reale.md) · [Chi sono?](/domande/chi-sono.md)
 - **Emozioni:** [Lucidità](/emozioni/lucidita.md)
 - **Concetti:** [La soglia e il mistero](/concetti/soglia-e-mistero.md)
 - **Fonti:** [True Detective, stagione 1](/fonti/opere/true-detective-s1.md)

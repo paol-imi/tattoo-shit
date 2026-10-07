@@ -1,6 +1,7 @@
 ---
 tipo: simbolo
 titolo: "Ouroboros"
+domande: [cosa-e-reale, che-senso-ha]
 concetti: [eterno-ritorno, dissoluzione-dell-io, morte-e-rinascita]
 fonti: [fma-brotherhood, true-detective-s1, nietzsche, alchimia]
 spunti: [true-detective-coscienza]
@@ -16,6 +17,7 @@ Un unico simbolo antico tiene insieme quasi tutti i miei riferimenti.
 
 ## Collegamenti
 
+- **Domande:** [Cosa è reale?](/domande/cosa-e-reale.md) · [Che senso ha?](/domande/che-senso-ha.md)
 - **Concetti:** [Eterno ritorno](/concetti/eterno-ritorno.md) · [Dissoluzione dell'io](/concetti/dissoluzione-dell-io.md) · [Morte e rinascita](/concetti/morte-e-rinascita.md)
 - **Fonti:** [Fullmetal Alchemist: Brotherhood](/fonti/opere/fma-brotherhood.md) · [True Detective, stagione 1](/fonti/opere/true-detective-s1.md) · [Friedrich Nietzsche](/fonti/pensiero/nietzsche.md) · [Alchimia](/fonti/sacro-e-mito/alchimia.md)
 - **Spunti:** [La coscienza come passo falso](/spunti/true-detective-coscienza/index.md)

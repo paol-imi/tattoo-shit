@@ -51,9 +51,9 @@ export const DISCIPLINE: readonly { readonly id: string; readonly nome: string }
   { id: 'filosofia', nome: 'Filosofia' },
   { id: 'psicologia', nome: 'Psicologia' },
   { id: 'religioni-e-mito', nome: 'Religioni e mito' },
-  { id: 'letteratura', nome: 'Letteratura' },
+  { id: 'letteratura', nome: 'Letteratura e poesia' },
   { id: 'arte', nome: 'Arte' },
-  { id: 'cinema-e-serie', nome: 'Cinema e serie' },
+  { id: 'cinema-e-serie', nome: 'Cinema, serie e fumetto' },
   { id: 'scienza', nome: 'Scienza' },
 ]
 /** La disciplina di una fonte che non la dichiara, dalla sua sottocartella (le opere la dichiarano sempre). */

@@ -6,6 +6,7 @@ validata: true
 stato: da-fare
 oggetto: "Un account Instagram da guardare bene: c'è qualcosa di interessante per me?"
 link: ["https://www.instagram.com/soorajsaxena/", "https://www.soorajsaxena.com/information", "https://www.youtube.com/watch?v=t_lGJqloVp0"]
+domande: [chi-sono, come-vivere]
 concetti: [evoluzione-e-percorso]
 emozioni: []
 fonti: [advaita-buddhismo]
@@ -46,5 +47,6 @@ _Ancora nessuno._
 
 ## Collegamenti
 
+- **Domande:** [Chi sono?](/domande/chi-sono.md) · [Come devo vivere?](/domande/come-vivere.md)
 - **Concetti:** [Evoluzione e percorso](/concetti/evoluzione-e-percorso.md)
 - **Fonti:** [Advaita e buddhismo](/fonti/sacro-e-mito/advaita-buddhismo.md)

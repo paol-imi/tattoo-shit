@@ -110,6 +110,7 @@ Oggi l'archivio conta 199 note; 33 note e 12 blocchi sono proposte di Claude che
 - **Validazione:** fatta. Ogni nota dice se viene dal seme, da me o da Claude, e se l'ho approvata; le proposte di Claude sono marcate e raccolte in [Da validare](https://paol-imi.github.io/tattoo-shit/da-validare), vedi il [diario](diario/2026-10-05-validazione.md).
 - **Revisione del seme:** il seme l'ha compilato Claude, e le sue idee di tatuaggio sono proposte di Claude, mai approvate: tornano da validare, vedi il [diario](diario/2026-10-05-revisione-seme.md).
 - **Nuove proposte:** nove idee proposte da Claude a partire dalle mie parole e dai miei riferimenti, sette note nuove e due varianti dentro le mie idee, tutte da valutare a pancia, vedi il [diario](diario/2026-10-06-nuove-proposte.md).
+- **Atlante dei concetti:** la mappa si legge come incrocio tra 8 domande e 7 discipline, con filoni, citazioni e 91 note nuove proposte da Claude, tutte da validare, vedi il [diario](diario/2026-10-07-atlante-dei-concetti.md).
 - **Seconda ondata, le reference:** otto idee proposte da Claude a partire da True Detective, Fullmetal Alchemist, Berserk e Napoleone, più due candidate confluite in *A se stesso*, vedi il [diario](diario/2026-10-06-nuove-proposte.md).
 - **Fase 3, Pinterest:** link alle board e triage.
 - **Fase 4, le skill di Claude Code:** `/spunto`, `/idea`, `/triage`, `/convergenze`, `/diario`…

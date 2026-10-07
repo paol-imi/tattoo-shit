@@ -2,6 +2,9 @@
 tipo: fonte
 titolo: "Gian Lorenzo Bernini, La Verità svelata dal Tempo"
 sottotipo: arte
+filone: rinascimento-e-barocco
+anno: 1652
+domande: [cosa-c-e-oltre, cosa-posso-conoscere]
 concetti: [verita]
 simboli: [velo, sole]
 stile: [black-and-grey-realism]
@@ -16,6 +19,7 @@ Galleria Borghese. Scolpita nel periodo più nero della sua vita, dopo il fallim
 
 ## Collegamenti
 
+- **Domande:** [Cosa c'è oltre?](/domande/cosa-c-e-oltre.md) · [Cosa posso conoscere?](/domande/cosa-posso-conoscere.md)
 - **Concetti:** [Verità](/concetti/verita.md)
 - **Simboli:** [Il velo](/simboli/velo.md) · [Il sole in mano](/simboli/sole.md)
 - **Stile:** [Black & grey realism](/stile/black-and-grey-realism.md)

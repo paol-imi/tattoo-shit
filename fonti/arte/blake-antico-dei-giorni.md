@@ -2,7 +2,11 @@
 tipo: fonte
 titolo: "William Blake, L'Antico dei Giorni"
 sottotipo: arte
+filone: immagini-esoteriche
+anno: 1794
+domande: [cosa-posso-conoscere, cosa-c-e-oltre]
 concetti: [soglia-e-mistero]
+fonti: [fludd]
 stile: [incisione-xilografia]
 creato: 2026-10-04
 ---
@@ -13,7 +17,9 @@ La figura che misura il mondo con il compasso. Una delle reference esoteriche em
 
 ## Collegamenti
 
+- **Domande:** [Cosa posso conoscere?](/domande/cosa-posso-conoscere.md) · [Cosa c'è oltre?](/domande/cosa-c-e-oltre.md)
 - **Concetti:** [La soglia e il mistero](/concetti/soglia-e-mistero.md)
+- **Fonti:** [Robert Fludd](/fonti/arte/fludd.md)
 - **Stile:** [Incisione / xilografia antica](/stile/incisione-xilografia.md)
 
 ## Note

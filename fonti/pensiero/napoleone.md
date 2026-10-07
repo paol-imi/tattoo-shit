@@ -2,6 +2,9 @@
 tipo: fonte
 titolo: "Napoleone"
 sottotipo: pensiero
+filone: sublime-e-romanticismo
+anno: 1804
+domande: [come-vivere]
 emozioni: [passione]
 concetti: [virtu-e-fortuna, guida-e-condottiero, tensioni]
 idee: [mulo-e-guida]
@@ -14,6 +17,7 @@ La visione, la volontà, la stella. (Più figura che fonte filosofica.)
 
 ## Collegamenti
 
+- **Domande:** [Come devo vivere?](/domande/come-vivere.md)
 - **Emozioni:** [Passione](/emozioni/passione.md)
 - **Concetti:** [Resilienza, tenacia, passione: virtù e fortuna](/concetti/virtu-e-fortuna.md) · [Guida e condottiero](/concetti/guida-e-condottiero.md) · [Tensioni aperte](/concetti/tensioni.md)
 - **Idee:** [Il mulo e la guida](/idee/mulo-e-guida/index.md)

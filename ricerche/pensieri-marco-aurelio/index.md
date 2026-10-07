@@ -6,6 +6,7 @@ validata: true
 stato: in-corso
 oggetto: "Rileggere i Pensieri (le Meditazioni) cercando materiale per tatuaggi: frasi, immagini, convergenze."
 link: ["https://www.gutenberg.org/ebooks/15877"]
+domande: [come-vivere]
 concetti: [amor-fati, memento-mori, sacrificio-anonimo]
 emozioni: [pace-interiore, dolore, lucidita]
 fonti: [marco-aurelio, stoicismo, eraclito]
@@ -75,6 +76,7 @@ Domanda per me: quale di questi passi ti colpisce di più, a pancia?
 
 ## Collegamenti
 
+- **Domande:** [Come devo vivere?](/domande/come-vivere.md)
 - **Concetti:** [Amor fati](/concetti/amor-fati.md) · [Memento mori](/concetti/memento-mori.md) · [Sacrificio anonimo](/concetti/sacrificio-anonimo.md)
 - **Emozioni:** [Pace interiore](/emozioni/pace-interiore.md) · [Dolore](/emozioni/dolore.md) · [Lucidità](/emozioni/lucidita.md)
 - **Fonti:** [Marco Aurelio](/fonti/pensiero/marco-aurelio.md) · [Stoicismo](/fonti/pensiero/stoicismo.md) · [Eraclito](/fonti/pensiero/eraclito.md)

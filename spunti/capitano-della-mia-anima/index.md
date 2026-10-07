@@ -3,6 +3,7 @@ tipo: spunto
 titolo: "Il capitano della mia anima"
 origine: mia
 validata: true
+domande: [come-vivere]
 fonte: invictus
 formato: opera
 concetti: [virtu-e-fortuna, amor-fati, battaglie-interiori, memento-mori]
@@ -73,6 +74,7 @@ _Nessun pin collegato._
 
 ## Collegamenti
 
+- **Domande:** [Come devo vivere?](/domande/come-vivere.md)
 - **Concetti:** [Resilienza, tenacia, passione: virtù e fortuna](/concetti/virtu-e-fortuna.md) · [Amor fati](/concetti/amor-fati.md) · [Battaglie interiori](/concetti/battaglie-interiori.md) · [Memento mori](/concetti/memento-mori.md)
 - **Fonti:** [William Ernest Henley, Invictus (1875)](/fonti/opere/invictus.md) · [Stoicismo](/fonti/pensiero/stoicismo.md) · [Vangelo di Matteo](/fonti/sacro-e-mito/vangelo-matteo.md)
 - **Simboli:** [La porta](/simboli/porta.md)

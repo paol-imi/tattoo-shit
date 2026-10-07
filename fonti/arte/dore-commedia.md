@@ -2,6 +2,9 @@
 tipo: fonte
 titolo: "Gustave Doré, illustrazioni per la Commedia"
 sottotipo: arte
+filone: ottocento-artistico
+anno: 1861
+domande: [cosa-c-e-oltre, perche-soffro]
 fonti: [divina-commedia]
 stile: [blackwork, incisione-xilografia]
 idee: [sleeve-dantesca]
@@ -14,6 +17,7 @@ Classico del blackwork. In particolare la selva oscura e la "candida rosa" dell'
 
 ## Collegamenti
 
+- **Domande:** [Cosa c'è oltre?](/domande/cosa-c-e-oltre.md) · [Perché soffro?](/domande/perche-soffro.md)
 - **Fonti:** [Divina Commedia](/fonti/opere/divina-commedia.md)
 - **Stile:** [Blackwork](/stile/blackwork.md) · [Incisione / xilografia antica](/stile/incisione-xilografia.md)
 - **Idee:** [Il Cammino: sleeve dantesca](/idee/sleeve-dantesca/index.md)

@@ -1,6 +1,7 @@
 ---
 tipo: concetto
 titolo: "Il prezzo della conoscenza"
+domande: [cosa-posso-conoscere, perche-soffro]
 concetti: [scambio-equivalente]
 fonti: [prometeo, odino, fma-brotherhood]
 simboli: [porta]
@@ -17,6 +18,7 @@ Fonti: Prometeo, Odino che sacrifica un occhio, l'albero della conoscenza, la Po
 
 ## Collegamenti
 
+- **Domande:** [Cosa posso conoscere?](/domande/cosa-posso-conoscere.md) · [Perché soffro?](/domande/perche-soffro.md)
 - **Concetti:** [Scambio equivalente](/concetti/scambio-equivalente.md)
 - **Fonti:** [Prometeo](/fonti/sacro-e-mito/prometeo.md) · [Odino](/fonti/sacro-e-mito/odino.md) · [Fullmetal Alchemist: Brotherhood](/fonti/opere/fma-brotherhood.md)
 - **Simboli:** [La porta](/simboli/porta.md)

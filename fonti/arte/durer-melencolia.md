@@ -2,6 +2,9 @@
 tipo: fonte
 titolo: "Albrecht Dürer, Melencolia I (1514)"
 sottotipo: arte
+filone: rinascimento-e-barocco
+anno: 1514
+domande: [cosa-posso-conoscere, perche-soffro]
 emozioni: [malinconia]
 simboli: [clessidra, poliedro, scala]
 stile: [incisione-xilografia]
@@ -15,6 +18,7 @@ Un angelo pensieroso tra strumenti di misura, un quadrato magico, un poliedro mi
 
 ## Collegamenti
 
+- **Domande:** [Cosa posso conoscere?](/domande/cosa-posso-conoscere.md) · [Perché soffro?](/domande/perche-soffro.md)
 - **Emozioni:** [Malinconia](/emozioni/malinconia.md)
 - **Simboli:** [Clessidra](/simboli/clessidra.md) · [Il poliedro](/simboli/poliedro.md) · [La scala](/simboli/scala.md)
 - **Stile:** [Incisione / xilografia antica](/stile/incisione-xilografia.md)

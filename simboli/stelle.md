@@ -1,6 +1,7 @@
 ---
 tipo: simbolo
 titolo: "Le stelle"
+domande: [cosa-c-e-oltre, che-senso-ha]
 fonti: [divina-commedia, true-detective-s1]
 percorsi: [dal-dolore-alle-stelle, peso-sguardo-oltre]
 spunti: [true-detective-coscienza]
@@ -14,6 +15,7 @@ La fine di ogni cantica dantesca; Rust nel finale di True Detective; la luce nel
 
 ## Collegamenti
 
+- **Domande:** [Cosa c'è oltre?](/domande/cosa-c-e-oltre.md) · [Che senso ha?](/domande/che-senso-ha.md)
 - **Fonti:** [Divina Commedia](/fonti/opere/divina-commedia.md) · [True Detective, stagione 1](/fonti/opere/true-detective-s1.md)
 - **Percorsi:** [Dal dolore alle stelle](/percorsi/dal-dolore-alle-stelle.md) · [Il peso → lo sguardo → l'oltre](/percorsi/peso-sguardo-oltre.md)
 - **Spunti:** [La coscienza come passo falso](/spunti/true-detective-coscienza/index.md)

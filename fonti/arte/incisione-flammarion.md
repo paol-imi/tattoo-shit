@@ -2,6 +2,9 @@
 tipo: fonte
 titolo: "L'incisione Flammarion"
 sottotipo: arte
+filone: immagini-esoteriche
+anno: 1888
+domande: [cosa-posso-conoscere, cosa-c-e-oltre, cosa-e-reale]
 concetti: [soglia-e-mistero]
 simboli: [viandante, ruote]
 stile: [incisione-xilografia]
@@ -15,6 +18,7 @@ Incisione anonima pubblicata nel 1888: un viandante al bordo del mondo buca la v
 
 ## Collegamenti
 
+- **Domande:** [Cosa posso conoscere?](/domande/cosa-posso-conoscere.md) · [Cosa c'è oltre?](/domande/cosa-c-e-oltre.md) · [Cosa è reale?](/domande/cosa-e-reale.md)
 - **Concetti:** [La soglia e il mistero](/concetti/soglia-e-mistero.md)
 - **Simboli:** [Il viandante](/simboli/viandante.md) · [Le ruote](/simboli/ruote.md)
 - **Stile:** [Incisione / xilografia antica](/stile/incisione-xilografia.md)

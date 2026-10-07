@@ -2,6 +2,8 @@
 tipo: fonte
 titolo: "Alchimia"
 sottotipo: sacro-e-mito
+filone: esoterismo
+domande: [chi-sono, cosa-e-reale]
 concetti: [morte-e-rinascita, dualita]
 fonti: [mutus-liber]
 simboli: [ouroboros]
@@ -15,6 +17,7 @@ Nigredo, albedo, rubedo; il Rebis; il Mutus Liber.
 
 ## Collegamenti
 
+- **Domande:** [Chi sono?](/domande/chi-sono.md) · [Cosa è reale?](/domande/cosa-e-reale.md)
 - **Concetti:** [Morte e rinascita](/concetti/morte-e-rinascita.md) · [Dualità e unione degli opposti](/concetti/dualita.md)
 - **Fonti:** [Mutus Liber (1677)](/fonti/arte/mutus-liber.md)
 - **Simboli:** [Ouroboros](/simboli/ouroboros.md)

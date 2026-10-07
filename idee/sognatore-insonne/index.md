@@ -6,6 +6,7 @@ validata: true
 stato: seme
 formato: 
 placement: []
+domande: [cosa-e-reale]
 stile: [dissolvenze, spazio-negativo, testo-e-lettering, incisione-xilografia]
 concetti: []
 emozioni: [lucidita]
@@ -89,6 +90,7 @@ _Nessuna immagine ancora._
 
 ## Collegamenti
 
+- **Domande:** [Cosa è reale?](/domande/cosa-e-reale.md)
 - **Emozioni:** [Lucidità](/emozioni/lucidita.md)
 - **Fonti:** [True Detective, stagione 1](/fonti/opere/true-detective-s1.md) · [Vangelo di Matteo](/fonti/sacro-e-mito/vangelo-matteo.md)
 - **Simboli:** [La spirale](/simboli/spirale.md) · [Le stelle](/simboli/stelle.md)

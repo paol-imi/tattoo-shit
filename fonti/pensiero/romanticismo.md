@@ -2,6 +2,10 @@
 tipo: fonte
 titolo: "Romanticismo"
 sottotipo: pensiero
+filone: sublime-e-romanticismo
+forma: concetto
+anno: 1800
+domande: [cosa-c-e-oltre, chi-sono]
 concetti: [sublime-e-abisso]
 fonti: [friedrich-viandante, friedrich-monaco]
 creato: 2026-10-04
@@ -13,5 +17,6 @@ Corrente: il sublime, l'individuo davanti all'immensità.
 
 ## Collegamenti
 
+- **Domande:** [Cosa c'è oltre?](/domande/cosa-c-e-oltre.md) · [Chi sono?](/domande/chi-sono.md)
 - **Concetti:** [Il sublime e l'abisso](/concetti/sublime-e-abisso.md)
 - **Fonti:** [Caspar David Friedrich, Viandante sul mare di nebbia (1818)](/fonti/arte/friedrich-viandante.md) · [Caspar David Friedrich, Monaco in riva al mare (1808–10)](/fonti/arte/friedrich-monaco.md)
