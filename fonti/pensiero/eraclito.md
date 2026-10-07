@@ -10,7 +10,7 @@ creato: 2026-10-04
 
 # Eraclito
 
-Panta rei; il bene come relativo al suo opposto; la via in su e in giù sono la stessa.
+Panta rei ("tutto scorre": formula della tradizione posteriore, attestata in Simplicio, non un frammento letterale; nei frammenti c'è l'immagine del fiume in cui non si entra due volte); il bene come relativo al suo opposto; la via in su e in giù sono la stessa.
 
 ## Collegamenti
 

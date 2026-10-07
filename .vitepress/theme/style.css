@@ -24,6 +24,24 @@
   --vp-sidebar-bg-color: var(--vp-c-bg-alt);
   --vp-local-search-highlight-bg: var(--vp-c-brand-soft);
   --vp-local-search-highlight-text: var(--vp-c-text-1);
+
+  /* i colori dei tipi di nota (mappa, chip): palette categoriale validata, stessi passi in chiaro e scuro */
+  --mappa-concetto: #2a78d6;
+  --mappa-spunto: #eb6834;
+  --mappa-simbolo: #1baf7a;
+  --mappa-ricerca: #eda100;
+  --mappa-emozione: #e87ba4;
+  --mappa-stile: #008300;
+  --mappa-fonte: #4a3aa7;
+  --mappa-idea: #e34948;
+  --mappa-percorso: var(--vp-c-text-1);
+  --mappa-arco: rgba(27, 26, 23, 0.16);
+  --mappa-arco-forte: rgba(140, 47, 36, 0.75);
+  --atl-cornice: #cfc8b8;
+
+  /* le proposte di Claude: il rosso della rubrica, più tenue */
+  --mappa-arco-proposto: rgba(140, 47, 36, 0.5);
+  --atl-proposta-fondo: rgba(140, 47, 36, 0.045);
 }
 
 .dark {
@@ -40,6 +58,47 @@
   --vp-c-divider: #2b2a27;
   --vp-c-gutter: #000;
   --vp-c-brand-soft: rgba(208, 113, 95, 0.16);
+
+  --mappa-concetto: #3987e5;
+  --mappa-spunto: #d95926;
+  --mappa-simbolo: #199e70;
+  --mappa-ricerca: #c98500;
+  --mappa-emozione: #d55181;
+  --mappa-stile: #008300;
+  --mappa-fonte: #9085e9;
+  --mappa-idea: #e66767;
+  --mappa-arco: rgba(233, 229, 220, 0.14);
+  --mappa-arco-forte: rgba(224, 138, 120, 0.85);
+  --atl-cornice: #3a3833;
+
+  --mappa-arco-proposto: rgba(224, 138, 120, 0.55);
+  --atl-proposta-fondo: rgba(208, 113, 95, 0.07);
+}
+
+/* etichetta: il maiuscolo piccolo e spaziato di didascalie, occhielli e rimandi.
+   Qui il caso più comune; ogni voce corregge solo corpo, spaziatura e colore che le sono propri. */
+.scheda, .collegato-da dt, .atlante-home .porta-conta, .atlante-home .dettagli,
+.atl-occhiello, .filtri-etichetta, .tavola-testa, .tavola-apri, .tavola-prov,
+.mappa-suggeriti .tipo, .mappa-scheda-tipo, .mappa-scheda-proposta, .saggio-proposta,
+.vp-doc .proposta.custom-block .custom-block-title,
+.validare-carta-testa, .validare-proposta figcaption, .validare-apri {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* link sottolineato discreto: il filetto è quello dei divisori, al passaggio prende il colore della rubrica */
+.collegato-da a, .saggio-da a, .mappa-scheda-vicini button,
+.validare-nota a, .validare-collegamenti a, .validare-proposta-testo a {
+  color: var(--vp-c-text-1);
+  text-decoration: underline;
+  text-decoration-color: var(--vp-c-divider);
+  text-underline-offset: 3px;
+}
+.collegato-da a:hover, .saggio-da a:hover,
+.validare-nota a:hover, .validare-collegamenti a:hover, .validare-proposta-testo a:hover {
+  color: var(--atl-rubrica);
+  text-decoration-color: currentColor;
 }
 
 /* titoli in carattere da libro */
@@ -60,13 +119,16 @@
   border-left-color: var(--atl-rubrica);
 }
 
-/* riga in testa alla nota */
+/* riga in testa alla nota; in coda, mappa e bacheca */
 .scheda {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  row-gap: 2px;
   margin: 0 0 12px;
   font-size: 12px;
   line-height: 20px;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
   color: var(--vp-c-text-3);
 }
 .scheda-voce + .scheda-voce::before {
@@ -99,13 +161,10 @@
   color: var(--vp-c-text-3);
   font-size: 12px;
   letter-spacing: 0.06em;
-  text-transform: uppercase;
   padding-top: 1px;
 }
 .collegato-da dt.archivio { font-style: italic; }
 .collegato-da dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
-.collegato-da a { color: var(--vp-c-text-1); text-decoration: underline; text-decoration-color: var(--vp-c-divider); text-underline-offset: 3px; }
-.collegato-da a:hover { color: var(--vp-c-brand-1); text-decoration-color: currentColor; }
 .collegato-da .sep { color: var(--vp-c-text-3); }
 @media (max-width: 520px) {
   .collegato-da dl { grid-template-columns: 1fr; gap: 2px; }
@@ -207,7 +266,7 @@
 .vp-doc .atlante-home a.porta:hover .porta-ornamento { transform: rotate(-4deg) scale(1.04); --atl-carta-carta: var(--vp-c-bg-elv); }
 .atlante-home .porta-nome { font-family: var(--atl-serif); font-size: 32px; line-height: 1.1; font-weight: 500; }
 .atlante-home .porta-dice { font-weight: 400; font-size: 14.5px; line-height: 1.55; color: var(--vp-c-text-2); max-width: 300px; }
-.atlante-home .porta-conta { margin-top: 2px; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--atl-rubrica); }
+.atlante-home .porta-conta { margin-top: 2px; letter-spacing: 0.16em; color: var(--atl-rubrica); }
 @media (max-width: 760px) {
   .atlante-home .porte { grid-template-columns: 1fr; }
   .atlante-home .porta + .porta { border-left: 0; border-top: 1px solid var(--vp-c-divider); }
@@ -280,14 +339,13 @@
 .atlante-home .stato .conta { font-family: var(--vp-font-family-base); font-size: 13px; color: var(--vp-c-text-3); font-weight: 400; margin-left: 4px; }
 .vp-doc .atlante-home ul.idee { list-style: none; padding: 0; margin-top: 8px; }
 .vp-doc .atlante-home li.idea { margin: 0; padding: 12px 0; border-top: 1px solid var(--vp-c-divider); }
-.atlante-home .dettagli { display: block; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--vp-c-text-2); margin-top: 2px; }
+.atlante-home .dettagli { display: block; font-size: 12px; letter-spacing: 0.06em; color: var(--vp-c-text-2); margin-top: 2px; }
 .atlante-home .dettagli .sep { margin: 0 0.5em; color: var(--vp-c-text-3); }
 .atlante-home .dettagli .vuoto { color: var(--vp-c-text-3); }
 .atlante-home .risonanza { letter-spacing: 0.15em; color: var(--atl-rubrica); }
 .atlante-home .conteggio { margin-top: 56px; padding-top: 16px; border-top: 1px solid var(--vp-c-divider); font-size: 14px; color: var(--vp-c-text-3); }
 
 /* in coda alla riga della scheda: mappa e bacheca */
-.scheda { display: flex; flex-wrap: wrap; align-items: baseline; row-gap: 2px; }
 .scheda-vai { margin-left: auto; display: inline-flex; gap: 14px; letter-spacing: 0.06em; }
 .scheda-voce + .scheda-vai { padding-left: 16px; }
 .scheda-vai a { color: var(--vp-c-text-2); text-decoration: none; border-bottom: 1px solid var(--vp-c-divider); }

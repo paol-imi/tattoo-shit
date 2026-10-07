@@ -8,18 +8,15 @@
 // Per l'indice della ricerca (env.perLaRicerca) i collegamenti proposti si tolgono del tutto.
 // Il markdown non cambia: GitHub mostra tutto.
 import type { MarkdownRenderer } from 'vitepress'
-import { proposte, collegamentoProposto, slugDaUrl, type Proposte } from './atlante'
+import { archivio } from './core/archivio.ts'
+import { proposte, collegamentoProposto } from './core/proposte.ts'
+import { slugDaUrl, slugDaRel } from './shared/nota.ts'
 
-// le proposte si rileggono dalle note al massimo ogni pochi secondi (in sviluppo le note cambiano)
-let memo: { t: number; p: Proposte } | undefined
-function attuali(): Proposte {
-  const ora = Date.now()
-  if (!memo || ora - memo.t > 3000) memo = { t: ora, p: proposte() }
-  return memo.p
-}
-
-const slugDi = (rel: string) => slugDaUrl('/' + rel)
 const interno = (href: string) => !!href && !/^(https?:|mailto:|#)/.test(href) && /\.md(#|$)/.test(href)
+// un indirizzo con una sequenza % malformata non è un collegamento a una nota
+const slugDiHref = (href: string) => {
+  try { return slugDaUrl(decodeURI(href)) } catch { return null }
+}
 
 export function collegamenti(md: MarkdownRenderer) {
   md.core.ruler.push('collegamenti-proposti', (state) => {
@@ -28,8 +25,9 @@ export function collegamenti(md: MarkdownRenderer) {
     const t = state.tokens
     const inizio = t.findIndex((x, i) => x.type === 'heading_open' && x.tag === 'h2' && t[i + 1]?.content.trim() === 'Collegamenti')
     if (inizio < 0) return
-    const p = attuali()
-    const da = slugDi(rel)
+    // l'archivio è in cache finché le note non cambiano: qui non si rilegge niente
+    const p = proposte(archivio())
+    const da = slugDaRel(rel)
     const ricerca = !!state.env.perLaRicerca
     const html = (c: string) => Object.assign(new state.Token('html_inline', '', 0), { content: c })
     const testo = (c: string) => Object.assign(new state.Token('text', '', 0), { content: c })
@@ -45,7 +43,8 @@ export function collegamenti(md: MarkdownRenderer) {
         const a = fig.findIndex((x, j) => j > k && x.type === 'link_close')
         if (a < 0) break
         const href = fig[k].attrGet('href') ?? ''
-        link.push({ da: k, a, proposto: interno(href) && collegamentoProposto(p, da, slugDaUrl(decodeURI(href))) })
+        const dest = interno(href) ? slugDiHref(href) : null
+        link.push({ da: k, a, proposto: !!dest && collegamentoProposto(p, da, dest) })
         k = a
       }
       if (!link.some((l) => l.proposto)) continue

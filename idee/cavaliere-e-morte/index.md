@@ -17,7 +17,7 @@ idee: [grimorio, angelo-malinconico]
 ricerche: []
 risonanza:
 creato: 2026-10-06
-aggiornato: 2026-10-06
+aggiornato: 2026-10-07
 ---
 
 # Il cavaliere e la morte
@@ -30,7 +30,7 @@ La guida che ti viene incontro nel buio ha già la faccia della morte: è passat
 
 Dalla [guida](/concetti/guida-e-condottiero.md) della tua lista: "la persona a cui affidarsi nelle difficoltà". E da come il seme legge [Berserk](/fonti/opere/berserk.md): la storia del "Lottatore", chi lotta contro un destino crudele senza piegarsi.
 
-**Il momento:** il Cavaliere del Teschio, un cavaliere con l'elmo a forma di teschio. Nel volume 9, quando Guts ha lasciato la Banda del Falco, gli appare e lo avverte dell'Eclisse che arriverà entro un anno. Lo chiama "lottatore" (もがく者, "colui che si dibatte"). Nell'Eclisse è lui a strappare Guts e Casca all'inferno. Non lo salva dal dolore: lo tira fuori perché continui a lottare.
+**Il momento:** il Cavaliere del Teschio, un cavaliere con l'elmo a forma di teschio. Nel volume 9 (da verificare), quando Guts ha lasciato la Banda del Falco, gli appare e lo avverte dell'Eclisse che arriverà entro un anno. Lo chiama "lottatore" (もがく者, "colui che si dibatte"). Nell'Eclisse è lui a strappare Guts e Casca all'inferno. Non lo salva dal dolore: lo tira fuori perché continui a lottare.
 
 ## Composizione
 

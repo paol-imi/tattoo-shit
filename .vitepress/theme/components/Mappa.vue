@@ -4,26 +4,22 @@
 // Di default solo ciò che è validato. Con l'interruttore "proposte" acceso tornano le proposte di Claude
 // non ancora approvate: nodi chiari con il contorno tratteggiato, fili tratteggiati.
 import { computed, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
+import type ForceGraph from 'force-graph'
 import { withBase, useRouter } from 'vitepress'
 import { data, type NodoMappa, type ArcoMappa } from '../mappa.data'
 import { useProposte } from '../proposte'
+import { ETICHETTE_GRUPPO, ETICHETTE_TIPO as ETICHETTA } from '../../shared/tipi.ts'
+import { cambiaQuery } from '../../shared/indirizzo.ts'
 
-const TIPI = [
-  { tipo: 'idea', etichetta: 'Idee', forma: 'rombo' },
-  { tipo: 'spunto', etichetta: 'Spunti', forma: 'rombo' },
-  { tipo: 'ricerca', etichetta: 'Ricerche', forma: 'rombo' },
-  { tipo: 'concetto', etichetta: 'Concetti', forma: 'cerchio' },
-  { tipo: 'emozione', etichetta: 'Emozioni', forma: 'cerchio' },
-  { tipo: 'simbolo', etichetta: 'Simboli', forma: 'cerchio' },
-  { tipo: 'fonte', etichetta: 'Fonti', forma: 'cerchio' },
-  { tipo: 'stile', etichetta: 'Stile', forma: 'cerchio' },
-  { tipo: 'percorso', etichetta: 'Percorsi e nucleo', forma: 'anello' },
+// la legenda: i gruppi della mappa, con la forma del segno (il nucleo sta con i percorsi)
+const FORME: [string, string][] = [
+  ['idea', 'rombo'], ['spunto', 'rombo'], ['ricerca', 'rombo'], ['concetto', 'cerchio'], ['emozione', 'cerchio'],
+  ['simbolo', 'cerchio'], ['fonte', 'cerchio'], ['stile', 'cerchio'], ['percorso', 'anello'],
 ]
-const FORMA: Record<string, string> = Object.fromEntries(TIPI.map((t) => [t.tipo, t.forma]))
-const ETICHETTA: Record<string, string> = {
-  idea: 'Idea', spunto: 'Spunto', ricerca: 'Ricerca', concetto: 'Concetto', emozione: 'Emozione',
-  simbolo: 'Simbolo', fonte: 'Fonte', stile: 'Stile', percorso: 'Percorso', nucleo: 'Nucleo',
-}
+const TIPI = FORME.map(([tipo, forma]) => ({
+  tipo, forma, etichetta: tipo === 'percorso' ? 'Percorsi e nucleo' : ETICHETTE_GRUPPO[tipo],
+}))
+const FORMA: Record<string, string> = Object.fromEntries(FORME)
 const gruppoDi = (tipo: string) => (tipo === 'nucleo' ? 'percorso' : tipo)
 
 // --- la vista: di default solo i nodi validati e i fili validati tra loro (il grado si riconta)
@@ -71,8 +67,10 @@ watch(suggeriti, () => (evidenziato.value = 0))
 
 // --- stato del grafo
 type N = NodoMappa & { x?: number; y?: number }
+// un filo nel grafo: force-graph sostituisce gli id di source e target con i nodi
+type L = Omit<ArcoMappa, 'source' | 'target'> & { source: N; target: N }
 const contenitore = ref<HTMLElement>()
-const grafo = shallowRef<any>()
+const grafo = shallowRef<ForceGraph<N, L>>()
 const scelto = ref<N | null>(null) // il nodo selezionato (clic su touch, ricerca, ?nodo=)
 const sopra = ref<N | null>(null) // il nodo sotto il puntatore
 const attivo = computed(() => sopra.value ?? scelto.value)
@@ -133,10 +131,7 @@ function scegli(n?: N) {
   focalizza(nodo)
 }
 function aggiornaUrl(id: string | null) {
-  const q = new URLSearchParams(location.search)
-  id ? q.set('nodo', id) : q.delete('nodo')
-  const s = q.toString()
-  history.replaceState(history.state, '', location.pathname + (s ? `?${s}` : ''))
+  cambiaQuery((q) => (id ? q.set('nodo', id) : q.delete('nodo')))
 }
 function riparti() {
   scelto.value = null
@@ -158,7 +153,8 @@ function datiGrafo() {
     nodiGrafo.set(n.id, nuovo)
     return nuovo
   })
-  return { nodes, links: vista.value.archi.map((a) => ({ ...a })) }
+  // i fili partono con gli id: force-graph li sostituisce con i nodi
+  return { nodes, links: vista.value.archi.map((a) => ({ ...a })) as unknown as L[] }
 }
 let rinquadra = false
 
@@ -166,7 +162,7 @@ onMounted(async () => {
   const { default: ForceGraph } = await import('force-graph')
   const el = contenitore.value!
   leggiColori()
-  const g = new ForceGraph(el)
+  const g = new ForceGraph<N, L>(el)
     .graphData(datiGrafo())
     .nodeId('id')
     .width(el.clientWidth)
@@ -178,14 +174,14 @@ onMounted(async () => {
     .minZoom(0.3)
     .maxZoom(12)
     .nodeVisibility((n: N) => !spenti.value.has(gruppoDi(n.tipo)))
-    .linkVisibility((l: any) => !spenti.value.has(gruppoDi(l.source.tipo ?? '')) && !spenti.value.has(gruppoDi(l.target.tipo ?? '')))
-    .linkColor((l: any) => {
+    .linkVisibility((l: L) => !spenti.value.has(gruppoDi(l.source.tipo ?? '')) && !spenti.value.has(gruppoDi(l.target.tipo ?? '')))
+    .linkColor((l: L) => {
       const a = attivo.value
       if (!a) return l.proposto ? colori.arcoProposto : colori.arco
       return l.source.id === a.id || l.target.id === a.id ? colori.arcoForte : 'rgba(0,0,0,0)'
     })
-    .linkLineDash((l: any) => (l.proposto ? [2.2, 1.6] : null))
-    .linkWidth((l: any) => (attivo.value && (l.source.id === attivo.value.id || l.target.id === attivo.value.id) ? 1.4 : 0.6))
+    .linkLineDash((l: L) => (l.proposto ? [2.2, 1.6] : null))
+    .linkWidth((l: L) => (attivo.value && (l.source.id === attivo.value.id || l.target.id === attivo.value.id) ? 1.4 : 0.6))
     .nodeCanvasObject((n: N, ctx: CanvasRenderingContext2D, k: number) => disegna(n, ctx, k))
     .onRenderFramePost((ctx: CanvasRenderingContext2D, k: number) => etichette(ctx, k))
     .nodePointerAreaPaint((n: N, colore: string, ctx: CanvasRenderingContext2D, k: number) => {
@@ -206,7 +202,7 @@ onMounted(async () => {
     })
     .onBackgroundClick(() => { if (scelto.value) { scelto.value = null; aggiornaUrl(null) } })
   g.d3Force('charge')?.strength(-46).distanceMax(320)
-  g.d3Force('link')?.distance((l: any) => (l.source.tipo === 'nucleo' || l.target.tipo === 'nucleo' ? 70 : 34))
+  g.d3Force('link')?.distance((l: L) => (l.source.tipo === 'nucleo' || l.target.tipo === 'nucleo' ? 70 : 34))
   grafo.value = g
   // dopo il riscaldamento le posizioni ci sono già: si inquadra subito, poi di nuovo a riposo
   let inquadrata = false
@@ -380,7 +376,7 @@ function etichetta(n: N, ctx: CanvasRenderingContext2D, k: number, a: N | null, 
             @mousedown.prevent="scegli(n)"
             @mouseenter="evidenziato = i"
           >
-            <span class="segno" :class="[`segno-${gruppoDi(n.tipo)}`, `forma-${n.tipo === 'nucleo' ? 'anello' : FORMA[n.tipo]}`]" aria-hidden="true" />
+            <span class="segno" :class="[`tipo-${gruppoDi(n.tipo)}`, `forma-${n.tipo === 'nucleo' ? 'anello' : FORMA[n.tipo]}`]" aria-hidden="true" />
             <span class="nome">{{ n.titolo }}</span>
             <span class="tipo">{{ ETICHETTA[n.tipo] }}</span>
           </li>
@@ -396,7 +392,7 @@ function etichetta(n: N, ctx: CanvasRenderingContext2D, k: number, a: N | null, 
           :aria-pressed="spenti.has(t.tipo) ? 'false' : 'true'"
           @click="alterna(t.tipo)"
         >
-          <span class="segno" :class="[`segno-${t.tipo}`, `forma-${t.forma}`]" aria-hidden="true" />
+          <span class="segno" :class="[`tipo-${t.tipo}`, `forma-${t.forma}`]" aria-hidden="true" />
           {{ t.etichetta }} <span class="conta">{{ conta[t.tipo] }}</span>
         </button>
         <a v-if="mostra && (nProposte || nFiliProposti)" class="legenda-voce legenda-proposta" :href="withBase('/da-validare')" title="Ciò che Claude ha proposto e tu non hai ancora approvato">
@@ -414,7 +410,7 @@ function etichetta(n: N, ctx: CanvasRenderingContext2D, k: number, a: N | null, 
       <button v-if="pronto" type="button" class="mappa-riparti" @click="riparti">Vedi tutto</button>
       <aside v-if="attivo" class="mappa-scheda" aria-live="polite">
         <p class="mappa-scheda-tipo">
-          <span class="segno" :class="[`segno-${gruppoDi(attivo.tipo)}`, `forma-${attivo.tipo === 'nucleo' ? 'anello' : FORMA[attivo.tipo]}`]" aria-hidden="true" />
+          <span class="segno" :class="[`tipo-${gruppoDi(attivo.tipo)}`, `forma-${attivo.tipo === 'nucleo' ? 'anello' : FORMA[attivo.tipo]}`]" aria-hidden="true" />
           {{ ETICHETTA[attivo.tipo] }} · {{ attivo.grado }} {{ attivo.grado === 1 ? 'collegamento' : 'collegamenti' }}
         </p>
         <p v-if="!attivo.validata" class="mappa-scheda-proposta">Proposta di Claude · da validare</p>

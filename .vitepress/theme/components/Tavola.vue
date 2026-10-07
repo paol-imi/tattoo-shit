@@ -5,6 +5,9 @@ import { computed, ref } from 'vue'
 import { withBase } from 'vitepress'
 import type { Carta, NodoBreve } from '../bacheca.data'
 import Ornamento from './Ornamento.vue'
+import { pallini } from '../../shared/nota.ts'
+import { ETICHETTE_TIPO as TIPI, leggibile } from '../../shared/tipi.ts'
+import { urlPin, urlEmbedPin } from '../../shared/pin.ts'
 
 const props = defineProps<{
   carta: Carta
@@ -19,8 +22,6 @@ const props = defineProps<{
 }>()
 const emit = defineEmits<{ filtra: [slug: string] }>()
 
-const TIPI: Record<string, string> = { idea: 'Idea', spunto: 'Spunto' }
-const ETICHETTE_CHIP: Record<string, string> = { concetto: 'concetto', simbolo: 'simbolo', fonte: 'fonte', emozione: 'emozione' }
 
 const c = computed(() => props.carta)
 // di default il testo viene solo da ciò che è validato (mai da un blocco proposta)
@@ -48,7 +49,7 @@ const nascosti = computed(() => chip.value.length - chipVisibili.value.length)
 const prov = computed(() =>
   !props.proposte ? null : !c.value.validata ? 'proposta' : c.value.proposte ? 'parziale' : null,
 )
-const meta = computed(() => [c.value.stato.replace(/-/g, ' '), c.value.formato?.replace(/-/g, ' ')].filter(Boolean))
+const meta = computed(() => [c.value.stato, c.value.formato].filter(Boolean).map(leggibile))
 </script>
 
 <template>
@@ -64,7 +65,7 @@ const meta = computed(() => [c.value.stato.replace(/-/g, ' '), c.value.formato?.
         class="tavola-risonanza"
         :title="`risonanza ${c.risonanza} su 5`"
         :aria-label="`risonanza ${c.risonanza} su 5`"
-      >{{ '●'.repeat(c.risonanza) }}{{ '○'.repeat(5 - c.risonanza) }}</span>
+      >{{ pallini(c.risonanza) }}</span>
     </header>
 
     <p v-if="prov === 'parziale'" class="tavola-prov parziale">
@@ -77,7 +78,7 @@ const meta = computed(() => [c.value.stato.replace(/-/g, ' '), c.value.formato?.
       <div class="pin-cornice" :style="{ '--rapporto': pin.rapporto }">
         <span class="pin-attesa" aria-hidden="true">Pinterest</span>
         <iframe
-          :src="`https://assets.pinterest.com/ext/embed.html?id=${pin.id}`"
+          :src="urlEmbedPin(pin.id)"
           :title="pin.descrizione || 'Pin di Pinterest'"
           loading="lazy"
           scrolling="no"
@@ -85,7 +86,7 @@ const meta = computed(() => [c.value.stato.replace(/-/g, ' '), c.value.formato?.
         />
       </div>
       <figcaption>
-        <a :href="`https://www.pinterest.com/pin/${pin.id}/`" target="_blank" rel="noreferrer">{{ pin.descrizione || 'Apri il pin' }}</a>
+        <a :href="urlPin(pin.id)" target="_blank" rel="noreferrer">{{ pin.descrizione || 'Apri il pin' }}</a>
       </figcaption>
     </figure>
 
@@ -102,15 +103,15 @@ const meta = computed(() => [c.value.stato.replace(/-/g, ' '), c.value.formato?.
           v-if="filtrabile"
           type="button"
           class="chip"
-          :class="[`chip-${n.tipo}`, { attivo: attivi?.includes(n.slug) }]"
+          :class="[`tipo-${n.tipo}`, { attivo: attivi?.includes(n.slug) }]"
           :aria-pressed="attivi?.includes(n.slug) ? 'true' : 'false'"
-          :title="`Mostra solo le carte legate a: ${n.titolo} (${ETICHETTE_CHIP[n.tipo] ?? n.tipo})`"
+          :title="`Mostra solo le carte legate a: ${n.titolo} (${n.tipo})`"
           @click="emit('filtra', n.slug)"
         >{{ n.titolo }}</button>
         <a
           v-else
           class="chip"
-          :class="`chip-${n.tipo}`"
+          :class="`tipo-${n.tipo}`"
           :href="withBase(`/bacheca?nodo=${n.slug}`)"
           :title="`La bacheca filtrata per: ${n.titolo}`"
         >{{ n.titolo }}</a>

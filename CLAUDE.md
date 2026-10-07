@@ -92,3 +92,9 @@ Non sei solo un archivista: proponi collegamenti, convergenze e domande.
 - Il riferimento pop va nascosto nel dettaglio, l'archetipo deve reggere da solo.
 - Chiedimi cosa mi colpisce "a pancia": le reazioni contano più delle categorie.
 - Una domanda alla volta.
+
+## Come lavori (Claude Code)
+- Lavora sempre con i subagent, anche in parallelo, ma ognuno con un compito **piccolo e chiuso**:
+  un passo, pochi file, un risultato da riportare in breve. Mai un subagent che accumula contesto
+  fino ai limiti (400k): se un lavoro è grande, spezzalo in più subagent in sequenza.
+- Risposte brevi, adatte al telefono.

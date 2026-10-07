@@ -1,5 +1,7 @@
 // Plugin markdown-it: il blocco "proposta di Claude".
-// Nel markdown è un avviso in stile GitHub, con l'etichetta in grassetto sulla prima riga:
+// Nel markdown è un avviso in stile GitHub, non dentro un'altra citazione, con l'etichetta in grassetto
+// sulla riga subito dopo `[!NOTE]` (lo stesso blocco che riconosce il testo: ../core/blocchi.ts;
+// scripts/verifica.mjs controlla che i due conteggi coincidano):
 //
 //   > [!NOTE]
 //   > **Proposta di Claude, da validare.**
@@ -12,8 +14,7 @@
 // è fatta solo di blocchi proposta prende la classe `solo-proposte`, così sparisce con loro.
 // Per l'indice della ricerca (env.perLaRicerca) i blocchi proposta si tolgono del tutto.
 import type { MarkdownRenderer } from 'vitepress'
-
-const ETICHETTA = /^\*\*Proposta di Claude, da validare\.\*\*[ \t]*\n?/
+import { ETICHETTA_PROPOSTA as ETICHETTA } from './shared/proposte.ts'
 
 export function proposta(md: MarkdownRenderer) {
   md.core.ruler.after('github-alerts', 'proposta-di-claude', (state) => {
@@ -21,7 +22,7 @@ export function proposta(md: MarkdownRenderer) {
     let n = 0
     for (let i = 0; i < t.length; i++) {
       const open = t[i]
-      if (open.type !== 'github_alert_open' || open.meta?.type !== 'note') continue
+      if (open.type !== 'github_alert_open' || open.meta?.type !== 'note' || open.level !== 0) continue
       const j = t.findIndex((x, k) => k > i && x.type === 'inline')
       const inl = t[j]
       if (!inl || !ETICHETTA.test(inl.content)) continue

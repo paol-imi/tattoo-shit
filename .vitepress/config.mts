@@ -1,30 +1,34 @@
 import { defineConfig, type DefaultTheme } from 'vitepress'
+import { archivio, diario, perTitolo, testoFm, REWRITES, BASE, type Nota, type Valore } from './core/archivio.ts'
+import { datiPagina } from './core/viste/note.ts'
 import {
-  note, diario, perTitolo, ETICHETTE, ORDINE_GRUPPI, STATI, ETICHETTE_STATO, STATI_RICERCA,
-  ETICHETTE_STATO_RICERCA, SOTTOCARTELLE_FONTI, REWRITES, BASE, provenienza,
-  type Nota,
-} from './atlante'
-import { pinterest } from './pinterest'
-import { proposta } from './proposta'
-import { collegamenti } from './collegamenti'
+  ETICHETTE_GRUPPO, ORDINE_GRUPPI, STATI, ETICHETTE_STATO, STATI_RICERCA, ETICHETTE_STATO_RICERCA, SOTTOCARTELLE_FONTI,
+} from './shared/tipi.ts'
+import { provenienza } from './shared/nota.ts'
+import { SCRIPT_INTERRUTTORE } from './shared/proposte.ts'
+import { pinterest } from './pinterest.ts'
+import { proposta } from './proposta.ts'
+import { collegamenti } from './collegamenti.ts'
 
 const REPO = 'https://github.com/paol-imi/tattoo-shit'
 
 // --- barra laterale e menu, generati dalle cartelle a ogni build
 // Solo ciò che è validato: le note proposte da Claude si aprono dal loro indirizzo,
 // dalla pagina Da validare o con l'interruttore "proposte" acceso.
-const tutte = note().filter((n) => n.archiviata || provenienza(n).validata)
+const tutte = archivio().note.filter((n) => n.archiviata || provenienza(n.fm).validata)
 const voce = (n: Nota): DefaultTheme.SidebarItem => ({ text: n.titolo, link: n.link })
 const delGruppo = (g: string) => tutte.filter((n) => n.gruppo === g)
 const ordinate = (g: string) => delGruppo(g).sort(perTitolo).map(voce)
 
 // idee e ricerche: un sottogruppo per stato, nell'ordine dato (gli stati sconosciuti in coda)
-function perStato(gruppo: string, stati: string[], etichette: Record<string, string>): DefaultTheme.SidebarItem[] {
+function perStato(gruppo: string, stati: string[], etichette: Readonly<Record<string, string>>): DefaultTheme.SidebarItem[] {
   const tutteDelGruppo = delGruppo(gruppo)
-  const altri = [...new Set(tutteDelGruppo.map((n) => n.fm.stato))].filter((s) => !stati.includes(s))
-  return [...stati, ...altri]
+  // lo stato com'è nel frontmatter: null se manca
+  const noti: readonly Valore[] = stati
+  const altri = [...new Set(tutteDelGruppo.map((n) => n.fm.stato))].filter((s) => !noti.includes(s))
+  return [...noti, ...altri]
     .map((stato) => ({
-      text: etichette[stato] ?? stato ?? 'Senza stato',
+      text: etichette[String(stato)] ?? testoFm(stato) ?? 'Senza stato',
       collapsed: false,
       items: tutteDelGruppo.filter((n) => n.fm.stato === stato).sort(perTitolo).map(voce),
     }))
@@ -62,12 +66,13 @@ const gruppi: Record<string, () => DefaultTheme.SidebarItem[]> = {
 const aperti = new Set(['nucleo', 'percorso', 'idea', 'ricerca'])
 
 const sidebar: DefaultTheme.SidebarItem[] = ORDINE_GRUPPI.map((g) => ({
-  text: ETICHETTE[g],
-  collapsed: aperti.has(g) ? false : true,
+  text: ETICHETTE_GRUPPO[g],
+  collapsed: !aperti.has(g),
   items: (gruppi[g] ?? (() => ordinate(g)))(),
 })).filter((g) => g.items.length)
 
-const INTERRUTTORE = `(function(){try{var d=document.documentElement,q=new URLSearchParams(location.search).get('proposte'),v=q==='1'?true:q==='0'?false:null;if(v===null){try{v=localStorage.getItem('atlante-proposte')==='1'}catch(e){v=false}}if(v)d.classList.add('mostra-proposte')}catch(e){}})()`
+
+const SENZA_BARRA_FINALE = String.raw`if(/[^/]\/$/.test(location.pathname))location.replace(location.pathname.slice(0,-1)+location.search+location.hash)`
 
 const percorsi = delGruppo('percorso').sort(perTitolo).map(voce)
 
@@ -84,13 +89,23 @@ export default defineConfig({
     ['meta', { name: 'theme-color', content: '#111111' }],
     // le proposte di Claude: spente di default; ?proposte=1 (o 0) le forza, altrimenti vale la preferenza salvata.
     // La classe su <html> c'è prima del primo disegno: niente lampi. I componenti la leggono dopo il montaggio.
-    ['script', {}, INTERRUTTORE],
+    ['script', {}, SCRIPT_INTERRUTTORE],
   ],
 
-  // il titolo della pagina viene dal campo "titolo" del frontmatter
+  // GitHub Pages serve /pagina.html anche come /pagina, ma non come /pagina/: lì risponde con il 404.
+  // Nel 404, prima di tutto, un indirizzo che finisce con la barra la perde (le cartelle con index.html
+  // non arrivano mai qui, quindi niente giri a vuoto).
+  transformHtml(html, _id, { page }) {
+    if (page !== '404.md') return
+    return html.replace('<head>', `<head><script>${SENZA_BARRA_FINALE}</script>`)
+  },
+
+  // il titolo della pagina viene dal campo "titolo" del frontmatter; in `atlante` i dati della nota
+  // per la riga in testa e per "Collegato da" (theme/pagina.ts)
   transformPageData(pageData) {
     const titolo = pageData.frontmatter.titolo
     if (titolo) pageData.title = String(titolo)
+    if (pageData.frontmatter.layout !== 'home') Object.assign(pageData, { atlante: datiPagina(archivio(), pageData.filePath) })
   },
 
   markdown: {
@@ -136,12 +151,14 @@ export default defineConfig({
     search: {
       provider: 'local',
       options: {
-        // l'indice contiene solo il validato: niente note proposte, niente blocchi proposta né collegamenti proposti
+        // l'indice contiene solo il validato: niente note proposte, niente blocchi proposta né collegamenti proposti.
+        // Le pagine fatte solo di un componente (Bacheca, Testi, Mappa, Da validare) non hanno testo da indicizzare;
+        // per togliere dalla ricerca una pagina basta `search: false` nel suo frontmatter.
         _render(src, env, md) {
-          const e: any = Object.assign(env, { perLaRicerca: true })
+          const e = Object.assign(env, { perLaRicerca: true })
           const html = md.render(src, e)
           const fm = e.frontmatter ?? {}
-          if (fm.search === false || !provenienza({ fm }).validata || env.relativePath === 'da-validare.md') return ''
+          if (fm.search === false || !provenienza(fm).validata) return ''
           return html
         },
         translations: {

@@ -11,7 +11,7 @@ creato: 2026-10-04
 
 # Caspar David Friedrich, Monaco in riva al mare (1808–10)
 
-Una figura minuscola davanti a mare e cielo vuoti. Forse il quadro più "assurdista" mai dipinto, cent'anni prima di Camus.
+Una figura minuscola davanti a mare e cielo vuoti. Forse il quadro più "assurdista" mai dipinto, più di un secolo prima di Camus.
 
 ## Collegamenti
 

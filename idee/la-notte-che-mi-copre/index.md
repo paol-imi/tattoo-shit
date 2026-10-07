@@ -13,11 +13,11 @@ simboli: []
 fonti: [invictus]
 spunti: [capitano-della-mia-anima]
 percorsi: [dal-dolore-alle-stelle]
-idee: []
+idee: [buio-sotto-il-buio]
 ricerche: []
 risonanza:
 creato: 2026-10-06
-aggiornato: 2026-10-06
+aggiornato: 2026-10-07
 ---
 
 # La notte che mi copre
@@ -46,7 +46,7 @@ Niente titolo: al suo posto una riga di pelle vuota. Henley la pubblicò senza t
 
 ## Convergenze
 
-- **Henley** la scrisse nel 1875, ricoverato a Edimburgo per la tubercolosi ossea che a sedici anni gli era già costata la gamba sinistra, sotto il ginocchio.
+- **Henley** la scrisse nel 1875, ricoverato a Edimburgo (da verificare) per la tubercolosi ossea che a sedici anni gli era già costata la gamba sinistra, sotto il ginocchio (età e dettagli dell'amputazione da verificare).
 - **Marco Aurelio** scrisse i *Pensieri* negli accampamenti di guerra: in fondo al primo libro, "tra i Quadi, sul Granua". Due testi scritti a se stessi nel mezzo del colpo.
 - **[Dal dolore alle stelle](/percorsi/dal-dolore-alle-stelle.md):** la pagina fa il percorso dal buio alla luce, ma senza stelle: resta in piedi nella notte, e ne esce.
 
@@ -81,3 +81,4 @@ _Nessun pin collegato._
 - **Stile:** [Testo e lettering](/stile/testo-e-lettering.md) · [Dotwork](/stile/dotwork.md)
 - **Percorsi:** [Dal dolore alle stelle](/percorsi/dal-dolore-alle-stelle.md)
 - **Spunti:** [Il capitano della mia anima](/spunti/capitano-della-mia-anima/index.md)
+- **Idee:** [Il buio sotto il buio](/idee/buio-sotto-il-buio/index.md)

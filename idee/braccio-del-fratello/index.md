@@ -17,7 +17,7 @@ idee: [lotta-al-guado]
 ricerche: []
 risonanza:
 creato: 2026-10-06
-aggiornato: 2026-10-06
+aggiornato: 2026-10-07
 ---
 
 # Il braccio del fratello
@@ -30,7 +30,7 @@ La rabbia sa solo smontare. La stessa eredità, studiata a lungo, insegna anche 
 
 Dal tuo percorso interiore, nel [nucleo](/nucleo.md): "rabbia, risentimento" stanno tra le parole del buio, "vincere se stessi" tra quelle del movimento. Nel [seme](/diario/2026-10-04-seed.md) la [rabbia](/emozioni/rabbia.md) è "energia della rivolta", il [risentimento](/emozioni/risentimento.md) "ciò che va lasciato andare".
 
-**Il momento:** [Fullmetal Alchemist](/fonti/opere/fma-brotherhood.md), manga. Il fratello di Scar si era tatuato le braccia: il destro per la decostruzione, il sinistro per la ricostruzione, con lo stesso cerchio capovolto. A Ishval, morente, dà a Scar il braccio destro (lo racconta il flashback del capitolo 61). Per anni Scar sa usare solo quello, e distrugge. Nel capitolo 103 ha decifrato gli appunti del fratello e si è tatuato da solo il cerchio della ricostruzione sul braccio sinistro: ora sa anche creare. Nel capitolo 108 rinuncia al proprio nome.
+**Il momento:** [Fullmetal Alchemist](/fonti/opere/fma-brotherhood.md), manga. Il fratello di Scar si era tatuato le braccia: il destro per la decostruzione, il sinistro per la ricostruzione, con lo stesso cerchio capovolto. A Ishval, morente, dà a Scar il braccio destro (lo racconta un flashback, capitolo 61, da verificare). Per anni Scar sa usare solo quello, e distrugge. Nel capitolo 103 (da verificare) ha decifrato gli appunti del fratello e si è tatuato da solo il cerchio della ricostruzione sul braccio sinistro: ora sa anche creare. Nel capitolo 108 (da verificare) rinuncia al proprio nome.
 
 ## Composizione
 
