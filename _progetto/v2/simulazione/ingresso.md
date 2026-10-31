@@ -2092,3 +2092,390 @@ esistente. Rinviato: il `contraddice` ◌ e la linea delle posizioni (consolidam
 **Esito sul banco:** passa male. `parla-di: dolore` ✦, `parole: [noia]`, nucleo intatto, niente Schopenhauer, niente "hai cambiato
 idea". Ma la risposta non fa la domanda del banco ("è un cambio, o un'altra faccia?"): il modello all'ingresso non la ammette
 (§6.5), mentre la ammette per Sisifo (§6.6). Ho seguito il §6.5.
+
+---
+
+## B21 · 2027-03-10 18:20 · foto di una pagina, "questa"
+
+> [foto di una pagina con una riga sottolineata a matita] questa
+
+La simulazione non ha la foto: la riga letta resta un segnaposto, «⟨riga⟩». Non la invento.
+
+**`frammenti/2027/03/20270310-1820.md`** · **`frammenti/2027/03/20270310-1820.webp`** (accanto, stesso nome: §2.2 riga 91; il campo `allegati` del §2.2 dice invece `img/…webp`)
+
+```md
+---
+registrato: 2027-03-10T18:20:41+01:00
+canale: telefono
+allegati: [20270310-1820.webp]
+---
+questa
+```
+
+**`letture/2027/03/20270310-1820.md`** (passo 1: B20, di due giorni fa, non c'entra; "questa" punta alla foto)
+
+```md
+---
+versione: 1
+letto: 2027-03-10T18:22:30+01:00
+intento: [salva]
+contesto: "foto di una pagina di libro, una riga sottolineata a matita"
+trascrizione: "⟨riga⟩"
+legami:
+  - nomina: ⟨incipit-della-riga⟩
+    voce: sua
+    perche: "«questa», con la riga sottolineata nella foto; il testo è letto dalla foto, non è parola tua"
+---
+```
+
+Nessuna `reazione` (il gesto della matita non sono parole), nessuna `parole`.
+
+**`citazioni/⟨incipit-della-riga⟩.md`** (nuovo; senza `autore` né `attribuita-a`; senza `originale`: non si sa se la pagina è un originale o una traduzione)
+
+```md
+---
+nome: "⟨riga⟩"
+prova: memoria
+nato-da: [20270310-1820]
+---
+Letta da una foto (2027-03-10); libro e autore sconosciuti.
+```
+
+**`restituzioni/2027/03/r-20270310-1822-risposta.md`**
+
+```md
+---
+forma: risposta
+per: 20270310-1820
+voci:
+  - n: 1
+    rif: ⟨incipit-della-riga⟩
+legami: []
+---
+**Salvata.** Dalla foto leggo: «⟨riga⟩» ⚠.
+```
+
+**Risposta sul telefono:** "18:22 · **Salvata.** Dalla foto leggo: «⟨riga⟩» ⚠."
+
+**Verifiche fatte:** nessuna ricerca: senza la foto non c'è testo da cercare. Alla lettera, il passo 1 sulla riga
+(1-2 ricerche) è consentito, e potrebbe trovare il libro *cercando la frase* (non indovinandolo dallo stile). Controllato:
+la lettura ha il campo `trascrizione` (§2.2), quindi la lacuna del banco ("nessun campo per il testo estratto") non c'è.
+Rinviato: verifica passi 2-3, `esito` (`non-trovata` se il consolidamento non la trova), il ridimensionamento non è
+assegnato a nessuno dal modello.
+
+**Costi:** 5 file (frammento, `.webp`, lettura, 1 nodo, restituzione) + `contesto/`. 0 ricerche. ~2 minuti (+ OCR).
+
+**Esito sul banco:** passa male. Allegato, `trascrizione` separata dalle parole tue, nodo senza autore e `prova: memoria`,
+nessun libro indovinato. Manca la domanda "Da che libro?": il §4.1.3 la consente solo per un'entità ambigua, il §6.5 solo per
+il link muto, e qui non c'è né l'una né l'altro.
+
+---
+
+## B22 · 2027-03-12 16:00 · "non era jung era peterson"
+
+> no aspetta quella di ieri sulla casa in ordine non era jung era peterson
+
+**`frammenti/2027/03/20270312-1600.md`**
+
+```md
+---
+registrato: 2027-03-12T16:00:07+01:00
+canale: telefono
+---
+no aspetta quella di ieri sulla casa in ordine non era jung era peterson
+```
+
+**`letture/2027/03/20270312-1600.md`** (passo 1: negli ultimi 3 giorni c'è solo B21, la foto: se sono 72 ore, B20 (8 marzo 23:40) ne è fuori. L'11 marzo non c'è nessun frammento. Cercato in tutto l'archivio: nessun frammento parla della casa in ordine, nessuna citazione ha `attribuita-a` Jung con quel tema; l'unica frase "di Jung" è B03, del 9 novembre, fuori dalla finestra e su altro)
+
+```md
+---
+versione: 1
+letto: 2027-03-12T16:02:10+01:00
+intento: [correggi]
+legami:
+  - nomina: jordan-peterson
+    voce: sua
+    perche: "«era peterson»: l'autore giusto, secondo te, di una frase «sulla casa in ordine» che non trovo («non era jung»)"
+parole: [casa in ordine]
+atti: []
+---
+```
+
+Nessun `ritorna-su` (non c'è un bersaglio), nessun atto `corregge`, nessun nodo citazione: la frase non c'è e non si inventa.
+Jung non riceve `nomina`: è nominato per negarlo. Nodi aggiornati: nessuno (`jordan-peterson` esiste dal nucleo).
+
+**`restituzioni/2027/03/r-20270312-1602-risposta.md`**
+
+```md
+---
+forma: risposta
+per: 20270312-1600
+voci: []
+legami: []
+---
+Non trovo la frase di ieri sulla casa in ordine: me la riscrivi?
+```
+
+**Risposta sul telefono:** "16:02 · Non trovo la frase di ieri sulla casa in ordine: me la riscrivi?"
+
+**Verifiche fatte:** grep sull'archivio simulato ("casa", "ordine", "peterson", "jung"): nessun frammento; Peterson è solo nel
+nucleo. Nessuna ricerca sul web: non c'è una citazione da verificare, e dire quale frase di Peterson sia vorrebbe dire
+indovinarla. Rinviato: niente.
+
+**Costi:** 3 file (frammento, lettura, restituzione) + `contesto/`. 0 ricerche. ~1-2 minuti.
+
+**Esito sul banco:** passa (ramo "come nel banco"). `intento: [correggi]`, nessun atto, niente su B03 né su B21, frase non
+inventata, risposta uguale. Ma la domanda la ho scelta io: il modello non dice che cosa fare quando "quella di ieri" non si
+risolve.
+
+---
+
+## B23 · 2027-03-20 22:30 · la crepa da cui entra la luce
+
+> ok la crepa da cui entra la luce. secondo me è un tatuaggio. una linea d'oro su qualcosa di rotto
+
+**`frammenti/2027/03/20270320-2230.md`**
+
+```md
+---
+registrato: 2027-03-20T22:30:52+01:00
+canale: telefono
+---
+ok la crepa da cui entra la luce. secondo me è un tatuaggio. una linea d'oro su qualcosa di rotto
+```
+
+**`letture/2027/03/20270320-2230.md`** (passo 1: niente negli ultimi 3 giorni; tra le ultime 5 restituzioni c'è la lettera di
+domenica 14 marzo, non simulata: "ok" potrebbe risponderle, ma senza il suo testo non lo so, quindi niente `in-risposta-a`.
+"La crepa" non ha nome proprio: niente nodo, §2.6)
+
+```md
+---
+versione: 1
+letto: 2027-03-20T22:32:40+01:00
+intento: [salva]
+reazione:
+  - parole: "secondo me è un tatuaggio"
+    segnale: giudizio
+    verso: "+"
+legami:
+  - serve-a: tatuaggi
+    voce: sua
+    perche: "«secondo me è un tatuaggio»"
+  - ritorna-su: 20261205-1840
+    come: aggiunge
+    voce: proposta
+    perche: "«una linea d'oro su qualcosa di rotto» riprende il 5 dicembre: «più forti nei punti rotti? tipo kintsugi»"
+  - parla-di: kintsugi
+    come: metafora
+    voce: proposta
+    perche: "«una linea d'oro su qualcosa di rotto» descrive il kintsugi senza nominarlo"
+parole: [crepa, luce]
+---
+```
+
+Due proposti, il massimo. Il Jung di B03 che il banco suggerisce non l'ho messo: la sua frase (l'inconscio, il destino) non
+ha crepe né luce, e la proposta non avrebbe un `perche` onesto. Nodi aggiornati: nessuno.
+
+**`restituzioni/2027/03/r-20270320-2232-risposta.md`** (un aggancio solo, il ponte con una frase tua)
+
+```md
+---
+forma: risposta
+per: 20270320-2230
+voci:
+  - n: 1
+    rif: 20261205-1840
+legami: []
+---
+**Segnato tra i tatuaggi.** Il 5 dicembre ✦: «più forti nei punti rotti? tipo kintsugi».
+```
+
+Notifica senza contenuto: sì (ponte forte).
+
+**Risposta sul telefono:** "22:32 · **Segnato tra i tatuaggi.** Il 5 dicembre ✦: «più forti nei punti rotti? tipo kintsugi»."
+
+**Verifiche fatte:** 1 WebSearch su "la crepa da cui entra la luce": è il ritornello di *Anthem*, Leonard Cohen, album
+*The Future* (1992) (qz.com e altri); nessuna scheda Quote Investigator trovata; un precedente in Emerson ("There is a crack
+in everything God has made") citato da fonti informali, non verificato. Non è finito nella risposta: §4.3 ammette un solo
+aggancio, e ho scelto il ponte ✦. Nessun verso citato.
+
+**Costi:** 3 file (frammento, lettura, restituzione) + `contesto/` + 1 notifica. 1 ricerca. ~2 minuti.
+
+**Esito sul banco:** passa male. `serve-a: tatuaggi` ✦, `parole: [crepa, luce]`, due ◌ (uno è il `ritorna-su` B11 del banco),
+nessun "cinque fonti", nessun verso. Ma Cohen ○ manca dalla risposta e manca "Te le metto in fila?": il modello ammette un
+aggancio solo e nessuna domanda.
+
+---
+
+## B24 · 2027-03-22 12:00 · Schopenhauer da leggere, dopo Evangelion
+
+> devo leggere il mondo come volontà e rappresentazione prima o poi. dopo evangelion e il porcospino mi incuriosisce
+
+**`frammenti/2027/03/20270322-1200.md`**
+
+```md
+---
+registrato: 2027-03-22T12:00:15+01:00
+canale: telefono
+---
+devo leggere il mondo come volontà e rappresentazione prima o poi. dopo evangelion e il porcospino mi incuriosisce
+```
+
+**`letture/2027/03/20270322-1200.md`** (passo 1: B23 è di 2 giorni fa, non c'entra)
+
+```md
+---
+versione: 1
+letto: 2027-03-22T12:02:30+01:00
+intento: [salva]
+reazione:
+  - parole: "mi incuriosisce"
+    segnale: giudizio
+    verso: "+"
+legami:
+  - nomina: il-mondo-come-volonta-e-rappresentazione
+    fruizione: da-fare
+    voce: sua
+    perche: "«devo leggere il mondo come volontà e rappresentazione prima o poi»"
+  - tramite: neon-genesis-evangelion
+    voce: sua
+    perche: "«dopo evangelion e il porcospino»"
+parole: [porcospino]
+---
+```
+
+**`opere/il-mondo-come-volonta-e-rappresentazione.md`** · **`opere/neon-genesis-evangelion.md`** (nuovi; Schopenhauer e Anno in
+chiaro, non li nomini tu; niente nodo *Parerga*)
+
+```md
+---
+nome: Il mondo come volontà e rappresentazione
+alias: [il mondo come volontà e rappresentazione]
+autore: Arthur Schopenhauer
+anno: 1819
+nato-da: [20270322-1200]
+---
+```
+
+```md
+---
+nome: Neon Genesis Evangelion
+alias: [evangelion]
+autore: Hideaki Anno
+anno: 1995
+nato-da: [20270322-1200]
+---
+```
+
+**`restituzioni/2027/03/r-20270322-1202-risposta.md`**
+
+```md
+---
+forma: risposta
+per: 20270322-1200
+voci:
+  - n: 1
+    rif: "mondo: Schopenhauer, Parerga e paralipomena (1851), II, cap. 31, §396"
+legami: []
+---
+**Segnato da leggere.** Il porcospino però non è nel *Mondo*: è nei *Parerga e paralipomena* (1851) ⚠.
+```
+
+Notifica senza contenuto: sì (correzione di fatto, anche se implicita).
+
+**Risposta sul telefono:** "12:02 · **Segnato da leggere.** Il porcospino però non è nel *Mondo*: è nei *Parerga e paralipomena* (1851) ⚠."
+
+**Verifiche fatte:** 2 WebSearch. (1) La parabola dei porcospini: *Parerga und Paralipomena* (1851), vol. II, cap. XXXI,
+§396 (philosophybreak, Wikipedia e mirror; fonti secondarie, quindi ⚠). (2) *Die Welt als Wille und Vorstellung*: uscito a
+dicembre 1818 con la data 1819 sul frontespizio (Wikipedia, schede di biblioteca), quindi `anno: 1819`; *Evangelion*, ep. 4
+"Hedgehog's Dilemma", 25 ottobre 1995 (Wikipedia). Rinviato: `wikidata`/`openlibrary` dei due nodi.
+
+**Costi:** 5 file (frammento, lettura, 2 nodi, restituzione) + `contesto/` + 1 notifica. 2 ricerche. ~3 minuti.
+
+**Esito sul banco:** passa male. `nomina` con `fruizione: da-fare` ✦ (nodo nato, autore in chiaro), `tramite` *Evangelion* ✦,
+`parole: [porcospino]`, niente nodo *Parerga*, niente ID. Manca la domanda del banco ("forse meglio partire da lì?"), che il
+modello non ammette all'ingresso.
+
+---
+
+## B25 · 2027-04-02 20:00 · Cioran, il suicidio come appiglio
+
+> ho sentito una frase di chioran sul suicidio come idea che ti tiene in vita, cioè la possibilità di farla finita che ti fa resistere
+
+**`frammenti/2027/04/20270402-2000.md`** (dettato: arriva come testo, nessun `.m4a`)
+
+```md
+---
+registrato: 2027-04-02T20:00:26+02:00
+canale: telefono
+---
+ho sentito una frase di chioran sul suicidio come idea che ti tiene in vita, cioè la possibilità di farla finita che ti fa resistere
+```
+
+**`letture/2027/04/20270402-2000.md`** (prudenza §4.1: nessuna proposta, nessun tema, nessuna `parole`; passo 1: niente negli
+ultimi 3 giorni, B24 è di 11 giorni fa, sotto i 14 del "mentre eri via"; "chioran": nessun alias, ortografia fonetica → Cioran)
+
+```md
+---
+versione: 1
+letto: 2027-04-02T20:02:40+02:00
+intento: [salva]
+legami:
+  - nomina: il-suicidio-che-tiene-in-vita
+    voce: sua
+    perche: "«una frase di chioran sul suicidio come idea che ti tiene in vita»: a memoria, parafrasata («cioè…»)"
+---
+```
+
+**`persone/emil-cioran.md`** · **`citazioni/il-suicidio-che-tiene-in-vita.md`** (nuovi; Cioran solo nel campo del nodo
+citazione, come Rilke in B15)
+
+```md
+---
+nome: Emil Cioran
+alias: [cioran, chioran]
+cerchia: mondo
+nato-da: [20270402-2000]
+---
+```
+
+```md
+---
+nome: L'idea del suicidio che tiene in vita
+autore: emil-cioran
+prova: memoria
+nato-da: [20270402-2000]
+---
+Passo 1 (2027-04-02): nessuna scheda di apocrifo; l'idea circola come di Cioran in raccolte senza fonte; un articolo la data
+1952, cioè forse Sillogismi dell'amarezza (da verificare); non risulta in L'inconveniente di essere nati.
+```
+
+**`restituzioni/2027/04/r-20270402-2002-risposta.md`**
+
+```md
+---
+forma: risposta
+per: 20270402-2000
+voci:
+  - n: 1
+    rif: emil-cioran
+legami: []
+---
+**Salvata.** Cioran, sì ○: l'idea di poter farla finita come ciò che fa resistere; il libro esatto è da verificare ⚠. Se ti va di parlarne, ci sono.
+```
+
+Notifica: nessuna.
+
+**Risposta sul telefono:** "20:02 · **Salvata.** Cioran, sì ○: l'idea di poter farla finita come ciò che fa resistere; il libro esatto è da verificare ⚠. Se ti va di parlarne, ci sono."
+
+**Verifiche fatte:** passo 1, 1 WebSearch + 1 WebFetch. Raccolte di citazioni (libquotes, quotewise, elevatesociety) danno a
+Cioran «without the idea of suicide, I'd have killed myself right away», senza libro; un articolo su PhilArchive (TRUTBO-4)
+la data "(2012 [1952])", compatibile con *Syllogismes de l'amertume* (1952); l'unica frase sul suicidio data a *De
+l'inconvénient d'être né* (1973) è un'altra. PhilArchive: **403**, nota non letta. Quindi *L'inconveniente* del banco non
+regge, e la risposta non nomina un libro. Rinviato: passi 2-3 (testo francese, traduzione Adelphi), `wikidata` di Cioran.
+
+**Costi:** 5 file (frammento, lettura, 2 nodi, restituzione) + `contesto/`. 2 richieste web. ~3 minuti.
+
+**Esito sul banco:** passa. "chioran" intatto, Cioran trovato con l'alias, citazione `prova: memoria` senza esito, nessuna
+proposta né tema, una riga umana senza allarme né diagnosi. La risposta non dice *L'inconveniente* (la verifica non lo
+conferma) e non chiede "Tutto bene?" (il modello non ammette domande all'ingresso): offre presenza invece di chiederla.
