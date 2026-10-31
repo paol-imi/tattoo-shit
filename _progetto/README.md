@@ -13,3 +13,4 @@ Documenti di progettazione (2026-10-31), proposte di Claude da validare. Non fan
 - [v2 · Esempi di domande](/_progetto/v2/esempi-domande.md): 108 domande dal telefono, 25 risposte ideali smontate, 10 lezioni per il progetto.
 - [Cervello (v2)](/_progetto/v2/cervello.md): come il cervello tiene ricordi e pensieri, e che cosa ne segue per il modello.
 - [Stato dell'arte (v2)](/_progetto/v2/stato-arte.md): chi ha già provato a mappare una coscienza, lezioni e critica della proposta.
+- [L'archivio reale](/_progetto/v2/archivio-reale.md): che cosa un mese di Atlante insegna sul modo di pensare dell'utente (raffinamento v2).
