@@ -857,3 +857,440 @@ non "certo": un reel di Galimberti che la riprende non è escluso). Il reel non 
 
 **Esito sul banco:** passa. Stesso nodo Galimberti, Telemaco `finzione`, legame ○ su Recalcati senza nodo, nessuna
 correzione da sola, "padre" solo parola. In più `aspettare` tra le parole, perché il §6.4 la vuole ricorrente con Murph.
+
+---
+
+## B06 · 2026-11-20 12:44 · Marco e la frase "di Camus"
+
+> marco mi ha mandato quella di camus: non camminare davanti a me potrei non seguirti, ecc. carina ma un po' da bacio perugina
+
+**`frammenti/2026/11/20261120-1244.md`**
+
+```md
+---
+registrato: 2026-11-20T12:44:18+01:00
+canale: telefono
+---
+marco mi ha mandato quella di camus: non camminare davanti a me potrei non seguirti, ecc. carina ma un po' da bacio perugina
+```
+
+**`letture/2026/11/20261120-1244.md`** (passo 3: "marco" cercato prima in `cerchia: vita`, vuota; nome nudo in prima persona → persona della vita, non `marco-aurelio`)
+
+```md
+---
+versione: 1
+letto: 2026-11-20T12:46:40+01:00
+intento: [salva]
+reazione:
+  - parole: "carina ma un po' da bacio perugina"
+    segnale: giudizio
+    verso: "−"
+legami:
+  - tramite: marco
+    voce: sua
+    perche: "«marco mi ha mandato»"
+  - nomina: non-camminare-davanti-a-me
+    voce: sua
+    perche: "«quella di camus: non camminare davanti a me…, ecc.»: la frase come la ricordi, attribuita a Camus"
+---
+```
+
+Come nel §6.1–6.2: nessun `nomina: albert-camus`; Camus sta solo nel campo `attribuita-a` del nodo (in B03 la
+simulazione aveva messo anche `nomina` di Jung: vedi gli attriti).
+
+**`persone/marco.md`** (nuovo)
+
+```md
+---
+nome: Marco
+alias: []
+cerchia: vita
+nato-da: [20261120-1244]
+---
+```
+
+**`citazioni/non-camminare-davanti-a-me.md`** (nuovo; nessun `autore`; esito all'ingresso perché è un apocrifo noto, passo 1)
+
+```md
+---
+nome: Non camminare davanti a me
+attribuita-a: [albert-camus]
+esito: apocrifa
+prova: secondaria
+riferimento:
+  url: https://quoteinvestigator.com/2015/08/23/friend/
+  data: 2026-11-20
+nato-da: [20261120-1244]
+---
+Quote Investigator: nessuna traccia negli scritti di Camus; l'attribuzione non ha appoggi. Origine ignota.
+```
+
+Nodi aggiornati: nessuno (`albert-camus` non cambia).
+
+**`restituzioni/2026/11/r-20261120-1246-risposta.md`**
+
+```md
+---
+forma: risposta
+per: 20261120-1244
+voci:
+  - n: 1
+    rif: non-camminare-davanti-a-me
+legami: []
+---
+**Salvata**, con il tuo "da bacio perugina". Non risulta di Camus ○: nei suoi scritti non c'è, l'autore è ignoto (Quote Investigator).
+```
+
+Notifica senza contenuto: sì (correzione di fatto: l'attribuzione è sua).
+
+**Risposta sul telefono:** "12:46 · **Salvata**, con il tuo "da bacio perugina". Non risulta di Camus ○: nei suoi scritti non c'è, l'autore è ignoto (Quote Investigator)."
+
+**Verifiche fatte:** passo 1, 1 WebSearch ("Quote Investigator "Don't walk in front of me" Camus"): scheda QI del
+23/08/2015, "Just Walk Beside Me and Be My Friend": nessuna prova che Camus l'abbia scritta; Goodreads la etichetta
+"misattributed-albert-camus"; Tablet Magazine la tratta come canto da campo estivo. Pagina QI non aperta (bastava
+l'estratto per l'esito). Rinviato: nulla (l'esito è chiuso al passo 1); nessun ID per Marco, mai.
+
+**Costi:** 5 file scritti (frammento, lettura, 2 nodi, restituzione) + `contesto/` + 1 notifica. 1 ricerca. ~2-3 minuti.
+
+**Esito sul banco:** passa. Marco `vita` senza alias né ID, `tramite` ✦, citazione senza `autore` con `apocrifa` e
+`secondaria`, reazione −, nessun tema su Marco.
+
+---
+
+## B07 · 2026-11-22 17:20 · l'estate invincibile, da tatuare
+
+> camus nella peste diceva tipo nel mezzo dell'inverno ho scoperto in me un'estate invincibile. questa me la tatuerei
+
+**`frammenti/2026/11/20261122-1720.md`**
+
+```md
+---
+registrato: 2026-11-22T17:20:05+01:00
+canale: telefono
+---
+camus nella peste diceva tipo nel mezzo dell'inverno ho scoperto in me un'estate invincibile. questa me la tatuerei
+```
+
+**`letture/2026/11/20261122-1720.md`**
+
+```md
+---
+versione: 1
+letto: 2026-11-22T17:22:30+01:00
+intento: [salva]
+reazione:
+  - parole: "questa me la tatuerei"
+    segnale: identificazione
+    verso: "+"
+legami:
+  - nomina: estate-invincibile
+    voce: sua
+    perche: "«camus nella peste diceva tipo…»: frase a memoria («tipo»); l'opera come la ricordi, La peste, non risulta"
+  - serve-a: tatuaggi
+    voce: sua
+    perche: "«questa me la tatuerei»"
+---
+```
+
+**`citazioni/estate-invincibile.md`** (nuovo; nessun `esito`: non è un apocrifo)
+
+```md
+---
+nome: Nel mezzo dell'inverno, un'estate invincibile
+autore: albert-camus
+prova: memoria
+nato-da: [20261122-1720]
+---
+Passo 1 (2026-11-22): chiude Ritorno a Tipasa, nella raccolta L'Estate (1954), non La peste (da verificare sul testo).
+```
+
+Nodi aggiornati: nessuno. `raccolte/tatuaggi.md` non cambia (`nato-da` registra la nascita); nessun nodo per *La peste*
+né per *L'Estate*.
+
+**`restituzioni/2026/11/r-20261122-1722-risposta.md`**
+
+```md
+---
+forma: risposta
+per: 20261122-1720
+voci:
+  - n: 1
+    rif: "mondo: Camus, Ritorno a Tipasa, in L'Estate (1954)"
+legami: []
+---
+**Salvata, anche per i tatuaggi.** È di Camus, ma non della *Peste*: chiude *Ritorno a Tipasa*, nell'*Estate* (1954) ⚠.
+```
+
+Notifica senza contenuto: sì (correzione di fatto, e su una frase da tatuare).
+
+**Risposta sul telefono:** "17:22 · **Salvata, anche per i tatuaggi.** È di Camus, ma non della *Peste*: chiude *Ritorno a Tipasa*, nell'*Estate* (1954) ⚠."
+
+**Verifiche fatte:** passo 1, 2 WebSearch. (1) "Quote Investigator invincible summer Camus Retour à Tipasa": nessuna scheda
+QI; più fonti (un PDF della traduzione inglese su stephenhicks.org, LRB, Wikiquote) danno la frase come chiusa di *Retour à
+Tipasa*, in *L'Été* (1954), con l'originale "Au milieu de l'hiver, j'apprenais enfin qu'il y avait en moi un été invincible".
+(2) "quoteinvestigator.com invincible summer": nessuna scheda QI, nessun segnale di apocrifo. L'originale francese **non**
+l'ho scritto nel nodo: viene da fonti secondarie, e il testo primario è passo 2. Rinviato: passi 2-3 (testo di *L'Été*,
+traduzione italiana pubblicata e traduttore), `esito`.
+
+**Costi:** 4 file scritti (frammento, lettura, 1 nodo, restituzione) + `contesto/` + 1 notifica. 2 ricerche. ~3 minuti.
+
+**Esito sul banco:** passa. `autore` Camus, `prova: memoria`, `serve-a: tatuaggi` ✦, reazione d'identificazione, niente
+*Peste* nel nodo né nodo della *Peste*. La *Peste* sbagliata resta solo nel frammento e nel `perche` (la lacuna del banco c'è).
+
+---
+
+## B08 · 2026-11-24 23:50 · Marco: "sempre in guerra con me stesso"
+
+> marco stasera mi ha detto che sono sempre in guerra con me stesso. non l'ho presa bene ma ci ha preso
+
+**`frammenti/2026/11/20261124-2350.md`**
+
+```md
+---
+registrato: 2026-11-24T23:50:41+01:00
+canale: telefono
+---
+marco stasera mi ha detto che sono sempre in guerra con me stesso. non l'ho presa bene ma ci ha preso
+```
+
+**`letture/2026/11/20261124-2350.md`** ("marco" → `marco`, `cerchia: vita`, dal 20 novembre; fuori dai 3 giorni, ma il nodo c'è)
+
+```md
+---
+versione: 1
+letto: 2026-11-24T23:52:15+01:00
+intento: [salva]
+reazione:
+  - parole: "non l'ho presa bene"
+    segnale: impatto
+    verso: "−"
+  - parole: "ci ha preso"
+    segnale: identificazione
+    verso: "+"
+legami:
+  - nomina: marco
+    voce: sua
+    perche: "«marco stasera mi ha detto»"
+  - parla-di: battaglie-interiori
+    voce: proposta
+    perche: "«in guerra con me stesso» sono parole di Marco; «battaglie interiori» è tua, dal percorso interiore (4 ottobre)"
+---
+```
+
+"Ci ha preso" l'ho letto come identificazione (ti riconosci nella frase), non giudizio: il banco dice giudizio. Nessuna
+citazione per le parole di Marco: restano nel frammento. Nodi nuovi o aggiornati: nessuno.
+
+**`restituzioni/2026/11/r-20261124-2352-risposta.md`**
+
+```md
+---
+forma: risposta
+per: 20261124-2350
+voci:
+  - n: 1
+    rif: battaglie-interiori
+legami:
+  - parla-di: battaglie-interiori
+    voce: proposta
+    perche: "lo stesso legame della lettura, detto in risposta"
+---
+**Salvato.** "Battaglie interiori" è una tua parola dal primo giorno ✦.
+```
+
+Il segno è ✦ e non ✧ (modello §6.2 e banco): nel punto zero "battaglie interiori" nasce dal percorso interiore, voce sua.
+
+**Risposta sul telefono:** "23:52 · **Salvato.** "Battaglie interiori" è una tua parola dal primo giorno ✦."
+
+**Verifiche fatte:** nessuna ricerca (nessun fatto del mondo). Controllato a mano: `marco` esiste (B06) ed è l'unico nodo
+`vita`; "battaglie interiori" è nel frammento `20261004-2212-perc` (voce sua). Grep sull'Atlante: "guerra con me stesso" non
+compare da nessuna parte, quindi l'alias del tema nel punto zero è anticipato (vedi gli attriti).
+
+**Costi:** 3 file scritti (frammento, lettura, restituzione) + `contesto/`. 0 ricerche. ~1-2 minuti.
+
+**Esito sul banco:** passa male. Stesso nodo Marco, ◌ su battaglie interiori, nessuna citazione, nessun Marco Aurelio,
+nessuna interpretazione; ma la risposta dice ✦ dove banco e §6.2 dicono ✧, e "ci ha preso" è identificazione, non giudizio.
+
+---
+
+## B09 · 2026-11-26 09:05 · Frankl, il perché e il come
+
+> frankl: chi ha un perché per vivere sopporta quasi ogni come. sto leggendo uno psicologo nei lager finalmente
+
+**`frammenti/2026/11/20261126-0905.md`**
+
+```md
+---
+registrato: 2026-11-26T09:05:22+01:00
+canale: telefono
+---
+frankl: chi ha un perché per vivere sopporta quasi ogni come. sto leggendo uno psicologo nei lager finalmente
+```
+
+**`letture/2026/11/20261126-0905.md`**
+
+```md
+---
+versione: 1
+letto: 2026-11-26T09:07:50+01:00
+intento: [salva]
+legami:
+  - nomina: uno-psicologo-nei-lager
+    fruizione: in-corso
+    voce: sua
+    perche: "«sto leggendo uno psicologo nei lager finalmente»"
+  - tramite: viktor-frankl
+    voce: sua
+    perche: "«frankl:»: la frase ti arriva da lui"
+  - nomina: chi-ha-un-perche
+    voce: sua
+    perche: "la frase come l'hai scritta, attribuita a Frankl"
+---
+```
+
+**`persone/viktor-frankl.md`** (nuovo)
+
+```md
+---
+nome: Viktor Frankl
+alias: [frankl, viktor e. frankl]
+cerchia: mondo
+nato-da: [20261126-0905]
+---
+```
+
+**`opere/uno-psicologo-nei-lager.md`** (nuovo)
+
+```md
+---
+nome: Uno psicologo nei lager
+alias: [uno psicologo nei lager, l'uomo in cerca di senso]
+autore: viktor-frankl
+nato-da: [20261126-0905]
+---
+```
+
+**`citazioni/chi-ha-un-perche.md`** (nuovo; come la citazione dell'ospite nel §5.2: `autore` vero in chiaro, chi la porta in
+`attribuita-a`, `prova: memoria`, niente esito)
+
+```md
+---
+nome: Chi ha un perché per vivere sopporta quasi ogni come
+autore: Friedrich Nietzsche
+attribuita-a: [viktor-frankl]
+prova: memoria
+nato-da: [20261126-0905]
+---
+Passo 1 (2026-11-26, Quote Investigator): Nietzsche, Crepuscolo degli idoli (1889), «Sentenze e frecce»; Frankl la cita
+e la dà a Nietzsche. Numero dell'aforisma da verificare.
+```
+
+Nodi aggiornati: nessuno.
+
+**`restituzioni/2026/11/r-20261126-0907-risposta.md`**
+
+```md
+---
+forma: risposta
+per: 20261126-0905
+voci:
+  - n: 1
+    rif: "mondo: Nietzsche, Crepuscolo degli idoli (1889), Sentenze e frecce"
+  - n: 2
+    rif: uno-psicologo-nei-lager
+legami: []
+---
+**Salvato, libro in lettura.** La frase è di Nietzsche ⚠ (*Crepuscolo degli idoli*): Frankl la cita, e lo dice.
+```
+
+Notifica senza contenuto: sì (correzione di fatto).
+
+**Risposta sul telefono:** "09:07 · **Salvato, libro in lettura.** La frase è di Nietzsche ⚠ (*Crepuscolo degli idoli*): Frankl la cita, e lo dice."
+
+**Verifiche fatte:**
+- Passo 1, 1 WebSearch + 1 WebFetch su Quote Investigator (9/10/2019, "If We Have Our Own 'Why' of Life…"): la frase è di
+  Nietzsche, *Götzen-Dämmerung* (1889), sezione "Sprüche und Pfeile", "Hat man sein warum? des Lebens, so verträgt man sich
+  fast mit jedem wie?"; Frankl la usa in *Man's Search for Meaning* (1946) dando il merito a Nietzsche. QI **non** dà il
+  numero dell'aforisma: il §12 del banco resta da verificare. L'originale non l'ho scritto nel nodo (passo 2).
+- 1 WebSearch sull'opera: *Uno psicologo nei lager*, Frankl, Ares (1978; 2012), poi altre edizioni (FrancoAngeli, 2024);
+  titolo originale *Ein Psychologe erlebt das Konzentrationslager* (1946). Nessuna edizione scelta: non sai quale leggi.
+- Rinviato: passi 2-3 (testo primario e numero dell'aforisma, traduzione italiana), `esito`, `wikidata` di Frankl,
+  `openlibrary`/`wikidata` del libro.
+
+**Costi:** 6 file scritti (frammento, lettura, 3 nodi, restituzione) + `contesto/` + 1 notifica. 2 ricerche + 1 lettura di
+pagina. ~3-4 minuti.
+
+**Esito sul banco:** passa. Frankl non è `autore`, il `tramite` ✦ c'è, libro `in-corso`, nodi Frankl e libro nati.
+Divergenza: `autore: Friedrich Nietzsche` è scritto già all'ingresso, come nel §5.2; il banco lo vuole dopo il consolidamento.
+
+---
+
+## B10 · 2026-11-30 19:00 · "oggi mi sento come sisifo"
+
+> oggi mi sento come sisifo
+
+**`frammenti/2026/11/20261130-1900.md`**
+
+```md
+---
+registrato: 2026-11-30T19:00:03+01:00
+canale: telefono
+---
+oggi mi sento come sisifo
+```
+
+**`letture/2026/11/20261130-1900.md`** (passo 1: negli ultimi 3 giorni nessun frammento; nelle ultime 5 restituzioni niente su Sisifo)
+
+```md
+---
+versione: 1
+letto: 2026-11-30T19:01:40+01:00
+intento: [salva]
+legami:
+  - parla-di: sisifo
+    come: metafora
+    voce: sua
+    perche: "«mi sento come sisifo»: un'immagine per dire come stai, non l'argomento"
+---
+```
+
+Nessun `sente`, nessun `nomina` del mito né del saggio di Camus, nessuna proposta.
+
+**`persone/sisifo.md`** (nuovo: Sisifo non esisteva al punto zero, ora lo nomini tu; il personaggio, `finzione`, perché per il
+§2.5 i personaggi del mito sono persone; il mito non è un nodo, `in` in chiaro)
+
+```md
+---
+nome: Sisifo
+alias: [sisifo]
+cerchia: finzione
+in: mito greco
+nato-da: [20261130-1900]
+---
+```
+
+Nodi aggiornati: nessuno. Le restituzioni importate `r-20261004-2228-ritratto-c16` e `-sisi` nominano "Sisifo (la discesa)"
+in chiaro e non si riscrivono (sono immutabili).
+
+**`restituzioni/2026/11/r-20261130-1901-risposta.md`**
+
+```md
+---
+forma: risposta
+per: 20261130-1900
+voci: []
+legami: []
+---
+**Salvato.**
+```
+
+**Risposta sul telefono:** "19:01 · **Salvato.**"
+
+**Verifiche fatte:** nessuna ricerca. Controllato a mano: E66 (Sisifo felice) non è nel banco né nei frammenti, quindi "Il
+masso o la discesa?" non ha appiglio (§6.6: solo se E66 è recente); `sisifo` non era un nodo (punto zero, "Non esistono").
+Rinviato al consolidamento: la vicinanza con le restituzioni importate su Sisifo, la linea del tempo (umore, non posizione).
+
+**Costi:** 4 file scritti (frammento, lettura, 1 nodo, restituzione) + `contesto/`. 0 ricerche. ~1-2 minuti.
+
+**Esito sul banco:** passa. `parla-di` con `come: metafora` ✦, nessun `sente`, nessun Camus, nessun `contraddice`, nessuna
+domanda. La lacuna del banco non c'è: il §2.3 ammette `parla-di` verso "qualunque nodo usato come immagine". In più nasce il
+nodo Sisifo, che il banco non elenca.
