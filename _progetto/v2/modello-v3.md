@@ -919,6 +919,12 @@ risposte:
   rapido "Chiedi" (C15e): allora fa testo quella, byte per byte, e il memo aggiunge solo le risposte. Se non rimandi il
   memo, la risposta resta detta in chat e basta: nessun danno, nessun sollecito.
 
+  **Due memo della stessa chat** (stesso id, [prompt v3](/_progetto/v2/prompt-v3.md) §14 n. 10): il memo successivo
+  **sostituisce** il precedente solo se lo contiene come **prefisso**, cioè gli stessi turni e le stesse voci, con turni o
+  voci nuovi solo in coda e i numeri `n` continui. Altrimenti [S] `applica.mjs` lo rifiuta e lo mette in coda come
+  **conflitto**, che la Specchio successiva ti mostra. Il frammento di chat resta immutabile nel senso del v3: vale l'ultima
+  versione completa, e le precedenti restano nella storia di git (l'hash di verifica è quello dell'ultima).
+
 **Specchio** è una sessione Claude Code sul repository (1–2 minuti d'avvio). Ci si va quando (regola della simulazione):
 1. la domanda va **verificata sul mondo** con il testo primario ("top quote", "è vera?", i capitoli: Q7);
 2. la domanda deve **scrivere** qualcosa che conta (una posizione, una contraddizione, un'accoglienza) e non vuoi
@@ -1568,6 +1574,7 @@ Totale: 32 frammenti U più `s01`, `s03`, `s04` = **35**. Nel nucleo U1, U3, U10
 | 74 | — | sogno con "Gioco ◌." più frase ✦ e al più un ○; confronto con la voce dall'altra parte; citazioni ricordate ✦; Q-citato sul trimestre; immagini per lemma; delicati nella soglia | M1–M9, M12 |
 | 75 | piano piatto per "smista"; hash di un solo file; verifica rapida dopo `applica`; `riserva/` scritta dall'AI | involucro con 7 operazioni anche nell'esempio; hash di `CLAUDE.md` + `prompt/<ciclo>.md` + `prompt/formato-piano.md`, `prompt/specchio.md`; verifica rapida dentro `crea-nodo`; `riserva/` solo da `applica.mjs`; Specchio nei giorni 1–7; ricordabili con gli importati | [prompt v3](/_progetto/v2/prompt-v3.md) §14; coordinatore |
 | 76 | ricordo dopo 60 giorni attivi, importati solo "nei primi mesi" | regola unica: importati ✦ da subito, nuovi dopo 60 giorni di calendario e ≥ 10 attivi; domenica senza parlanti muta; proposte pronte solo da una notte precedente; nessun ○ senza opera e passo | [seconda prova di restituzione](/_progetto/v2/simulazione/attriti-restituzione.md) S2, S7, S8; coordinatore |
+| 77 | due memo della stessa chat senza regola | il successivo sostituisce solo se contiene il precedente come prefisso (crescita in coda, `n` continui); altrimenti conflitto per Specchio | [prompt v3](/_progetto/v2/prompt-v3.md) §14 n. 10; coordinatore |
 
 **Scartati, con il motivo:**
 - *Togliere sogno, "ti ricordi?" e ritratto* (CS §1.2): restano. Il banco non li collaudava, ma la ricerca dice che la
