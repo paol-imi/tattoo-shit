@@ -416,3 +416,444 @@ La discesa di Sisifo. L'ora della coscienza. Non il Sisifo che spinge, ma quello
 
 **Costi del punto zero (simulato):** 21 file (5 frammenti, 5 letture, 9 nodi scritti a mano su 33 che lo script
 genererebbe, 2 restituzioni); 0 domande; nessun ID esterno.
+
+---
+
+## B01 · 2026-11-03 23:40 · Galimberti a teatro, l'ospite inquietante
+
+> ho visto uno spezzone di galimberti a teatro, credo lo spettacolo sulle emozioni, diceva che il nichilismo è l'ospite inquietante e che i ragazzi nn stanno male per motivi psicologici ma culturali. molto interessante
+
+Il Comando rapido scrive `ingresso/20261103-2340-xxxx.md` (solo il testo) e fa il `fire`; la Routine lo sposta.
+
+**`frammenti/2026/11/20261103-2340.md`**
+
+```md
+---
+registrato: 2026-11-03T23:40:12+01:00
+canale: telefono
+---
+ho visto uno spezzone di galimberti a teatro, credo lo spettacolo sulle emozioni, diceva che il nichilismo è l'ospite inquietante e che i ragazzi nn stanno male per motivi psicologici ma culturali. molto interessante
+```
+
+**`letture/2026/11/20261103-2340.md`** (identica al §5.2)
+
+```md
+---
+versione: 1
+letto: 2026-11-03T23:41:05+01:00
+intento: [salva]
+reazione:
+  - parole: "molto interessante"
+    segnale: giudizio
+    verso: "+"
+legami:
+  - nomina: umberto-galimberti
+    voce: sua
+    perche: "«uno spezzone di galimberti a teatro»"
+  - nomina: spettacolo-sulle-emozioni
+    voce: sua
+    perche: "«credo lo spettacolo sulle emozioni»; titolo proposto: Il mondo delle emozioni (da verificare)"
+  - nomina: nichilismo-ospite-inquietante
+    voce: sua
+    perche: "«il nichilismo è l'ospite inquietante», detto da Galimberti secondo te"
+  - parla-di: nichilismo
+    voce: sua
+    perche: "parola tua"
+parole: [ragazzi, cultura]
+---
+```
+
+**`persone/umberto-galimberti.md`** (nuovo; **senza** il `wikidata: Q4003398` del §5.2: §3.1 vieta gli ID all'ingresso)
+
+```md
+---
+nome: Umberto Galimberti
+alias: [galimberti, umberto galimberti]
+cerchia: mondo
+nato-da: [20261103-2340]
+---
+```
+
+**`opere/spettacolo-sulle-emozioni.md`** (nuovo)
+
+```md
+---
+nome: lo spettacolo sulle emozioni
+alias: [spettacolo sulle emozioni]
+autore: umberto-galimberti
+nato-da: [20261103-2340]
+---
+```
+
+**`citazioni/nichilismo-ospite-inquietante.md`** (nuovo; `autore` in chiaro perché Nietzsche non è un nodo al punto zero)
+
+```md
+---
+nome: Il nichilismo, l'ospite inquietante
+autore: Friedrich Nietzsche
+attribuita-a: [umberto-galimberti]
+prova: memoria
+originale: "Der Nihilismus steht vor der Tür: woher kommt uns dieser unheimlichste aller Gäste? (da verificare)"
+traduzione: "Il nichilismo è alla porta: da dove ci viene questo, il più inquietante fra tutti gli ospiti?"
+traduttore: resa di Claude
+riferimento:
+  opera: "Frammenti postumi (da verificare: 1885-1887 nel §5.2, 1885-86 nel corpus, 1887-88 in una fonte secondaria)"
+  luogo: "2[127] (da verificare)"
+nato-da: [20261103-2340]
+---
+L'immagine è di Nietzsche; Galimberti ne ha fatto il titolo di un libro (L'ospite inquietante, Feltrinelli 2007).
+```
+
+Nessun nodo toccato: `temi/nichilismo` non cambia (`nato-da` registra la nascita, non le occorrenze).
+
+**`restituzioni/2026/11/r-20261103-2341-risposta.md`**
+
+```md
+---
+forma: risposta
+per: 20261103-2340
+voci:
+  - n: 1
+    rif: "mondo: Nietzsche, il nichilismo «il più inquietante fra tutti gli ospiti»"
+  - n: 2
+    rif: "mondo: Galimberti, L'ospite inquietante (Feltrinelli 2007)"
+  - n: 3
+    rif: spettacolo-sulle-emozioni
+legami: []
+---
+**Salvato.** "L'ospite inquietante" è un'immagine di Nietzsche ○; Galimberti ci ha scritto un libro (2007) ○.
+Lo spettacolo era *Il mondo delle emozioni*? ⚠
+```
+
+Poi: `contesto/recenti.md`, `contesto/parole.md`, `contesto/indice.md` rigenerati dallo script; verifica; push su `main`.
+Nessuna notifica (non è una correzione di fatto né un ponte forte).
+
+**Risposta sul telefono:** "23:41 · **Salvato.** "L'ospite inquietante" è un'immagine di Nietzsche ○; Galimberti ci ha scritto un libro (2007) ○. Lo spettacolo era *Il mondo delle emozioni*? ⚠"
+
+**Verifiche fatte:**
+- Passo 1 sulla citazione (WebSearch "unheimlichste aller Gäste"): la frase è di Nietzsche, nei frammenti postumi
+  ("Der Nihilismus steht vor der Thür: woher kommt uns dieser unheimlichste aller Gäste?"); non è un apocrifo. Le fonti non
+  concordano sulla collocazione (una dice note 1887-88): numero 2[127] e anni restano "(da verificare)". Nessun `esito`.
+- Fatto ○ del libro (WebSearch): *L'ospite inquietante. Il nichilismo e i giovani*, Feltrinelli 2007, Serie Bianca (cataloghi
+  IED, Arcigay). La stessa ricerca porta la polemica per plagio del 2008 (Il Giornale): saputa, non detta.
+- Titolo dello spettacolo (WebSearch): *Il mondo delle emozioni* esiste (TicketOne, La Nazione, Mentelocale; tournée che
+  parte il 13/11/2026 a Ferrara), accanto a *Quando la vita era regolata dal cuore* e *L'illusione della libertà*. Resta
+  domanda ⚠: non so quale lui abbia visto, né se fosse dal vivo o un video.
+- Rinviato al consolidamento: passi 2-3 (testo primario in eKGWB/KSA, traduzione pubblicata), `wikidata` di Galimberti.
+
+**Costi:** 6 file scritti (frammento, lettura, 3 nodi, restituzione) + 3 di `contesto/` rigenerati; il grezzo spostato.
+3 ricerche. Tempo stimato della Routine: 3-4 minuti (avvio sessione ~1, ricerche ~1, scrittura e push ~1-2).
+
+**Esito sul banco:** passa. File, nodi e risposta coincidono; nessun nodo del libro, nessun tema "giovani", titolo solo ⚠.
+Divergenza col modello: il §5.2 scrive `wikidata` all'ingresso, il banco e il §3.1 no; ho seguito il §3.1.
+
+---
+
+## B02 · 2026-11-04 08:12 · la frase dell'ospite era verso la fine
+
+> ah e la frase dell'ospite era verso la fine, quando parlava dei greci
+
+**`frammenti/2026/11/20261104-0812.md`**
+
+```md
+---
+registrato: 2026-11-04T08:12:31+01:00
+canale: telefono
+---
+ah e la frase dell'ospite era verso la fine, quando parlava dei greci
+```
+
+**`letture/2026/11/20261104-0812.md`** (passo 1: letti gli ultimi 3 giorni; "la frase dell'ospite" → `20261103-2340`)
+
+```md
+---
+versione: 1
+letto: 2026-11-04T08:13:02+01:00
+intento: [salva]
+atti: []
+legami:
+  - ritorna-su: 20261103-2340
+    come: aggiunge
+    voce: sua
+    perche: "«la frase dell'ospite era verso la fine»"
+  - nomina: nichilismo-ospite-inquietante
+    momento: "verso la fine"
+    voce: sua
+    perche: "«era verso la fine»"
+parole: [greci]
+---
+```
+
+Nessun nodo nuovo né aggiornato. Il frammento del 3 novembre non si tocca.
+
+**`restituzioni/2026/11/r-20261104-0813-risposta.md`**
+
+```md
+---
+forma: risposta
+per: 20261104-0812
+voci: []
+legami: []
+---
+**Aggiunto allo spezzone di ieri.**
+```
+
+**Risposta sul telefono:** "08:13 · **Aggiunto allo spezzone di ieri.**"
+
+**Verifiche fatte:** nessuna ricerca (nessun fatto nuovo). Controllato a mano che "ospite" si risolve su un solo frammento
+negli ultimi 3 giorni e su una sola citazione.
+
+**Costi:** 3 file scritti (frammento, lettura, restituzione) + `contesto/` rigenerato. 0 ricerche. ~1-2 minuti.
+
+**Esito sul banco:** passa. Nessun tema "greci", nessuna domanda, frammento di ieri intatto.
+
+---
+
+## B03 · 2026-11-09 19:02 · Jung, l'inconscio e il destino
+
+> jung: finché non rendi conscio l'inconscio lui guiderà la tua vita e tu lo chiamerai destino. mi ha spaccato
+
+**`frammenti/2026/11/20261109-1902.md`**
+
+```md
+---
+registrato: 2026-11-09T19:02:44+01:00
+canale: telefono
+---
+jung: finché non rendi conscio l'inconscio lui guiderà la tua vita e tu lo chiamerai destino. mi ha spaccato
+```
+
+**`letture/2026/11/20261109-1902.md`**
+
+```md
+---
+versione: 1
+letto: 2026-11-09T19:04:10+01:00
+intento: [salva]
+reazione:
+  - parole: "mi ha spaccato"
+    segnale: impatto
+    verso: "+"
+legami:
+  - nomina: finche-non-rendi-conscio-l-inconscio
+    voce: sua
+    perche: "la frase come l'hai scritta, attribuita a Jung"
+  - nomina: carl-gustav-jung
+    voce: sua
+    perche: "«jung:»"
+parole: [inconscio, destino]
+---
+```
+
+**`persone/carl-gustav-jung.md`** (nuovo: Jung non esisteva al punto zero, ora lo nomini tu)
+
+```md
+---
+nome: Carl Gustav Jung
+alias: [jung]
+cerchia: mondo
+nato-da: [20261109-1902]
+---
+```
+
+**`citazioni/finche-non-rendi-conscio-l-inconscio.md`** (nuovo; niente `originale`, niente `esito`)
+
+```md
+---
+nome: Finché non rendi conscio l'inconscio
+autore: carl-gustav-jung
+prova: memoria
+nato-da: [20261109-1902]
+---
+Passo 1 (2026-11-09): così non risulta testuale; l'idea è vicina ad Aion, §126 (da verificare).
+```
+
+**`restituzioni/2026/11/r-20261109-1904-risposta.md`**
+
+```md
+---
+forma: risposta
+per: 20261109-1902
+voci:
+  - n: 1
+    rif: "mondo: Jung, Aion §126 (da verificare)"
+legami: []
+---
+**Salvata.** Così non sembra testuale ⚠: l'idea è vicina ad *Aion* (§126). Ti metto accanto il passo vero quando l'ho controllato.
+```
+
+**Risposta sul telefono:** "19:04 · **Salvata.** Così non sembra testuale ⚠: l'idea è vicina ad *Aion* (§126). Ti metto accanto il passo vero quando l'ho controllato."
+
+**Verifiche fatte:** passo 1 (WebSearch): carljungdepthpsychologysite la elenca tra le frasi "attributed to but never uttered
+by Dr. Jung"; altri blog la riconducono ad *Aion*, CW 9/II §126 ("when an inner situation is not made conscious, it happens
+outside, as fate"). Il testo di *Aion* non l'ho aperto: §126 resta da verificare. Non è un apocrifo puro (l'idea è di Jung),
+quindi niente `esito`. Rinviato: passi 2-3 (testo primario, traduzione Boringhieri), `wikidata` di Jung.
+
+**Costi:** 5 file scritti (frammento, lettura, 2 nodi, restituzione) + `contesto/`. 1 ricerca. ~2-3 minuti.
+
+**Esito sul banco:** passa. Reazione d'impatto, nodo Jung nato, nessun esito, niente forma circolante in `originale`,
+risposta uguale nel senso.
+
+---
+
+## B04 · 2026-11-11 19:45 · Private Music, "la 3"
+
+> ascoltato private music dei deftones tutto di fila in macchina. la 3 mi ha distrutto
+
+**`frammenti/2026/11/20261111-1945.md`**
+
+```md
+---
+registrato: 2026-11-11T19:45:09+01:00
+canale: telefono
+---
+ascoltato private music dei deftones tutto di fila in macchina. la 3 mi ha distrutto
+```
+
+**`letture/2026/11/20261111-1945.md`**
+
+```md
+---
+versione: 1
+letto: 2026-11-11T19:47:20+01:00
+intento: [salva]
+contesto: "in macchina, tutto di fila"
+reazione:
+  - parole: "la 3 mi ha distrutto"
+    segnale: impatto
+    verso: "+"
+legami:
+  - nomina: private-music
+    momento: "traccia 3"
+    fruizione: fatta
+    voce: sua
+    perche: "«ascoltato private music … tutto di fila»; «la 3»: titolo non risolto"
+  - nomina: deftones
+    voce: sua
+    perche: "«dei deftones»"
+---
+```
+
+**`opere/private-music.md`** (nuovo)
+
+```md
+---
+nome: Private Music
+alias: [private music]
+autore: deftones
+anno: 2025
+nato-da: [20261111-1945]
+---
+```
+
+Nessun nodo per la traccia: nasce dopo la conferma, con `in: private-music`.
+
+**`restituzioni/2026/11/r-20261111-1947-risposta.md`**
+
+```md
+---
+forma: risposta
+per: 20261111-1945
+voci:
+  - n: 1
+    rif: private-music
+legami: []
+---
+**Salvato.** La 3 di *Private Music*: ti ricordi il titolo? Se no, lo prendo dalla tracklist e te lo confermo ⚠.
+```
+
+**Risposta sul telefono:** "19:47 · **Salvato.** La 3 di *Private Music*: ti ricordi il titolo? Se no, lo prendo dalla tracklist e te lo confermo ⚠."
+
+**Verifiche fatte:** WebSearch sull'album (per `anno`, risoluzione dell'entità): *Private Music*, Deftones, uscito il 22 agosto
+2025 (Reprise/Warner; Warner Music Ireland, AllMusic). La tracklist **non** l'ho cercata: il §2.6 la rinvia al consolidamento
+(MusicBrainz). Rinviato: titolo della traccia 3, `musicbrainz` dell'album.
+
+**Costi:** 4 file scritti (frammento, lettura, 1 nodo, restituzione) + `contesto/`. 1 ricerca. ~2-3 minuti.
+
+**Esito sul banco:** passa male. Nessun titolo a memoria, una domanda sola, reazione non legata a una traccia; ma il banco
+vuole "La 3 è *[titolo]*, giusto?" e il modello (§2.6) rinvia il titolo: ho seguito il modello e lo dico nella risposta.
+La lacuna del banco sul "contesto" non c'è: la lettura ha il campo `contesto`.
+
+---
+
+## B05 · 2026-11-16 23:00 · Telemaco, attribuito a Galimberti
+
+> galimberti in un reel parlava di telemaco che aspetta il padre guardando il mare, e che oggi i padri non ci sono più. mi ha colpito tanto
+
+**`frammenti/2026/11/20261116-2300.md`**
+
+```md
+---
+registrato: 2026-11-16T23:00:27+01:00
+canale: telefono
+---
+galimberti in un reel parlava di telemaco che aspetta il padre guardando il mare, e che oggi i padri non ci sono più. mi ha colpito tanto
+```
+
+**`letture/2026/11/20261116-2300.md`**
+
+```md
+---
+versione: 1
+letto: 2026-11-16T23:02:40+01:00
+intento: [salva]
+contesto: "in un reel"
+reazione:
+  - parole: "mi ha colpito tanto"
+    segnale: impatto
+    verso: "+"
+legami:
+  - nomina: umberto-galimberti
+    voce: sua
+    perche: "«galimberti in un reel»: l'attribuzione è tua"
+  - nomina: telemaco
+    voce: sua
+    perche: "«telemaco che aspetta il padre guardando il mare»"
+  - nomina: "Massimo Recalcati"
+    voce: mondo
+    perche: "l'idea del Telemaco che aspetta il padre è di Recalcati, Il complesso di Telemaco (Feltrinelli 2013); nessuna fonte trovata la dà a Galimberti (ricerca del 2026-11-16)"
+parole: [padre, mare, aspettare]
+---
+```
+
+**`persone/telemaco.md`** (nuovo; `in` in chiaro: l'*Odissea* non è un nodo)
+
+```md
+---
+nome: Telemaco
+alias: [telemaco]
+cerchia: finzione
+in: Odissea
+nato-da: [20261116-2300]
+---
+```
+
+Nessun nodo Recalcati (nasce solo dopo un tuo sì). `persone/umberto-galimberti.md` non cambia.
+
+**`restituzioni/2026/11/r-20261116-2302-risposta.md`**
+
+```md
+---
+forma: risposta
+per: 20261116-2300
+voci:
+  - n: 1
+    rif: "mondo: Massimo Recalcati, Il complesso di Telemaco (Feltrinelli 2013)"
+legami: []
+---
+**Salvato.** L'idea di Telemaco che aspetta il padre è più probabilmente di Massimo Recalcati ○: *Il complesso di Telemaco* (Feltrinelli 2013). Correggo?
+```
+
+Notifica senza contenuto: sì (correzione di fatto).
+
+**Risposta sul telefono:** "23:02 · **Salvato.** L'idea di Telemaco che aspetta il padre è più probabilmente di Massimo Recalcati ○: *Il complesso di Telemaco* (Feltrinelli 2013). Correggo?"
+
+**Verifiche fatte:** WebSearch: *Il complesso di Telemaco. Genitori e figli dopo il tramonto del padre*, Recalcati, Feltrinelli,
+marzo 2013, Serie Bianca (Sololibri, Macrolibrarsi, Allegoria); l'immagine del figlio che guarda il mare aspettando il padre
+è sua. Seconda WebSearch "Galimberti Telemaco padre mare": nessuna fonte lega l'idea a Galimberti (resta "più probabile",
+non "certo": un reel di Galimberti che la riprende non è escluso). Il reel non è raggiungibile (nessun link).
+
+**Costi:** 4 file scritti (frammento, lettura, 1 nodo, restituzione) + `contesto/` + 1 notifica. 2 ricerche. ~3 minuti.
+
+**Esito sul banco:** passa. Stesso nodo Galimberti, Telemaco `finzione`, legame ○ su Recalcati senza nodo, nessuna
+correzione da sola, "padre" solo parola. In più `aspettare` tra le parole, perché il §6.4 la vuole ricorrente con Murph.
