@@ -20,3 +20,4 @@ Documenti di progettazione (2026-10-31), proposte di Claude da validare. Non fan
 - [Citazioni (v2)](/_progetto/v2/citazioni.md): prova sul campo su 25 citazioni e il protocollo di verifica raccomandato.
 - [Identità (v2)](/_progetto/v2/identita.md): prova sul campo di Wikidata e MusicBrainz su 30 entità difficili, procedura e abbozzo di `risolvi.mjs`.
 - [Modello v2](/_progetto/v2/modello.md) e [banco di prova](/_progetto/v2/banco-di-prova.md): il modello definitivo del secondo giro (4 tipi, 8 predicati, cicli) e i 50 casi per collaudarlo.
+- [Simulazione d'ingresso (v3)](/_progetto/v2/simulazione/ingresso.md) e [attriti](/_progetto/v2/simulazione/attriti-ingresso.md): i 25 messaggi del banco passati davvero nel modello v2, con un consolidamento, la lettera della domenica, gli attriti e il verdetto.
