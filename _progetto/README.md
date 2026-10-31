@@ -22,3 +22,4 @@ Documenti di progettazione (2026-10-31), proposte di Claude da validare. Non fan
 - [Modello v2](/_progetto/v2/modello.md) e [banco di prova](/_progetto/v2/banco-di-prova.md): il modello definitivo del secondo giro (4 tipi, 8 predicati, cicli) e i 50 casi per collaudarlo.
 - [Coordinamento](/_progetto/v2/coordinamento.md): stato del lavoro, sessioni in corso e prossimi passi.
 - [Critica del tempo (v2)](/_progetto/v2/critica-tempo.md): il modello v2 messo alla prova del primo mese, di un anno e di cinque anni; 15 crolli con gravità e correzioni.
+- [Critica della semplicità (v2)](/_progetto/v2/critica-semplicita.md): il modello dimezzato sul banco, tre buchi da chiudere (la chat non scrive, identità dei nodi, grammatica dei legami), stime di codice e il nucleo minimo vitale della prima settimana.
