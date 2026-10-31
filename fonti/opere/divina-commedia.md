@@ -32,7 +32,7 @@ Tutte e tre le cantiche finiscono con la parola "stelle":
 >
 > > E quindi uscimmo a riveder le stelle.
 >
-> — Inferno XXXIV, 139
+> — Dante, Inferno XXXIV, 139
 
 ## Collegamenti
 

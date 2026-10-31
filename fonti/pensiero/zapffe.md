@@ -27,7 +27,7 @@ Quattro difese contro il peso della coscienza: isolamento, ancoraggio, distrazio
 >
 > > Conoscete voi stessi, siate infecondi, e lasciate che la terra resti silenziosa dopo di voi.
 >
-> — L'ultimo Messia (1933), finale
+> — Zapffe, L'ultimo Messia (1933), finale. Resa di Claude dall'inglese di G. R. Tangenes; edizione Mimesis (2024) da verificare
 
 ## Collegamenti
 

@@ -25,7 +25,7 @@ Le tre metamorfosi, amor fati, l'eterno ritorno, lo sguardo nell'abisso.
 >
 > > Amor fati: questo sia d'ora innanzi il mio amore!
 >
-> — La gaia scienza, § 276
+> — Nietzsche, La gaia scienza (1882), libro IV, § 276. Resa di Claude, traduzione Masini da verificare
 
 ## Collegamenti
 

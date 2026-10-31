@@ -20,7 +20,7 @@ In Jung, la parte di sé che non si vuole vedere: da integrare, non da combatter
 
 > Ognuno porta con sé un'ombra, e meno questa è incarnata nella vita conscia dell'individuo, tanto più è nera e densa.
 
-— Jung, Psicologia e religione (1938), Opere 11, § 131
+— Jung, Psicologia e religione (1938), Opere 11, § 131. Resa di Claude dall'inglese; traduzione Boringhieri da verificare
 
 ## Collegamenti
 

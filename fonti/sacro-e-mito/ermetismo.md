@@ -18,9 +18,9 @@ Come in alto così in basso.
 > [!NOTE]
 > **Proposta di Claude, da validare.**
 >
-> > Ciò che è in basso è come ciò che è in alto, e ciò che è in alto è come ciò che è in basso.
+> > Ciò che è in basso è come ciò che è in alto, e ciò che è in alto è come ciò che è in basso, per fare il miracolo della cosa unica.
 >
-> — Tavola di smeraldo (versione latina medievale)
+> — Tavola di smeraldo (versione latina medievale, v. 2). Resa di Claude dal latino (da verificare)
 
 ## Collegamenti
 

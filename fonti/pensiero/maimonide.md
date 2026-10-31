@@ -23,7 +23,7 @@ Gli otto livelli della carità.
 >
 > > Il silenzio è lode per te.
 >
-> — Guida dei perplessi, I, 59 (cita Salmi 65, 2)
+> — Maimonide, Guida dei perplessi, I, 59, che cita Salmi 65,2 (CEI 2008: «Per te il silenzio è lode, o Dio, in Sion»). Resa di Claude dall'inglese di Friedländer (da verificare)
 
 ## Collegamenti
 
