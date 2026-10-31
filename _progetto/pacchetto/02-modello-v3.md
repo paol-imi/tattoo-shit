@@ -70,46 +70,57 @@ Sono dodici. Ognuno ha la prova che lo fonda.
 
 Il formato di `frammenti/` è congelato per sempre (§11). Le restituzioni sono un diario di ciò che lo specchio ha detto.
 Non esiste più `.indice/`: un solo script calcola in memoria e scrive `contesto/` (CS §1.2). Fuori dagli strati c'è un
-sola cartella scritta dall'AI e sovrascritta: `riserva/`, con il "mentre eri via" pronto (§7.2.1) e le proposte in
+sola cartella che si sovrascrive: `riserva/`, scritta solo da `applica.mjs` con l'operazione `riserva` del piano di "consolida", con il "mentre eri via" pronto (§7.2.1) e le proposte in
 attesa della lettera (§7.4).
 
 ### 2.2 Il piano: come l'AI scrive senza scrivere file
 
 L'AI non crea file a mano. In ogni ciclo riceve un **pacchetto** preparato da [S] (il frammento, `contesto/recenti.md`,
-la tabella degli alias, i candidati per ogni nome, i frammenti vicini) e restituisce un **piano** JSON. [S] lo convalida
-contro lo schema (§3.7), calcola slug e numerazioni, pulisce i link, scrive i file e rifiuta il piano se qualcosa non torna
-(la sessione lo corregge, al massimo due volte, poi lascia il frammento in coda e lo segnala).
+la tabella degli alias, i candidati per ogni nome, i frammenti vicini) e restituisce un **piano** JSON, nel formato di
+`prompt/formato-piano.md`. [S] `applica.mjs` lo convalida, calcola slug e numerazioni, pulisce i link, scrive i file e
+rifiuta il piano se qualcosa non torna (la sessione lo corregge, al massimo due volte, poi lascia il frammento in coda e
+lo segnala).
+
+**Ogni ciclo scrive un piano** ("smista", "consolida", "ritratto", Specchio), sempre con lo stesso involucro
+`{ciclo, letto-da, operazioni: [...]}`. Le operazioni sono di sette tipi: `crea-nodo`, `aggiorna-nodo` (solo "consolida"
+e migrazioni), `alias`, `lettura` (con la versione), `restituzione`, `riserva`, `lapide`. Il piano di "smista" per il
+memo di Galimberti:
 
 ```json
 {
-  "frammento": "20261103-2340-k7q2",
-  "intento": ["salva"],
-  "reazione": [{"parole": "molto interessante", "verso": "+"}],
-  "nodi-nuovi": [
-    {"genere": "persone", "nome": "Umberto Galimberti", "alias": ["galimberti"], "cerchia": "mondo"},
-    {"genere": "opere", "nome": "spettacolo sulle emozioni", "autore": "@Umberto Galimberti"},
-    {"genere": "citazioni", "nome": "Il nichilismo è l'ospite inquietante", "attribuita-a": ["@Umberto Galimberti"]}
-  ],
-  "legami": [
-    {"p": "nomina", "a": "@Umberto Galimberti", "voce": "sua", "perche": "«uno spezzone di galimberti a teatro»"}
-  ],
-  "parole": ["ragazzi", "cultura"],
-  "risposta": {"testo": "…", "voci": [
-    {"rif": "@Il nichilismo è l'ospite inquietante", "voce": "mondo", "cosa": "citazione"},
-    {"rif": "@spettacolo sulle emozioni", "voce": "mondo", "cosa": "opera"}]}
+  "ciclo": "smista",
+  "letto-da": "<modello>",
+  "operazioni": [
+    {"op": "crea-nodo", "genere": "persone", "nome": "Umberto Galimberti", "alias": ["galimberti"], "cerchia": "mondo"},
+    {"op": "crea-nodo", "genere": "opere", "nome": "spettacolo sulle emozioni", "autore": "@Umberto Galimberti"},
+    {"op": "crea-nodo", "genere": "citazioni", "nome": "Il nichilismo è l'ospite inquietante",
+     "attribuita-a": ["@Umberto Galimberti"]},
+    {"op": "lettura", "frammento": "20261103-2340-k7q2", "versione": 1, "intento": ["salva"],
+     "reazione": [{"parole": "molto interessante", "verso": "+"}],
+     "legami": [
+       {"p": "nomina", "a": "@Umberto Galimberti", "voce": "sua", "perche": "«uno spezzone di galimberti a teatro»"},
+       {"p": "parla-di", "a": "nichilismo", "voce": "sua", "perche": "parola tua"}],
+     "parole": ["ragazzi", "cultura"]},
+    {"op": "restituzione", "forma": "risposta", "per": "20261103-2340-k7q2", "testo": "…",
+     "voci": [
+       {"rif": "@Il nichilismo è l'ospite inquietante", "voce": "mondo", "cosa": "citazione"},
+       {"rif": "@spettacolo sulle emozioni", "voce": "mondo", "cosa": "opera"}]}
+  ]
 }
 ```
 
-`@Nome` rimanda a un nodo nuovo dello stesso piano: [S] lo sostituisce con lo slug calcolato. Così l'AI non inventa mai
-uno slug, e due piani con lo stesso nome producono lo stesso file.
+`@Nome` rimanda a un nodo creato nello stesso piano: [S] lo sostituisce con lo slug calcolato. Così l'AI non inventa mai
+uno slug, e due piani con lo stesso nome producono lo stesso file. La **verifica rapida** di una citazione nuova (§7.2) sta
+**dentro** il suo `crea-nodo` (`esito`, `riferimento` quando trova una scheda): avviene prima di `applica`, ed è ancora la
+creazione.
 
-**Ogni ciclo scrive un piano**, non solo l'ingresso (incoerenza 3): "consolida", "ritratto" e Specchio producono un piano
-con lo stesso involucro, `{ciclo, letto-da, operazioni: [...]}`, e le operazioni sono di sette tipi: `crea-nodo`,
-`aggiorna-nodo` (solo "consolida" e migrazioni), `alias`, `lettura` (con la versione), `restituzione`, `riserva`,
-`lapide`. Lo script è uno solo, `applica.mjs`. `letto-da` lo dichiara l'AI nel piano (il modello che sta girando); `prompt`
-lo calcola [S] dall'hash del file `prompt/<ciclo>.md` (§7.4). [S] controlla il piano con uno schema suo, piccolo
-(le chiavi qui sopra, gli stessi `legame` e `voce` del §3.7, `@Nome` ammesso dove il §3.7 vuole uno slug), e poi i file
-prodotti con lo schema del §3.7.
+**Chi è il lettore.** `letto-da` lo dichiara l'AI nel piano (il modello che sta girando). `prompt` lo calcola [S]: le prime 7
+cifre dell'hash di `CLAUDE.md` + `prompt/<ciclo>.md` + `prompt/formato-piano.md` messi in fila, perché il lettore dipende da
+tutti e tre (cambiarne uno è un cambio di lettore, C13). I cicli sono `smista`, `consolida`, `lettera`, `ritratto` e
+`specchio`, ognuno con il suo file in `prompt/`.
+
+[S] controlla il piano con uno schema suo, piccolo (l'involucro, le chiavi di ogni operazione, gli stessi `legame` e `voce`
+del §3.7, `@Nome` ammesso dove il §3.7 vuole uno slug), e poi i file prodotti con lo schema del §3.7.
 
 ### 2.3 Gli script (tutto il codice)
 
@@ -124,9 +135,8 @@ prodotti con lo schema del §3.7.
 | `importa.mjs` | l'Atlante, una volta sola (§14) | ~250 |
 | `migra/NNN-*.mjs`, `migra/fondi.mjs`, `migra/tara.mjs` | le migrazioni meccaniche, la fusione dei temi, la taratura del lettore (§11) | quando servono |
 
-Circa **1.100 righe**, contro le ~2.000–2.300 del v2 pieno. I prompt sono quelli dei [prompt operativi](https://github.com/paol-imi/tattoo-shit/blob/claude/quirky-newton-qe5g9o/_progetto/v2/prompt-operativi.md): `CLAUDE.md`, le quattro Routine
-("smista", "consolida", "lettera", "ritratto"), le ricette di ricordo, sogno e confronto, Specchio, più l'istruzione del
-Progetto (§16 dice che cosa va riallineato).
+Circa **1.100 righe**, contro le ~2.000–2.300 del v2 pieno. I prompt sono file in `prompt/`: `formato-piano.md` più uno per ciclo (`smista`, `consolida`, `lettera`, `ritratto`,
+`specchio`), oltre a `CLAUDE.md` e all'istruzione del Progetto. Le loro bozze sono in [prompt v3](./03-prompt-v3.md).
 
 ---
 
@@ -357,7 +367,7 @@ Scritta una volta, mai cambiata ([S] confronta l'hash a ogni verifica).
 | `copre` | no | gli altri frammenti di una raffica a cui la stessa risposta risponde (T01) |
 | `aggancio` | no | `{a: <id frammento>, passo: "nucleo:19"}`: la frase su cui si regge (A7). Non è "chi l'ha chiesta" |
 | `voci` | sì (anche vuoto) | gli elementi numerati: `{n, rif, voce, cosa}` |
-| `legami` | no | i legami che propone (convergenze, ponti), sempre `voce: proposta` o `mondo`; `da: 3` se il legame parte dalla voce 3 (un brano che parla di solitudine: Q25) |
+| `legami` | no | i legami che propone (convergenze, ponti), sempre `voce: proposta` o `mondo` (o `seme`, solo per le `eredita`); `da: 3` se il legame parte dalla voce 3 (un brano che parla di solitudine: Q25) |
 | `fonte` | solo `eredita` | `file:riga@commit` (A20) |
 
 `voci[].rif` è uno slug, un id di frammento o un `~Nome`; `voci[].turno` dice a quale turno di una chat appartiene; `voci[].cosa` dice che cosa è: `brano`, `libro`, `citazione`,
@@ -746,7 +756,8 @@ token-stimati: 18400            # caratteri / 3,5
 13. **Nomi senza nodo** (A1, A17, Q18): ogni `~Nome` e ogni `rif` di voce, per `chiave`, con i file che lo citano. Quando
     nasce un nodo con la stessa chiave, [S] lo collega qui **nel calcolo** (le restituzioni non si toccano): "Sisifo" trova
     le convergenze dell'Atlante anche se il nodo `sisifo` è nato dopo;
-14. **Ricordabili**: quanti sono i frammenti ✦ oltre i 60 giorni attivi, non delicati, mai ricordati (§9.3), e **20 id**
+14. **Ricordabili**: quanti sono i frammenti ✦ oltre i 60 giorni attivi, non delicati, mai ricordati (§9.3) e, finché
+    non ce n'è nessuno, gli **importati ✦** (con la data-tetto: non hanno giorni attivi); e **20 id**
     scelti a caso tra i primi per ordine (§6.2), ruotati a ogni rigenerazione (V15: l'elenco intero pesa 10.000 token a un
     anno); i ricordi già usati;
 15. **In sospeso**: le domande che le restituzioni ti hanno fatto negli ultimi 30 giorni, da non ripetere (Q29);
@@ -777,7 +788,8 @@ arriva a ~224.000 token in un anno, per l'85% `parole.md`. Quindi:
 - **Accolta**, **rifiutato**, **sbiadito**: §5.
 - **Ritorno spontaneo** (I17): un `nomina` ✦ di un nodo che un tuo frammento ✦ aveva già nominato ("riascoltata la
   cura") conta come ritorno, e pesa più di un voto nelle viste. Contano solo i ritorni ✦ e ●, non quelli su un legame ◌.
-- **Ricordabili**, in ordine (I18): prima quelli con una reazione, un `serve-a` o un ritorno spontaneo; mai i delicati.
+- **Ricordabili**: i ✦ non importati oltre i 60 giorni attivi; nei primi mesi, finché non ce n'è nessuno, gli importati ✦
+  con la data-tetto. In ordine (I18): prima quelli con una reazione, un `serve-a` o un ritorno spontaneo; mai i delicati.
 - **Serie vuote** (I18): se una serie che il ritratto mostrerebbe (gli stati d'animo, una vicenda) è ancora vuota, il
   ritratto lo dice invece di tacere.
 - **Vicini** di un frammento (per il pacchetto di "smista"): fino a 10 frammenti ✦ o ✧ che condividono un nodo o una
@@ -831,11 +843,11 @@ citati **I1–I25** sono quelli della [simulazione dell'ingresso](https://github
      "La 3 è *ecdysis*, giusto?" (I15);
    - la **risposta** (§7.2.1), **solo se ha contenuto** (C11), **una sola** per una raffica (T01). Altrimenti
      `risposta: salvato` (o `ci-sono` per "boh" e per il delicato);
-4. [S] `applica.mjs`: file, slug, numeri, link puliti;
-5. [AI] **la verifica rapida** di una citazione **nuova** (I8, V16): una-due ricerche sulla frase così come l'hai scritta. Se trovano una
+4. [AI] **la verifica rapida** di una citazione **nuova**, dentro il suo `crea-nodo`, prima di `applica` (I8, V16): una-due ricerche sulla frase così come l'hai scritta. Se trovano una
    scheda (Quote Investigator, Wikiquote), il nodo prende subito `esito` e la scheda in `riferimento` ("fonte secondaria"),
    qualunque sia l'esito; altrimenti nessun `esito` (⚠) e la traccia della ricerca nel corpo del nodo. L'attribuzione tua
    va **sempre** in `attribuita-a` (anche un'opera: `~La peste`); `autore` solo quando è verificato;
+5. [S] `applica.mjs`: file, slug, numeri, link puliti;
 6. [S] `contesto.mjs`, `verifica.mjs`, commit `smista: N memo` (senza contenuto), push, lucchetto rilasciato.
 
 #### 7.2.1 La risposta all'ingresso
@@ -918,7 +930,7 @@ risposte:
 4. il periodo chiesto è uscito da `contesto/` (§6.1, il tetto).
 
 All'apertura, se `ingresso/` ha memo e il lucchetto è libero, Specchio **fa il lavoro di "smista"** (§7.2, con il
-lucchetto) e ti dice i ponti della giornata (≤ 3 righe per memo): nella prima settimana, senza Routine, è l'unico modo in
+lucchetto) e ti dice i ponti della giornata (≤ 3 righe per memo): nei giorni 1–7, finché le Routine non sono attive, è l'unico modo in
 cui i memo vengono letti. Poi conversa: il frammento di chat cresce in `ingresso/` turno per turno, le risposte in una
 bozza accanto (`ingresso/<id>.risposte.md`). Alla fine, con il lucchetto, sigilla **un** frammento e **una** restituzione
 per la conversazione. Usa `contesto/` e, per il resto, la ricerca nei file. **I numeri vengono da `mappa.md`: l'AI non
@@ -934,7 +946,7 @@ personale (`cerca`, `leggi`, poi `salva`) che fa da sé ciò che oggi fa il memo
 
 ### 7.4 Le Routine della settimana e del mese
 
-Quattro Routine in tutto, con i nomi dei [prompt operativi](https://github.com/paol-imi/tattoo-shit/blob/claude/quirky-newton-qe5g9o/_progetto/v2/prompt-operativi.md): "smista" (§7.2),
+Quattro Routine in tutto: "smista" (§7.2),
 "consolida", "lettera", "ritratto". Gli orari hanno minuti sfalsati, come vuole il servizio, e tutti i cron portano
 `CRON_TZ=Europe/Rome` (senza, il servizio li legge in UTC). Il prompt di ogni Routine, nell'interfaccia di claude.ai, è
 una riga sola: "leggi ed esegui `prompt/<nome>.md`". I prompt veri sono **file del repository** (`prompt/smista.md`,
@@ -966,7 +978,8 @@ lucchetto (se è occupato aspetta, fino a 30 minuti, perché il cron non torna p
 9. [AI] riscrive `riserva/ritorno.md`: la riga del "mentre eri via" (§7.2.1);
 10. [S] `applica` (piano → file, come per "smista": §2.2), `contesto.mjs`, `verifica.mjs`, commit, push.
 
-`riserva/` è l'unica cartella che l'AI sovrascrive, e la scrive solo "consolida".
+`riserva/` è l'unica cartella che si sovrascrive: la scrive solo `applica.mjs`, con le operazioni `riserva` del piano di
+"consolida".
 
 **La prima domenica del mese**, in più, la **fusione dei temi** (C8a). [AI] guarda solo l'elenco dei temi (nome, alias,
 conteggio, tre frasi d'esempio) e propone le fusioni; [S] `migra/fondi.mjs <da> <in>` riscrive i legami nelle letture
@@ -991,9 +1004,9 @@ Prima della pipeline, una restituzione vera (CS §4):
 |---|---|
 | 0 | Claude Code: repository privato, importazione (§14), `smista.mjs`, `verifica.mjs`, `CLAUDE.md`. Tu: repo, App GitHub, PAT, Comando rapido **solo PUT** (~20 minuti) |
 | 1 | **il primo ritratto**, sul nucleo e sulle 31 frasi tue, con **una** convergenza nuova ancorata a una tua frase |
-| 1–3 | cattura cieca; **ogni sera** apri Specchio, che fa "smista" e ti dice i ponti della giornata (al massimo uno per memo, solo se forte). Anche se i memo sono già stati smistati, Specchio non risponde "nessun memo nuovo": rilegge i memo dal giorno 1 e cerca il ponte |
+| 1–3 | cattura cieca; **ogni sera** (e così fino al giorno 7) apri Specchio, che fa "smista" e ti dice i ponti della giornata (al massimo uno per memo, solo se forte). Anche se i memo sono già stati smistati, Specchio non risponde "nessun memo nuovo": rilegge i memo dal giorno 1 e cerca il ponte |
 | 3 | **il bilancio dei ponti**: Specchio rilegge **tutti** i memo dei giorni 1–3 e chiude con il ponte più forte, oppure con "Niente si aggancia ancora." È la prova della meraviglia: almeno un ponte inatteso, con la tua frase vecchia alla lettera e la data |
-| 5–7 | se l'apertura serale pesa: il `fire` e la Routine "smista"; la domenica, la prima lettera |
+| 4–7 | Specchio ogni sera, come nei giorni 1–3, finché le Routine non sono attive; al giorno 7 (o prima, se l'apertura serale pesa) si attivano il `fire` e le Routine, e la domenica parte la prima lettera |
 
 **Il ponte dei primi giorni** (decisione di progetto, [prova di restituzione](https://github.com/paol-imi/tattoo-shit/blob/claude/quirky-newton-qe5g9o/_progetto/v2/simulazione/attriti-restituzione.md) A2):
 - nei primi 3 giorni i **vicini** di un memo (§6.2) comprendono **tutti** gli importati ✦, non solo quelli che condividono
@@ -1074,7 +1087,7 @@ Elaborare due volte non fa danni [S]:
 | `restituzioni/` `risposta` | "smista"; Specchio per la chat | con il lucchetto |
 | `restituzioni/` `lettera` | "consolida" ("lettera" la consegna e basta) | con il lucchetto |
 | `restituzioni/` `ritratto` | "ritratto" | con il lucchetto |
-| `riserva/ritorno.md`, `riserva/pronte.md` | "consolida" | con il lucchetto |
+| `riserva/ritorno.md`, `riserva/pronte.md` | `applica.mjs`, dal piano di "consolida" | con il lucchetto |
 | `taratura/` | `migra/tara.mjs` | con il lucchetto, a ogni cambio di lettore |
 | `contesto/` | `contesto.mjs` | solo alla fine di una sessione con il lucchetto |
 
@@ -1107,7 +1120,7 @@ Dalle prove di [restituzione](https://github.com/paol-imi/tattoo-shit/blob/claud
 - al più **un ◌ per lettera**: una sola proposta forte.
 
 **Le lunghezze** ([voce §3](./10-voce.md)): risposta a un memo "Salvato." più 0–2 righe (≤ 40 parole; "Salvato."
-da solo è una risposta completa, e non lascia file: C11); risposta a una domanda 50–150 parole, poi "vuoi il resto?";
+da solo è una risposta completa, e non lascia file: C11); risposta a una domanda fino a 150 parole (il minimo di 50 solo con ≥ 3 voci ✦; "vuoi il resto?" solo se il resto c'è);
 lettera ≤ 250; ricordo 2–3 righe; sogno ≤ 120; confronto ≤ 150; ritratto ≤ 400; "mentre eri via" una riga; Specchio ≤ 3 righe per
 memo; notifica 5–7 parole.
 
@@ -1547,6 +1560,7 @@ Totale: 32 frammenti U più `s01`, `s03`, `s04` = **35**. Nel nucleo U1, U3, U10
 | 72 | restituzione di chat senza struttura | un file per conversazione, una sezione per domanda | A4; coordinatore |
 | 73 | piano solo per l'ingresso; prompt in claude.ai | piano per ogni ciclo, `applica.mjs`; prompt come file in `prompt/`, hash da lì; `CRON_TZ=Europe/Rome`; `rinnova`; `contesto.mjs` prima della lettera; parlante senza importati | le 15 incoerenze di [prompt v3](./03-prompt-v3.md) §12 |
 | 74 | — | sogno con "Gioco ◌." più frase ✦ e al più un ○; confronto con la voce dall'altra parte; citazioni ricordate ✦; Q-citato sul trimestre; immagini per lemma; delicati nella soglia | M1–M9, M12 |
+| 75 | piano piatto per "smista"; hash di un solo file; verifica rapida dopo `applica`; `riserva/` scritta dall'AI | involucro con 7 operazioni anche nell'esempio; hash di `CLAUDE.md` + `prompt/<ciclo>.md` + `prompt/formato-piano.md`, `prompt/specchio.md`; verifica rapida dentro `crea-nodo`; `riserva/` solo da `applica.mjs`; Specchio nei giorni 1–7; ricordabili con gli importati | [prompt v3](./03-prompt-v3.md) §14; coordinatore |
 
 **Scartati, con il motivo:**
 - *Togliere sogno, "ti ricordi?" e ritratto* (CS §1.2): restano. Il banco non li collaudava, ma la ricerca dice che la

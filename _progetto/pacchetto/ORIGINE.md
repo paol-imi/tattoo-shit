@@ -3,9 +3,9 @@
 Generato il 2026-10-31 da `aggiorna.sh`, copiando i documenti finali di `_progetto/v2/` di
 [tattoo-shit](https://github.com/paol-imi/tattoo-shit) (pubblico).
 
-- Ref di lettura: `claude/quirky-newton-qe5g9o`, commit `e34b4f43e79c4fda61f40d3ef12991c3eb31346f`.
+- Ref di lettura: `claude/quirky-newton-qe5g9o`, commit `e8708a6036d3b23c2eeb7edbbc0408aee04ebfd4`.
 - Le note dell'Atlante da importare si leggono da quel commit, mai da un branch che si muove:
-  `git clone https://github.com/paol-imi/tattoo-shit.git /tmp/atlante && git -C /tmp/atlante checkout e34b4f43e79c4fda61f40d3ef12991c3eb31346f`.
+  `git clone https://github.com/paol-imi/tattoo-shit.git /tmp/atlante && git -C /tmp/atlante checkout e8708a6036d3b23c2eeb7edbbc0408aee04ebfd4`.
   Lo SHA va anche in `importa/fonte.json`.
 - I link verso documenti non copiati (ricerca, simulazioni, note) puntano a `https://github.com/paol-imi/tattoo-shit/blob/claude/quirky-newton-qe5g9o/…`.
 - Estratti da `prompt-v3.md`: `radice/claude-radice.md` (il `CLAUDE.md` del repo nuovo) e `radice/prompt/`: confronto.md consolida.md formato-piano.md lettera.md progetto.md ritratto.md smista.md sogno.md specchio.md ti-ricordi.md 

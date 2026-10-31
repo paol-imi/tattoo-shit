@@ -15,13 +15,14 @@ Leggi CLAUDE.md e prompt/formato-piano.md.
 5. Leggi `contesto/ritratto.md` (il precedente), `mappa.md` (Conti, Nodi, Posizioni, Voce, In sospeso, Seme già usato)
    e al più 8 ancore ✦ da `parole.md`.
 6. Il ritratto (≤ 400 parole), un piano `ciclo: ritratto` con un'operazione `restituzione` `forma: ritratto`:
-   - titolo con il periodo e il numero dei miei frammenti (da `mappa.md`);
+   - titolo con il periodo e il numero dei miei frammenti (da `mappa.md`), e sotto la legenda in una riga;
    - **che cosa torna** (con i numeri), **che cosa è nuovo**, **che cosa è sparito**, **che cosa manca** (una serie
      ancora vuota si dice), **una tensione** (due mie frasi datate);
    - la riga sulla **voce**, dagli indicatori di `mappa.md` ("il 41% di queste righe sono parole tue; hai preso da me
      *ospite* e *soglia*"), **prima** della domanda;
    - **una domanda** in chiusura, che non ripete una "in sospeso";
-   - fuori i delicati; nessuna lode, nessuna etichetta come destino; la legenda in una riga.
+   - fuori i delicati; nessuna lode, nessuna etichetta come destino; ogni ○ con opera e passo, o la riga si toglie;
+     l'ultima riga è la domanda.
    **Variante giorno 1**: sul nucleo e sulle frasi importate, con **una** convergenza nuova ancorata a una mia frase; le
    date come tetto ("entro il 4 ottobre"); nessun conto mensile, nessuna riga sulla voce.
 7. `node scripts/applica.mjs PIANO.json`; se `verifica.mjs` rifiuta un ritornello, riscrivi la frase, una volta.

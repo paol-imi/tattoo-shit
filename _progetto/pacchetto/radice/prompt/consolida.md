@@ -39,12 +39,13 @@ A6. **Solo la prima domenica del mese: fusioni.** Dall'elenco dei temi di `mappa
 A7. `node scripts/contesto.mjs`: la `mappa.md` fresca, con i temi nuovi e le citazioni verificate. La fase B sceglie lì.
 
 ## Fase B: restituire
-B1. **Proposte pronte.** Leggi `riserva/pronte.md`. Prepara al più una convergenza, un confronto
+B1. **Proposte pronte** (prima della soglia: una proposta pronta può far partire la lettera). Leggi `riserva/pronte.md`. Prepara al più una convergenza, un confronto
     (prompt/confronto.md, se c'è un `contraddice` fresco) e un sogno (prompt/sogno.md, solo se `mappa.md` dice sogno
     acceso e non c'è stato un sogno questo mese), e aggiungile al file. Togli quelle sbiadite (30 giorni attivi).
 B2. **Lettera?** Tocca se, dall'ultima lettera, ci sono **≥ 2 frammenti parlanti**, oppure **≥ 1 e una proposta pronta**.
     Se no: niente lettera, la proposta resta in attesa; vai a B4.
 B3. **La lettera** (≤ 250 parole), un'operazione `restituzione` con `forma: lettera`:
+    - in testa, sotto il titolo, la legenda in una riga (solo i segni usati);
     - apre con una mia frase ✦ del periodo, datata (voce `cosa: frase`);
     - i **ponti** della settimana, al più 2, con le mie frasi alla lettera e un luogo preciso;
     - **una sola cosa** tra convergenza, confronto e sogno, presa da `riserva/pronte.md` (e tolta da lì nella stessa
@@ -52,7 +53,8 @@ B3. **La lettera** (≤ 250 parole), un'operazione `restituzione` con `forma: le
     - al più **un ricordo** (prompt/ti-ricordi.md);
     - al più **un ◌** in tutta la lettera; una domanda solo se è un confronto; la domanda 1 dell'ingresso rimasta senza
       risposta può tornare, una volta;
-    - chiude con la mia frase o con l'unica domanda; poi la legenda in una riga;
+    - chiude con la mia frase o con l'unica domanda: è l'ultima riga, dopo non c'è niente;
+    - ogni ○ con opera e passo nel `riferimento` della sua voce, altrimenti la riga si toglie;
     - fuori: i delicati e i loro temi vicini (dillo nel `perche` di un legame, non nel testo), e niente "questa
       settimana" che li evochi; il seme ✧ su un nodo già usato; le immagini già usate; le domande in sospeso.
     - voci con `cosa` (frase, ponte, convergenza, confronto, sogno, ricordo…); legami `proposta` o `mondo` con `da: n`.
