@@ -17,7 +17,7 @@ domande "a pancia"). Gli esempi buoni qui sotto sono quindi ipotesi tratte dall'
 [restituzione](/_progetto/v2/restituzione.md) §7: vanno ritarati sulle prime settimane vere.
 
 Negli esempi, i corsivi ✦ sono frasi sue vere, dall'archivio importato (U1–U31 della
-[simulazione](/_progetto/v2/simulazione/importazione.md), datate al giorno d'importazione); ✧ è il nucleo, voce seme.
+[simulazione](/_progetto/v2/simulazione/importazione.md), datate qui al giorno d'importazione per brevità: in uso reale si scrive "entro il 4 ottobre", vedi §5); ✧ è il nucleo, voce seme.
 *molto interessante* ✦ (3 novembre) viene dal caso Galimberti del [modello](/_progetto/v2/modello.md) §5, simulato.
 Ciò che non è suo è segnato *(inventato per l'esempio)*.
 
@@ -177,6 +177,10 @@ Regole d'uso:
 - Il segno va **accanto alla frase**, non in fondo al pezzo. Una legenda in una riga sola, solo nelle forme lunghe (lettera, ritratto).
 - Nelle risposte "solo le mie frasi" valgono ✦ e ● (dichiarato); ✧ va a parte.
 - Gli importati dall'Atlante (`importata: true`, `canale: importato`) sono "punto zero": si citano, non si contano.
+  La loro data è un tetto, non un giorno: "entro il 4 ottobre", "nell'archivio d'origine"; senza un prima e un dopo
+  non si racconta un cambio d'idea.
+- Un testo altrui che ha trascritto lui (una poesia, un monologo): è ✦ il gesto e il suo commento, ○ le parole.
+  Le parole altrui vanno tra «», mai in corsivo, e al più una riga.
 
 - ✅ "Il 3 novembre: *molto interessante* ✦. Il nichilismo come ospite inquietante è un'immagine di Nietzsche ripresa da Galimberti ○. Secondo me ti sta parlando di Rust ◌."
 - ❌ "Galimberti, che tu trovi molto interessante, dice che il nichilismo è un ospite inquietante, come pensi anche tu." (non si capisce che cosa è suo, che cosa è del mondo, che cosa è mio)
