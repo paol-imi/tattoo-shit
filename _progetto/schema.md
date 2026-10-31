@@ -7,8 +7,8 @@ data: 2026-10-31
 
 # Schema del memo-coscienza: il cervello e il modello dati
 
-> Proposta di progettazione. Non tocca note, cartelle né script esistenti.
-> Vale sia per questo repository sia per un eventuale repository nuovo.
+> Proposta di progettazione: lo schema **ideale**, pensato da zero per un repository nuovo e non vincolato all'Atlante.
+> Quello che dell'esistente merita di sopravvivere è separato, nel §5.
 
 ## 1. Come ricorda il cervello: cosa ci serve
 
@@ -27,16 +27,16 @@ data: 2026-10-31
 Sistemi personali da cui prendiamo qualcosa:
 - **Zettelkasten di Luhmann** (circa 90.000 schede in due raccolte; *Kommunikation mit Zettelkästen*, 1981): note atomiche con ID stabile, legami fra singole schede, l'archivio come "partner di comunicazione". Da qui vengono gli **slug stabili**, i **frammenti atomici** e l'AI come interlocutore.
 - **Commonplace book di Locke** (*A New Method…*, edizione inglese del 1706): estratti raccolti sotto voci tematiche con un indice che cresce senza riordinare nulla. Da qui vengono le **citazioni come note proprie** e i **temi come indice**.
-- **Memex di Bush** ("As We May Think", *The Atlantic*, 1945): sentieri associativi da salvare e condividere. Da qui vengono i **percorsi**, che esistono già nell'Atlante.
+- **Memex di Bush** ("As We May Think", *The Atlantic*, 1945): sentieri associativi da salvare e condividere. Da qui vengono i **percorsi**.
 - **Ontologie leggere** (sul modello di schema.org o SKOS, da verificare caso per caso): pochi tipi, pochi predicati, e una gerarchia `più-ampio` per i temi.
 
 ## 2. Il modello dati
 
 ### 2.1 Principi
-1. **La cartella dice che cos'è una cosa, il frontmatter dice a che cosa è legata.** È lo stesso principio di oggi.
+1. **La cartella dice che cos'è una cosa, il frontmatter dice a che cosa è legata.**
 2. **L'episodio è separato dalla conoscenza.** Il frammento racconta "che cosa mi è successo con X", l'entità dice "che cos'è X".
 3. **Il frammento è la porta d'ingresso.** Dal telefono si scrive sempre un frammento. Le entità nascono o si aggiornano dopo, e quelle nuove partono come proposte.
-4. **Ogni affermazione dell'AI è marcata.** `origine` e `validata` restano come oggi.
+4. **Ogni affermazione dell'AI è marcata.** Lo dicono `origine` e `validata`.
 
 ### 2.2 Tipi di nota (tassonomia chiusa)
 
@@ -52,12 +52,14 @@ Sistemi personali da cui prendiamo qualcosa:
 | `tema` | `temi/` | Un asse ricorrente dell'interesse (amore, i greci, tristezza…), con gerarchia `piu-ampio` |
 | `emozione` | `emozioni/` | Uno stato vissuto. Vocabolario chiuso ma estendibile su approvazione |
 | `luogo` | `luoghi/` | Un posto reale o mitico |
-| `tradizione` | `tradizioni/` | Una disciplina o corrente: filosofia greca, stoicismo, shoegaze… Ereditano le attuali `discipline` e i loro filoni |
+| `tradizione` | `tradizioni/` | Una disciplina o corrente: filosofia greca, stoicismo, shoegaze… |
 | `progetto` | `progetti/<slug>/` | Un cantiere con uno scopo: **tatuaggi**, un libro, una playlist |
 | `percorso` | `percorsi/` | Un sentiero associativo ordinato, alla maniera dei trails del Memex |
 | `domanda` | `domande/` | Una grande domanda aperta, con il suo `## Coro` |
 
-I simboli, gli stili, gli spunti e le idee di oggi diventano **tipi interni al progetto tatuaggi** (vedi §2.6).
+| `sguardo` | `sguardo/` | Il mio punto di vista in una data ("chi sono ora"): una versione per periodo, mai sovrascritta |
+
+Ogni progetto può dichiarare dei tipi propri, che valgono solo al suo interno (vedi §2.6).
 
 ### 2.3 Attributi
 Ci sono campi **comuni** a tutte le note: `tipo`, `slug` (il nome del file), `titolo`, `creato` (data di inserimento), `origine` (`mia | claude | seme`), `validata` e `alias` (nomi alternativi, che servono al riconoscimento: "Dostoevskij", "Dostoevskji", "Dostoevsky").
@@ -100,7 +102,7 @@ Nel frontmatter, ogni predicato è una chiave con una lista di slug. La forza è
 | `serve-a` | qualsiasi → progetto | `materiali` |
 | `luogo` | frammento, opera → luogo | `accaduto-qui` |
 
-Per i link usiamo la regola di oggi: il frontmatter è la fonte della verità, e la sezione `## Collegamenti` del corpo **la genera lo script** invece di scriverla a mano (vedi i rischi). Gli inversi non si duplicano: li calcola lo script, e il sito li mostra come "Ne parlano…".
+Il frontmatter è **l'unica fonte** dei legami. Nel corpo i legami non si ripetono: nel testo si scrivono solo link markdown di passaggio. Gli inversi li calcola lo script, e il sito li mostra come "Ne parlano…".
 
 ### 2.5 Il tempo
 - **Due date**: `quando` (l'evento) e `creato` (l'inserimento). Per le opere conta `anno`.
@@ -110,7 +112,9 @@ Per i link usiamo la regola di oggi: il frontmatter è la fonte della verità, e
 - Le vere **linee del tempo** nascono dalle query: "cosa mi colpiva a marzo", "come è cambiato il mio rapporto con l'assurdo".
 
 ### 2.6 I tatuaggi come progetto
-`progetti/tatuaggi/` contiene `index.md` (lo scopo, che oggi sta in `nucleo.md`) e i suoi sottotipi: `spunti/`, `idee/`, `simboli/`, `stile/`, `ricerche/`. Ogni nota del progetto porta `progetto: tatuaggi`. Le entità generali (persone, opere, concetti, emozioni) **escono** dal progetto e diventano patrimonio comune. Un frammento qualsiasi entra nel progetto con un semplice `serve-a: [tatuaggi]`. Un progetto nuovo (una playlist o un saggio, per esempio) si apre con la stessa struttura.
+Ogni progetto è una cartella `progetti/<slug>/`. Il suo `index.md` contiene lo scopo, lo `stato` (`attivo | in-pausa | chiuso`) e i `sottotipi` che valgono solo lì. I tatuaggi, per esempio, hanno `sottotipi: [spunto, idea, simbolo, stile, ricerca]`, e le note del progetto stanno in `progetti/tatuaggi/<sottotipo>/`.
+
+Le entità generali (persone, opere, concetti, emozioni) **non** stanno mai dentro un progetto: sono patrimonio comune. Un frammento qualsiasi entra in un progetto con `serve-a: [tatuaggi]`. Una playlist o un saggio si aprono allo stesso modo.
 
 ## 3. Esempio completo: Galimberti
 
@@ -206,12 +210,11 @@ validata: false
    - i temi sono semi-chiusi e quelli nuovi partono non validati;
    - lo script segnala i nomi quasi uguali;
    - il consolidamento settimanale serve anche a fondere i doppioni, con un `sinonimo-di` e un rinvio.
-2. **Doppia scrittura, cioè frontmatter più `## Collegamenti` più inversi, che con molte note e con l'input dal telefono si disallinea.** *Mitigazioni:*
-   - il frontmatter è l'unica fonte;
-   - `## Collegamenti` e gli inversi li genera lo script;
-   - la verifica fallisce se qualcuno li modifica a mano.
+2. **Il grafo che diventa illeggibile, a mano e dal telefono:** troppi predicati, legami deboli ovunque, inversi da mantenere. *Mitigazioni:*
+   - pochi predicati chiusi (sono 13) e `evoca` come unica valvola libera;
+   - un legame si scrive una volta sola, nel frontmatter, e gli inversi li calcola lo script;
+   - la verifica fallisce su predicati ignoti, su slug inesistenti e sui tipi sbagliati ai due capi.
 
-   È l'unico cambio di regola rispetto all'Atlante di oggi, e va approvato dall'utente.
 3. **L'AI che "ricorda per me": temi, salienza e fatti inventati o dati per certi, e la deriva dal mio sguardo.** *Mitigazioni:*
    - `pancia` e `## Perché mi colpisce` li do solo io;
    - tutto ciò che l'AI estrae parte con `validata: false` o dentro un blocco proposta;
@@ -219,7 +222,18 @@ validata: false
    - i fatti incerti si scrivono "(da verificare)";
    - le proposte esterne, come le canzoni, non si salvano senza approvazione.
 
-## 5. Dubbi aperti
-- Repository nuovo (pubblico o **privato**? Un memo-coscienza è intimo e il sito oggi è pubblico) oppure migrazione di questo?
+## 5. Cosa merita di sopravvivere dell'esistente
+- **`origine` e `validata` e il blocco "Proposta di Claude"**, con l'interruttore "proposte" sul sito: sono il cuore della fiducia.
+- **Slug unici e stabili** e la regola **cartella = tipo**.
+- **`nucleo.md`**, che diventa la prima versione di `sguardo`.
+- **Le 8 domande con il loro `## Coro`** e i **percorsi**, che sono i sentieri del Memex.
+- **Le discipline con i filoni**, che diventano `tradizione` con una gerarchia `parte-di`.
+- **L'attributo `forma`** sulle fonti.
+- **Le regole sulle citazioni** (brevi, con fonte, "(da verificare)", niente testi di canzoni) e **quelle su Pinterest** (solo link del pin normalizzato, niente immagini altrui).
+- **`verifica.mjs`**, che si estende ai vocabolari e ai predicati, e il **diario** di sessione.
+- **Da lasciare:** la sezione `## Collegamenti` scritta a mano e duplicata nel frontmatter, la divisione di `fonti/` per disciplina (la dice l'attributo `tradizione`) e le note di mappa sparse in radice.
+
+## 6. Dubbi aperti
+- Privacy: il repository nuovo è **privato**? Il sito resta privato, lo teniamo solo in locale, oppure pubblichiamo solo un sottoinsieme, per esempio il progetto tatuaggi? Un memo-coscienza è intimo.
 - Il `genere` musicale: il vocabolario lo prendiamo da una fonte esterna (Discogs, MusicBrainz) o lo costruiamo su quello che ascolto?
 - `tema` e `concetto` restano due tipi distinti o diventano uno solo con un flag?
