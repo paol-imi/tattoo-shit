@@ -16,3 +16,4 @@ Documenti di progettazione (2026-10-31), proposte di Claude da validare. Non fan
 - [L'archivio reale](/_progetto/v2/archivio-reale.md): che cosa un mese di Atlante insegna sul modo di pensare dell'utente (raffinamento v2).
 - [Restituzione (v2)](/_progetto/v2/restituzione.md): ritratto, convergenze, sogno, confronto, "ti ricordi?" e tre risposte, fatti sui dati veri da giudicare a pancia.
 - [Il telefono (v2)](/_progetto/v2/telefono.md): dal tocco al repo e ritorno, verificato sulle fonti, con l'architettura in due tappe e i passi a mano.
+- [L'eredità (v2)](/_progetto/v2/eredita.md): l'inventario puntuale di che cosa passa al nuovo sistema (frasi sue, convergenze, entità vive, progetto tatuaggi) e delle regole per lo script di importazione.
