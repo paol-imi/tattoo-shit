@@ -101,3 +101,19 @@ se lui ne riprende una.
 3. letture, con legami ai nodi esistenti;
 4. restituzioni importate (R4, R7b, R8, R13), che rimandano a frammenti e nodi;
 5. `node indice.mjs` e `scripts/contesto.mjs`; verifica che nessun conto, serie o vicenda contenga `canale: importato` o `importata: true`.
+
+## 3. Che cosa cambia dopo la simulazione
+
+La prova sul campione ([attriti](/_progetto/v2/simulazione/attriti-importazione.md)) chiede di correggere queste regole
+prima dello script:
+- **R1:** corpo = testo grezzo senza markup né etichette di Claude; `forma: riportata` per le frasi sue scritte da altri
+  (A2, A19); `intento: [salva]` di default (A22); una provenienza in `fonte:`, non in `link` (A20).
+- **R2:** nessuna copia genera legami (A3); un frammento-sguardo `s04` per M8–M10 (A15); niente blocchi proposta nel corpo (A24);
+  lo sguardo fa nascere nodi, il racconto `s03` no (A16).
+- **R4:** `aggancio: {di, passo}` al posto di `per` (A7); `tra:` ammette le voci; le voci `mondo:` si indicizzano per nome (A1);
+  data dal passo, suffisso = slug (A5).
+- **R5, R11:** concetti e stili nominati da lui diventano temi (A9); `dostoevskij` da U31 (A18); `sente` solo per lo stato d'arrivo (A21).
+- **R6:** le importate non sbiadiscono (A11).
+- **R7:** protocollo completo sulle 17 citazioni vive prima dell'import (A8).
+- **R13:** U30 accoglie le 8 domande, che nascono come temi (A14).
+- Il **brief** `s02` sparisce: è una vista (A3).
