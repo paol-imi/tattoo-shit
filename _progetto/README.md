@@ -8,3 +8,4 @@ Documenti di progettazione (2026-10-31), proposte di Claude da validare. Non fan
 - [Acquisizione](/_progetto/acquisizione.md): dal messaggio alla nota, la skill `/memo`.
 - [Migrazione](/_progetto/migrazione.md): inventario, nuovo repo, hosting.
 - [Avvio](/_progetto/avvio.md): il prompt da incollare in una nuova chat per avviare l'MVP.
+- [v2 · Esempi di domande](/_progetto/v2/esempi-domande.md): 108 domande dal telefono, 25 risposte ideali smontate, 10 lezioni per il progetto.
