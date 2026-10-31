@@ -22,8 +22,9 @@ Sono dieci. Ognuno ha la prova che lo fonda; se la prova cade, cade anche il pri
    ([archivio reale §1](/_progetto/v2/archivio-reale.md)). R2 (n.75): "le mie frasi, solo le mie" deve poter funzionare.
 2. **Catturare costa zero.** Nessun campo, nessun comando, nessuna domanda obbligatoria; la cattura è cieca e
    l'elaborazione arriva dopo. *Prova:* 0 risposte su ~18 domande "a pancia", 0 su 3 "perché mi colpisce", `risonanza`
-   vuota ovunque ([essenza §0](/_progetto/v2/essenza.md)). L'avvio della sessione dal telefono costa 1-2 minuti
-   ([stato dell'arte §4](/_progetto/v2/stato-arte.md)).
+   vuota ovunque ([essenza §0](/_progetto/v2/essenza.md)). Una sessione Code dal telefono costa 1-2 minuti
+   ([stato dell'arte §4](/_progetto/v2/stato-arte.md)): la cattura passa da un Comando rapido (1 secondo) e la sessione serve
+   solo per conversare ([telefono](/_progetto/v2/telefono.md)).
 3. **La struttura è una lettura dell'AI: marcata, motivata, usabile subito.** Ogni legame dice da quale frammento viene,
    perché, e con quale voce. Nessun cancello di validazione. *Prova:* 0 decisioni su ~300 proposte, poi 23 giorni di
    silenzio ([archivio reale §1](/_progetto/v2/archivio-reale.md)). Mem.ai si abbandona perché "non sai che cosa ha
@@ -33,8 +34,8 @@ Sono dieci. Ognuno ha la prova che lo fonda; se la prova cade, cade anche il pri
    diventa sua perché lui porta la stessa frase ([archivio reale §5, prova 3](/_progetto/v2/archivio-reale.md)), e R5
    (n.40–41: "salvami la terza", "la seconda non c'entra").
 5. **Il significato si costruisce dopo, rileggendo il vecchio insieme al nuovo.** All'ingresso si fissano solo entità
-   certe; i temi nascono nel consolidamento. *Prova:* la sequenza "padre" (S1): sei frammenti in cinque mesi, e "padre" compare una volta
-   sola, di passaggio, in un litigio ([esempi in ingresso, lezione 9](/_progetto/v2/esempi-ingresso.md)). Negli studi sulla memoria, il sistema
+   certe; i temi nascono nel consolidamento. *Prova:* la sequenza "padre" (S1): sei frammenti in cinque mesi, e "padre" compare solo di
+   passaggio, mai come argomento (il padre di Telemaco, un litigio) ([esempi in ingresso, lezione 9](/_progetto/v2/esempi-ingresso.md)). Negli studi sulla memoria, il sistema
    lento lavora *intercalando* nuovo e vecchio ([cervello §1](/_progetto/v2/cervello.md)).
 6. **La restituzione è il prodotto, e si scrive in prosa ancorata alle tue parole.** *Prova:* la meraviglia dell'Atlante
    sta in una ventina di convergenze in prosa; le 88 schede enciclopediche di Claude non le usa nessuno
@@ -64,10 +65,10 @@ Sono dieci. Ognuno ha la prova che lo fonda; se la prova cade, cade anche il pri
 
 | strato | che cosa | chi lo scrive | si modifica? | se si perde |
 |---|---|---|---|---|
-| **Detto** | `frammenti/` | tu, alla cattura (oppure l'importazione) | **mai** | perso per sempre: è l'unica verità |
+| **Detto** | `ingresso/` → `frammenti/` | tu, con il Comando rapido (oppure l'importazione); la Routine "smista" lo sposta, testo invariato | **mai** | perso per sempre: è l'unica verità |
 | **Letto** | `letture/`, nodi (`persone/`, `opere/`, `citazioni/`, `temi/`, `raccolte/`) | l'AI | sì, per versioni; lo slug di un nodo **mai** | si rifà dai frammenti, a costo di token |
 | **Restituito** | `restituzioni/` | l'AI | **mai**: è un fatto che quel giorno ti ha detto quella cosa | perso: ti ha detto qualcosa che non si ritrova |
-| **Calcolato** | `.indice/` (in `.gitignore`) | uno script, senza AI | si rigenera a ogni commit | si rifà in un secondo |
+| **Calcolato** | `.indice/` (locale, in `.gitignore`) e `contesto/` (versionato: `ritratto.md`, `indice.md`, `recenti.md` e `parole.md`, cioè tutti i tuoi frammenti parola per parola, letto dal Progetto claude.ai) | uno script, senza AI, a ogni passata della Routine | si rigenera | si rifà in un secondo |
 
 **La regola che regge cinque anni:** il formato di `frammenti/` non deve cambiare mai. Le letture si possono rifare tutte
 con un modello migliore. I nodi cambiano descrizione e alias, ma il loro slug resta (Luhmann:
@@ -85,7 +86,9 @@ Un frammento è ogni tuo messaggio, comprese le domande ("dammi canzoni sul padr
 la lezione 6 delle domande dice che le domande che fai sono il tuo ritratto più fedele) e comprese le risposte di una
 parola ("sì", "la terza", "no").
 
-Si chiama `frammenti/AAAA/MM/AAAAMMGG-HHMM.md`. L'id è l'ora del messaggio: la cattura non ha bisogno di AI per dare un nome.
+Si chiama `frammenti/AAAA/MM/AAAAMMGG-HHMM-xxxx.md`, con lo stesso nome che il Comando rapido gli ha dato in `ingresso/`
+(`xxxx` evita le collisioni tra due memo dello stesso minuto; negli esempi lo ometto). L'id è l'ora del messaggio: la
+cattura non ha bisogno di AI per dare un nome. Allegati: `.webp`, `.m4a` accanto, con lo stesso nome.
 
 | campo | obbligatorio | perché esiste (senza, che cosa fallisce) |
 |---|---|---|
@@ -121,6 +124,7 @@ vecchia e alza `versione`; la storia resta in git.
 | `vissuto` | quando è accaduto, se diverso dal momento del messaggio; ammette l'incerto (`~2009`, `stanotte`) | E47 "a 17 anni", E55 il sogno |
 | `reazione` | le tue parole di reazione **citate**, ciascuna con un segnale: `impatto` · `giudizio` · `identificazione`, e un verso `+` / `−` | lezione 8 degli ingressi: E08 "da bacio perugina" (giudizio −), E03 "mi ha spaccato" (impatto +), E28 "il disco della mia vita" (identificazione) |
 | `legami` | elenco, vedi §2.3 | |
+| `link`, `trascrizione`, `contesto` | i link puliti (senza `?si=`, con `t=`); il testo letto da una foto, riletto; il dove e il come in una riga ("in macchina") | E27, E37; E42; E22, E30 |
 | `parole` | parole candidate a tema, non ancora temi | il tema nasce alla seconda o terza ricorrenza ([stato dell'arte §6](/_progetto/v2/stato-arte.md)) |
 | `atti` | che cosa fa questo frammento sui legami di altri: accoglie, rifiuta, corregge | R5, E51 |
 
@@ -132,7 +136,11 @@ Nasce **solo** quando un tuo frammento lo nomina, oppure quando tu accogli una p
 ([archivio reale, lezione 7](/_progetto/v2/archivio-reale.md)). La scheda è un **documento d'identità**, non una voce
 d'enciclopedia: il sapere generale l'AI ce l'ha già.
 
-Campi comuni: `nome`, `alias`, `nato-da` (elenco di id di frammenti o restituzioni), facoltativi `wikidata` e `link`.
+Campi comuni: `nome`, `alias`, `nato-da` (elenco di id di frammenti o restituzioni), facoltativi `link` e gli ID esterni
+([identità](/_progetto/v2/identita.md)): `wikidata` (un QID, oppure `no` con la data della prova: un ID sbagliato è peggio
+di nessuno), `musicbrainz` (il work per un brano, il release-group per un album, l'artista), `registrazione` (il recording,
+solo se conta la versione: Cash e non NIN), `openlibrary` (libri senza QID), `titolo-vero` (quando il titolo che hai scritto
+è sbagliato). Generi e alias esterni non si salvano: si leggono dall'ID quando servono, in una cache fuori dalle note.
 I campi che puntano ad altro (`autore`, `in`, `attribuita-a`, `versione-di`) contengono uno slug se il nodo esiste,
 altrimenti il nome in chiaro: un nodo non nasce per riempire un campo.
 
@@ -140,7 +148,7 @@ altrimenti il nome in chiaro: un nodo non nasce per riempire un campo.
 |---|---|---|
 | `persone/` | `cerchia`: `mondo` · `vita` · `finzione`; `in` (per la finzione: l'opera) | E08/E45 "marco" ≠ Marco Aurelio; E26 nonna Lina, privata; E56 Hohenheim, E53 Telemaco |
 | `opere/` | `autore`, `in` (album, serie, film che la contiene), `versione-di`, `anno` | E22 la traccia 3 di un album; E54 la poesia dentro *Interstellar*; E23/E24 le cover |
-| `citazioni/` | `testo` (la forma canonica verificata), `autore` (vero), `attribuita-a` (come circola), `in` (opera), `passo`, `detta-da` (personaggio), `verifica`: `autentica` · `parafrasi` · `errata` · `apocrifa` · `non-confermata` · `da-verificare` | E03–E10; n.43 "top quote di Dostoevskij" usa solo `autore`; E18, la battuta di Ivan non è Dostoevskij che parla |
+| `citazioni/` | `originale`, `traduzione` e `traduttore` (oppure `resa di Claude`); `autore` (vero), `attribuita-a` (come circola), `detta-da` (personaggio); `riferimento` (opera, luogo, url, data della verifica); `esito`: `verificata` · `simile` · `attribuzione-errata` · `apocrifa` · `non-trovata`; `prova`: `primaria` · `secondaria` · `memoria` (con `memoria` niente esito) | E03–E10; la prova di [citazioni](/_progetto/v2/citazioni.md): 0 su 12 giuste alla lettera; n.43 "top quote di Dostoevskij" usa solo `autore`; E18, la battuta di Ivan non è Dostoevskij che parla |
 | `temi/` | nessuno oltre ai comuni; `nato-da` è l'elenco dei frammenti-prova | E60 "padre"; le emozioni sono temi (apatia, gioia), e il predicato `sente` le distingue |
 | `raccolte/` | `scopo` (una riga, parole tue) | "tatuaggi", con E09 "me la tatuerei" ed E65; R11 (n.82) |
 
@@ -168,8 +176,9 @@ scritta una volta e mai cambiata.
 Il corpo è il testo consegnato, con i segni di voce (§2.4).
 
 **Le convergenze sono restituzioni.** Una convergenza è prosa più legami `converge-con`: vive nella restituzione che l'ha
-detta, è proposta finché non la riprendi, e il suo testo resta com'era quel giorno. Le circa 20 convergenze dell'Atlante
-entrano come restituzioni importate (`forma: ritratto`, `importata: true`, legami di voce `proposta` ◌). Non serve un quinto tipo.
+detta, è proposta finché non la riprendi, e il suo testo resta com'era quel giorno. Le 25 convergenze che
+[eredità](/_progetto/v2/eredita.md) porta dall'Atlante entrano come restituzioni importate (`forma: ritratto`,
+`importata: true`), con legami di voce `seme` ✧ dove la convergenza era già nel seme e `proposta` ◌ dove era di Claude. Non serve un quinto tipo.
 
 **Lo sguardo non è un tipo.** Il nucleo entra come frammento importato (`voce: seme`), e la sua lettura ha
 `intento: sguardo`. Una versione nuova dello sguardo è un tuo frammento che tu dichiari tale ("questo è dove sono adesso"),
@@ -185,16 +194,16 @@ il `perche` e, se servono, dei qualificatori.
 | predicato | da → a | qualificatori | prova (senza, che cosa fallisce) |
 |---|---|---|---|
 | `nomina` | frammento → persona, opera, citazione | `momento` (12:34, cap. 34, atto, traccia), `fruizione` (`da-fare` · `in-corso` · `fatta`) | E01, E37 "dal minuto 12", E44 "devo leggere", E50 "finito karamazov" |
-| `parla-di` | frammento → tema | `come: metafora` | E67 "mi sento come Sisifo": parla di Sisifo come metafora, non come argomento |
+| `parla-di` | frammento → tema, o qualunque nodo usato come immagine | `come: metafora` | E67 "mi sento come Sisifo": parla di Sisifo come metafora, non come argomento |
 | `sente` | frammento → tema (emozione) | | E71 "apatia totale"; la serie dell'inverno (S4); lezione 7: lo stato appartiene al momento, non all'opera |
 | `tramite` | frammento → persona, opera | | E08 Marco, E10 Frankl, E46 la nonna: chi te l'ha fatta incontrare |
-| `serve-a` | frammento, nodo → raccolta | | E09 "me la tatuerei"; R11 (n.82) |
+| `serve-a` | frammento, nodo, restituzione → raccolta | | E09 "me la tatuerei"; R11 (n.82) |
 | `ritorna-su` | frammento → frammento o restituzione | `come`: `aggiunge` · `corregge` · `ripensa` · `effetto` | E02 "era verso la fine"; E51 "non era jung"; n.51 "mi ha fatto bene"; il ritorno di dicembre su Galimberti |
 | `contraddice` | frammento → frammento | | E69 contro il nucleo, E70 contro E66: la linea delle posizioni |
 | `converge-con` | tra due o più nodi o frammenti | (solo con `perche` in prosa) | E62 "è uguale a cohen!!" (voce sua); le convergenze delle restituzioni |
 
 `autore`, `attribuita-a`, `in`, `versione-di` e `detta-da` sono **campi dei nodi**, non legami: sono fatti del mondo,
-con la loro `verifica`.
+con il loro `esito`.
 
 **Tolti dal primo giro:** `cita` (è `nomina` di un nodo citazione), `suscita` sull'opera (lezione 7: l'emozione di
 un'opera si calcola dai tuoi frammenti), `evoca` (è `parla-di` con `come: metafora`), `simile-a` (è `converge-con`),
@@ -214,7 +223,7 @@ Ogni legame, e ogni riga di una restituzione, porta una di queste voci:
 Oltre alla voce, ogni legame ha uno **stato**, sempre calcolato: `vivo` (il normale), `rifiutato` (un tuo no: non entra più
 nelle risposte né si ripropone), `sbiadito` (proposta intatta da 60 giorni), `superato` (posizione contraddetta più tardi).
 | `proposta` | ◌ | lettura dell'AI | lettura, consolidamento, restituzione |
-| `mondo` | ○ | fatto esterno, con `verifica` | lettura, consolidamento |
+| `mondo` | ○ | fatto esterno, con il suo `esito` e la sua `prova` | lettura, consolidamento |
 
 Nella lettura si scrive la voce con cui il legame **nasce** (sua, seme, proposta o mondo). `accolta` e `rifiutata` non si
 scrivono mai sopra: le calcola l'indice dagli `atti` dei frammenti successivi. Così la storia della validazione è fatta
@@ -231,6 +240,44 @@ Che cosa conta come accoglienza: un sì esplicito a una restituzione; un tuo fra
 (Karamazov); "salvami…". Che cosa **non** conta: averla letta, o fare una domanda su di essa (n.58 "perché me l'avevi messa?"
 chiede, non accoglie).
 
+### 2.5 L'eredità dell'Atlante, con i nomi del modello
+
+I segnaposto delle regole R1–R13 di [eredità](/_progetto/v2/eredita.md), riempiti:
+
+| segnaposto | nel modello |
+|---|---|
+| `<frammento>`, `<testo originale>`, `<data>` | `frammento` con `canale: importato`, corpo esatto, `registrato` = la data dell'Atlante (punto zero: ≤ 2026-10-07, fuori dalle serie) |
+| `<voce:utente>` · `<voce:mista>` | `voce: sua` · `voce: seme` |
+| `<provenienza: file:riga>` | `link` al file dell'Atlante su GitHub, nella lettura del frammento importato |
+| `<sguardo datato>` | il frammento importato del nucleo, `voce: seme`, lettura con `intento: sguardo` |
+| `<convergenza>`, `<aggancio>` | `restituzione` con `forma: ritratto`, `importata: true`, legami `converge-con` con `perche`, e un legame verso la frase U/M che la ancora |
+| `<entità persona/opera/mito/concetto>` | nodi in `persone/`, `opere/` (il mito è un'opera, i suoi personaggi persone `finzione`), `temi/` (il concetto) |
+| `<progetto: tatuaggi>`, il brief | `raccolte/tatuaggi.md`: `scopo` in una riga; il brief è un frammento importato `voce: seme` con `serve-a: tatuaggi` |
+| `<idea attiva>` (le 2 sue) · `<candidato dormiente>` | frammento `voce: sua` · restituzione importata ◌ con `serve-a: tatuaggi` |
+| `<riferimento visivo esterno>` (pin) | il link del pin nel frammento importato che lo conteneva; nessuna immagine nel repo |
+| `<proposta>`, `<origine: claude>` · `<soglia di decadimento>` | voce `proposta` ◌ · 60 giorni, poi stato `sbiadito` |
+| `<verifica: sicura / da-verificare>` | `esito` + `prova`; "da verificare" = `prova: memoria`, senza esito |
+| `<vocabolario emozioni>` | le 10 parole tue come nodi `temi/` nati dal frammento del percorso interiore; le 4 di Claude come proposta |
+| `<fonte esterna: URL>` · `<pista>` | `link` del nodo · `nomina` con `fruizione: da-fare` |
+| `<domanda>` hub (le 8 domande) | nodi `temi/` con il titolo-domanda come `nome`, `voce: seme`; i cori restano nell'Atlante |
+| `<preferenze-di-lavoro>`, `<spunto-per-claude>` | non sono dati: vanno nel `CLAUDE.md` del nuovo repo |
+| `<tradizione>` | non è un tipo: un tema col tuo nome ("i greci") se ricorre |
+
+### 2.6 Regole di confine (dal collaudo sul banco)
+
+- **Un nodo nasce se lo nomini tu**, anche alla prima occorrenza: persona, opera, ma anche un concetto o un'immagine con un
+  nome proprio (kintsugi, nave di Teseo). La regola della ricorrenza (2-3 frammenti) vale per i **temi che l'AI deduce**
+  ("padre"). Un'idea attribuita che non è una frase (Telemaco secondo Recalcati) è un `nomina` della persona giusta con voce
+  `mondo` e il `perche`: non diventa una citazione.
+- **"La 3" di un album (E22).** All'ingresso: `nomina` dell'album con `momento: traccia 3` e una domanda; il titolo si
+  risolve nel consolidamento con MusicBrainz e diventa un nodo opera con `in: <album>`.
+- **Un ritorno su una restituzione** usa `ritorna-su: {di: r-…, n: 1}` e `come: effetto` ("mi ha fatto bene", n.51).
+  Un effetto positivo vale come accoglienza.
+- **`contraddice` rende `superata` una posizione** solo se ha voce `sua` ("camus si sbagliava", E70) o se è stato accolto.
+  Proposto dall'AI (E69 contro il nucleo) è una tensione da mostrare, non una posizione chiusa.
+- **La chat del Progetto legge `contesto/`.** Le domande sulle tue parole esatte di mesi fa trovano tutto in
+  `contesto/parole.md`. Quando diventerà troppo grande per il Progetto, si passa al tab Code o al connettore.
+
 ---
 
 ## 3. Il livello derivato
@@ -239,10 +286,11 @@ chiede, non accoglie).
 
 | che cosa | quando | chi | dove vive |
 |---|---|---|---|
-| intento, riferimenti ("quella di ieri"), entità certe, `reazione`, legami di voce sua e mondo, al massimo 2 proposti | **ingresso**, in 1-3 minuti | AI | `letture/` |
-| verifica di una citazione evidente (E07 Bukowski, E09 *L'Été*) | ingresso se l'AI è sicura, altrimenti consolidamento | AI + ricerca | nodo `citazioni/` |
+| intento, riferimenti ("quella di ieri"), entità certe, `reazione`, legami di voce sua e mondo, al massimo 2 proposti | **ingresso**, dalla Routine "smista", in pochi minuti (da misurare) | AI | `letture/` |
+| verifica di una citazione: passo 1 (apocrifi noti: Quote Investigator, PolitiFact) | ingresso, 1-2 ricerche; fino al consolidamento `prova: memoria` | AI + ricerca | nodo `citazioni/` |
+| verifica, passi 2-3 (testo primario, traduzione pubblicata) | consolidamento, fase 1, un subagent ogni 3 citazioni; **obbligatoria** prima di proporre una citazione scelta dall'AI | AI + ricerca | `esito`, `prova`, `riferimento` |
 | temi nuovi (alla 2ª–3ª ricorrenza, con il tuo nome), fusione dei doppioni, divisione dei temi troppo larghi | **consolidamento, fase 1** | AI | `temi/`, letture in versione nuova |
-| ID esterni (Wikidata, MusicBrainz) | consolidamento, fase 1 | script + AI | campo `wikidata` |
+| ID esterni, mai all'ingresso (MusicBrainz può metterci 15 s) né per persone della vita e citazioni sciolte | consolidamento, fase 1, quando l'entità diventa un nodo | `risolvi.mjs` propone i candidati, l'AI sceglie; a te una domanda sola, e solo se restano due candidati dello stesso tipo | `wikidata`, `musicbrainz`, `registrazione`, `openlibrary`, `titolo-vero` |
 | contraddizioni con le posizioni e con lo sguardo | consolidamento, fase 1 | AI | legame `contraddice` |
 | il sogno, il "ti ricordi?", la convergenza della settimana | **consolidamento, fase 2** | AI | `restituzioni/` |
 | voce calcolata (`accolta`) e stato di ogni legame (vivo, rifiutato, sbiadito, superato), forza dei legami, vitalità dei nodi | **a ogni commit** | script, senza AI | `.indice/grafo.json` |
@@ -268,7 +316,8 @@ chiede, non accoglie).
 2026): rispondono a "cosa pensavo a ottobre", ma non entrano nelle serie né nei "da febbraio compare quattro volte".
 Il git log dell'Atlante non è la storia del tuo pensiero (R10).
 
-**Come si ricalcola.** `.indice/` si cancella e si rifà con `node indice.mjs`, in un secondo. Le letture si rifanno con
+**Come si ricalcola.** La Routine è una sessione nuova a ogni avvio: `.indice/` si rifà a ogni passata con `node indice.mjs`,
+in un secondo, e `scripts/contesto.mjs` rigenera `contesto/`, che è versionato perché il Progetto claude.ai lo legge da GitHub. Le letture si rifanno con
 `rileggi --da 2026-11 --versione 2`: si rileggono i frammenti nel loro ordine, perché gli `atti` dipendono da ciò che
 c'era prima; gli slug esistenti si passano al modello come vincolo e le restituzioni si leggono come contesto, senza
 riscriverle. Se una rilettura non trova più un legame che avevi accolto, **vince l'atto**: il legame accolto si conserva.
@@ -288,9 +337,11 @@ Sono calcolate e generate su richiesta, mai salvate a mano:
 
 ### 4.1 Ingresso (secondi, poi minuti)
 
-1. **Cattura, in 1 secondo e senza AI.** Il testo entra in `frammenti/` con `registrato` e `canale`. Se tutto il resto
-   fallisce, il frammento c'è: la cattura non si perde mai (essenza, principio 1).
-2. **Lettura, entro 1-3 minuti, in modo asincrono.** In quest'ordine:
+1. **Cattura, in 1 secondo e senza AI.** Il Comando rapido "Memo" fa un `PUT` via API GitHub in `ingresso/` e poi
+   il `fire` della Routine "smista". Sul telefono vedi "Salvato". Se tutto il resto fallisce, il grezzo c'è: la cattura
+   non si perde mai (essenza, principio 1). Una passata ogni 3 ore raccoglie i rimasti.
+2. **Lettura, in pochi minuti, in modo asincrono** (la Routine "smista"; [telefono](/_progetto/v2/telefono.md)).
+   Sposta il grezzo in `frammenti/` con `registrato` e `canale`, poi, in quest'ordine:
    1. legge gli ultimi 3 giorni di frammenti e le ultime 5 restituzioni, per risolvere "quella di ieri", "la terza",
       "di questo genere" (lezione 10 degli ingressi);
    2. classifica l'intento; nel dubbio fa insieme salva e chiedi;
@@ -299,11 +350,16 @@ Sono calcolate e generate su richiesta, mai salvate a mano:
       domanda;
    4. scrive la lettura: legami di voce sua e mondo, al massimo 2 proposti e motivati, nessun tema nuovo, scarti letti
       prima di proporre;
-   5. risponde in 1-2 righe (§4.3).
-3. **Se l'intento è `chiedi`**, la risposta è una restituzione `forma: risposta` con voci numerate e segni di voce.
+   5. scrive la risposta di 1-2 righe come restituzione `forma: risposta`;
+   6. rigenera `contesto/`, lancia la verifica, fa push su `main`.
+3. **Le domande** si fanno nella chat del Progetto claude.ai, che legge `contesto/` (o nel tab Code, per quelle pesanti).
+   Ogni domanda e ogni risposta della chat vanno salvate come frammento e restituzione: alla tappa 1 lo fa la chat stessa
+   con un memo; alla tappa 2 lo fa il connettore MCP. Un memo-domanda riceve la risposta in `restituzioni/` e in
+   `contesto/recenti.md`.
 
 **La prudenza.** Su un tema delicato (E52 il suicidio, E26 il lutto, E71 l'apatia) la risposta è una riga umana, senza
-proposte né temi, senza diagnosi, e non finge che non sia successo niente.
+proposte né temi, senza diagnosi, e non finge che non sia successo niente. Questi frammenti restano fuori dalla lettera,
+dal "ti ricordi?" e dal sogno, finché non li riprendi tu.
 
 ### 4.2 Consolidamento (una notte a settimana, in due fasi)
 
@@ -328,20 +384,27 @@ Gira solo se nella settimana c'è almeno un frammento. Se sei stato in silenzio,
 
 | quando | che cosa | forma | lunghezza |
 |---|---|---|---|
-| a ogni messaggio | conferma + al massimo un aggancio ("ne hai già 3 su Galimberti", un ponte se è forte, una correzione di fatto) | notifica, poi il testo in chat | 1–2 righe |
-| la domenica sera, se hai scritto | **la lettera della settimana**: una cosa tra convergenza, confronto e sogno, più al massimo un "ti ricordi?" | notifica con le prime due righe, il resto in `restituzioni/` | ≤ 8 righe |
+| a ogni messaggio | "Salvato" dal Comando rapido; poi la risposta della lettura: al massimo un aggancio ("ne hai già 3 su Galimberti", un ponte se è forte, una correzione di fatto) | tappa 1: in `contesto/recenti.md`, la vedi alla prima domanda o nella lettera; una notifica senza contenuto solo per una correzione di fatto o un ponte forte. Tappa 2: in chat | 1–2 righe |
+| la domenica sera, se hai scritto | **la lettera della settimana**: una cosa tra convergenza, confronto e sogno, più al massimo un "ti ricordi?" | notifica senza contenuto ("la lettera è pronta" + link), dalla Routine "sogno" la domenica | una schermata del telefono |
 | quando torni dopo 14 giorni o più | "mentre eri via": una sola cosa, mai un arretrato | nella risposta al primo messaggio | 2 righe |
-| ogni tre mesi | **il ritratto**: che cosa torna, che cosa è nuovo, che cosa è sparito, una tensione, **una** domanda | notifica + pagina | una schermata |
+| ogni tre mesi | **il ritratto**: che cosa torna, che cosa è nuovo, che cosa è sparito, **che cosa manca** (mai salvato, per tema e per mezzo), una tensione, **una** domanda | notifica senza contenuto + `contesto/ritratto.md` | una schermata |
 | quando chiedi | tutto: ritratto, linea del tempo, confronti, la lente sul mondo | chat | breve, poi "vuoi il resto?" |
 
+**Le regole di forma** (dalle prove di [restituzione](/_progetto/v2/restituzione.md)): ogni pezzo parte da una tua frase ✦
+con la data; il vuoto è un dato ("nessuna canzone", "nessun perché"); una convergenza ha una **direzione** (le fonti dicono
+cose diverse sullo stesso legame, non la stessa cosa tre volte); il sogno si dichiara gioco, un legame solo, il motivo in una
+riga; il confronto mette contro di te una voce che stimi e chiude con una domanda, l'unico caso in cui la lettera ne fa una.
+Il mondo esterno si verifica prima, o si dichiara (⚠, "simile").
+
 **I segni nelle risposte**, sempre gli stessi: ✦ sua (tua) · ✧ seme · ● accolta · ◌ proposta · ○ mondo · ⚠ da verificare.
-Le risposte "nella mia testa" o "solo le mie" usano solo ✦ ✧ ●. Le altre mettono prima il tuo e poi il mondo. Ogni elenco
+[Restituzione](/_progetto/v2/restituzione.md) usa ● per "tuo": va allineata a questi, perché lì ● vorrebbe dire due cose.
+Le risposte "nella mia testa" o "solo le mie" usano ✦ e ●, e mostrano ✧ a parte, come voce mista (R2, n.75). Le altre mettono prima il tuo e poi il mondo. Ogni elenco
 contiene **una voce della coda lunga**, qualcosa che non rivedi da tempo, perché richiamare sempre le stesse cose fa
 dimenticare le altre ([cervello §6](/_progetto/v2/cervello.md)).
 
 ### 4.4 Ritorni
 
-- **"Ti ricordi?"**: un indizio, non il frammento intero ("A novembre, a teatro, Galimberti chiamava il nichilismo con
+- **"Ti ricordi?"**: un indizio, non il frammento intero: l'inizio della frase, con la fine nascosta ("A novembre, a teatro, Galimberti chiamava il nichilismo con
   un nome preso da Nietzsche: quale?"). Lo sceglie la vitalità: cose importanti e sbiadite. Gli intervalli crescono
   (una settimana, un mese, quattro mesi, un anno), uno per lettera al massimo.
 - **La tua risposta è un frammento** con `ritorna-su`: completa l'indizio, dice "mi ha fatto bene" (`come: effetto`, n.51),
@@ -425,18 +488,22 @@ nato-da: [20261103-2340]
 # citazioni/nichilismo-ospite-inquietante.md
 ---
 nome: Il nichilismo, l'ospite inquietante
-testo: "Il nichilismo è alla porta: da dove ci viene questo, il più inquietante fra tutti gli ospiti?"
 autore: friedrich-nietzsche
 attribuita-a: [umberto-galimberti]
-in: "Frammenti postumi 1885-1887"
-passo: "2[127] (da verificare)"
-verifica: da-verificare
+prova: memoria            # niente esito finché il consolidamento non fa i passi 2-3
+originale: "Der Nihilismus steht vor der Tür: woher kommt uns dieser unheimlichste aller Gäste? (da verificare)"
+traduzione: "Il nichilismo è alla porta: da dove ci viene questo, il più inquietante fra tutti gli ospiti?"
+traduttore: resa di Claude
+riferimento:
+  opera: "Frammenti postumi 1885-1887"
+  luogo: "2[127] (da verificare)"
 nato-da: [20261103-2340]
 ---
 L'immagine è di Nietzsche; Galimberti ne ha fatto il titolo di un libro (L'ospite inquietante, Feltrinelli 2007).
 ```
 
-Le parole canoniche di Nietzsche le conferma il consolidamento (⚠ finché non lo fa). Il libro del 2007 **non** diventa un
+Il consolidamento fa i passi 2-3: testo primario, poi la traduzione pubblicata. Allora la nota prende `esito`, `prova:
+primaria` e un `riferimento` con url e data; fino ad allora ogni risposta la segna ⚠. Il libro del 2007 **non** diventa un
 nodo: tu non l'hai nominato, e lo si dice soltanto nella risposta.
 
 **Il mattino dopo (08:12):** il frammento `20261104-0812` e la sua lettura, che risolve "la frase dell'ospite" sugli
@@ -461,6 +528,8 @@ frammento nuovo che lo punta. La vista dello spezzone li mostra insieme.
 
 ### 5.3 Che cosa ricevi subito
 
+Sul telefono, all'istante: "Salvato". Pochi minuti dopo, in `contesto/recenti.md` (e in chat alla tappa 2):
+
 > 23:41 · **Salvato.** "L'ospite inquietante" è un'immagine di Nietzsche ○; Galimberti ci ha scritto un libro (2007) ○.
 > Lo spettacolo era *Il mondo delle emozioni*? ⚠
 
@@ -480,9 +549,9 @@ Rust, Zapffe. Trova una **tensione**, che vale più di una conferma:
 > tavola ✦ ("la coscienza come passo falso"). Giovedì, con Sisifo, hai scritto "oggi ci credo davvero" ✦.
 > Tre voci sulla stessa porta: chi apre, chi la chiude e chi la guarda ◌.
 >
-> *Ti ricordi?* Il 4 ottobre hai scritto che la calma viene "dall'immensità del ___ superato".
+> *Ti ricordi?* A inizio ottobre, nel tuo percorso interiore: "calma nell'esplorarne i concetti data dall'immensità…"
 
-Nessuna domanda da compilare: la lettera è da leggere. Se rispondi "sì, Rust è l'ospite", quel frammento **accoglie** la
+Nessuna domanda da compilare (la lettera ne fa una solo quando è un confronto): è da leggere. Se rispondi "sì, Rust è l'ospite", quel frammento **accoglie** la
 voce 1 e il legame diventa ●.
 
 ### 5.5 Dopo tre mesi: febbraio 2027
@@ -515,7 +584,7 @@ ultimamente?"). Fino ad allora è una vicenda calcolata, e il ritratto lo dice c
 
 - **Frammento:** il testo. **Lettura:** `nomina: cio-a-cui-resisti-persiste` (sua); `reazione: "verissimo"` (giudizio +).
 - **Nodo:** `citazioni/cio-a-cui-resisti-persiste.md` con `attribuita-a: [carl-gustav-jung]`, **nessun `autore`**,
-  `verifica: errata`, e una riga: "Slogan moderno; il passo di Jung più vicino è sull'ombra (da verificare)".
+  `esito: attribuzione-errata`, `prova: secondaria`, e una riga: "Slogan moderno; il passo di Jung più vicino è sull'ombra (da verificare)".
 - **Risposta:** "Salvata, ma non risulta in Jung: è uno slogan moderno ○. È vicina a quella di ieri ✦."
 - **Senza il modello, fallirebbe:** n.43 / "le migliori di Jung" la metterebbe in cima. Con `autore` vuoto non ci entra
   mai; resta trovabile con "le frasi che mi hanno colpito attribuite a Jung".
@@ -525,9 +594,9 @@ ultimamente?"). Fino ad allora è una vicenda calcolata, e il ritratto lo dice c
 - **E08** ("marco mi ha mandato quella di camus… da bacio perugina"): "marco" si risolve **prima** su `cerchia: vita`.
   Non c'è nessuno, ed è un nome proprio nudo detto in prima persona: nasce `persone/marco.md`, `cerchia: vita`,
   nessun alias pubblico. Legami: `tramite: marco` (sua), `nomina: non-camminare-davanti-a-me` (citazione con
-  `attribuita-a: [albert-camus]`, `verifica: apocrifa`). La reazione è `giudizio −`.
+  `attribuita-a: [albert-camus]`, `esito: apocrifa`). La reazione è `giudizio −`.
 - **E45** ("marco stasera mi ha detto che sono sempre in guerra con me stesso"): `nomina: marco` (sua), `parla-di:
-  battaglie-interiori` (proposta: le parole sono di Marco, il concetto è tuo dal seme). Le parole di Marco **non** diventano una citazione con verifica:
+  battaglie-interiori` (proposta: le parole sono di Marco, il concetto è tuo dal seme). Le parole di Marco **non** diventano una citazione da verificare:
   restano nel frammento.
 - **Risposta a E45:** "Salvato. 'Battaglie interiori' è una tua parola dal primo giorno ✧."
 - **Senza il modello:** Marco Aurelio con un "da bacio perugina" attaccato; oppure Marco su un sito pubblico.
@@ -556,12 +625,12 @@ ultimamente?"). Fino ad allora è una vicenda calcolata, e il ritratto lo dice c
 | 13 dic | E54 *Interstellar*, "do not go gentle", "non dormo" | `nomina: interstellar`; `nomina: do-not-go-gentle` (opera con `autore: dylan-thomas`, `in: interstellar` come citata) | parola "aspettare" ricorrente (Telemaco, Murph) |
 | 6 gen | E55 il sogno del papà | `nomina: papa` (vita); `sente`: nessuno, "strano" è reazione. **Nessun aggancio detto**: è intimo e presto | vicenda calcolata: 3 frammenti in 51 giorni sull'attesa di un padre |
 | 20 gen | E56 Hohenheim | `nomina: hohenheim` (finzione, `in: fma`); `reazione`: "solo adesso capisco" (giudizio +; "da ragazzo lo odiavo": giudizio −, vissuto anni fa) | 4 prove; il tema `padre` è **candidato** (parola mai tua) |
-| 1 mar | E50 "litigato con mio padre" | `nomina: papa`; `parole: [padre]`, prima volta, di passaggio; **nessuna domanda** | 5 prove |
+| 1 mar | E50 "litigato con mio padre" | `nomina: papa`; `parole: [padre]`, di passaggio, il suo; **nessuna domanda** | 5 prove |
 | 14 mar | E58 "dammi canzoni sul rapporto padre figlio" | `intento: chiedi`; "padre" torna, ora come argomento | il tema può nascere: ha il tuo nome |
 | 10 apr | E60 "cosa mi colpisce ultimamente? sii sincero" | restituzione | — |
 
 **Risposta a E60:** "Il padre ◌. Telemaco (16 nov), Murph che aspetta (13 dic), il sogno al mare (6 gen), Hohenheim
-(20 gen), il litigio (1 mar), le canzoni (14 mar) ✦. L'hai chiamato per nome due volte, a marzo, e mai come tema."
+(20 gen), il litigio (1 mar), le canzoni (14 mar) ✦. La parola c'è, di passaggio; come filo non l'hai mai nominato."
 Il tema `temi/padre.md` nasce con `nato-da` uguale ai sei frammenti. Il primo giro (tag messi a caldo) qui non vedeva niente.
 
 ### 6.5 Il link nudo: E27 `https://open.spotify.com/track/4uLU6hMCjMI75M1A2tKUQC?si=a1b2c3`
@@ -633,7 +702,7 @@ prima del soggetto. Poi una domanda sola: "Quale ti prende a pancia?"
 
 **Dati:** `.indice/conti.json` per voce (✦ ✧ ●), per tema e per emozione, confrontati con lo sguardo: nel nucleo l'oltre è
 amore e verità.
-**Risposta:** "Tre assenze, contando solo ciò che è tuo. La gioia: 4 legami contro 76 per il dolore. Le persone della tua
+**Risposta** (oggi, sul punto zero dell'Atlante, e dichiarandolo: i numeri contano anche le note di Claude): "Tre assenze. La gioia: 4 legami contro 76 per il dolore. Le persone della tua
 vita: zero, fino a Marco. Te stesso: nessun 'perché mi colpisce', mai. E una domanda: che cosa c'è nell'amore che non salvi?"
 **Non deve:** contare le 91 fonti di Claude; trasformare l'assenza in una diagnosi.
 
@@ -644,7 +713,7 @@ che separa le citazioni con fonte da quelle attribuite ([stato dell'arte §5](/_
 **Risposta:** "Una top tua non c'è: hai 2 citazioni, entrambe mie ◌. Dal mondo ○, scelte vicino al tuo filone (il dolore
 attraversato): 1… 5, con opera e capitolo o ⚠." Ognuna ha una riga che la aggancia: "accanto al tuo Camus", "risponde a Rust".
 **n.47** su "se Dio non esiste tutto è permesso": "Così non è testuale ⚠: è una sintesi del pensiero di Ivan; il passo
-vero è [libro, capitolo]." Si aggiorna la `verifica` del nodo, e questo **non** è una validazione.
+vero è [libro, capitolo]." Si aggiornano `esito` e `riferimento` del nodo, e questo **non** è una validazione.
 
 ---
 
@@ -660,8 +729,15 @@ vero è [libro, capitolo]." Si aggiorna la `verifica` del nodo, e questo **non**
 4. **Le vicende** (cervello) non si scrivono: si calcolano. I **periodi** non esistono finché non ne nomini uno tu; a quel
    punto sono un tema con le date nella lettura. Il working self non è un file (decisione 7): è una vista.
 5. **"Dall'Atlante solo il vivo" (decisione 9).** R11 (Sisifo) ha bisogno anche delle idee di tatuaggio di Claude. Per
-   questo le idee dell'Atlante entrano come restituzioni importate ◌, fuori dai conti e mai rilanciate. Le 88 fonti morte
-   restano nell'Atlante.
+   questo le idee e i 31 candidati del progetto tatuaggi di [eredità](/_progetto/v2/eredita.md) (R8) entrano come
+   restituzioni importate ◌ con `serve-a: tatuaggi`, non come "candidati dormienti": fuori dai conti, mai rilanciate, trovabili.
+   Delle 46 entità vive diventano nodi solo le 13 che hai nominato tu; le altre 33 restano testo dentro le convergenze, e
+   le citazioni scelte da Claude restano nelle restituzioni finché non le accogli. Le 107 entità morte restano nell'Atlante.
+6. **Lo sguardo scritto dall'AI (eredità, R2).** I passi misti M1–M10 restano nel frammento importato del nucleo, con
+   `voce: seme`: nessuno sguardo nuovo composto dall'AI.
+7. **La risposta immediata** ([telefono](/_progetto/v2/telefono.md)). Con il Comando rapido la tappa 1 non ha una chat in
+   cui rispondere a ogni memo. La scena 1 dell'[essenza](/_progetto/v2/essenza.md) (Galimberti che trova Rust subito) è
+   meraviglia, non un dettaglio: per questo il connettore MCP, che riporta la risposta in chat, è la priorità della tappa 2.
 
 ---
 
@@ -671,13 +747,13 @@ vero è [libro, capitolo]." Si aggiorna la `verifica` del nodo, e questo **non**
    tre mesi. Niente se taci.
 2. **Il "sogno della settimana"** (un legame ardito e dichiarato come gioco): ti diverte o ti disturba? *Raccomando:* sì,
    ma al massimo uno al mese, a turno con convergenza e confronto.
-3. **Il canale sul telefono.** *Raccomando:* un comando rapido "Memo" per catturare (1 secondo, poi la risposta arriva come
-   notifica in 1-3 minuti) e la chat dell'app per chiedere. Una sola conversazione per tutto si può fare solo con un
+3. **Il canale sul telefono.** *Raccomando:* il Comando rapido "Memo" per catturare (1 secondo, "Salvato"; la lettura arriva in
+   pochi minuti) e la chat del Progetto per chiedere. Una sola conversazione per tutto si può fare solo con un
    connettore MCP, ed è il secondo traguardo.
 4. **Un nuovo repository privato.** Le persone della tua vita non possono stare nel repository pubblico dell'Atlante.
    *Raccomando:* un repo privato per il memo; l'Atlante resta pubblico e intatto, come archivio d'origine.
 5. **Una sola domanda sul link muto** (E27 "che cosa ti ha preso?"). *Raccomando:* sì, una e mai ripetuta. Se la trovi
    una seccatura, si toglie, e il link resta muto finché non ci torni.
 
-**Il primo traguardo** non è la pipeline: è una **restituzione vera**. Un ritratto fatto sul nucleo, sui 6 frammenti tuoi
-dell'Atlante e su 10 messaggi nuovi, con questo modello sotto, collaudato sul [banco di prova](/_progetto/v2/banco-di-prova.md).
+**Il primo traguardo** non è la pipeline: è una **restituzione vera**. Un ritratto fatto sul nucleo, sulle 31 frasi tue
+dell'Atlante (U1–U31 di [eredità](/_progetto/v2/eredita.md)) e su 10 messaggi nuovi, con questo modello sotto, collaudato sul [banco di prova](/_progetto/v2/banco-di-prova.md).

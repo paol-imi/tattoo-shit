@@ -19,3 +19,4 @@ Documenti di progettazione (2026-10-31), proposte di Claude da validare. Non fan
 - [L'eredità (v2)](/_progetto/v2/eredita.md): l'inventario puntuale di che cosa passa al nuovo sistema (frasi sue, convergenze, entità vive, progetto tatuaggi) e delle regole per lo script di importazione.
 - [Citazioni (v2)](/_progetto/v2/citazioni.md): prova sul campo su 25 citazioni e il protocollo di verifica raccomandato.
 - [Identità (v2)](/_progetto/v2/identita.md): prova sul campo di Wikidata e MusicBrainz su 30 entità difficili, procedura e abbozzo di `risolvi.mjs`.
+- [Modello v2](/_progetto/v2/modello.md) e [banco di prova](/_progetto/v2/banco-di-prova.md): il modello definitivo del secondo giro (4 tipi, 8 predicati, cicli) e i 50 casi per collaudarlo.
