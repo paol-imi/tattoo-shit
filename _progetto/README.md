@@ -18,3 +18,4 @@ Documenti di progettazione (2026-10-31), proposte di Claude da validare. Non fan
 - [Il telefono (v2)](/_progetto/v2/telefono.md): dal tocco al repo e ritorno, verificato sulle fonti, con l'architettura in due tappe e i passi a mano.
 - [L'eredità (v2)](/_progetto/v2/eredita.md): l'inventario puntuale di che cosa passa al nuovo sistema (frasi sue, convergenze, entità vive, progetto tatuaggi) e delle regole per lo script di importazione.
 - [Citazioni (v2)](/_progetto/v2/citazioni.md): prova sul campo su 25 citazioni e il protocollo di verifica raccomandato.
+- [Identità (v2)](/_progetto/v2/identita.md): prova sul campo di Wikidata e MusicBrainz su 30 entità difficili, procedura e abbozzo di `risolvi.mjs`.
