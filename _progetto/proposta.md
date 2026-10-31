@@ -19,7 +19,7 @@
 
 | tipo | cartella | che cos'è |
 |---|---|---|
-| frammento | `frammenti/AAAA/AAAAMMGG-slug.md` | un episodio: ciò che ho visto, sentito, pensato, con il contesto |
+| frammento | `frammenti/AAAA/AAAAMMGG-slug.md` | un episodio: ciò che ho visto, sentito, pensato, con il contesto; diventa cartella (`…/AAAAMMGG-slug/index.md` + `img/`) solo se ha immagini |
 | citazione | `citazioni/` | parole altrui, brevi (max ~30 parole), **sempre** con un'attribuzione |
 | persona | `persone/` | autore, artista, pensatore, band |
 | opera | `opere/` | libro, canzone, album, film, serie, anime, quadro, spettacolo, mito… (sottotipo in `mezzo`) |
@@ -37,15 +37,17 @@ Fuori dal grafo: `diario/`, `inbox/`, `_archivio/`, `_templates/`, `_vocabolari/
 
 | campo | su | valori |
 |---|---|---|
-| `tipo`, `titolo`, `creato` | tutti | `creato`: AAAA-MM-GG |
+| `tipo`, `titolo`, `creato` | tutti | `creato`: AAAA-MM-GG, con l'ora sui frammenti (`2026-10-31T21:00`) |
 | `origine` / `validata` | tutti | `mia` (nominato o scritto da me) · `seme` (importato) · `claude`; `mia` ⇒ `validata: true` |
 | `alias` | entità | elenco di grafie (Dostoevskij, Dostoevsky, Dosto): obbligatorio se il nome ha varianti |
-| `privata` | tutti | `true` = mai su sito, export o MCP; default `false` |
+| `visibilita` | tutti | `privata` (default, anche se assente) · `pubblica`: un sito futuro mostra solo le `pubblica` |
+| `slug-precedente` | note importate | lo slug nell'Atlante, per la tabella vecchio → nuovo |
 | `pancia` | frammento, citazione, opera | `1` sfiorato · `2` colpito · `3` folgorato; **solo mia**, l'AI non la indovina |
 | `reazione` | idem | una riga libera, facoltativa, mie parole |
 | `quando`, `contesto` | frammento | data vissuta (se ≠ `creato`); una riga ("in macchina, sotto la pioggia") |
 | `mezzo` | frammento | video · spettacolo · libro · musica · film-serie · conversazione · social · pensiero · sogno · luogo |
-| `stato` | frammento | `grezzo` → `collegato` → `consolidato` |
+| `stato` | frammento | `grezzo` → `collegato` → `consolidato` (oppure `confluito`, con `confluito-in`) |
+| `ritorni` | frammento, citazione | elenco di date in cui ci sono tornato; il testo sta in `## Ritorni` |
 | `link` | frammento, opera | URL normalizzati (YouTube `watch?v=ID`, Spotify `track/ID`, Pinterest `pin/ID/`) |
 | `verifica`, `riferimento`, `lingua` | citazione | `verificata` · `simile` · `da-verificare` · `smentita`; `riferimento`: dove sta davvero (opera, capitolo/anno) o la frase simile |
 | `mezzo`, `genere`, `anno` | opera | `mezzo`: libro · poesia · saggio · canzone · album · film · serie · anime · fumetto · quadro · spettacolo · lezione · video · podcast · gioco · mito; `genere` dal vocabolario del suo mezzo |
@@ -74,13 +76,16 @@ esistente (alias compresi) va bene, e lo crea `origine: claude`, `validata: fals
 | `converge-con` | qualsiasi → qualsiasi, di tradizioni diverse | simmetrico |
 | `contraddice` | qualsiasi → qualsiasi | simmetrico |
 | `evoca` | qualsiasi → qualsiasi (associazione a pancia, l'unica valvola libera) | simmetrico |
-| `domande` | qualsiasi → domanda | coro |
+| `risponde-a` | qualsiasi → domanda | coro |
+| `scoperto-tramite` | qualsiasi → qualsiasi (chi o cosa me l'ha fatto conoscere) | ha-fatto-scoprire |
+| `sviluppa` | frammento → frammento, idea di un progetto | sviluppato-in |
+| `confluito-in` | frammento → qualsiasi (con `stato: confluito`) | raccoglie |
 | `sinonimo-di` | tema/emozione doppione → quello che resta | — |
 
 Regole:
 - **I legami stanno solo nel frontmatter.** Il blocco `## Collegamenti` del corpo e gli inversi li scrive `indice.mjs`
   tra due marcatori; a mano non si toccano. Nel testo restano solo link di passaggio.
-- **Le proposte stanno in una chiave a parte**, `proposte:`, con la stessa forma (`proposte: {parla-di: [amore]}`).
+- **Le proposte stanno in una chiave a parte**, `proposti:`, con la stessa forma (`proposti: {parla-di: [amore]}`).
   Validare = spostare lo slug nella chiave vera. Così "legami solo nel frontmatter" e "proposte marcate" convivono.
 - Forza facoltativa: `slug@2`. Le query scendono al massimo di due passi.
 
@@ -94,7 +99,7 @@ l'ospite inquietante', molto interessante"*. "X" è un segnaposto: il titolo non
 ```yaml
 tipo: frammento
 titolo: Spezzone di Galimberti da X
-creato: 2026-10-31
+creato: 2026-10-31T21:00
 mezzo: video
 contesto: reel visto la sera, sul telefono
 stato: collegato
@@ -102,7 +107,7 @@ origine: mia
 validata: true
 cita: [nichilismo-ospite-inquietante]
 fonte: [spettacolo-x]
-proposte:
+proposti:
   parla-di: [nichilismo, i-greci]
   suscita: [inquietudine]
 ```
@@ -121,7 +126,7 @@ verifica: simile
 riferimento: "Galimberti, L'ospite inquietante (Feltrinelli, 2007); l'immagine viene da Nietzsche, frammenti postumi (da verificare)"
 origine: mia
 validata: true
-proposte:
+proposti:
   parla-di: [nichilismo]
   converge-con: [nietzsche-nichilismo-ospite]
 ```
@@ -130,7 +135,7 @@ Corpo: la frase come l'ho riportata io, poi la versione verificata accanto. Il m
 Nasce perché c'è un'attribuzione (dichiarata da me e trovata simile); senza, la frase resterebbe nel frammento.
 
 **Nuova** `persone/umberto-galimberti.md`: `alias: [Galimberti]`, `anno: 1942` (da verificare),
-`paese: it`, `origine: mia` (l'ho nominato io), `validata: true`; `proposte: {tradizione: [filosofia-contemporanea]}`.
+`paese: it`, `origine: mia` (l'ho nominato io), `validata: true`; `proposti: {tradizione: [filosofia-contemporanea]}`.
 
 **Nuova** `opere/spettacolo-x.md`: `mezzo: spettacolo`, `titolo: X` (da chiedere), `autore: [umberto-galimberti]`,
 `fruizione: in-corso` (ne ho visto un pezzo), `origine: mia`, `validata: true`.
@@ -153,7 +158,7 @@ Skill in `.claude/skills/memo/SKILL.md`; in `CLAUDE.md` solo "Messaggi al volo �
 4. **Verifica** citazioni e attribuzioni: un subagent, **una** ricerca; poi `verificata`, `simile` (con le due frasi)
    o `da-verificare`. Mai inventare.
 5. **Crea** le entità che ho nominato (`origine: mia`); quelle che introduce Claude partono `claude`/`false`.
-6. **Proponi** 1–3 temi, emozioni, domande, convergenze: tutto in `proposte:`. Lo stato passa a `collegato`.
+6. **Proponi** 1–3 temi, emozioni, domande, convergenze: tutto in `proposti:`. Lo stato passa a `collegato`.
 7. **Una domanda al massimo**, in ordine: entità ambigua > "cosa ti ha colpito, a pancia, 1–3?" (se manca) > momento o
    contesto. Se c'è già una reazione nel messaggio, nessuna domanda. Mai interpretare al posto mio.
 8. `verifica.mjs` → commit `memo: <slug>` → push. Risposta al telefono in 2–3 righe: dove, cosa è da verificare, la domanda.
@@ -200,7 +205,7 @@ con la `BASE` del sito non più cablata.
    dominio, codominio e inverso. È la sola fonte delle regole: gli script la leggono.
 3. `_templates/` per ogni tipo; `sguardo/2026-11-…md` scritto con me a partire da `nucleo.md`.
 4. `scripts/verifica.mjs`: slug unici, campi e valori ammessi, predicati noti con tipi giusti ai capi, slug esistenti,
-   `mia` ⇒ `validata`, citazione senza `autore` né `fonte` ⇒ errore, nomi quasi uguali ⇒ avviso.
+   `mia` ⇒ `validata`, `proposti` con predicati noti, citazione senza `autore` né `fonte` ⇒ errore, nomi quasi uguali ⇒ avviso.
 5. `scripts/indice.mjs`: scrive `indice.json` (nodi, archi con inversi, attributi, prime righe) e rigenera i blocchi
    `## Collegamenti` nelle note.
 6. `scripts/trova.mjs "<nome>"`: i 5 migliori candidati, JSON.
@@ -208,7 +213,7 @@ con la `BASE` del sito non più cablata.
 8. `scripts/importa.mjs`: legge questo repo in sola lettura. Fonti `forma: autore` → `persone/`; `forma: opera` → `opere/`;
    miti → `opere/` con `mezzo: mito`; ogni `## Citazione` → nota in `citazioni/` (`verifica` da "(da verificare)");
    concetti → `temi/` con `forma: concetto`; discipline e filoni → `tradizioni/`; emozioni, simboli, domande, percorsi
-   → invariati; `idee/`, `stile/`, Pinterest e immagini restano qui. Provenienza ereditata; tabella vecchio → nuovo slug nel diario.
+   → invariati; `idee/`, `stile/`, Pinterest e immagini restano qui. Provenienza ereditata, `slug-precedente`, `creato` = data del primo commit, `pancia` mai indovinata; tabella vecchio → nuovo slug nel diario.
 9. `.claude/skills/memo/SKILL.md` con la modalità "solo cattura".
 10. `CLAUDE.md` breve: regole, ricette delle 10 domande, "messaggi al volo → memo".
 11. `.github/workflows/unisci.yml` (§4).
@@ -237,8 +242,8 @@ Ognuna con la mia raccomandazione.
 2. **Cosa importare**: tutto (anche le 99 fonti e le citazioni non validate) o solo il validato? → Tutto, con
    `validata` ereditato: il lavoro non va perso, e "Da validare" lo smaltisce.
 3. **Merge dal telefono**: Action automatica o lettura dei branch non uniti? → Action, con PR solo se fallisce.
-4. **`privata`**: default `false`, o `true` per `mezzo: pensiero | sogno`? → Default `true` su pensieri e sogni:
-   costa niente oggi, salva il giorno in cui arriva un sito.
+4. **Cosa rendere `pubblica`** (il default è `privata`): niente, o una vetrina (es. citazioni e temi)? → Niente
+   finché non c'è un sito; poi si decide nota per nota.
 5. **Generi**: vocabolario esterno (MusicBrainz/Discogs) o costruito sui tuoi ascolti? → Sui tuoi ascolti, a due livelli.
 6. **Hosting del sito, dopo**: Netlify, Vercel o Cloudflare (con carta)? → Cloudflare Access se la carta non ti pesa,
    altrimenti Vercel Hobby. Prima di sceglierlo, verifico i limiti di oggi.
@@ -248,14 +253,19 @@ Ognuna con la mia raccomandazione.
 
 Incoerenze dei quattro documenti risolte qui con la scelta più semplice (da confermare):
 - **Canzone e album** non sono tipi a parte (schema): sono opere con `mezzo`; l'album è legato con `parte-di`.
-- **Legami proposti** nel frontmatter ma "in un blocco proposta" (schema): diventano la chiave `proposte:`.
+- **Legami proposti** nel frontmatter ma "in un blocco proposta" (schema): diventano la chiave `proposti:` (come in schema §2.7).
 - **`piu-ampio`** (schema) confluisce in `parte-di`; **`sinonimo-di`** entra tra i predicati.
 - **`parla-di` su persona** (esempio Galimberti) ammesso nel dominio.
-- **`riprende`** (schema) tolto: lo coprono `converge-con` e `influenzato-da`.
-- **Luoghi e ricerche** non entrano nell'MVP: un luogo è un tema o un simbolo; una ricerca è un'opera `fruizione: da-fare`
+- **`riprende`** (schema) tolto: lo coprono `converge-con`, `influenzato-da` e `scoperto-tramite`.
+- **Luoghi e ricerche** (anche se schema §2.7 tiene `ricerca`) non entrano nell'MVP: un luogo è un tema o un simbolo; una ricerca è un'opera `fruizione: da-fare`
   o un frammento. Tornano se servono davvero.
-- **Frammento** in un file (`AAAAMMGG-slug.md`, coordinatore) e non in una cartella con ora (acquisizione):
-  le immagini vanno in `frammenti/AAAA/img/`.
+- **Frammento** in un file (`AAAAMMGG-slug.md`) e non in una cartella con ora e mese (acquisizione, schema §2.7):
+  diventa cartella `AAAAMMGG-slug/index.md` con `img/` solo se ha immagini. L'ora sta in `creato`.
+- **Opere: `mezzo`, non `forma`** (schema): `forma` resta solo sui temi (`concetto`), così una chiave ha un solo significato.
+  `poesia`, `podcast` e `mito` sono valori di `mezzo`.
+- **`verificata: si | no`** (schema §2.7) cede al vocabolario del coordinatore: `verifica: verificata | simile | da-verificare | smentita`.
+  Restano fuori anche `autore: [io]` e `canale`: le mie frasi sono frammenti, il canale si vede da `creato` e dal commit.
+- **`domande`** come chiave diventa `risponde-a` (schema §2.7).
 - **Citazione `validata: true` con fonte da verificare** (schema): `validata` dice che la nota è mia,
   `verifica` dice quanto è sicura l'attribuzione. Sono due assi distinti.
 - **`stato`** ha valori diversi per frammento e (in futuro) progetto: il vocabolario è per tipo.

@@ -42,14 +42,15 @@ Sistemi personali da cui prendiamo qualcosa:
 
 | Tipo | Cartella | Che cos'è |
 |---|---|---|
-| `frammento` | `frammenti/AAAA/` | Un memo atomico e datato: ho visto, letto, pensato, sentito |
+| `frammento` | `frammenti/AAAA/MM/<slug>/index.md` | Un memo atomico e datato: ho visto, letto, pensato, sentito |
 | `citazione` | `citazioni/` | Una frase breve con autore e opera: è l'unità che si interroga |
 | `persona` | `persone/` | Un autore, artista, pensatore o personaggio reale |
 | `opera` | `opere/` | Un libro, film, serie, spettacolo, saggio, dipinto… (sottotipo in `forma`) |
 | `canzone` | `musica/canzoni/` | Un brano, con `artista`, `album` e `genere` |
 | `album` | `musica/album/` | Un disco, con `artista` e `anno` |
-| `concetto` | `concetti/` | Un'idea con un nome: l'assurdo, l'eros, la tecnica |
-| `tema` | `temi/` | Un asse ricorrente dell'interesse (amore, i greci, tristezza…), con gerarchia `piu-ampio` |
+| `simbolo` | `simboli/` | Un'immagine con un significato (il serpente, la soglia): è conoscenza comune, non solo per i tatuaggi |
+| `ricerca` | `ricerche/` | Una pista da esplorare (un libro, un artista, un tema), con lo `stato` `da-fare \| in-corso \| fatta` |
+| `tema` | `temi/` | Un asse ricorrente o un'idea con un nome (amore, i greci, l'assurdo, la tecnica…), con gerarchia `piu-ampio`. Assorbe i "concetti" |
 | `emozione` | `emozioni/` | Uno stato vissuto. Vocabolario chiuso ma estendibile su approvazione |
 | `luogo` | `luoghi/` | Un posto reale o mitico |
 | `tradizione` | `tradizioni/` | Una disciplina o corrente: filosofia greca, stoicismo, shoegaze… |
@@ -93,7 +94,7 @@ Nel frontmatter, ogni predicato è una chiave con una lista di slug. La forza è
 | `fonte` | citazione, frammento → opera | `citato-in` |
 | `parte-di` | canzone → album, opera → opera, tema → tema (`piu-ampio`) | `contiene` |
 | `cita` | frammento → citazione | `ricordata-in` |
-| `parla-di` | frammento, opera, citazione, canzone → tema, concetto | `ne-parlano` |
+| `parla-di` | frammento, opera, citazione, canzone → tema, simbolo | `ne-parlano` |
 | `suscita` | frammento, canzone, citazione → emozione | `suscitata-da` |
 | `tradizione` | persona, opera → tradizione | `membri` |
 | `influenzato-da` | persona → persona | `influenza` |
@@ -106,15 +107,32 @@ Il frontmatter è **l'unica fonte** dei legami. Nel corpo i legami non si ripeto
 
 ### 2.5 Il tempo
 - **Due date**: `quando` (l'evento) e `creato` (l'inserimento). Per le opere conta `anno`.
-- I frammenti stanno in `frammenti/AAAA/` e hanno nomi come `AAAAMMGG-slug.md`. Lo slug resta unico e stabile, alla maniera di Luhmann.
+- I frammenti stanno in `frammenti/AAAA/MM/AAAAMMGG-hhmm-slug/`, una cartella ciascuno (con `index.md` e, se serve, gli allegati in `img/`). Lo slug resta unico e stabile, alla maniera di Luhmann.
 - `## Ritorni` registra le rivisitazioni con la data ("2026-11-12: lo ripenso dopo…"). Non si riscrive il passato (riconsolidamento).
 - **Consolidamento settimanale**, sul modello del sonno: l'AI prende i frammenti `grezzi`, propone entità e legami e scrive una voce in `diario/`. I frammenti passano allo stato `collegato`.
 - Le vere **linee del tempo** nascono dalle query: "cosa mi colpiva a marzo", "come è cambiato il mio rapporto con l'assurdo".
 
 ### 2.6 I tatuaggi come progetto
-Ogni progetto è una cartella `progetti/<slug>/`. Il suo `index.md` contiene lo scopo, lo `stato` (`attivo | in-pausa | chiuso`) e i `sottotipi` che valgono solo lì. I tatuaggi, per esempio, hanno `sottotipi: [spunto, idea, simbolo, stile, ricerca]`, e le note del progetto stanno in `progetti/tatuaggi/<sottotipo>/`.
+Ogni progetto è una cartella `progetti/<slug>/`. Il suo `index.md` contiene lo scopo, lo `stato` (`attivo | in-pausa | chiuso`) e i `sottotipi` che valgono solo lì. I tatuaggi, per esempio, hanno `sottotipi: [spunto, idea, stile]`, e le note del progetto stanno in `progetti/tatuaggi/<sottotipo>/`.
 
 Le entità generali (persone, opere, concetti, emozioni) **non** stanno mai dentro un progetto: sono patrimonio comune. Un frammento qualsiasi entra in un progetto con `serve-a: [tatuaggi]`. Una playlist o un saggio si aprono allo stesso modo.
+
+### 2.7 Integrazioni dalla critica incrociata (domande, acquisizione, migrazione)
+- **Frammento.** `creato` ha anche l'ora (`2026-10-31T21:00`). Si aggiungono `canale` (`telefono | chat | web | importazione`), `link: [url]` (normalizzati, con `t=` se serve) e la sezione fissa `## Testo originale`, che non si tocca mai. A `mezzo` si aggiungono `pin | link | ricordo`, a `contenuto` si aggiunge `tensione`, a `stato` si aggiunge `confluito` (con `confluito-in`). C'è anche `polarita: innalza | affonda`, facoltativa.
+- **Citazione.** `verificata` vale `si | simile | no | da-verificare`, con il campo `riferimento` (pagina, minuto). Lo slug è `<autore>-<3-4 parole chiave>`. Le mie frasi hanno `autore: [io]`, una persona speciale.
+- **Opere, canzoni e album.** `forma` si allarga con `poesia | podcast | mito`. `fruizione` vale `da-fare | in-corso | fatta`. Il gradimento è sempre `pancia` (non ci sono `voto` né `preferita`).
+- **Idea del progetto.** `stato` vale `bozza | pronta | fatta`.
+- **Predicati in più:**
+  - `risponde-a` (→ domanda: è il Coro);
+  - `converge-con` (simmetrico, tra tradizioni diverse);
+  - `scoperto-tramite` (→ qualsiasi);
+  - `sviluppa` (spunto → idea);
+  - `confluito-in`;
+  - su `percorso`, `tappe: [slug…]` ordinate.
+- **Legami proposti** dall'AI nel frontmatter: la chiave è `proposti: {parla-di: [...], evoca: [...]}`. Quando approvo, i legami si spostano nella chiave vera.
+- **Tempo:** `ritorni: [date]` nel frontmatter, che serve alle query "mai ripresi" e "rimasti vivi". Il testo dei ritorni sta in `## Ritorni`.
+- **Privacy:** `visibilita: privata | pubblica`, con `privata` come default. Il sito pubblica solo le note `pubblica`.
+- **Migrazione:** `slug-precedente` per la tabella dal vecchio al nuovo. All'importazione `creato` è la data del primo commit e `pancia` resta assente, mai indovinata. `## Citazione` diventa una nota `citazione` e "(da verificare)" diventa `verificata: da-verificare`.
 
 ## 3. Esempio completo: Galimberti
 
@@ -124,7 +142,7 @@ Il nome dello spettacolo e la frase sono quelli che l'utente scrive; qui sono se
 
 **Nascono cinque file e se ne aggiornano due.**
 
-`frammenti/2026/20261031-galimberti-spezzone-x.md` (il mio, validato):
+`frammenti/2026/10/20261031-2100-galimberti-spezzone-x/index.md` (il mio, validato):
 ```yaml
 tipo: frammento
 titolo: "Spezzone di Galimberti da X"
@@ -158,7 +176,7 @@ origine: mia
 validata: true             # la frase l'ho portata io
 ```
 
-`persone/umberto-galimberti.md` (entità nuova, proposta da Claude):
+`persone/umberto-galimberti.md`: l'entità l'ho nominata io, quindi è `mia`. I fatti incerti si segnano "(da verificare)", e i temi che aggiunge l'AI vanno in `proposti`.
 ```yaml
 tipo: persona
 titolo: "Umberto Galimberti"
@@ -166,9 +184,9 @@ alias: [Galimberti]
 anno: 1942                 # anno di nascita (da verificare)
 paese: it
 tradizione: [filosofia-contemporanea]
-parla-di: [i-greci, tecnica, amore]   # (da verificare)
-origine: claude
-validata: false
+proposti: {parla-di: [i-greci, tecnica, amore]}
+origine: mia
+validata: true
 ```
 
 `opere/spettacolo-x.md`:
@@ -211,7 +229,7 @@ validata: false
    - lo script segnala i nomi quasi uguali;
    - il consolidamento settimanale serve anche a fondere i doppioni, con un `sinonimo-di` e un rinvio.
 2. **Il grafo che diventa illeggibile, a mano e dal telefono:** troppi predicati, legami deboli ovunque, inversi da mantenere. *Mitigazioni:*
-   - pochi predicati chiusi (sono 13) e `evoca` come unica valvola libera;
+   - pochi predicati chiusi (sono 18) e `evoca` come unica valvola libera;
    - un legame si scrive una volta sola, nel frontmatter, e gli inversi li calcola lo script;
    - la verifica fallisce su predicati ignoti, su slug inesistenti e sui tipi sbagliati ai due capi.
 
@@ -236,4 +254,3 @@ validata: false
 ## 6. Dubbi aperti
 - Privacy: il repository nuovo è **privato**? Il sito resta privato, lo teniamo solo in locale, oppure pubblichiamo solo un sottoinsieme, per esempio il progetto tatuaggi? Un memo-coscienza è intimo.
 - Il `genere` musicale: il vocabolario lo prendiamo da una fonte esterna (Discogs, MusicBrainz) o lo costruiamo su quello che ascolto?
-- `tema` e `concetto` restano due tipi distinti o diventano uno solo con un flag?
