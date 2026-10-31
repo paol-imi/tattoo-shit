@@ -619,7 +619,7 @@ che `n` esista nella restituzione puntata; che `ritorna-su … come: accoglie|ri
 legame proposto; che la `voce: sua` di un legame stia solo nella lettura di un frammento non importato o importato con
 `voce: sua`; che i numeri `n` siano 1…k senza buchi e compaiano nel corpo; che l'hash di frammenti e restituzioni non sia
 cambiato; che `versione: 1` sia scritta solo da "smista" e le versioni ≥ 2 solo da "consolida" o da una migrazione; che
-`reazione.parole` sia una sottostringa esatta del frammento (V16); Q-nomi con la regola del §9.5 (C14). I temi nati da un'accoglienza (`nato-da` è una voce `r-…`, come le 8 domande dell'Atlante:
+`reazione.parole` sia una sottostringa esatta del frammento (V16); che ogni ○ abbia il suo luogo (§9.1, S7); Q-nomi con la regola del §9.5 (C14). I temi nati da un'accoglienza (`nato-da` è una voce `r-…`, come le 8 domande dell'Atlante:
 A14) sono esenti: il nome è una formula dell'AI accolta da te, e le viste la mostrano ◌→● come ogni legame accolto.
 
 ---
@@ -756,8 +756,7 @@ token-stimati: 18400            # caratteri / 3,5
 13. **Nomi senza nodo** (A1, A17, Q18): ogni `~Nome` e ogni `rif` di voce, per `chiave`, con i file che lo citano. Quando
     nasce un nodo con la stessa chiave, [S] lo collega qui **nel calcolo** (le restituzioni non si toccano): "Sisifo" trova
     le convergenze dell'Atlante anche se il nodo `sisifo` è nato dopo;
-14. **Ricordabili**: quanti sono i frammenti ✦ oltre i 60 giorni attivi, non delicati, mai ricordati (§9.3) e, finché
-    non ce n'è nessuno, gli **importati ✦** (con la data-tetto: non hanno giorni attivi); e **20 id**
+14. **Ricordabili** (la regola unica del §9.3): quanti sono i frammenti ✦ nuovi più vecchi di **60 giorni di calendario** con almeno **10 giorni attivi** in mezzo, e gli **importati ✦ da subito**, con la data-tetto, non delicati, mai ricordati; e **20 id**
     scelti a caso tra i primi per ordine (§6.2), ruotati a ogni rigenerazione (V15: l'elenco intero pesa 10.000 token a un
     anno); i ricordi già usati;
 15. **In sospeso**: le domande che le restituzioni ti hanno fatto negli ultimi 30 giorni, da non ripetere (Q29);
@@ -788,8 +787,7 @@ arriva a ~224.000 token in un anno, per l'85% `parole.md`. Quindi:
 - **Accolta**, **rifiutato**, **sbiadito**: §5.
 - **Ritorno spontaneo** (I17): un `nomina` ✦ di un nodo che un tuo frammento ✦ aveva già nominato ("riascoltata la
   cura") conta come ritorno, e pesa più di un voto nelle viste. Contano solo i ritorni ✦ e ●, non quelli su un legame ◌.
-- **Ricordabili**: i ✦ non importati oltre i 60 giorni attivi; nei primi mesi, finché non ce n'è nessuno, gli importati ✦
-  con la data-tetto. In ordine (I18): prima quelli con una reazione, un `serve-a` o un ritorno spontaneo; mai i delicati.
+- **Ricordabili**: i frammenti ✦ nuovi più vecchi di **60 giorni di calendario** con almeno **10 giorni attivi** in mezzo, e gli **importati ✦ da subito**, con la data-tetto (§9.3). In ordine (I18): prima quelli con una reazione, un `serve-a` o un ritorno spontaneo; mai i delicati.
 - **Serie vuote** (I18): se una serie che il ritratto mostrerebbe (gli stati d'animo, una vicenda) è ancora vuota, il
   ritratto lo dice invece di tacere.
 - **Vicini** di un frammento (per il pacchetto di "smista"): fino a 10 frammenti ✦ o ✧ che condividono un nodo o una
@@ -972,7 +970,9 @@ lucchetto (se è occupato aspetta, fino a 30 minuti, perché il cron non torna p
 5. [AI] applica le correzioni ai nodi (§4) e risolve le tracce in sospeso (B04);
 6. [S] `contesto.mjs`: `mappa.md` fresca, con i temi nuovi e le citazioni verificate (la lettera sceglie lì);
 7. [AI] prepara le **proposte pronte** (una convergenza, un confronto, un sogno se acceso) e le aggiunge a
-   `riserva/pronte.md`, dove restano **in attesa** finché una lettera le consegna o sbiadiscono (30 giorni attivi);
+   `riserva/pronte.md`, dove restano **in attesa** finché una lettera le consegna o sbiadiscono (30 giorni attivi). Per la
+   soglia "≥ 1 parlante e una proposta pronta" contano solo le proposte pronte **da una notte precedente** (S8): quella
+   preparata la stessa notte non basta;
 8. [AI] scrive la **lettera** della domenica, se la soglia c'è (§9.2), prendendo una proposta pronta: il file nasce qui,
    una volta sola, e la proposta consegnata esce da `riserva/pronte.md`;
 9. [AI] riscrive `riserva/ritorno.md`: la riga del "mentre eri via" (§7.2.1);
@@ -1113,7 +1113,10 @@ Dalle prove di [restituzione](https://github.com/paol-imi/tattoo-shit/blob/claud
 - il vuoto è un dato ("nessuna canzone tua", "nessun perché");
 - una convergenza ha una **direzione**: le fonti dicono cose diverse sullo stesso legame, non la stessa cosa tre volte;
   una convergenza banale non si dice;
-- il mondo si verifica prima, o si dichiara ⚠; nel confronto **mai** ⚠: si usano solo voci verificate;
+- il mondo si verifica prima, o si dichiara ⚠; nel confronto **mai** ⚠: si usano solo voci verificate. **Un ○ senza
+  luogo non passa** (S7, controllo [S] in `verifica.mjs`): ogni voce `mondo` di una lettera o di un ritratto ha un
+  `riferimento` con l'opera **e** il passo (capitolo, pagina, minuto, traccia); in una risposta, `riferimento` oppure il ⚠
+  sulla stessa riga; e ogni ○ del corpo rimanda a una voce numerata. Altrimenti il piano torna all'AI;
 - **nessuna domanda**, tranne: il confronto (una, in fondo), il ritratto (una, che non ripete una domanda "in sospeso"),
   e all'ingresso i 7 casi dell'elenco unico (§7.2.1). Mai un sollecito, mai "torna", mai "bentornato" (principio 10);
 - niente lodi, niente diagnosi, niente frasi fatte, niente testi di canzoni;
@@ -1143,10 +1146,12 @@ memo; notifica 5–7 parole.
   materiale pescherebbe per forza nel seme. Poi al massimo **uno al mese**, a turno con convergenza e confronto.
 - **Il ricordo** ("ti ricordi?") apre con un **indizio parziale** (l'inizio della tua frase, la data) e subito dopo dà
   l'**affermazione completa**: la frase intera e una riga d'oggi che dice perché torna adesso. Non è un quiz e non aspetta
-  risposta (C4): l'indizio è solo il tempo di un respiro. Solo su frammenti **✦**, più vecchi di **60 giorni attivi**
-  (C10), non delicati, mai ricordati prima ([S] li elenca in `mappa.md`; [AI] sceglie). **Nei primi mesi**, finché non c'è
-  nessun ✦ oltre i 60 giorni attivi, sono ricordabili gli **importati ✦**, con la data-tetto ("entro il 4 ottobre,
-  nell'archivio d'origine"). Al massimo uno per lettera.
+  risposta (C4): l'indizio è solo il tempo di un respiro. **La regola unica** (S2, uguale nel modello e nei
+  prompt): sono ricordabili solo i frammenti **✦**, non delicati, mai ricordati prima: gli **importati ✦ da subito**, con
+  la data-tetto ("entro il 4 ottobre, nell'archivio d'origine"), e i frammenti nuovi più vecchi di **60 giorni di
+  calendario** con almeno **10 giorni attivi** in mezzo. Con i soli giorni attivi (C10) il primo ricordo di un uso normale
+  cadeva in primavera, o mai nel primo anno. [S] li elenca in `mappa.md`; [AI] sceglie. Al massimo uno per lettera. Una
+  domenica senza frammenti parlanti resta **muta per scelta**: il ricordo non fa partire una lettera da solo.
   > A inizio ottobre, nell'archivio d'origine, scrivevi: *la dimensione principale…* — *la dimensione principale della
   > realtà è il dolore* ✦ (entro il 4 ottobre). Questa settimana, con Sisifo, hai scritto *stasera sto bene* ✦.
 - **Il confronto**: mette due tue frasi una accanto all'altra e ti oppone una voce che stimi, **dall'altra parte** della
@@ -1328,7 +1333,7 @@ Nessun file di risposta (C11): "Aggiunto allo spezzone di ieri" non ha contenuto
 ### 13.5 Domenica 8 novembre: la prima lettera
 
 Frammenti parlanti della settimana: E01, E02 e Sisifo felice di giovedì 5 ("stasera sto bene"): 3, la soglia c'è. Il sogno è
-spento (meno di 50). Nessun ricordabile (niente ✦ oltre i 60 giorni attivi). "Consolida", alle 03:13, verifica la citazione
+spento (meno di 50). Ricordabili: solo gli importati ✦, e la lettera non ne usa (ha già due ponti). "Consolida", alle 03:13, verifica la citazione
 (testo primario: il frammento postumo; `esito: simile` se la frase di Galimberti è una parafrasi dell'immagine di
 Nietzsche), scrive la lettera e riscrive `riserva/ritorno.md`. Alle 17:37 "lettera" la consegna:
 
@@ -1362,8 +1367,9 @@ formula ancora mia, in tondo.
 - **Silenzio dal 29 novembre al 15 dicembre** (17 giorni, nessun giorno attivo): gli orologi si fermano, nessuna lettera
   parte. Il tuo intervallo mediano è di 3 giorni, quindi 17 giorni superano la soglia (≥ 14): il 16 dicembre la risposta al
   primo memo chiude con la riga della riserva, scritta il 29 e non rigenerata.
-- **Il ricordo del 3 novembre** arriva quando quel frammento ha alle spalle 60 giorni attivi: con il ritmo di questo caso
-  (circa due giorni attivi a settimana), in primavera. Arriva come affermazione, senza domanda (§9.3).
+- **Il ricordo del 3 novembre** diventa possibile dopo 60 giorni di calendario con almeno 10 giorni attivi in mezzo: con il
+  ritmo di questo caso (circa due giorni attivi a settimana) a inizio gennaio. Arriva con l'indizio e subito la frase
+  intera, senza domanda (§9.3).
 
 ### 13.7 I ritratti: dicembre, poi febbraio
 
@@ -1561,6 +1567,7 @@ Totale: 32 frammenti U più `s01`, `s03`, `s04` = **35**. Nel nucleo U1, U3, U10
 | 73 | piano solo per l'ingresso; prompt in claude.ai | piano per ogni ciclo, `applica.mjs`; prompt come file in `prompt/`, hash da lì; `CRON_TZ=Europe/Rome`; `rinnova`; `contesto.mjs` prima della lettera; parlante senza importati | le 15 incoerenze di [prompt v3](./03-prompt-v3.md) §12 |
 | 74 | — | sogno con "Gioco ◌." più frase ✦ e al più un ○; confronto con la voce dall'altra parte; citazioni ricordate ✦; Q-citato sul trimestre; immagini per lemma; delicati nella soglia | M1–M9, M12 |
 | 75 | piano piatto per "smista"; hash di un solo file; verifica rapida dopo `applica`; `riserva/` scritta dall'AI | involucro con 7 operazioni anche nell'esempio; hash di `CLAUDE.md` + `prompt/<ciclo>.md` + `prompt/formato-piano.md`, `prompt/specchio.md`; verifica rapida dentro `crea-nodo`; `riserva/` solo da `applica.mjs`; Specchio nei giorni 1–7; ricordabili con gli importati | [prompt v3](./03-prompt-v3.md) §14; coordinatore |
+| 76 | ricordo dopo 60 giorni attivi, importati solo "nei primi mesi" | regola unica: importati ✦ da subito, nuovi dopo 60 giorni di calendario e ≥ 10 attivi; domenica senza parlanti muta; proposte pronte solo da una notte precedente; nessun ○ senza opera e passo | [seconda prova di restituzione](https://github.com/paol-imi/tattoo-shit/blob/claude/quirky-newton-qe5g9o/_progetto/v2/simulazione/attriti-restituzione.md) S2, S7, S8; coordinatore |
 
 **Scartati, con il motivo:**
 - *Togliere sogno, "ti ricordi?" e ritratto* (CS §1.2): restano. Il banco non li collaudava, ma la ricerca dice che la
