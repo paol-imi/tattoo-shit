@@ -21,21 +21,15 @@ Branch di raccolta: `claude/quirky-newton-qe5g9o`. Ogni sessione lavora su un br
 - Giro 4: piano.md (13 blocchi, passi manuali U1–U9), prova-tempo (4/10 passano), prova-restituzione (7/14 alla lettera, 12/14 con le soglie corrette), correzioni-citazioni.md (24 citazioni corrette SULL'ATLANTE, ma solo su questo branch: per l'import vanno unite a main, su decisione dell'utente), prompt-v3.md (prompt allineati, con 15 incoerenze del v3 segnalate).
 
 ## In corso (giro 5)
-| Sessione | Compito | Branch |
-|---|---|---|
-| session_01WgHig3GnW2DvdKsdGC6XzM | M: revisione finale del v3 con 3 parti già inviate (TT, TR con le decisioni del coordinatore, le 15 incoerenze di prompt-v3) | claude/v3-modello |
-| session_01WgHig2VXgnAPHDk5jb8ZqP | K: `_progetto/pacchetto/` + prompt-avvio.md + aggiorna.sh + verifica sui due account | claude/v4-pacchetto |
-
-Sessioni pronte per un secondo turno (hanno già il contesto): TR session_01WgHifyR2ErMvFtJGTrRGFG (rifare R01–R14 sul v3 finale), allineamento prompt session_01WgHig3o9ro6H6FejVFcJkr (riallineare prompt-v3 al v3 finale), TT session_01WgHig19brLHAhAd5X9cpDd.
-
-Decisioni del coordinatore sulla restituzione: lettera con ≥1 parlante + 1 proposta pronta (o ≥2 parlanti), proposte in-attesa persistenti; ponte dei giorni 1–3 dalla sessione Specchio, mai un ○ senza luogo; ricordo = indizio + affermazione, nei primi mesi sugli importati ✦; R13 = un file per conversazione con sezioni per domanda.
+- Il pacchetto `_progetto/pacchetto/` è montato, con i prompt estratti in `radice/` (CLAUDE.md + prompt/*.md). Si rigenera con `bash _progetto/pacchetto/aggiorna.sh` (con `main` come argomento dopo l'unione).
+- M session_01WgHig3GnW2DvdKsdGC6XzM: ultima rifinitura del v3 (5 incoerenze di prompt-v3 §14). Al termine: unire, rigenerare il pacchetto, poi chiedere a A (session_01WgHig3o9ro6H6FejVFcJkr) di riallineare prompt-v3 se serve.
+- TR session_01WgHifyR2ErMvFtJGTrRGFG: seconda prova R01–R14 sul v3 finale, alla lettera.
+- F session_01WgHig29RTNPTqfbsyV9t8F: prova a freddo. Legge solo il pacchetto, costruisce i blocchi 0–5 in /tmp/memo e riporta i punti di blocco (prova-a-freddo.md + codice).
 
 ## Prossimi passi
-1. Quando M finisce: unire; mandare a TR "rifai R01–R14 sul v3 finale" e all'allineamento "riallinea prompt-v3"; poi TT di nuovo, se il v3 ha cambiato contesto/.
-2. Quando K finisce: unire, rigenerare il pacchetto con aggiorna.sh dopo le revisioni.
-3. Lettura a freddo: una sessione nuova legge solo il pacchetto e prova a partire (simula i blocchi 0–2), poi riporta i punti in cui si blocca.
-4. Restituire all'utente: il pacchetto, prompt-avvio.md e le scelte (nome del repo; unire le correzioni delle citazioni a main; ritmi).
-5. Voce di diario e commit. Attenzione: `<…>` fuori dal codice rompe il build.
+1. Correggere il pacchetto secondo la prova a freddo e la TR (se necessario, una seconda prova a freddo).
+2. Restituire all'utente: il pacchetto, prompt-avvio.md e le scelte (nome del repo; unire a main le correzioni delle citazioni e il pacchetto, così l'import legge main; un account claude.ai collegato al GitHub nuovo).
+3. Voce di diario e commit.
 
 ## Diagnosi chiave da non perdere
 - Nell'Atlante l'utente ha scritto ~8 note su ~320, ha preso 0 decisioni su ~130 proposte, ha dato 0 risposte "a pancia", poi 23 giorni di silenzio.

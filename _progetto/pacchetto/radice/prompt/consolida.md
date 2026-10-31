@@ -49,7 +49,7 @@ B3. **La lettera** (≤ 250 parole), un'operazione `restituzione` con `forma: le
     - i **ponti** della settimana, al più 2, con le mie frasi alla lettera e un luogo preciso;
     - **una sola cosa** tra convergenza, confronto e sogno, presa da `riserva/pronte.md` (e tolta da lì nella stessa
       operazione `riserva`);
-    - al più **un ricordo** (prompt/ricordo.md);
+    - al più **un ricordo** (prompt/ti-ricordi.md);
     - al più **un ◌** in tutta la lettera; una domanda solo se è un confronto; la domanda 1 dell'ingresso rimasta senza
       risposta può tornare, una volta;
     - chiude con la mia frase o con l'unica domanda; poi la legenda in una riga;

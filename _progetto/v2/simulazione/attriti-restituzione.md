@@ -51,3 +51,51 @@
 1. **A1** (soglia della lettera): da sola, fa passare R03, R05–R08 da A a B, cioè da 7 a 12 su 14.
 2. **A2** (bilancio dei ponti al giorno 3): è la prova di cui critica-semplicita fa dipendere tutto.
 3. **A3–A5** e **M11**: allineare il banco al v3 dove il v3 ha deciso di proposito, così il prossimo giro misura il modello e non i nomi.
+
+## Secondo turno: attriti residui sul v3 finale
+
+> Secondo turno, 2026-10-31. Proposta di Claude, da validare. Dalle note dei 14 produttori nuovi e dai giudizi del
+> [secondo turno](/_progetto/v2/simulazione/prova-restituzione.md) (10 su 14). A1–A5 e M1–M12 del primo turno sono
+> integrati nel v3; quelli che restano aperti sono qui sotto con un nome nuovo.
+
+### Alta
+
+| # | attrito | dove | correzione proposta |
+|---|---|---|---|
+| S1 | **Prompt e modello non dicono la stessa soglia.** Il prompt v3 §4 B1 chiede ancora ≥ 3 parlanti e non nomina `riserva/pronte.md`; il modello v3 §9.2 dice ≥ 2, o ≥ 1 e una proposta pronta. Con il prompt alla lettera 7 lettere su 9 non esisterebbero. Tutti i produttori hanno seguito il modello. (R02, R03, R04, R05, R06, R07, R08, R11) | prompt v3 §4 B1, §4 fase B | riscrivere B1 con la soglia del modello e il passo `riserva/pronte.md` |
+| S2 | **Il ricordo non arriva mai nel primo anno di un uso normale.** Con 0 parlanti la settimana non parte né "consolida" né la lettera; e i 60 giorni attivi, a circa due giorni attivi a settimana, cadono in primavera. I ricordabili nei primi mesi sono ammessi dal modello (§9.3, §16.2: importati ✦) ma negati da §6.1 punto 14, §13.5 e dal prompt §9.1. (R04, R02, R08) | v3 §6.1, §9.3, §13.5; prompt §9.1; banco R04 | una sola regola: importati ✦ ricordabili da subito, frammenti nuovi dopo **60 giorni di calendario e ≥ 10 attivi**; un ricordo può far partire la lettera anche con 0 parlanti, una volta al mese; R04 nel banco con una settimana da ≥ 1 parlante |
+| S3 | **La sera storta in chat.** Il prompt §2 e §7 dice che se chiede le sue parole "i delicati si riportano": alla lettera R12 citerebbe le due notti di aprile e Cioran, e D3 fallirebbe. Il periodo delicato (M9) vale solo per la lettera; il Progetto non ha una ricetta per "dimmi qualcosa di mio" in un periodo delicato. (R12) | prompt v3 §2 "Delicato", §7 | ricetta: in un periodo delicato, solo frasi ✦ non delicate di attraversamento, ≤ 3 righe, nessun ○; i delicati si riportano solo se li nomina lui |
+| S4 | **Un memo per risposta contro uno per conversazione.** Il prompt §7 fa un memo "dall'ultimo memo" per ogni risposta: due domande, due frammenti e due restituzioni; il v3 §3.2 ne vuole uno con sezioni. (R13) | prompt v3 §7; v3 §3.2, §3.5 | il memo si scrive alla fine della conversazione, uno solo; `r-…#n` numerato per tutta la restituzione, non per sezione |
+| S5 | **Premesse del banco impossibili nel v3.** R11 suppone una lettera delle 21:00 del 22 novembre che contiene B07 (17:20), ma "consolida" la scrive alle 03:13; le Preparazioni non danno la storia delle lettere né lo stato di `riserva/pronte.md`, che decidono la soglia e il "fresco". (R11, R01, R06, R07, R08, R13) | banco parte 3 | ogni Preparazione elenca le lettere precedenti (data, cosa, voci) e le proposte pronte |
+
+### Media
+
+| # | attrito | dove | correzione proposta |
+|---|---|---|---|
+| S6 | **La legenda dopo la domanda.** Il prompt chiude le forme lunghe con la legenda: nel confronto il "?" non è più l'ultimo carattere e R06 fallisce su D3, con giudice 4/4. (R06) | prompt v3 §4 fase B; banco R06 D3 | legenda **in testa** (una riga sotto il titolo) in lettera e ritratto; oppure D3 dice "ultima frase" |
+| S7 | **Un ○ senza fonte passa i controlli.** Il ritratto di novembre ha una riga ○ ("Galimberti il 3") senza opera né luogo: R01 fallisce su X2, con giudice 5/5. (R01) | v3 §9.1; `verifica.mjs` | controllo [S]: ogni voce `mondo` ha `riferimento` o ⚠, e ogni ○ nel corpo rimanda a una voce numerata |
+| S8 | **"≥ 1 e una proposta pronta" è quasi sempre "≥ 1".** La proposta si prepara la stessa notte in cui si controlla la soglia. (R03, R05, R08) | v3 §7.4 passo 7, §9.2 | contano solo le proposte pronte da **una notte precedente** |
+| S9 | **I numeri delle voci nel corpo.** "Il corpo mostra gli stessi numeri" (§3.5) fa diventare lettere e ritratti elenchi numerati, e il giudice li sente "da verbale". (R01, R02, R03, R06, R07, R13) | v3 §3.5 | numeri solo dove una voce del mondo o una proposta ◌ ha bisogno di riferimento; le sue frasi senza numero |
+| S10 | **Il Progetto non verifica.** Può citare solo ciò che ha un `esito` in `mappa.md`: ogni ○ nuovo esce ⚠; le citazioni importate e le voci `eredita` non vengono mai verificate e restano ⚠ a vita. (R09, R13) | prompt v3 §7; v3 §7.4 passo 3 | "consolida" verifica anche gli importati citati da una restituzione; il Progetto chiede "verifico?" e lo mette in sospeso |
+| S11 | **Lo schema del memo non coincide con il v3.** `rif` senza id di frammento, nessun posto per il `perche` delle voci né per `cosa: frase`. (R09, R12, R13, R10) | prompt v3 §7; v3 §3.5, §3.7 | allineare il memo allo schema JSON del v3 |
+| S12 | **Lunghezza e notifiche ancora del v2 nel prompt.** "50–150 parole, poi vuoi il resto?" (§2, §7) contro "fino a 150, il resto solo se c'è" (v3 §9.1); "smista" notifica "La risposta è pronta" anche per una risposta già letta in chat. (R10, R13) | prompt v3 §2, §3, §7 | riallineare al v3; nessuna notifica per `canale: chat` |
+| S13 | **Il sogno resta fuori dal banco.** R05 non può passare finché il sogno è spento sotto 50; la convergenza che lo sostituisce prende 3/4 ma è "da dossier". (R05) | banco R05; v3 §9.3 | spostare R05 a una Preparazione con ≥ 50 parlanti, o accettarla come divergenza dichiarata |
+| S14 | **Il bilancio dei ponti non ha un posto suo.** Il ponte sui memo già smistati è scritto come seconda `risposta` con `per` = B01; il prompt di Specchio fa la prova del giorno 3 solo su richiesta, il v3 d'ufficio. (R14) | prompt v3 Specchio; v3 §7.5 | una forma `bilancio` (o `risposta` con `per` a più frammenti) d'ufficio la sera del giorno 3 |
+| S15 | **"5 su 6" dipende da chi decide l'esito.** Il banco dà B01 giusta, il v3 la darebbe `simile`, e allora sarebbero 6 su 6. (R01) | v3 §3.4; banco R01 | fissare nel banco l'esito di B01 come lo dà il v3 |
+
+### Bassa
+
+- La notifica "La lettera è pronta" ha 4 parole, contro le 5–7 di v3 §9.1 (R03, R07, R08, R11): "La lettera della domenica è pronta".
+- I titoli in corsivo si confondono con le sue parole, che sono le sole in corsivo (R01, R03, R07): titoli tra virgolette basse o in tondo.
+- Il nome del delicato nel `perche` del frontmatter (R03): `verifica.mjs` cerchi gli id e le parole dei delicati anche nei `perche`.
+- "Niente si aggancia ancora" promette un seguito (R08): "Niente si aggancia, e va bene così" o la sola riga del sogno.
+- Il ponte di R14 è un contrasto scritto come `converge-con` (R14): manca un valore per "stesso problema, risposte opposte".
+- Segnaposto `<modello>` e `<7 cifre>` nei file (R01) e riga tecnica sul Sync in testa alla risposta (R10): il Sync solo se l'ultimo frammento è più vecchio di un giorno.
+- `cosa` senza valori per una sua frase vecchia accostata, un passo del nucleo, uno studio (R03, R05, R10).
+- L'importazione simulata non è nel formato v3 (`s02`, markup, mancano kintsugi, Teseo, Zapffe): tutti l'hanno adattata, in modi diversi. Rigenerarla prima del prossimo giro.
+
+### Che cosa cambierei per primo
+
+1. **S6 e S7**: due righe di forma, e il banco passa la regola (12/14 con R01, R06, R07, R14).
+2. **S1**: il prompt dice la soglia del modello, altrimenti l'implementazione vera rifà il primo turno.
+3. **S2 e S3**: il ricordo che arriva davvero e la sera storta in chat sono le due cose che contano di più per lui e che il v3 non garantisce ancora.

@@ -14,7 +14,7 @@ my @mappa = (
   [qr/"ritratto"/, 'prompt/ritratto.md'],
   [qr/Progetto claude\.ai/, 'prompt/progetto.md'],
   [qr/Specchio/, 'prompt/specchio.md'],
-  [qr/[Rr]icordi/, 'prompt/ricordo.md'],
+  [qr/[Rr]icordi/, 'prompt/ti-ricordi.md'],
   [qr/Sogno/, 'prompt/sogno.md'],
   [qr/Confronto/, 'prompt/confronto.md'],
 );
