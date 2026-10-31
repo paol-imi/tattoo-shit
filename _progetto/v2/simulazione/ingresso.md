@@ -2479,3 +2479,262 @@ regge, e la risposta non nomina un libro. Rinviato: passi 2-3 (testo francese, t
 **Esito sul banco:** passa. "chioran" intatto, Cioran trovato con l'alias, citazione `prova: memoria` senza esito, nessuna
 proposta né tema, una riga umana senza allarme né diagnosi. La risposta non dice *L'inconveniente* (la verifica non lo
 conferma) e non chiede "Tutto bene?" (il modello non ammette domande all'ingresso): offre presenza invece di chiederla.
+
+## Consolidamento di domenica 4 aprile 2027
+
+**Ipotesi dichiarata.** I consolidamenti delle domeniche precedenti sono girati: 8, 15, 22, 29 novembre; 6 e 13 dicembre;
+10 gennaio; 7 e 14 febbraio; 7 e 14 marzo (lettere e ritratto di febbraio non simulati). Qui si mostra per intero quello del
+4 aprile. Il compito chiede la "settimana B22–B25", che però sul calendario non esiste: B22 (venerdì 12 marzo) cade nella
+settimana del 14 marzo, B23 in quella del 21, B24 (lunedì 22) in quella del 28, B25 in questa. Per tenerle insieme
+suppongo che (a) il 14 marzo abbia chiuso B20–B21 ma lasciato **in sospeso** B22, perché la sua domanda («me la riscrivi?»)
+non ha avuto risposta e il frammento non ha bersaglio; (b) le Routine "sogno" del 21 e del 28 marzo siano **fallite**
+(errore della sessione), quindi la fase 1 di stasera recupera tre settimane. La lettera resta una sola, perché il modello
+non vuole arretrati. Il modello non dice niente dei consolidamenti saltati: vedi gli attriti. Inoltre la lettera che B19 chiama
+"15 febbraio" è quella di domenica **14** febbraio: il 15 era lunedì.
+
+Ore 21:00, Routine "sogno", sessione nuova: `node indice.mjs` (1 s), poi fase 1, fase 2, `scripts/contesto.mjs`, verifica, push.
+
+### C.0 Chiuso nelle domeniche precedenti (B01–B21)
+
+Che cosa avrebbero scritto quelle fasi 1 nei nodi. Gli esiti e gli ID li ho **verificati oggi davvero**, e la colonna
+"come" dice con che cosa. Per gli ID ho usato Wikidata `wbsearchentities` (circa 30 chiamate; il proxy prende spesso
+«too many requests», passate con ritentativi) e MusicBrainz `ws/2` (7 chiamate, nessun 503). Per le citazioni ho seguito il
+protocollo di citazioni §3: testo primario da Gutenberg letto con `grep`, Wikiquote it in formato raw, al massimo
+2 WebSearch a citazione.
+
+**Citazioni**
+
+| nodo (nato in) | esito | prova | riferimento | originale · traduzione italiana | come |
+|---|---|---|---|---|---|
+| `nichilismo-ospite-inquietante` (B01) | attribuzione-errata (`autore` Nietzsche; Galimberti la cita) | primaria | frammento postumo; nella compilazione *Der Wille zur Macht* (ed. Brahn, Kröner 1917) n. 34, Gutenberg #60360. Collocazione KGW "2[127], autunno 1885 – autunno 1886" **da verificare** | «Der Nihilismus steht vor der Tür: woher kommt uns dieser unheimlichste aller Gäste?» · resa di Claude, traduzione da verificare | grep sul testo Gutenberg; nietzschesource.org è un'app JS e non si legge con curl; 1 WebSearch senza esito |
+| `finche-non-rendi-conscio-l-inconscio` (B03) | simile | secondaria | *Aion*, CW 9/II §126 | «Quando un fatto interiore non viene reso cosciente, si produce fuori, come destino.» (trad. Lisa Baruffi, Boringhieri 1982, p. 67) | Wikiquote it raw (con edizione e pagina); testo di *Aion* non aperto |
+| `non-camminare-davanti-a-me` (B06) | apocrifa | secondaria | Quote Investigator, 23/08/2015 | — | chiuso già all'ingresso (passo 1); non rifatto |
+| `estate-invincibile` (B07) | simile (opera sbagliata: *Retour à Tipasa*, in *L'Été*, 1954, non *La peste*) | secondaria | *L'Été* (1954), «Retour à Tipasa» | «Au milieu de l'hiver, j'apprenais enfin qu'il y avait en moi un été invincible» (Le Temps, fonti secondarie) · «Imparavo finalmente, nel cuore dell'inverno, che c'era in me un'invincibile estate» (*L'estate e altri saggi solari*, Bompiani 2003, p. 99, a cura di Pastura e Perrella; traduttore da verificare) | 1 WebSearch + Wikiquote it; il PDF "Camus Tipasa" trovato è *Noces*, non *Retour*: niente testo primario |
+| `chi-ha-un-perche` (B09) | attribuzione-errata (`autore` Nietzsche, `attribuita-a` Frankl) | primaria | *Götzen-Dämmerung* (1889), «Sprüche und Pfeile» **12** (il numero ora è verificato) | «Hat man sein warum? des Lebens, so verträgt man sich fast mit jedem wie?» · nessuna traduzione pubblicata trovata: resa di Claude, traduzione da verificare | grep su Gutenberg #7203 (riga 190: "12."); Wikiquote it: assente |
+| `il-mondo-spezza-tutti` (B11) | simile (lui scrive «alcuni», il testo dice «many») | primaria | *A Farewell to Arms* (1929), cap. XXXIV | «The world breaks every one and afterward many are strong at the broken places.» · «Il mondo spezza tutti quanti e poi molti sono forti nei punti spezzati.» (trad. Fernanda Pivano, Mondadori 2007, p. 235) | grep su Gutenberg #75201 (pubblico dominio USA dal 2025); Wikiquote it |
+| `let-everything-happen-to-you` (B15) | verificata (Rilke; la forma inglese è di Barrows e Macy) | primaria | *Das Stunden-Buch*, Erstes Buch: *Das Buch vom mönchischen Leben* (1899; in volume 1905) | «Laß dir alles geschehn: Schönheit und Schrecken.» · inglese: Barrows e Macy, 1996 (secondaria); italiana non trovata, da verificare | grep su Gutenberg #24288; Wikiquote it: assente |
+| `⟨incipit-della-riga⟩` (B21) | **non verificato** (nessun esito scritto) | memoria | — | — | la simulazione non ha la foto: senza testo non c'è niente da cercare. Scrivere `non-trovata` sarebbe falso |
+
+**ID dei nodi** (`wikidata: no` porta la data della prova, come vuole identità §2)
+
+| nodo (nato in) | wikidata | musicbrainz | nota |
+|---|---|---|---|
+| `umberto-galimberti` (B01) | Q4003398 | — | unico risultato con "umberto galimberti" |
+| `spettacolo-sulle-emozioni` (B01) | no (2026-11-08; ricontrollato il 2026-10-31) | — | "Il mondo delle emozioni Galimberti": nessun risultato. La domanda sul titolo non ha avuto risposta: niente `titolo-vero` |
+| `carl-gustav-jung` (B03) | Q41532 | — | |
+| `private-music` (B04) | Q135256676 | release-group 5e9a3ca5-82ce-47da-9409-83f6f953b4a2 | il 1° risultato Wikidata è l'etichetta Private Music (Q6318209): scartato |
+| `ecdysis` (nato il 15 novembre dalla "la 3" di B04, `in: private-music`) | no (2026-11-15) | work 2548b436-1bde-4f44-90ba-b9352698d780 | traccia 3 della release 893fa571 (3 chiamate MB: release-group → release → recording → work). La lettera del 15 novembre l'avrebbe detto: «La 3 è *ecdysis*» |
+| `telemaco` (B05) | Q192482 | — | scartati il prenome e l'opera di Gluck |
+| `marco`, `nonna-lina`, `papa` | — | — | `cerchia: vita`: l'ID non si cerca mai |
+| `viktor-frankl` (B09) | Q154723 | — | |
+| `uno-psicologo-nei-lager` (B09) | Q426369 | — | è l'opera del 1946 (*…trotzdem Ja zum Leben sagen*), non un'edizione |
+| `sisifo` (B10) | Q102561 | — | il personaggio del mito; scartati il dialogo pseudo-platonico e il dramma di Euripide |
+| `kintsugi` (B11) | Q2740942 | — | |
+| `la-cura` (B12) | Q3821984 | work a8c16703-66c2-434d-bf8a-6fe382ba62d8 | Wikidata la dà 4ª (prima un episodio di *Heroes*) |
+| `franco-battiato` (B12) | Q25147 | artista 0cd117b2-2e21-406d-80cf-5ce0a6065e37 | |
+| `never-gonna-give-you-up` (B13) | Q57 | work 69755ab1-409e-3ad7-902f-3a839042799c | il work di Stock, Aitken e Waterman; Q57 è il brano, Q109632071 il singolo e Q106406249 la registrazione |
+| `rainer-maria-rilke` (B15) | Q76483 | — | |
+| `eraclito` (B16) | Q41155 | — | |
+| `fiume-di-eraclito` (B16) | no (2027-01-10) | — | l'unico candidato è Q254982 «Panta rei», un'altra formula (Simplicio): non lo fondo |
+| `nave-di-teseo` (B16) | Q1050837 | — | si trova solo cercando "paradosso della nave di Teseo" |
+| `i-fratelli-karamazov` (B19) | Q183157 | — | il romanzo; scartati lo sceneggiato RAI e il film del 1969 |
+
+Restano senza nodo, quindi senza ID: il video di B14 (oEmbed 404; il modello non dice di riprovare), Recalcati (B05: nessun tuo sì).
+
+### C.1 Fase 1, astrarre
+
+**Che cosa rilegge.** I frammenti dalla 21:00 del 14 marzo, cioè B23, B24 e B25, più B22 in sospeso. Accanto a loro un
+campione del vecchio sugli stessi nodi (9 frammenti, sotto i 20): B11 (kintsugi, il mondo che spezza), B07 e B15
+(tatuaggi), B20 (il dolore e la noia), il nucleo `20261004-2228-nucl` (lo sguardo: «La dimensione principale della realtà è il
+dolore»), B03 e B21 (le frasi di cui B22 potrebbe parlare), B19 (l'ultimo sul padre), B12. B12 e B25 entrano nella rilettura
+ma restano fuori dalla fase 2 (prudenza §4.1). Prima le **sorprese**: B24 non aggancia nessun tema esistente, ma tocca lo
+sguardo attraverso B20.
+
+**Esiti, voce per voce del §4.2:**
+- *Temi ricorrenti:* non ne nasce nessuno. Sono alla seconda occorrenza `padre` (B05, B19) e `mare` (B05, B17), ma ogni
+  volta con un senso diverso: il padre di Telemaco e il tuo; il mare guardato e il mare del sogno. Per `padre` il §5.5 vuole
+  inoltre che il tema nasca solo quando lo chiedi tu. `crepa` (B23) e `punti rotti` (B11) stanno già sotto `kintsugi`.
+  `noia` e `porcospino` sono alla prima occorrenza.
+- *Doppioni e temi larghi:* nessuno da fondere né da dividere. Il doppio `eraclito`/`fiume-di-eraclito` è già negli attriti di B16.
+- *Citazioni in sospeso:* `il-suicidio-che-tiene-in-vita` (B25) fa i passi 2-3 (vedi sotto). Il nodo di B21 resta in
+  `prova: memoria` perché non c'è la foto.
+- *ID:* `emil-cioran`, `il-mondo-come-volonta-e-rappresentazione` e `neon-genesis-evangelion`, nati in queste settimane,
+  più `jordan-peterson`, nodo del punto zero toccato da B22, che non aveva ID. Nessuna domanda: *Evangelion* ha due
+  candidati (la serie Q662 e il franchise Q66834583), ma di tipo diverso, e il porcospino è l'episodio 4 della serie.
+- *`contraddice`:* nessuno nuovo. B20 contro il nucleo è stato segnato ◌ il 14 marzo. B22 non ha bersaglio. B24 non prende
+  posizione. B25 non si legge come posizione (prudenza).
+- *Tagging all'indietro:* non scatta. Nessun frammento di queste settimane ha una reazione d'impatto (B23 e B24 sono
+  giudizi, B25 non ha `reazione`).
+- *B22 in sospeso:* «quella di ieri sulla casa in ordine» non si risolve nemmeno sul campione. Nessun atto, nessuna frase
+  inventata. La domanda di B22 non viene ripetuta (vedi gli attriti).
+- *Letture riscritte:* **nessuna**. Nessun legame di B22–B25 cambia: gli esiti stanno nei nodi, e la convergenza sta nella
+  restituzione di fase 2, non nelle letture.
+
+**Verifica (un subagent, una citazione).** Passo 1, già fatto all'ingresso: nessuna scheda di apocrifo. Passo 2: niente
+testo primario libero (Cioran non è di pubblico dominio). Una fonte secondaria cita il francese fino a «je me serais tué
+depuis…», tagliato. Passo 3: Wikiquote it lo dà sotto *Sillogismi dell'amarezza*, p. 63, con l'edizione. Mi fermo lì,
+come vuole il protocollo.
+
+**`citazioni/il-suicidio-che-tiene-in-vita.md`** (aggiornato)
+
+```md
+---
+nome: L'idea del suicidio che tiene in vita
+autore: emil-cioran
+esito: simile
+prova: secondaria
+originale: "Je ne vis que parce qu'il est en mon pouvoir de mourir quand bon me semblera : sans l'idée du suicide, je me serais tué … (chiusa da verificare)"
+traduzione: "Vivo solo perché è in mio potere morire quando meglio mi sembrerà: senza l'idea del suicidio, mi sarei ucciso subito."
+traduttore: Cristina Rognoni
+riferimento:
+  opera: "Sillogismi dell'amarezza (Syllogismes de l'amertume, 1952)"
+  luogo: "Adelphi, ed. 2007, p. 63"
+  url: https://it.wikiquote.org/wiki/Emil_Cioran
+  data: 2027-04-04
+nato-da: [20270402-2000]
+---
+La tua forma è una parafrasi («la possibilità di farla finita che ti fa resistere»): l'idea è quella, le parole no.
+Non è in L'inconveniente di essere nati.
+```
+
+**`persone/emil-cioran.md`** · **`persone/jordan-peterson.md`** · **`opere/il-mondo-come-volonta-e-rappresentazione.md`** ·
+**`opere/neon-genesis-evangelion.md`** (aggiornati: si aggiunge una riga sola, il resto è com'era)
+
+```md
+wikidata: Q193405        # emil-cioran: «filosofo, scrittore e saggista rumeno»; "chioran" non trova niente, il modello corregge prima
+wikidata: Q6276882       # jordan-peterson: «psicologo canadese»; scartato l'allenatore omonimo
+wikidata: Q560352        # il-mondo-come-volonta-e-rappresentazione: «saggio di Arthur Schopenhauer», unico risultato
+wikidata: Q662           # neon-genesis-evangelion: «serie anime», non il franchise
+```
+
+**Verifica di un fatto ○ per la fase 2** (obbligatoria prima di dirlo, §4.3): il pendolo di Schopenhauer.
+*The World as Will and Idea*, vol. I, libro IV, **§ 57** (trad. Haldane e Kemp, Gutenberg #38427, letto con grep):
+«its life swings like a pendulum backwards and forwards between pain and ennui». Il tedesco non l'ho letto, quindi nella
+lettera il fatto non è citato tra virgolette.
+
+**Il livello derivato, ricalcolato dallo script** (estratti)
+
+`.indice/grafo.json`: la vitalità, con mezza vita di 90 giorni, +1 per ritorno, frammenti importati esclusi.
+
+```json
+{"calcolato": "2027-04-04T21:01:02+02:00",
+ "vitalita": {
+  "tatuaggi": 2.67, "kintsugi": 2.29, "il-mondo-spezza-tutti": 2.29,
+  "nichilismo-ospite-inquietante": 1.62, "la-cura": 1.17,
+  "il-suicidio-che-tiene-in-vita": 0.98, "emil-cioran": 0.98,
+  "il-mondo-come-volonta-e-rappresentazione": 0.90, "neon-genesis-evangelion": 0.90,
+  "jordan-peterson": 0.84, "dolore": 0.81, "papa": 0.77, "marco": 0.72, "umberto-galimberti": 0.65,
+  "…": "…",
+  "telemaco": 0.34, "ecdysis": 0.33, "finche-non-rendi-conscio-l-inconscio": 0.32, "nichilismo": 0.31},
+ "stati": {"sbiaditi": ["20261124-2350 parla-di battaglie-interiori", "20261212-2015 serve-a tatuaggi",
+                        "20270109-1630 parla-di chi-sono"],
+           "rifiutati": [], "superati": []}}
+```
+
+Il +1 di `kintsugi` e `il-mondo-spezza-tutti` viene dal `ritorna-su` ◌ di B23. Senza quel +1 (cioè se il ritorno proposto
+non contasse) scenderebbero a 1,29. I tre legami ◌ sbiaditi hanno più di 60 giorni e nessun tuo atto.
+
+`.indice/vicende.json`: **vuoto**. Nessun nodo, tema o parola ha 3 frammenti in 60 giorni: né ora (finestra 3 febbraio –
+4 aprile), né in nessun'altra finestra da novembre. Galimberti ne ha 2 diretti (B01, B05), i tatuaggi 3 ma in 4 mesi.
+
+`.indice/tempo.json`: la serie `sente` è **vuota** (25 frammenti, nessun `sente`). Una sola linea di posizione: lo sguardo ✧
+(ottobre) → B20 ✦ (8 marzo), `contraddice` ◌, nessuna posizione superata.
+
+`.indice/conti.json`: 25 frammenti tuoi. Per mese: nov 10, dic 5, gen 1, feb 2, mar 6, apr 1. Citazioni 9, con esiti:
+4 simili, 2 attribuzioni errate, 1 apocrifa, 1 verificata, 1 senza esito (la riga di B21).
+
+`.indice/scarti.json`: vuoto (nessun tuo "no" in cinque mesi).
+
+**`contesto/indice.md`** (estratto; rigenerato)
+
+```md
+# Indice · 2027-04-04 21:12
+25 frammenti tuoi (nov 2026 – apr 2027) · 66 nodi · 43 restituzioni (2 importate)
+
+## Più vivi
+- tatuaggi (raccolta) · 2 ✦, 1 ◌ · ultimo 20 mar
+- kintsugi (tema) · 1 ✦, 1 ◌ · ultimo 20 mar
+- Il mondo spezza tutti (citazione, Hemingway, simile ○) · ultimo 20 mar ◌
+- Il nichilismo, l'ospite inquietante (citazione, Nietzsche, attribuzione errata ○) · 3 nov, 4 nov
+
+## Da leggere
+- Il mondo come volontà e rappresentazione (Schopenhauer, 1819) · da-fare dal 22 mar
+
+## In sospeso
+- 12 mar · «la casa in ordine… era peterson»: frase non trovata
+- 10 mar · la riga della foto: non verificata
+```
+
+**`contesto/ritratto.md`**: non si rigenera, è trimestrale e il prossimo arriva a inizio maggio. Il conto del trimestre
+(febbraio–aprile, finora 9 frammenti) è nello script, non in un file: torna il dolore (B20), torna *La cura* (B19, il
+ritorno spontaneo che il modello non conta); è nuovo Schopenhauer; è sparito Galimberti, assente da novembre; manca
+ancora una canzone sua, salvata con parole sue, dopo dicembre.
+
+### C.2 Fase 2, associare
+
+Il modello ne fa scegliere una tra convergenza, confronto e sogno. Il **confronto** fresco (B20 contro lo sguardo) l'ha già avuto
+la lettera del 14 marzo, ed è probabile che l'«ok» di B23 le rispondesse. Il **sogno** (la scala di B17) è più
+lontano. Scelgo la **convergenza**, agganciata a una frase tua di queste settimane, B24, e che ha una direzione: lo sguardo,
+B20 e Schopenhauer dicono tre cose diverse sullo stesso legame, il dolore e la noia. Lascio fuori, apposta, ogni riferimento
+a B25: Schopenhauer e Cioran stanno nello stesso scaffale, la lettera no.
+
+*Ti ricordi?* La formula vuole un nodo di alta importanza e bassa vitalità. Il modello non definisce l'importanza: la
+stimo con una reazione d'impatto o d'identificazione. I candidati sono `finche-non-rendi-conscio-l-inconscio` (0,32, «mi ha
+spaccato»), `ecdysis` (0,33, «mi ha distrutto»), `telemaco` (0,34) ed `estate-invincibile` (0,36). Escludo B12 (delicato).
+Scelgo il più basso, B03. Ha anche il vantaggio di avere ora la forma vera accanto (simile).
+
+**`restituzioni/2027/04/r-20270404-2100-settimana.md`**
+
+```md
+---
+forma: settimana
+voci:
+  - n: 1
+    rif: il-mondo-come-volonta-e-rappresentazione
+  - n: 2
+    rif: "mondo: Schopenhauer, Il mondo come volontà e rappresentazione, libro IV, §57 (trad. ingl. Haldane e Kemp, Gutenberg #38427, letto il 2027-04-04)"
+  - n: 3
+    rif: 20261109-1902
+    tipo: ricordi
+legami:
+  - converge-con: [20270308-2340, 20270322-1200, 20261004-2228-nucl, il-mondo-come-volonta-e-rappresentazione]
+    voce: proposta
+    perche: "dolore e noia: lo sguardo mette il dolore al centro, B20 sposta il centro sulla noia ma dà al dolore il movimento, Schopenhauer li mette ai due capi di un pendolo; B24 vuole leggere proprio quel libro"
+---
+(il testo è la lettera qui sotto)
+```
+
+Notifica senza contenuto, alle 21:12: «La lettera è pronta» + link a `restituzioni/2027/04/r-20270404-2100-settimana.md`.
+
+### C.3 La lettera della domenica, come arriva sul telefono
+
+> **Domenica 4 aprile**
+>
+> Il 22 marzo hai scritto: «devo leggere il mondo come volontà e rappresentazione prima o poi» ✦.
+> Due settimane prima, l'8: «forse il dolore non è la dimensione principale della vita. forse è la noia. il dolore almeno ti
+> muove» ✦. A ottobre, nel tuo sguardo, il dolore era la dimensione principale ✧.
+>
+> Il libro che vuoi leggere li tiene tutti e due: per Schopenhauer la vita oscilla come un pendolo tra il dolore e la noia
+> (libro IV, §57) ○. Lui li mette ai due capi, alla pari. Tu no: per te il dolore almeno muove ◌.
+>
+> *Ti ricordi?* A novembre una frase ti aveva «spaccato»: «finché non rendi conscio l'inconscio, lui guiderà la tua vita
+> e tu…»
+
+Controllo sulle regole: ogni pezzo parte da una frase tua con la data ✦. La convergenza ha una direzione (tre posizioni,
+non la stessa cosa tre volte). Il fatto ○ è verificato prima. Non ci sono domande da compilare: il "ti ricordi?" è un
+indizio, non una domanda. Un solo "ti ricordi?". Né B12 né B25, né il lutto, né il suicidio, né il padre del litigio. La lunghezza
+è di circa 110 parole, una schermata.
+
+### C.4 Costi
+
+- **File toccati dalla Routine:** 6 nel repository (1 citazione, 4 nodi con una riga di ID, 1 restituzione), 3 di
+  `contesto/` rigenerati (`indice.md`, `recenti.md` con la riga della lettera, `parole.md` senza cambi); 5 locali in `.indice/`.
+  Letture riscritte: 0. Domande all'utente: 0. Notifiche: 1.
+- **Ricerche della Routine:** per la citazione di B25, 1 WebSearch + 1 Wikiquote raw (al passo 1 ne erano servite 2); per
+  il fatto della lettera, 1 download Gutenberg; per gli ID, 4 chiamate Wikidata (più i ritentativi per il rate limit).
+  In tutto circa 7 richieste.
+- **Tempo stimato:** avvio della sessione circa 1 minuto; fase 1 circa 6-8 minuti (subagent della citazione circa 3, ID
+  circa 1, rilettura del campione circa 2-3); fase 2 circa 2 minuti; script, verifica e push circa 1 minuto. Totale: **circa
+  10-12 minuti**, circa 60-80 mila token.
+- **La tabella C.0, a parte** (il lavoro di undici domeniche fatto qui in una volta): circa 30 chiamate Wikidata, 7
+  MusicBrainz, 6 testi Gutenberg, 6 pagine Wikiquote, 5 WebSearch. Circa 25 minuti reali, circa 2-3 minuti per domenica.
