@@ -23,7 +23,7 @@ La sinistra che non sa cosa fa la destra (6,3).
 >
 > > Non sappia la tua sinistra ciò che fa la tua destra.
 >
-> — Matteo 6, 3
+> — Matteo 6,3 (Bibbia CEI 2008)
 
 ## Collegamenti
 

@@ -21,7 +21,7 @@ Astronomo e divulgatore: siamo fatti della materia delle stelle, e attraverso di
 
 > Siamo un modo in cui il cosmo conosce se stesso.
 
-— Cosmos (1980), ep. 1 «The Shores of the Cosmic Ocean»
+— Sagan, Cosmos (serie TV, 1980), ep. 1 «The Shores of the Cosmic Ocean», ripetuta nell'ep. 13; non è nel libro. Resa di Claude (da verificare)
 
 ## Collegamenti
 

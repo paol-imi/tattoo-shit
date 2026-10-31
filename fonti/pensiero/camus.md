@@ -28,7 +28,7 @@ L'assurdo, Sisifo, rivolta-libertà-passione, il passaggio dall'io al noi (*L'uo
 >
 > > Bisogna immaginare Sisifo felice.
 >
-> — Il mito di Sisifo (1942), ultima frase
+> — Camus, Il mito di Sisifo (1942), cap. «Il mito di Sisifo», ultima frase; trad. A. Borrelli, Bompiani
 
 ## Collegamenti
 

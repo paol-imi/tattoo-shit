@@ -23,7 +23,7 @@ L'ombra, il Sé, l'individuazione.
 >
 > > Non si diventa illuminati immaginando figure di luce, ma rendendo cosciente l'oscurità.
 >
-> — L'albero filosofico (1945), in Studi sull'alchimia, Opere 13, § 335
+> — Jung, L'albero filosofico (1945), in Studi sull'alchimia, Opere 13, § 335. Resa di Claude dall'inglese di Hull (CW 13); traduzione Boringhieri da verificare
 
 ## Collegamenti
 

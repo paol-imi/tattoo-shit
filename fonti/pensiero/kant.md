@@ -21,9 +21,9 @@ Considerava l'iscrizione del velo di Iside la frase più sublime mai pronunciata
 > [!NOTE]
 > **Proposta di Claude, da validare.**
 >
-> > Il cielo stellato sopra di me, la legge morale in me.
+> > Due cose riempiono l'animo di ammirazione e venerazione sempre nuova e crescente […]: il cielo stellato sopra di me, e la legge morale in me.
 >
-> — Critica della ragion pratica, Conclusione
+> — Kant, Critica della ragion pratica (1788), Conclusione (AA V 161); trad. F. Capra, Laterza (pagina da verificare)
 
 ## Collegamenti
 

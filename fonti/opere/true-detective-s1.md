@@ -25,9 +25,9 @@ Rust Cohle: pessimismo radicale, ricerca della verità a ogni costo, il tempo co
 > [!NOTE]
 > **Proposta di Claude, da validare.**
 >
-> > Una volta c'era solo il buio. Se vuoi saperlo, la luce sta vincendo.
+> > Una volta c'era solo il buio. Se chiedi a me, la luce sta vincendo.
 >
-> — True Detective, stagione 1, ep. 8 «Form and Void» (2014): Rust Cohle
+> — Rust Cohle, True Detective, stagione 1, ep. 8 «Form and Void» (2014), ultima battuta: "Once there was only dark. If you ask me, the light's winning." Resa di Claude, doppiaggio da verificare
 
 ## Collegamenti
 

@@ -19,9 +19,9 @@ Morte, libertà, isolamento, mancanza di senso: le quattro preoccupazioni ultime
 
 ## Citazione
 
-> Benché la fisicità della morte ci distrugga, l'idea della morte ci salva.
+> La morte distrugge un uomo: l'idea della morte lo salva.
 
-— Fissando il sole (2008)
+— E. M. Forster, Casa Howard (1910), cap. XXVII, ripresa da Yalom in Fissando il sole (2008) (luogo da verificare). Resa di Claude
 
 ## Collegamenti
 

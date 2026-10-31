@@ -18,9 +18,9 @@ Aforismi sull'inconveniente di esistere, tra lucidità e ironia.
 
 ## Citazione
 
-> Non essere nati: solo a pensarci, che felicità, che libertà, che spazio!
+> Non essere nato: al solo pensarci, che felicità, che libertà, che spazio!
 
-— L'inconveniente di essere nati (1973)
+— Cioran, L'inconveniente di essere nati (1973). Resa di Claude dal francese; traduzione Adelphi (L. Zilli) da verificare
 
 ## Collegamenti
 

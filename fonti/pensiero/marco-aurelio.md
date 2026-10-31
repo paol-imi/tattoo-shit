@@ -24,9 +24,9 @@ La cittadella interiore; l'ostacolo è la via; la vite che dà l'uva senza chied
 > [!NOTE]
 > **Proposta di Claude, da validare.**
 >
-> > Ciò che ostacola l'azione fa avanzare l'azione. Ciò che sta sulla via diventa la via.
+> > La mente rovescia e converte ogni ostacolo all'azione in ciò che la guida: ciò che frena quest'opera le giova, ciò che sbarra questa via fa avanzare sulla via.
 >
-> — Pensieri (A se stesso), V, 20
+> — Marco Aurelio, A se stesso, V 20, ultima frase. Resa di Claude dal greco, da verificare
 
 ## Collegamenti
 

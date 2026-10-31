@@ -22,9 +22,9 @@ Corrente. Distinzione tra ciò che dipende da noi e ciò che non dipende.
 > [!NOTE]
 > **Proposta di Claude, da validare.**
 >
-> > Delle cose, alcune dipendono da noi, altre non dipendono da noi.
+> > Le cose sono di due maniere; alcune in potere nostro, altre no.
 >
-> — Epitteto, Manuale, 1
+> — Epitteto, Manuale, cap. I; trad. G. Leopardi (1825)
 
 ## Collegamenti
 

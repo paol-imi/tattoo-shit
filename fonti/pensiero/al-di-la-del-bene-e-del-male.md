@@ -20,9 +20,9 @@ Preludio a una filosofia dell'avvenire: la critica della morale e lo sguardo nel
 
 ## Citazione
 
-> Se guardi a lungo in un abisso, anche l'abisso guarda dentro di te.
+> Chi lotta con i mostri deve guardarsi di non diventare, così facendo, un mostro. E se tu scruterai a lungo in un abisso, anche l'abisso scruterà dentro di te.
 
-— Al di là del bene e del male, § 146
+— Nietzsche, Al di là del bene e del male (1886), § 146; trad. F. Masini, Adelphi
 
 ## Collegamenti
 

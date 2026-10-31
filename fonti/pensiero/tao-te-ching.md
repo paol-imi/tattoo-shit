@@ -23,7 +23,7 @@ Il saggio agisce e non rivendica; il miglior leader scompare.
 >
 > > Il Tao che può essere detto non è l'eterno Tao.
 >
-> — Tao Te Ching, cap. 1
+> — Laozi, Tao Te Ching, cap. 1; trad. L. Parinetto, La Vita Felice (1995)
 
 ## Collegamenti
 
