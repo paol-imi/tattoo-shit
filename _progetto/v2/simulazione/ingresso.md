@@ -1686,3 +1686,409 @@ verificato. Rinviato: passi 2-3 (verso tedesco sul testo di Gutenberg, traduzion
 
 **Esito sul banco:** passa. Pin normalizzato nella lettura, nessuna immagine, Rilke nato, una citazione sola `prova: memoria`
 ✦, niente "c'è già". Il "(1899)" del banco è l'anno della prima parte, non del libro: l'ho detto come tale.
+
+---
+
+## B16 · 2027-01-09 16:30 · Eraclito e la nave di Teseo, la stessa domanda
+
+> eraclito il fiume e la nave di teseo sono la stessa domanda. io sono la stessa persona di 5 anni fa?
+
+**`frammenti/2027/01/20270109-1630.md`**
+
+```md
+---
+registrato: 2027-01-09T16:30:41+01:00
+canale: telefono
+---
+eraclito il fiume e la nave di teseo sono la stessa domanda. io sono la stessa persona di 5 anni fa?
+```
+
+**`letture/2027/01/20270109-1630.md`** (passo 1: nessun frammento negli ultimi 3 giorni; l'ultimo è del 12 dicembre, 28 giorni fa: scatta il "mentre eri via" del §4.3)
+
+```md
+---
+versione: 1
+letto: 2027-01-09T16:32:20+01:00
+intento: [salva]
+legami:
+  - nomina: eraclito
+    voce: sua
+    perche: "«eraclito il fiume»"
+  - converge-con: [fiume-di-eraclito, nave-di-teseo]
+    voce: sua
+    perche: "«sono la stessa domanda»"
+  - parla-di: chi-sono
+    voce: proposta
+    perche: "«io sono la stessa persona di 5 anni fa?» è la domanda «Chi sono?» detta nel tempo"
+parole: [stessa persona]
+---
+```
+
+`intento: [salva]`, non `[salva, chiedi]`: la domanda è rivolta a sé, è il contenuto della convergenza, non una richiesta
+all'AI (il §4.1.2 direbbe "nel dubbio salva e chiedi": vedi gli attriti). Nessun `vissuto` ("5 anni fa" è dentro la domanda).
+
+**`persone/eraclito.md`** · **`temi/fiume-di-eraclito.md`** · **`temi/nave-di-teseo.md`** (nuovi; i due concetti-immagine con nome proprio per il §2.6, in `temi/` come kintsugi in B11; Plutarco non lo nomini, nessun nodo)
+
+```md
+---
+nome: Eraclito
+alias: [eraclito]
+cerchia: mondo
+nato-da: [20270109-1630]
+---
+```
+
+```md
+---
+nome: il fiume di Eraclito
+alias: [eraclito il fiume, il fiume]
+nato-da: [20270109-1630]
+---
+```
+
+```md
+---
+nome: la nave di Teseo
+alias: [nave di teseo]
+nato-da: [20270109-1630]
+---
+```
+
+Nodi aggiornati: nessuno (`temi/chi-sono.md` non cambia: il `parla-di` è proposto, e `nato-da` elenca i frammenti-prova).
+
+**`restituzioni/2027/01/r-20270109-1632-risposta.md`**
+
+```md
+---
+forma: risposta
+per: 20270109-1630
+voci:
+  - n: 1
+    rif: chi-sono
+legami:
+  - parla-di: chi-sono
+    voce: proposta
+    perche: "lo stesso legame della lettura"
+---
+**Salvato:** fiume e nave, la stessa domanda ✦. È anche la tua «Chi sono?» ◌.
+```
+
+**`restituzioni/2027/01/r-20270109-1632-ritorno.md`** (§4.3: "quando torni dopo 14 giorni o più", una cosa sola; nel silenzio è nata solo la lettera di domenica 13 dicembre, non simulata)
+
+```md
+---
+forma: ritorno
+per: 20270109-1630
+voci:
+  - n: 1
+    rif: r-20261213-2100-settimana
+legami: []
+---
+Mentre eri via: la lettera del 13 dicembre è ancora lì.
+```
+
+**Risposta sul telefono:** "16:32 · Mentre eri via: la lettera del 13 dicembre è ancora lì. **Salvato:** fiume e nave, la stessa domanda ✦. È anche la tua «Chi sono?» ◌."
+
+**Verifiche fatte:** nessuna verifica richiesta dal modello (nessuna citazione, nessun link). 1 WebSearch solo per giudicare
+la risposta del banco: il "non ci si bagna due volte" è nel *Cratilo* 402a, dove Socrate lo attribuisce a Eraclito; il
+frammento B12 dice altro ("acque sempre diverse"), e c'è chi pensa che Platone riporti Cratilo (Wikipedia, Wikiquote,
+askphilosophers). Il dato del banco regge, ma il modello non lo fa dire. Nave di Teseo (Plutarco, *Teseo* 23): non cercata,
+non serve all'ingresso.
+
+**Costi:** 7 file scritti (frammento, lettura, 3 nodi, 2 restituzioni) + `contesto/`. 0 ricerche della Routine (1 mia di controllo). ~2 minuti.
+
+**Esito sul banco:** passa male. `converge-con` ✦ con il `perche` giusto, un solo `parla-di` ◌ verso "Chi sono?", nessuna
+risposta alla domanda esistenziale. Ma la risposta diverge: il §4.3 ammette un aggancio solo (conto, ponte, correzione) e
+il Platone del banco non è nessuno dei tre; in più il modello aggiunge il "mentre eri via", che il banco non prevede.
+Eraclito nasce come persona e il fiume come tema: due nodi da tre parole (vedi gli attriti).
+
+---
+
+## B17 · 2027-02-03 07:10 · il sogno della scala che scende al mare
+
+> sognato una scala che scendeva invece di salire, e in fondo c'era il mare. non avevo paura
+
+**`frammenti/2027/02/20270203-0710.md`**
+
+```md
+---
+registrato: 2027-02-03T07:10:12+01:00
+canale: telefono
+---
+sognato una scala che scendeva invece di salire, e in fondo c'era il mare. non avevo paura
+```
+
+**`letture/2027/02/20270203-0710.md`** (passo 1: nessun frammento negli ultimi 3 giorni; silenzio di 25 giorni dal 9 gennaio: di nuovo "mentre eri via")
+
+```md
+---
+versione: 1
+letto: 2027-02-03T07:11:30+01:00
+intento: [salva]
+vissuto: stanotte
+contesto: "un sogno"
+reazione:
+  - parole: "non avevo paura"
+    segnale: impatto
+    verso: "+"
+legami: []
+parole: [scala, scendere, mare]
+---
+```
+
+Nessun legame proposto: al punto zero non c'è nessun simbolo ereditato (l'import non porta `simboli/`), e l'unico aggancio
+possibile, la discesa di Sisifo (`r-20261004-2228-ritratto-sisi`), sarebbe già un'interpretazione. Rinviato alla fase 2 del
+consolidamento, se mai. Il segnale `impatto` è scelto per forza (vedi gli attriti). "Mare" alla seconda occorrenza (B05).
+
+**`restituzioni/2027/02/r-20270203-0711-risposta.md`**
+
+```md
+---
+forma: risposta
+per: 20270203-0710
+voci: []
+legami: []
+---
+**Salvato il sogno.**
+```
+
+**`restituzioni/2027/02/r-20270203-0711-ritorno.md`** (nel silenzio: la lettera del 10 gennaio e il ritratto del trimestre, "inizio febbraio" per il §5.5; una cosa sola, il ritratto)
+
+```md
+---
+forma: ritorno
+per: 20270203-0710
+voci:
+  - n: 1
+    rif: contesto/ritratto.md
+legami: []
+---
+Mentre eri via è arrivato il ritratto di novembre–gennaio.
+```
+
+**Risposta sul telefono:** "07:11 · Mentre eri via è arrivato il ritratto di novembre–gennaio. **Salvato il sogno.**"
+
+**Verifiche fatte:** nessuna ricerca (niente entità, niente citazioni). Controllato a mano: nessun nodo `scala`, `mare` o
+simbolo nel punto zero; "mare" solo nelle parole di B05. Rinviato: l'eventuale legame ◌ del sogno (fase 2).
+
+**Costi:** 4 file scritti (frammento, lettura, 2 restituzioni) + `contesto/`. 0 ricerche. ~1 minuto.
+
+**Esito sul banco:** passa. `vissuto: stanotte`, "non avevo paura" citata, `parole: [scala, mare]` (più "scendere"), nessuna
+interpretazione, niente Telemaco né padre. In più il "mentre eri via", che il banco non prevede.
+
+---
+
+## B18 · 2027-02-09 13:00 · "boh niente"
+
+> boh niente volevo solo scrivere qualcosa
+
+**`frammenti/2027/02/20270209-1300.md`**
+
+```md
+---
+registrato: 2027-02-09T13:00:55+01:00
+canale: telefono
+---
+boh niente volevo solo scrivere qualcosa
+```
+
+**`letture/2027/02/20270209-1300.md`** (passo 1: B17 è di 6 giorni fa, fuori dai 3 giorni; niente da risolvere)
+
+```md
+---
+versione: 1
+letto: 2027-02-09T13:01:10+01:00
+intento: [niente]
+legami: []
+---
+```
+
+**`restituzioni/2027/02/r-20270209-1301-risposta.md`**
+
+```md
+---
+forma: risposta
+per: 20270209-1300
+voci: []
+legami: []
+---
+Ci sono.
+```
+
+**Risposta sul telefono:** "13:01 · Ci sono."
+
+**Verifiche fatte:** nessuna. Controllato: silenzio di 6 giorni, sotto i 14: nessun "mentre eri via".
+
+**Costi:** 3 file scritti (frammento, lettura, restituzione) + `contesto/`. 0 ricerche. <1 minuto.
+
+**Esito sul banco:** passa. `intento: [niente]`, nessun legame, nessuna proposta né domanda, "Ci sono."
+
+---
+
+## B19 · 2027-03-01 22:00 · Karamazov, la cura in radio, il litigio
+
+> oggi: finito karamazov, sentito la cura in radio, litigato con mio padre. giornata
+
+**`frammenti/2027/03/20270301-2200.md`**
+
+```md
+---
+registrato: 2027-03-01T22:00:18+01:00
+canale: telefono
+---
+oggi: finito karamazov, sentito la cura in radio, litigato con mio padre. giornata
+```
+
+**`letture/2027/03/20270301-2200.md`** (passo 1: nessun frammento negli ultimi 3 giorni; silenzio di 20 giorni: "mentre eri via"; "mio padre" cercato prima in `cerchia: vita`: ci sono `marco` e `nonna-lina`)
+
+```md
+---
+versione: 1
+letto: 2027-03-01T22:02:00+01:00
+intento: [salva]
+reazione:
+  - parole: "giornata"
+    segnale: giudizio
+    verso: "−"
+legami:
+  - nomina: i-fratelli-karamazov
+    fruizione: fatta
+    voce: sua
+    perche: "«finito karamazov»"
+  - nomina: la-cura
+    voce: sua
+    perche: "«sentito la cura in radio»"
+  - nomina: papa
+    voce: sua
+    perche: "«litigato con mio padre»"
+parole: [padre]
+---
+```
+
+Un frammento solo, tre legami. Il riascolto di *La cura* è un `nomina` e basta: non c'è `ritorna-su` (non torni sul
+frammento del 7 dicembre). "In radio" sta nel `perche`: `contesto` è uno per lettura e qui varrebbe solo per un legame.
+
+**`opere/i-fratelli-karamazov.md`** · **`persone/papa.md`** (nuovi; Dostoevskij in chiaro, non è un nodo e non lo nomini tu; lo slug `papa` come nel §6.4, per non occupare `padre`, che il §6.4 riserva al tema)
+
+```md
+---
+nome: I fratelli Karamazov
+alias: [karamazov]
+autore: Fëdor Dostoevskij
+anno: 1880
+nato-da: [20270301-2200]
+---
+```
+
+```md
+---
+nome: mio padre
+alias: [mio padre]
+cerchia: vita
+nato-da: [20270301-2200]
+---
+```
+
+Nodi aggiornati: nessuno (`opere/la-cura.md` non elenca i frammenti che la nominano: `nato-da` resta B12).
+
+**`restituzioni/2027/03/r-20270301-2202-risposta.md`**
+
+```md
+---
+forma: risposta
+per: 20270301-2200
+voci:
+  - n: 1
+    rif: i-fratelli-karamazov
+legami: []
+---
+**Segnato tutto.** Karamazov finito.
+```
+
+**`restituzioni/2027/03/r-20270301-2202-ritorno.md`** (nel silenzio: la lettera di domenica 15 febbraio, nata da una settimana con il solo "boh niente")
+
+```md
+---
+forma: ritorno
+per: 20270301-2200
+voci:
+  - n: 1
+    rif: r-20270215-2100-settimana
+legami: []
+---
+Mentre eri via: la lettera del 15 febbraio è ancora lì.
+```
+
+**Risposta sul telefono:** "22:02 · Mentre eri via: la lettera del 15 febbraio è ancora lì. **Segnato tutto.** Karamazov finito."
+
+**Verifiche fatte:** 1 WebSearch per l'entità (autore, anno, come per Battiato in B12): a puntate sul *Russkij vestnik*,
+gennaio 1879 – novembre 1880; in volume nel 1880 (operus.uniud.it, vqronline, Wikipedia). `anno: 1880` = forma integrale.
+Rinviato: `wikidata`/`openlibrary` del romanzo; mai ID per `papa`.
+
+**Costi:** 6 file scritti (frammento, lettura, 2 nodi, 2 restituzioni) + `contesto/`. 1 ricerca. ~2 minuti.
+
+**Esito sul banco:** passa. Un frammento, Karamazov `fruizione: fatta` ✦ (nato), `la-cura` ✦ sul nodo di B12, `persone/papa.md`
+`cerchia: vita`, `parole: [padre]`, nessuna domanda, nessun tema. La risposta è quella del banco, più il "mentre eri via".
+La lacuna del banco (il ritorno spontaneo su *La cura* non ha un segno) resta: vedi gli attriti.
+
+---
+
+## B20 · 2027-03-08 23:40 · forse è la noia
+
+> forse il dolore non è la dimensione principale della vita. forse è la noia. il dolore almeno ti muove
+
+**`frammenti/2027/03/20270308-2340.md`**
+
+```md
+---
+registrato: 2027-03-08T23:40:29+01:00
+canale: telefono
+---
+forse il dolore non è la dimensione principale della vita. forse è la noia. il dolore almeno ti muove
+```
+
+**`letture/2027/03/20270308-2340.md`** (passo 1: B19 è di 7 giorni fa; nessun riferimento da risolvere. Non è `intento: sguardo`: non lo dichiari tale, §2.2)
+
+```md
+---
+versione: 1
+letto: 2027-03-08T23:41:50+01:00
+intento: [salva]
+legami:
+  - parla-di: dolore
+    voce: sua
+    perche: "«forse il dolore non è la dimensione principale della vita… il dolore almeno ti muove»"
+parole: [noia]
+---
+```
+
+Nessun `contraddice`: le contraddizioni con lo sguardo sono del consolidamento, fase 1 (§3.1). Rinviato al consolidamento del
+14 marzo: `contraddice` ◌ verso `20261004-2228-nucl`, che non cambia; non rende `superato` niente (§2.6: è proposto).
+
+**`restituzioni/2027/03/r-20270308-2341-risposta.md`** (un aggancio, il ponte forte con lo sguardo; nessuna domanda: il §6.5 dice che l'unica domanda senza ambiguità è il link muto, e il confronto con domanda è della lettera, §4.3)
+
+```md
+---
+forma: risposta
+per: 20270308-2340
+voci:
+  - n: 1
+    rif: 20261004-2228-nucl
+legami: []
+---
+**Segnato.** A ottobre, nel tuo sguardo ✧: «La dimensione principale della realtà è il dolore».
+```
+
+Notifica senza contenuto: sì (ponte forte).
+
+**Risposta sul telefono:** "23:41 · **Segnato.** A ottobre, nel tuo sguardo ✧: «La dimensione principale della realtà è il dolore»."
+
+**Verifiche fatte:** nessuna ricerca (niente entità, niente citazioni; Schopenhauer non entra). Controllato sul punto zero la
+frase esatta del nucleo: "La dimensione principale della realtà è il dolore" (realtà, non vita), e che `dolore` è un tema
+esistente. Rinviato: il `contraddice` ◌ e la linea delle posizioni (consolidamento, fase 1).
+
+**Costi:** 3 file scritti (frammento, lettura, restituzione) + `contesto/` + 1 notifica. 0 ricerche. ~1-2 minuti.
+
+**Esito sul banco:** passa male. `parla-di: dolore` ✦, `parole: [noia]`, nucleo intatto, niente Schopenhauer, niente "hai cambiato
+idea". Ma la risposta non fa la domanda del banco ("è un cambio, o un'altra faccia?"): il modello all'ingresso non la ammette
+(§6.5), mentre la ammette per Sisifo (§6.6). Ho seguito il §6.5.
