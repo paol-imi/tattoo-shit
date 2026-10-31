@@ -616,6 +616,10 @@ trovano in `contesto/` e richiedono il tab Code. Il modello non dice chi lo deci
 > (turni, voci numerate, `perche`, `risponde-a`), che si rimanda con il Comando rapido "Memo"; i punti **Scrive** si
 > controllano sui file che `smista.mjs` ricava da quel memo. Una conversazione dà **un** frammento `canale: chat` e **una**
 > restituzione, con una sezione per domanda e le voci numerate per domanda.
+>
+> **Le Preparazioni** (S5): ogni prova va eseguita con la storia delle lettere precedenti (data, cosa, voci) e lo stato di
+> `riserva/pronte.md`, perché decidono la soglia della lettera e il "fresco" del confronto. Dove una Preparazione non li
+> dà, valgono: nessuna lettera precedente nel periodo, nessuna proposta pronta.
 
 Le parti 1 e 2 controllano quello che il sistema scrive. Qui si controlla quello che **restituisce**, cioè la parte che
 [critica-semplicita](/_progetto/v2/critica-semplicita.md) proponeva di tagliare: se queste prove non passano, ha ragione.
@@ -718,6 +722,10 @@ Ogni prova parte **solo** dalla sua Preparazione (i B non nominati lì non esist
   sintetico `20261214-0905`: *"l'ospite inquietante!"*). Candidati e stato: B03 (9 nov, *"mi ha spaccato"*, 0 ritorni),
   B07 (22 nov, *"questa me la tatuerei"*, 0 ritorni fino a marzo), B12 (impatto, delicato), B13 (muto), B06 (giudizio −).
 - **Azione:** la lettera della domenica 2027-02-14 21:00, con il suo "ti ricordi?".
+- **Corretto dopo il modello v3:** con il solo B18 (non parlante) la domenica del 14 febbraio è **muta per scelta**: nessun
+  consolidamento, nessuna lettera, nessuna notifica (D0: nessun file in `restituzioni/2027/02/` quel giorno). La prova del
+  ricordo si fa la domenica 21 febbraio, con un frammento sintetico parlante nella settimana 15–21. Un importato ✦ è
+  ricordabile da subito (D3 va letto così: non lo sceglie se c'è un ✦ nuovo ricordabile).
 - **Uscita attesa:** 2–4 righe. L'inizio della sua frase, la fine nascosta, la data. Paragone: restituzione.md §5. Per
   esempio: *Il 9 novembre una frase di Jung ti aveva spaccato: "finché non rendi conscio l'inconscio…"*, e sotto, in
   `<details>`, *"…lui guiderà la tua vita e tu lo chiamerai destino"*, con al più "vicina ad *Aion* §126 ○".
@@ -757,6 +765,9 @@ Ogni prova parte **solo** dalla sua Preparazione (i B non nominati lì non esist
   gioco senza diventare lezione? 3. Risponde lui alla domanda sull'identità? (deve essere no) 4. Gli verrebbe voglia di
   raccontarlo a qualcuno? **Soglia:** almeno 3 su 4, con la 3 obbligatoria.
 - **Gravità se fallisce:** bassa: il sogno è facoltativo (modello §9.2); se fallisce, si toglie.
+- **Divergenza dichiarata con il modello v3** (§9.3, §16.2): il sogno è spento sotto i 50 frammenti parlanti, e qui ce ne
+  sono 16. Con questa Preparazione la lettera sceglie una convergenza o un confronto, e la prova non collauda il sogno: per
+  farlo serve una Preparazione con ≥ 50 frammenti parlanti (sintetici).
 
 ### R06 · Il confronto: il dolore o la noia
 - **Scopo:** lo specchio contraddice con rispetto, con una voce che lui stima, e chiude con una domanda sola.
@@ -865,6 +876,9 @@ Ogni prova parte **solo** dalla sua Preparazione (i B non nominati lì non esist
   `in-risposta-a` quella lettera e un rifiuto della voce 1 con `perche` (come D18); il legame è in `.indice/scarti.json`.
   Settimana 23–29 novembre: B08 (24 nov, Marco), B09 (26 nov, Frankl).
 - **Azione:** la lettera della domenica 2026-11-29 21:00.
+- **Premessa corretta** (S5): nel v3 "consolida" scrive la lettera alle 03:13 della domenica, quindi una lettera del 22
+  novembre non può contenere B07 (stesso giorno, 17:20). La lettera sintetica va letta come un'eccezione dichiarata della
+  Preparazione, scritta come se B07 fosse già smistato; i criteri non cambiano.
 - **Uscita attesa:** una lettera che regge senza il legame rifiutato; se nomina B07, l'àncora è la sua correzione ✦.
 - **Criteri deterministici:**
   - D1 File `r-20261129-HHMM-settimana.md`; nessun `converge-con` tra la citazione di B07 e il nucleo.
