@@ -223,7 +223,7 @@ Voci numerate `1.`, `2.`… (le fissa lo script), lunghezze della tabella.
 - **"quante volte / X nel tempo"**: prima le mie parole (ricerca nei ✦), poi a parte i legami tuoi; le domande contate a
   parte; l'importato escluso; le date di cambio di lettore segnate.
 - **una premessa sbagliata**: correggi la premessa prima di aggiungere mondo.
-- **ricordo, sogno, confronto su richiesta**: `prompt/ricordo.md`, `prompt/sogno.md`, `prompt/confronto.md`.
+- **ricordo, sogno, confronto su richiesta**: `prompt/ti-ricordi.md`, `prompt/sogno.md`, `prompt/confronto.md`.
 
 ## Verificare una citazione
 Ordine: testo primario (Gutenberg, Liber Liber, Perseus, archive.org), poi traduzione pubblicata, poi schede secondarie

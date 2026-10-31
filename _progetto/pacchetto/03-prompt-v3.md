@@ -28,7 +28,7 @@ incollate nel Progetto, che non legge il repository. Dove il v3 non fissa un det
 | `prompt/lettera.md` | Routine "lettera" | domenica 17:37 |
 | `prompt/ritratto.md` | Routine "ritratto", Specchio il giorno 1 | il primo del mese |
 | `prompt/specchio.md` | sessione Specchio | a mano |
-| `prompt/ricordo.md`, `prompt/sogno.md`, `prompt/confronto.md` | "consolida", Specchio | dentro la lettera o su richiesta |
+| `prompt/ti-ricordi.md`, `prompt/sogno.md`, `prompt/confronto.md` | "consolida", Specchio | dentro la lettera o su richiesta |
 | `prompt/progetto.md` | Progetto claude.ai (copia) | a ogni domanda dal Progetto |
 
 ---
@@ -261,7 +261,7 @@ Voci numerate `1.`, `2.`… (le fissa lo script), lunghezze della tabella.
 - **"quante volte / X nel tempo"**: prima le mie parole (ricerca nei ✦), poi a parte i legami tuoi; le domande contate a
   parte; l'importato escluso; le date di cambio di lettore segnate.
 - **una premessa sbagliata**: correggi la premessa prima di aggiungere mondo.
-- **ricordo, sogno, confronto su richiesta**: `prompt/ricordo.md`, `prompt/sogno.md`, `prompt/confronto.md`.
+- **ricordo, sogno, confronto su richiesta**: `prompt/ti-ricordi.md`, `prompt/sogno.md`, `prompt/confronto.md`.
 
 ## Verificare una citazione
 Ordine: testo primario (Gutenberg, Liber Liber, Perseus, archive.org), poi traduzione pubblicata, poi schede secondarie
@@ -480,7 +480,7 @@ B3. **La lettera** (≤ 250 parole), un'operazione `restituzione` con `forma: le
     - i **ponti** della settimana, al più 2, con le mie frasi alla lettera e un luogo preciso;
     - **una sola cosa** tra convergenza, confronto e sogno, presa da `riserva/pronte.md` (e tolta da lì nella stessa
       operazione `riserva`);
-    - al più **un ricordo** (prompt/ricordo.md);
+    - al più **un ricordo** (prompt/ti-ricordi.md);
     - al più **un ◌** in tutta la lettera; una domanda solo se è un confronto; la domanda 1 dell'ingresso rimasta senza
       risposta può tornare, una volta;
     - chiude con la mia frase o con l'unica domanda; poi la legenda in una riga;
@@ -620,7 +620,7 @@ Se te lo chiedo, il primo ritratto con prompt/ritratto.md, variante giorno 1.
 
 ---
 
-## 8. `prompt/ricordo.md`
+## 8. `prompt/ti-ricordi.md`
 
 ````markdown
 # Ricordo ("ti ricordi?")
@@ -779,7 +779,7 @@ senza voci nuove e senza atti. Se non lo rimando, non succede niente: non ricord
 
 1. **I campi delle sette operazioni** (§2): il v3 ne dà i nomi, non i campi.
 2. **La fusione come operazione `lapide`**, che `applica.mjs` esegue chiamando `migra/fondi.mjs`.
-3. **`prompt/formato-piano.md`, `prompt/specchio.md`, `prompt/ricordo.md`, `prompt/sogno.md`, `prompt/confronto.md`,
+3. **`prompt/formato-piano.md`, `prompt/specchio.md`, `prompt/ti-ricordi.md`, `prompt/sogno.md`, `prompt/confronto.md`,
    `prompt/progetto.md`**: file in più rispetto a quelli che il v3 nomina (`prompt/smista.md`, `prompt/consolida.md`, …).
 4. **La verifica rapida prima di `applica`**, dentro il `crea-nodo`, perché `esito` e `riferimento` siano "ancora la
    creazione" (v3 §3.4).
