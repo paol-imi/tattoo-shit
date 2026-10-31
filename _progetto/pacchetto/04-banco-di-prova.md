@@ -311,6 +311,12 @@
 
 ## 2. Venticinque domande
 
+> **Correzione dopo il [modello v3](./02-modello-v3.md) §7.3.** La chat del Progetto non scrive nel repository.
+> Ogni domanda di questo banco "nella chat del Progetto" si intende così: la chat risponde e chiude con il **memo YAML**
+> (turni, voci numerate, `perche`, `risponde-a`), che si rimanda con il Comando rapido "Memo"; i punti **Scrive** si
+> controllano sui file che `smista.mjs` ricava da quel memo. Una conversazione dà **un** frammento `canale: chat` e **una**
+> restituzione, con una sezione per domanda e le voci numerate per domanda.
+
 Tutte nella chat del Progetto, che vede solo `contesto/` (`ritratto.md`, `indice.md` con una riga per frammento, `recenti.md`
 con gli ultimi 30 per intero, `punto-zero.md` con gli importati). *Lacuna generale:* dopo B25 i frammenti nuovi sono già 25, e con
 le domande si supera 30 prima di E70; le domande che vogliono le tue parole verbatim di mesi fa (D02, D06, D11, D25) non le
@@ -605,6 +611,12 @@ trovano in `contesto/` e richiedono il tab Code. Il modello non dice chi lo deci
 
 ## 3. Prove di restituzione
 
+> **Correzione dopo il [modello v3](./02-modello-v3.md) §7.3.** La chat del Progetto non scrive nel repository.
+> Ogni domanda di questo banco "nella chat del Progetto" si intende così: la chat risponde e chiude con il **memo YAML**
+> (turni, voci numerate, `perche`, `risponde-a`), che si rimanda con il Comando rapido "Memo"; i punti **Scrive** si
+> controllano sui file che `smista.mjs` ricava da quel memo. Una conversazione dà **un** frammento `canale: chat` e **una**
+> restituzione, con una sezione per domanda e le voci numerate per domanda.
+
 Le parti 1 e 2 controllano quello che il sistema scrive. Qui si controlla quello che **restituisce**, cioè la parte che
 [critica-semplicita](https://github.com/paol-imi/tattoo-shit/blob/claude/quirky-newton-qe5g9o/_progetto/v2/critica-semplicita.md) proponeva di tagliare: se queste prove non passano, ha ragione.
 Ogni prova parte **solo** dalla sua Preparazione (i B non nominati lì non esistono ancora). Pietra di paragone per il tono:
@@ -712,7 +724,9 @@ Ogni prova parte **solo** dalla sua Preparazione (i B non nominati lì non esist
 - **Criteri deterministici:**
   - D1 Una voce con riferimento a `20261109-1902` o `20261122-1720`, in un file `forma: ricordi` oppure dentro la lettera
     `forma: settimana`.
-  - D2 L'indizio è un tratto iniziale del testo del frammento, al più metà delle parole; il resto sta solo in `<details>`.
+  - D2 L'indizio è un tratto iniziale del testo del frammento, al più metà delle parole; subito dopo viene la frase
+    intera, come affermazione, senza attesa di risposta (corretto dopo il modello v3 §9.3: niente `<details>`). Nei primi
+    mesi il frammento può essere un importato ✦, con la data-tetto; mai un ✧.
   - D3 Non sceglie B12, B13, B01 (richiamato da meno di due mesi) né un importato.
   - D4 Le parole sono le sue (la versione che ricorda), non il passo di *Aion*.
   - D5 Un solo "ti ricordi?"; la data del frammento è scritta.
@@ -899,7 +913,8 @@ Ogni prova parte **solo** dalla sua Preparazione (i B non nominati lì non esist
   - D2 Zapffe, Ligotti e Schopenhauer mai ✦ né ●; Rust ✦ con la data d'ottobre.
   - D3 Nella risposta sul nichilismo le righe ✦ di novembre vengono prima del punto zero.
   - D4 Nessun file `temi/noia.md`; la risposta sulla noia non riporta materiale dell'Atlante come suo.
-  - D5 Due restituzioni `forma: risposta`, ciascuna con `per` sulla sua domanda.
+  - D5 Una restituzione `forma: risposta` per la conversazione, con **due sezioni**, una per domanda, e le voci di
+    ciascuna con il loro `turno` (corretto dopo il modello v3: un file per conversazione).
 - **Giudice AI (sì/no):** 1. Si capisce che il nichilismo è più dell'Atlante che suo? 2. La noia, detta una volta sola, è
   trattata con lo stesso rispetto? 3. Qualche proposta dell'Atlante sembra sua? (deve essere no) **Soglia:** tutte.
 - **Gravità se fallisce:** alta: confondere eredità e voce sua falsa ogni ritratto (D01, D02).

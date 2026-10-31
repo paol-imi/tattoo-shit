@@ -8,7 +8,8 @@ privato. Prima, l'utente fa i passi U1 e U2 del [piano](./01-piano.md) (repo pri
 - **Opzione A (consigliata):** lo copia la sessione, clonando tattoo-shit, che è pubblico. È il primo passo del prompt.
 - **Opzione B:** se la rete dell'ambiente non arriva a github.com, l'utente scarica la cartella `_progetto/pacchetto/` da
   [tattoo-shit](https://github.com/paol-imi/tattoo-shit) (da browser: *Code* → *Download ZIP*) e la carica nel repo nuovo
-  con *Add file* → *Upload files*, nella cartella `progetto/`, con un commit su `main`. Poi apre la sessione e incolla il prompt.
+  con *Add file* → *Upload files*, nella cartella `progetto/`, con un commit su `main` (la sessione porterà poi
+  `radice/` alla radice del repo). Poi apre la sessione e incolla il prompt.
 
 Sostituisci `NOME-REPO` con il nome scelto, se c'è già.
 
@@ -33,10 +34,13 @@ Se `progetto/LEGGIMI.md` non c'è già, copia il pacchetto da tattoo-shit (pubbl
     git clone --branch "$r" https://github.com/paol-imi/tattoo-shit.git /tmp/atlante 2>/dev/null \
       && [ -f /tmp/atlante/_progetto/pacchetto/LEGGIMI.md ] && break
   done
-  mkdir -p progetto && cp -r /tmp/atlante/_progetto/pacchetto/. progetto/ && rm -f progetto/aggiorna.sh
+  mkdir -p progetto && cp -r /tmp/atlante/_progetto/pacchetto/. progetto/
+  rm -f progetto/aggiorna.sh progetto/estrai-prompt.pl
+Poi porta alla radice i testi pronti (se un file c'è già, chiedi prima di sovrascriverlo):
+  cp progetto/radice/claude-radice.md CLAUDE.md && mkdir -p prompt && cp progetto/radice/prompt/*.md prompt/
 Se il clone non passa, ferma tutto e chiedi all'utente l'opzione B: caricare lui la cartella in `progetto/`.
 /tmp/atlante non sopravvive alla sessione (se manca, riclonalo): l'importazione legge da lì le note dell'Atlante, al commit scritto in `progetto/ORIGINE.md`.
-Commit: "progetto: il pacchetto di implementazione".
+Commit: "progetto: il pacchetto di implementazione, CLAUDE.md e prompt".
 
 PASSO 2: LEGGERE
 Leggi `progetto/LEGGIMI.md` e poi i file nell'ordine dei prefissi (01-piano, 02-modello-v3, …) (con subagent per i lunghi, chiedendo sintesi mirate).

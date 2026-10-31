@@ -22,6 +22,18 @@ Per avviare il lavoro: [prompt-avvio](./prompt-avvio.md), da incollare nella pri
 | 9 | [voce](./10-voce.md) | come parla il sistema, con esempi | contesto: le regole sono già riassunte nel `CLAUDE.md` di prompt v3 |
 | 10 | [telefono](./11-telefono.md) | dal tocco al repo e ritorno, con le fonti | contesto per i blocchi 3, 7, 8 e le prove P |
 
+## Che cosa va alla radice del repo nuovo
+
+La cartella `radice/` contiene i testi pronti da incollare, estratti da [prompt v3](./03-prompt-v3.md) (che resta la
+fonte: se divergono, vale prompt v3):
+- [claude-radice](./radice/claude-radice.md) diventa `CLAUDE.md` nella radice del repo nuovo (qui ha un altro nome perché
+  dentro tattoo-shit un `CLAUDE.md` verrebbe letto come istruzione);
+- `radice/prompt/` diventa `prompt/`: [smista](./radice/prompt/smista.md), [consolida](./radice/prompt/consolida.md),
+  [lettera](./radice/prompt/lettera.md), [ritratto](./radice/prompt/ritratto.md), [progetto](./radice/prompt/progetto.md)
+  (istruzioni del Progetto claude.ai), [specchio](./radice/prompt/specchio.md), [ti ricordi](./radice/prompt/ti-ricordi.md),
+  [sogno](./radice/prompt/sogno.md), [confronto](./radice/prompt/confronto.md). `prompt/routine-smista.md` lo scrive il
+  blocco 7 del piano, a partire da `smista.md`.
+
 Precedenza, se due file divergono: modello v3, poi prompt v3, poi banco, poi piano, poi gli altri. Dove il piano rimanda
 ai "prompt operativi" valgono i prompt v3. Una lacuna (il modello non dice) va in `progetto/lacune.md` con la scelta fatta.
 

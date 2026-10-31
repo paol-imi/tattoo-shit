@@ -4,7 +4,7 @@
 # REF è il branch (o lo SHA) di tattoo-shit a cui puntano i link verso i documenti NON copiati
 # e da cui lo script di importazione legge le note. Default: claude/quirky-newton-qe5g9o
 # (dove stanno le correzioni delle citazioni); dopo l'unione a main: bash ... aggiorna.sh main
-# Tocca solo i file copiati e ORIGINE.md; LEGGIMI.md, prompt-avvio.md e questo script restano come sono.
+# Tocca solo i file copiati, radice/ e ORIGINE.md; LEGGIMI.md, prompt-avvio.md e questo script restano come sono.
 set -euo pipefail
 cd "$(git rev-parse --show-toplevel)"
 REF="${1:-claude/quirky-newton-qe5g9o}"
@@ -43,6 +43,14 @@ for c in $FILES; do
   ' "$SRC/$f.md" > "$DST/$b.md"
 done
 
+# CLAUDE.md e prompt/ del repo nuovo, estratti dai blocchi di prompt-v3.md.
+# Nel pacchetto il CLAUDE.md si chiama claude-radice.md, perché un CLAUDE.md qui verrebbe letto dalle sessioni su
+# tattoo-shit; la copia nel repo nuovo lo rinomina (vedi prompt-avvio.md).
+rm -rf "$DST/radice" && mkdir -p "$DST/radice"
+echo "Prompt estratti da prompt-v3.md:"
+perl "$DST/estrai-prompt.pl" "$SRC/prompt-v3.md" "$DST/radice"
+mv "$DST/radice/CLAUDE.md" "$DST/radice/claude-radice.md"
+
 SHA=$(git rev-parse --verify -q "origin/$REF" 2>/dev/null || git rev-parse --verify -q "$REF" 2>/dev/null || echo "da-fissare")
 cat > "$DST/ORIGINE.md" <<FINE
 # Origine del pacchetto
@@ -55,6 +63,7 @@ Generato il $(date +%F) da \`aggiorna.sh\`, copiando i documenti finali di \`_pr
   \`git clone https://github.com/paol-imi/tattoo-shit.git /tmp/atlante && git -C /tmp/atlante checkout $SHA\`.
   Lo SHA va anche in \`importa/fonte.json\`.
 - I link verso documenti non copiati (ricerca, simulazioni, note) puntano a \`$GH/…\`.
+- Estratti da \`prompt-v3.md\`: \`radice/claude-radice.md\` (il \`CLAUDE.md\` del repo nuovo) e \`radice/prompt/\`: $(cd "$DST/radice/prompt" && ls | tr '\n' ' ')
 - File copiati: $(for c in $FILES; do printf '`%s.md` (da `%s.md`) ' "${c#*:}" "${c%%:*}"; done)
 FINE
 
