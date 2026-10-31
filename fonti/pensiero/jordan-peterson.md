@@ -25,7 +25,7 @@ Il viaggio dell'eroe: entrare volontariamente nella caverna del drago (il caos, 
 >
 > > Metti perfettamente in ordine la tua casa prima di criticare il mondo.
 >
-> — 12 regole per la vita (2018), regola 6
+> — Peterson, 12 regole per la vita (2018), regola 6: "Set your house in perfect order before you criticize the world." Resa di Claude, titolo dell'edizione italiana da verificare
 
 ## Collegamenti
 

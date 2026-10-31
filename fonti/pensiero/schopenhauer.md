@@ -21,9 +21,9 @@ Sullo sfondo della genealogia del pensiero di Rust Cohle in True Detective, insi
 > [!NOTE]
 > **Proposta di Claude, da validare.**
 >
-> > La vita oscilla, come un pendolo, di qua e di là, tra il dolore e la noia.
+> > La sua vita oscilla dunque, come un pendolo, di qua e di là, tra il dolore e la noia.
 >
-> — Il mondo come volontà e rappresentazione, § 57
+> — Schopenhauer, Il mondo come volontà e rappresentazione (1819), libro IV, § 57. Resa di Claude, controllata sull'inglese di Haldane e Kemp; tedesco e traduzione italiana da verificare
 
 ## Collegamenti
 

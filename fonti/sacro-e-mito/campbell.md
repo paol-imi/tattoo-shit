@@ -22,7 +22,7 @@ Il monomito: il viaggio dell'eroe che ritorna con il dono.
 
 > Segui la tua beatitudine.
 
-— Il potere del mito (1988), con Bill Moyers
+— Campbell, Il potere del mito (1988), con Bill Moyers, cap. «Sacrifice and Bliss» (p. 120 da verificare). Resa di Claude
 
 ## Collegamenti
 

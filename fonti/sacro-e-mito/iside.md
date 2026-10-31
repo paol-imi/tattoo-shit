@@ -21,7 +21,7 @@ Plutarco riporta un'iscrizione del tempio di Sais: la dea dice di essere tutto c
 >
 > > Io sono tutto ciò che è stato, che è e che sarà, e nessun mortale ha mai sollevato il mio velo.
 >
-> — Plutarco, Iside e Osiride, 9
+> — Plutarco, Iside e Osiride, 9 (354C), iscrizione della statua di Sais. Resa di Claude dal greco ("velo" per πέπλον, il peplo) (da verificare)
 
 ## Collegamenti
 

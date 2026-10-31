@@ -20,9 +20,9 @@ Panta rei ("tutto scorre": formula della tradizione posteriore, attestata in Sim
 > [!NOTE]
 > **Proposta di Claude, da validare.**
 >
-> > La via in su e la via in giù sono una e la stessa.
+> > Una e la stessa è la via all'in sù e la via all'in giù.
 >
-> — Eraclito, fr. 60 DK
+> — Eraclito, fr. 22 B 60 DK (tramandato da Ippolito, Refutatio IX 10); traduzione da Wikiquote, traduttore da verificare
 
 ## Collegamenti
 

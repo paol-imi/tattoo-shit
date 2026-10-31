@@ -21,6 +21,8 @@ Voglio espandere l'archivio oltre i tatuaggi: una base di conoscenza personale, 
 - i **legami nel frontmatter**, con gli inversi generati;
 - un **MVP senza sito né MCP** (skill `/memo` e una CLI), in circa due giorni.
 
+**Le citazioni:** ho verificato 24 citazioni dell'Atlante sul testo, con un subagent per ognuna. 14 sono verificate, 9 simili e in Yalom la frase viene da Forster. Ho corretto la `## Citazione` delle note, tenendo le proposte nei loro blocchi: il dettaglio è in [Correzioni delle citazioni](/_progetto/v2/correzioni-citazioni.md).
+
 ## Domande aperte
 
 - Il nome del nuovo repo: ci penso io.

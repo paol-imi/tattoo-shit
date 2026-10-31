@@ -21,7 +21,7 @@ Porta l'esistenzialismo in psicoterapia: angoscia, coraggio, creatività.
 
 > Il coraggio non è l'assenza di disperazione; è piuttosto la capacità di andare avanti nonostante la disperazione.
 
-— Il coraggio di creare (1975)
+— Rollo May, The Courage to Create (1975), cap. 1, dove la riporta come tesi di Kierkegaard, Nietzsche, Camus e Sartre. Resa di Claude; edizione italiana non trovata (da verificare)
 
 ## Collegamenti
 
