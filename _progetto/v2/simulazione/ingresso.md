@@ -1294,3 +1294,395 @@ Rinviato al consolidamento: la vicinanza con le restituzioni importate su Sisifo
 **Esito sul banco:** passa. `parla-di` con `come: metafora` ✦, nessun `sente`, nessun Camus, nessun `contraddice`, nessuna
 domanda. La lacuna del banco non c'è: il §2.3 ammette `parla-di` verso "qualunque nodo usato come immagine". In più nasce il
 nodo Sisifo, che il banco non elenca.
+
+---
+
+## B11 · 2026-12-05 18:40 · il mondo ti spezza, tipo kintsugi
+
+> chi è che diceva che il mondo ti spezza e poi alcuni diventano più forti nei punti rotti? tipo kintsugi
+
+**`frammenti/2026/12/20261205-1840.md`**
+
+```md
+---
+registrato: 2026-12-05T18:40:17+01:00
+canale: telefono
+---
+chi è che diceva che il mondo ti spezza e poi alcuni diventano più forti nei punti rotti? tipo kintsugi
+```
+
+**`letture/2026/12/20261205-1840.md`** (passo 1: nessun frammento negli ultimi 3 giorni; nelle ultime 5 restituzioni niente di vicino)
+
+```md
+---
+versione: 1
+letto: 2026-12-05T18:42:30+01:00
+intento: [salva, chiedi]
+legami:
+  - nomina: il-mondo-spezza-tutti
+    voce: sua
+    perche: "«il mondo ti spezza e poi alcuni diventano più forti nei punti rotti»: la frase come la ricordi, senza autore («chi è che diceva»)"
+  - converge-con: [il-mondo-spezza-tutti, kintsugi]
+    voce: sua
+    perche: "«tipo kintsugi»"
+parole: [punti rotti]
+---
+```
+
+**`citazioni/il-mondo-spezza-tutti.md`** (nuovo; nessuna attribuzione tua, quindi niente `attribuita-a`; `autore` in chiaro perché Hemingway non è un nodo e non lo nomini tu)
+
+```md
+---
+nome: Il mondo spezza tutti
+autore: Ernest Hemingway
+prova: memoria
+nato-da: [20261205-1840]
+---
+Passo 1 (2026-12-05): nessuna scheda di apocrifo; più fonti la danno in Addio alle armi (1929), cap. 34 (da verificare sul testo).
+```
+
+**`temi/kintsugi.md`** (nuovo: §2.6, "un concetto o un'immagine con un nome proprio (kintsugi…)" nasce alla prima occorrenza; genere `temi/` per il §2.5, "il concetto"; contro la lettera del §4.1.4, "nessun tema nuovo")
+
+```md
+---
+nome: kintsugi
+alias: []
+nato-da: [20261205-1840]
+---
+```
+
+**`restituzioni/2026/12/r-20261205-1842-risposta.md`**
+
+```md
+---
+forma: risposta
+per: 20261205-1840
+voci:
+  - n: 1
+    rif: "mondo: Hemingway, Addio alle armi (1929), cap. 34 (da verificare)"
+legami: []
+---
+**Hemingway**, *Addio alle armi* (1929), cap. 34 ⚠. E sì, è il kintsugi in parole ✦.
+```
+
+Notifica: nessuna (non è una correzione né un ponte forte; vedi gli attriti).
+
+**Risposta sul telefono:** "18:42 · **Hemingway**, *Addio alle armi* (1929), cap. 34 ⚠. E sì, è il kintsugi in parole ✦."
+
+**Verifiche fatte:** passo 1, 1 WebSearch (Quote Investigator + "world breaks every one"): nessuna scheda QI sulla frase
+(QI ha solo quella su "We are all broken, that's how the light gets in", che non è di Hemingway); Hemingway Society e altri
+siti la danno in *A Farewell to Arms* (1929), uno al cap. 34. Testo primario non aperto: capitolo ⚠, nessun `esito`.
+Rinviato: passi 2-3 (testo inglese, traduzione italiana e traduttore), `esito`, l'eventuale precursore (un aggregatore cita
+QI su W. L. Sheldon, non verificato).
+
+**Costi:** 5 file scritti (frammento, lettura, 2 nodi, restituzione) + `contesto/`. 1 ricerca. ~3 minuti.
+
+**Esito sul banco:** passa. Salva e chiedi, citazione `prova: memoria` con Hemingway in chiaro, `converge-con` ✦, risposta
+uguale. La lacuna del banco si scioglie col §2.6 (kintsugi nasce), ma contro il §4.1.4: vedi gli attriti.
+
+---
+
+## B12 · 2026-12-07 02:10 · la cura, il primo ballo, nonna Lina
+
+> la cura di battiato al matrimonio di mia cugina, il primo ballo. ho pianto come un cretino. nonna lina c'era ancora l'anno scorso
+
+**`frammenti/2026/12/20261207-0210.md`**
+
+```md
+---
+registrato: 2026-12-07T02:10:48+01:00
+canale: telefono
+---
+la cura di battiato al matrimonio di mia cugina, il primo ballo. ho pianto come un cretino. nonna lina c'era ancora l'anno scorso
+```
+
+**`letture/2026/12/20261207-0210.md`** (prudenza del §4.1: nessuna proposta, nessun tema; "nonna lina" cercata prima in `cerchia: vita`: c'è solo `marco`)
+
+```md
+---
+versione: 1
+letto: 2026-12-07T02:11:40+01:00
+intento: [salva]
+contesto: "al matrimonio della cugina, il primo ballo"
+reazione:
+  - parole: "ho pianto come un cretino"
+    segnale: impatto
+    verso: "+"
+legami:
+  - nomina: la-cura
+    voce: sua
+    perche: "«la cura di battiato … il primo ballo»"
+  - nomina: franco-battiato
+    voce: sua
+    perche: "«di battiato»"
+  - nomina: nonna-lina
+    voce: sua
+    perche: "«nonna lina c'era ancora l'anno scorso»"
+---
+```
+
+Nessun nodo per la cugina né per il matrimonio; nessuna `parole`.
+
+**`opere/la-cura.md`** · **`persone/franco-battiato.md`** · **`persone/nonna-lina.md`** (nuovi)
+
+```md
+---
+nome: La cura
+alias: [la cura]
+autore: franco-battiato
+anno: 1996
+nato-da: [20261207-0210]
+---
+```
+
+```md
+---
+nome: Franco Battiato
+alias: [battiato]
+cerchia: mondo
+nato-da: [20261207-0210]
+---
+```
+
+```md
+---
+nome: nonna Lina
+alias: []
+cerchia: vita
+nato-da: [20261207-0210]
+---
+```
+
+**`restituzioni/2026/12/r-20261207-0211-risposta.md`**
+
+```md
+---
+forma: risposta
+per: 20261207-0210
+voci: []
+legami: []
+---
+**Salvato.** Un abbraccio.
+```
+
+**Risposta sul telefono:** "02:11 · **Salvato.** Un abbraccio."
+
+**Verifiche fatte:** 1 WebSearch per l'entità (autore, anno): *La cura*, Battiato e Sgalambro, nell'album *L'imboscata*
+(Mercury, 23 ottobre 1996); singolo nel 1997 (Wikipedia en). Nessun testo riprodotto. Rinviato: `wikidata`/`musicbrainz`
+di brano e Battiato (mai per nonna Lina).
+
+**Costi:** 6 file scritti (frammento, lettura, 3 nodi, restituzione) + `contesto/`. 1 ricerca. ~2-3 minuti.
+
+**Esito sul banco:** passa. `la-cura` ✦ con autore Battiato, nonna Lina `vita`, reazione d'impatto, niente temi né
+proposte, niente lutto nominato. In più nasce il nodo Battiato (lo nomini tu), che il banco non elenca. L'esclusione dalla
+lettera e dal "ti ricordi?" non ha dove scriversi: vedi gli attriti.
+
+---
+
+## B13 · 2026-12-09 18:00 · link Spotify nudo
+
+> https://open.spotify.com/track/4uLU6hMCjMI75M1A2tKUQC?si=a1b2c3
+
+**`frammenti/2026/12/20261209-1800.md`** (il link resta con `?si=`)
+
+```md
+---
+registrato: 2026-12-09T18:00:05+01:00
+canale: telefono
+---
+https://open.spotify.com/track/4uLU6hMCjMI75M1A2tKUQC?si=a1b2c3
+```
+
+**`letture/2026/12/20261209-1800.md`**
+
+```md
+---
+versione: 1
+letto: 2026-12-09T18:01:30+01:00
+intento: [salva]
+link: https://open.spotify.com/track/4uLU6hMCjMI75M1A2tKUQC
+legami:
+  - nomina: never-gonna-give-you-up
+    voce: sua
+    perche: "il link, senza parole tue; titolo dall'oEmbed di Spotify, artista dalla pagina del brano"
+---
+```
+
+**`opere/never-gonna-give-you-up.md`** (nuovo; l'artista non è un nodo: in chiaro)
+
+```md
+---
+nome: Never Gonna Give You Up
+alias: []
+autore: Rick Astley
+link: https://open.spotify.com/track/4uLU6hMCjMI75M1A2tKUQC
+nato-da: [20261209-1800]
+---
+```
+
+**`restituzioni/2026/12/r-20261209-1801-risposta.md`**
+
+```md
+---
+forma: risposta
+per: 20261209-1800
+voci:
+  - n: 1
+    rif: never-gonna-give-you-up
+legami: []
+---
+**Salvato** *Never Gonna Give You Up*, Rick Astley ○. Che cosa ti ha preso?
+```
+
+**Risposta sul telefono:** "18:01 · **Salvato** *Never Gonna Give You Up*, Rick Astley ○. Che cosa ti ha preso?"
+
+**Verifiche fatte:** oEmbed vero (`open.spotify.com/oembed?url=…`, con curl e WebFetch): risponde con `title: "Never Gonna
+Give You Up"` e **nessun campo artista**. L'artista l'ho preso dalla pagina del brano (`og:description`: "Rick Astley ·
+Whenever You Need Somebody · Song · 1987"), una richiesta in più. L'id del banco è quindi un brano reale, il celebre
+*rickroll*: lo tratto alla lettera, senza commenti. Rinviato: `musicbrainz` del work/recording.
+
+**Costi:** 4 file scritti (frammento, lettura, 1 nodo, restituzione) + `contesto/`. 2 richieste HTTP, 0 ricerche. ~2 minuti.
+
+**Esito sul banco:** passa. `?si=` nel frammento, link pulito nella lettura (il campo `link` c'è: la lacuna del banco non
+c'è), titolo e artista ○, nessuna reazione né tema, una domanda. Ma l'artista non viene dall'oEmbed: vedi gli attriti.
+
+---
+
+## B14 · 2026-12-10 23:00 · link YouTube dal minuto 12
+
+> https://youtu.be/dQ9xLmP0aBc?t=754&si=Hk2 dal minuto 12 in poi, ascolta solo quello
+
+**`frammenti/2026/12/20261210-2300.md`**
+
+```md
+---
+registrato: 2026-12-10T23:00:09+01:00
+canale: telefono
+---
+https://youtu.be/dQ9xLmP0aBc?t=754&si=Hk2 dal minuto 12 in poi, ascolta solo quello
+```
+
+**`letture/2026/12/20261210-2300.md`** (oEmbed fallito: nessun nodo, il video resta in chiaro nel legame)
+
+```md
+---
+versione: 1
+letto: 2026-12-10T23:01:20+01:00
+intento: [salva]
+link: https://youtu.be/dQ9xLmP0aBc?t=754
+legami:
+  - nomina: "video YouTube dQ9xLmP0aBc (titolo non letto)"
+    momento: "12:34"
+    voce: sua
+    perche: "«dal minuto 12 in poi, ascolta solo quello»; t=754 nel link"
+---
+```
+
+**`restituzioni/2026/12/r-20261210-2301-risposta.md`**
+
+```md
+---
+forma: risposta
+per: 20261210-2300
+voci: []
+legami: []
+---
+**Salvato il link**, dal 12:34. Il video non riesco a leggerlo ⚠.
+```
+
+**Risposta sul telefono:** "23:01 · **Salvato il link**, dal 12:34. Il video non riesco a leggerlo ⚠."
+
+**Verifiche fatte:** oEmbed di YouTube (WebFetch e curl su `youtube.com/oembed?url=…dQ9xLmP0aBc`): **404**. Controprova
+con un id noto (`dQw4w9WgXcQ`): 200, quindi il servizio funziona e il video del banco non esiste o non è pubblico.
+`t=754` = 12:34. Rinviato: un nuovo tentativo nel consolidamento (nel modello non è scritto).
+
+**Costi:** 3 file scritti (frammento, lettura, restituzione) + `contesto/`. 2 richieste HTTP. ~1-2 minuti.
+
+**Esito sul banco:** passa male. `t=` conservato, momento 12:34, nessun "che cosa ti ha preso?"; ma il banco vuole titolo
+e canale, che non esistono (404), e il fallback l'ho preso per analogia da B13: il modello non ne ha uno.
+
+---
+
+## B15 · 2026-12-12 20:15 · Pinterest, Rilke in inglese
+
+> https://it.pinterest.com/pin/1234567890123/?mt=login let everything happen to you: beauty and terror. rilke credo
+
+**`frammenti/2026/12/20261212-2015.md`** (intatto, con `it.` e `?mt=login`)
+
+```md
+---
+registrato: 2026-12-12T20:15:33+01:00
+canale: telefono
+---
+https://it.pinterest.com/pin/1234567890123/?mt=login let everything happen to you: beauty and terror. rilke credo
+```
+
+**`letture/2026/12/20261212-2015.md`** (nessuna immagine scaricata; Rilke solo nel campo del nodo citazione, come Camus in B06)
+
+```md
+---
+versione: 1
+letto: 2026-12-12T20:17:10+01:00
+intento: [salva]
+link: https://www.pinterest.com/pin/1234567890123/
+legami:
+  - nomina: let-everything-happen-to-you
+    voce: sua
+    perche: "«let everything happen to you: beauty and terror. rilke credo»: in inglese, come circola; l'attribuzione è tua, incerta"
+  - serve-a: tatuaggi
+    voce: proposta
+    perche: "una frase con un pin: nell'Atlante ogni pin era un riferimento per i tatuaggi"
+---
+```
+
+**`persone/rainer-maria-rilke.md`** · **`citazioni/let-everything-happen-to-you.md`** (nuovi; una citazione sola, nessun originale né traduzione all'ingresso)
+
+```md
+---
+nome: Rainer Maria Rilke
+alias: [rilke]
+cerchia: mondo
+nato-da: [20261212-2015]
+---
+```
+
+```md
+---
+nome: Let everything happen to you: beauty and terror
+autore: rainer-maria-rilke
+prova: memoria
+nato-da: [20261212-2015]
+---
+Passo 1 (2026-12-12): nessuna scheda di apocrifo. È la resa inglese di Anita Barrows e Joanna Macy (Rilke's Book of Hours,
+Riverhead 1996), I, 59: Libro d'ore, prima parte (Il libro della vita monastica, 1899). Originale e traduzione italiana da verificare.
+```
+
+**`restituzioni/2026/12/r-20261212-2017-risposta.md`**
+
+```md
+---
+forma: risposta
+per: 20261212-2015
+voci:
+  - n: 1
+    rif: let-everything-happen-to-you
+legami:
+  - serve-a: tatuaggi
+    voce: proposta
+    perche: "lo stesso legame della lettura"
+---
+**Salvata.** Sì, Rilke ⚠: *Libro d'ore*, prima parte (1899); l'inglese è di Barrows e Macy.
+```
+
+**Risposta sul telefono:** "20:17 · **Salvata.** Sì, Rilke ⚠: *Libro d'ore*, prima parte (1899); l'inglese è di Barrows e Macy."
+
+**Verifiche fatte:** passo 1, 2 WebSearch. (1) Il verso tedesco ("Laß dir alles geschehn: Schönheit und Schrecken") nello
+*Stunden-Buch*: la ricerca dà la struttura (I, 1899; II, 1901; III, 1903; testo su Projekt Gutenberg) ma non trova il verso.
+(2) La forma inglese: Art & Theology e altri la danno come *Book of Hours* I, 59, traduzione Barrows e Macy (Riverhead 1996).
+Nessun segnale di apocrifo, nessun `esito`. L'anno di pubblicazione del libro (non il 1899 della stesura) non l'ho
+verificato. Rinviato: passi 2-3 (verso tedesco sul testo di Gutenberg, traduzione italiana e traduttore), `wikidata` di Rilke.
+
+**Costi:** 5 file scritti (frammento, lettura, 2 nodi, restituzione) + `contesto/`. 2 ricerche. ~3 minuti.
+
+**Esito sul banco:** passa. Pin normalizzato nella lettura, nessuna immagine, Rilke nato, una citazione sola `prova: memoria`
+✦, niente "c'è già". Il "(1899)" del banco è l'anno della prima parte, non del libro: l'ho detto come tale.
