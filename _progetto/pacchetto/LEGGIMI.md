@@ -30,7 +30,7 @@ fonte: se divergono, vale prompt v3):
   dentro tattoo-shit un `CLAUDE.md` verrebbe letto come istruzione);
 - `radice/prompt/` diventa `prompt/`: [smista](./radice/prompt/smista.md), [consolida](./radice/prompt/consolida.md),
   [lettera](./radice/prompt/lettera.md), [ritratto](./radice/prompt/ritratto.md), [progetto](./radice/prompt/progetto.md)
-  (istruzioni del Progetto claude.ai), [specchio](./radice/prompt/specchio.md), [ti ricordi](./radice/prompt/ti-ricordi.md),
+  (istruzioni del Progetto claude.ai), [specchio](./radice/prompt/specchio.md), [ricordo](./radice/prompt/ricordo.md) ("ti ricordi?"), [piano](./radice/prompt/piano.md) (formato del piano JSON comune a tutti i cicli),
   [sogno](./radice/prompt/sogno.md), [confronto](./radice/prompt/confronto.md). `prompt/routine-smista.md` lo scrive il
   blocco 7 del piano, a partire da `smista.md`.
 
