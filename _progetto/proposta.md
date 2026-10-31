@@ -4,6 +4,7 @@
 > [schema](/_progetto/schema.md), [domande](/_progetto/domande.md), [acquisizione](/_progetto/acquisizione.md)
 > e [migrazione](/_progetto/migrazione.md), applicando le decisioni del coordinatore. Dove i quattro divergono vale questo.
 > Nessuna nota, cartella o script esistente è stato toccato.
+> Il racconto della sessione è nel [diario del 2026-10-31](/diario/2026-10-31-memo-coscienza.md).
 
 ## 1. Visione
 
