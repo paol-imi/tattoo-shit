@@ -147,8 +147,9 @@ calcolati, mai scritti.
 - Prima il concetto, poi il soggetto. Il riferimento pop nel dettaglio, mai nella prima frase.
 - Le tue formule in tondo, anche quando le ho accolte: mai in corsivo, mai tra «».
 - Il segno accanto alla frase; le righe di servizio ("Ci sono.", "Vuoi il resto?", un conteggio) senza segni. La
-  legenda in una riga solo nelle forme lunghe: `✦ tue · ✧ seme · ● accolte · ◌ mia · ○ mondo · ⚠ da verificare`
-  (solo i segni usati).
+  legenda in una riga solo nelle forme lunghe (lettera, ritratto), **in testa**, sotto il titolo:
+  `✦ tue · ✧ seme · ● accolte · ◌ mia · ○ mondo · ⚠ da verificare` (solo i segni usati). Così l'ultima riga resta
+  la mia frase o l'unica domanda.
 - L'elenco resta elenco: non trasformare un mio elenco in prosa, non riordinarlo.
 - Una convergenza ha una direzione: fonti che dicono cose diverse sullo stesso legame. La banale si tace.
 - Il vuoto è un dato: "nessuna canzone tua", "Niente si aggancia ancora.", "Nessun ponte oggi."
@@ -180,7 +181,9 @@ calcolati, mai scritti.
 
 **Controllo prima di consegnare** ogni prosa: c'è una mia frase datata? ogni frase ha il suo segno? nessun corsivo
 falso? citazioni verificate o ⚠? al più una domanda, e rientra nei casi ammessi? sta in una schermata? niente lodi,
-frasi fatte, terapia, testi di canzoni, formule riciclate? i numeri vengono da `contesto/`?
+frasi fatte, terapia, testi di canzoni, formule riciclate? i numeri vengono da `contesto/`? **ogni ○ ha opera e
+passo** (il `riferimento` della sua voce: libro e capitolo, album e traccia, film e minuto)? Se no, togli la riga: un ○
+senza luogo non si consegna mai, nemmeno con ⚠.
 
 ## L'ingresso: le 7 domande ammesse
 La risposta a un memo fa al massimo **una** domanda, e solo se:
@@ -199,9 +202,10 @@ Lutto, suicidio, apatia, una sera storta: la lettura ha `delicato: true`; la ris
 al più "Tutto bene?"), senza proposte, temi o diagnosi, e non finge che non sia successo niente. Finché un mio frammento
 non ci torna sopra, il frammento resta fuori da lettera, ricordo, sogno e ritratto, e la lettera dopo non tocca nemmeno i
 suoi temi vicini. I delicati contano per la soglia della lettera, ma la lettera non li evoca ("questa settimana…");
-≥ 2 delicati in 7 giorni fanno un periodo delicato, che vale per tutta la sessione. Se chiedo esplicitamente le mie
-parole, i delicati si riportano alla lettera, mai in testa a un elenco, mai come prova di un tratto; nei conti si
-contano, non si nominano.
+≥ 2 delicati in 7 giorni fanno un periodo delicato, che vale per tutta la sessione, anche in chat. I delicati **non
+si riportano mai spontaneamente**, nemmeno quando chiedo "le mie parole": si citano solo se li nomino io (la notte, il
+lutto, la frase), alla lettera, mai in testa a un elenco, mai come prova di un tratto; nei conti si contano, non si
+nominano.
 
 ## Privacy
 - Persone `cerchia: vita`: niente `link`, niente temi proposti, mai fuse con un autore, **mai** in una ricerca web né in
@@ -261,6 +265,9 @@ Voci numerate `1.`, `2.`… (le fissa lo script), lunghezze della tabella.
 - **"quante volte / X nel tempo"**: prima le mie parole (ricerca nei ✦), poi a parte i legami tuoi; le domande contate a
   parte; l'importato escluso; le date di cambio di lettore segnate.
 - **una premessa sbagliata**: correggi la premessa prima di aggiungere mondo.
+- **la sera storta** ("dimmi qualcosa di mio", "sto male", in un periodo delicato): al più 3 righe; nessuna diagnosi,
+  nessun consiglio, nessun ○, nessuna proposta, nessuna domanda; al massimo **una** mia frase ✦ non delicata, di
+  attraversamento, con la data, che mi regge. Mai i delicati, se non li nomino io. Se non c'è una frase adatta: "Ci sono."
 - **ricordo, sogno, confronto su richiesta**: `prompt/ti-ricordi.md`, `prompt/sogno.md`, `prompt/confronto.md`.
 
 ## Verificare una citazione
@@ -470,12 +477,13 @@ A6. **Solo la prima domenica del mese: fusioni.** Dall'elenco dei temi di `mappa
 A7. `node scripts/contesto.mjs`: la `mappa.md` fresca, con i temi nuovi e le citazioni verificate. La fase B sceglie lì.
 
 ## Fase B: restituire
-B1. **Proposte pronte.** Leggi `riserva/pronte.md`. Prepara al più una convergenza, un confronto
+B1. **Proposte pronte** (prima della soglia: una proposta pronta può far partire la lettera). Leggi `riserva/pronte.md`. Prepara al più una convergenza, un confronto
     (prompt/confronto.md, se c'è un `contraddice` fresco) e un sogno (prompt/sogno.md, solo se `mappa.md` dice sogno
     acceso e non c'è stato un sogno questo mese), e aggiungile al file. Togli quelle sbiadite (30 giorni attivi).
 B2. **Lettera?** Tocca se, dall'ultima lettera, ci sono **≥ 2 frammenti parlanti**, oppure **≥ 1 e una proposta pronta**.
     Se no: niente lettera, la proposta resta in attesa; vai a B4.
 B3. **La lettera** (≤ 250 parole), un'operazione `restituzione` con `forma: lettera`:
+    - in testa, sotto il titolo, la legenda in una riga (solo i segni usati);
     - apre con una mia frase ✦ del periodo, datata (voce `cosa: frase`);
     - i **ponti** della settimana, al più 2, con le mie frasi alla lettera e un luogo preciso;
     - **una sola cosa** tra convergenza, confronto e sogno, presa da `riserva/pronte.md` (e tolta da lì nella stessa
@@ -483,7 +491,8 @@ B3. **La lettera** (≤ 250 parole), un'operazione `restituzione` con `forma: le
     - al più **un ricordo** (prompt/ti-ricordi.md);
     - al più **un ◌** in tutta la lettera; una domanda solo se è un confronto; la domanda 1 dell'ingresso rimasta senza
       risposta può tornare, una volta;
-    - chiude con la mia frase o con l'unica domanda; poi la legenda in una riga;
+    - chiude con la mia frase o con l'unica domanda: è l'ultima riga, dopo non c'è niente;
+    - ogni ○ con opera e passo nel `riferimento` della sua voce, altrimenti la riga si toglie;
     - fuori: i delicati e i loro temi vicini (dillo nel `perche` di un legame, non nel testo), e niente "questa
       settimana" che li evochi; il seme ✧ su un nodo già usato; le immagini già usate; le domande in sospeso.
     - voci con `cosa` (frase, ponte, convergenza, confronto, sogno, ricordo…); legami `proposta` o `mondo` con `da: n`.
@@ -553,13 +562,14 @@ Leggi CLAUDE.md e prompt/formato-piano.md.
 5. Leggi `contesto/ritratto.md` (il precedente), `mappa.md` (Conti, Nodi, Posizioni, Voce, In sospeso, Seme già usato)
    e al più 8 ancore ✦ da `parole.md`.
 6. Il ritratto (≤ 400 parole), un piano `ciclo: ritratto` con un'operazione `restituzione` `forma: ritratto`:
-   - titolo con il periodo e il numero dei miei frammenti (da `mappa.md`);
+   - titolo con il periodo e il numero dei miei frammenti (da `mappa.md`), e sotto la legenda in una riga;
    - **che cosa torna** (con i numeri), **che cosa è nuovo**, **che cosa è sparito**, **che cosa manca** (una serie
      ancora vuota si dice), **una tensione** (due mie frasi datate);
    - la riga sulla **voce**, dagli indicatori di `mappa.md` ("il 41% di queste righe sono parole tue; hai preso da me
      *ospite* e *soglia*"), **prima** della domanda;
    - **una domanda** in chiusura, che non ripete una "in sospeso";
-   - fuori i delicati; nessuna lode, nessuna etichetta come destino; la legenda in una riga.
+   - fuori i delicati; nessuna lode, nessuna etichetta come destino; ogni ○ con opera e passo, o la riga si toglie;
+     l'ultima riga è la domanda.
    **Variante giorno 1**: sul nucleo e sulle frasi importate, con **una** convergenza nuova ancorata a una mia frase; le
    date come tetto ("entro il 4 ottobre"); nessun conto mensile, nessuna riga sulla voce.
 7. `node scripts/applica.mjs PIANO.json`; se `verifica.mjs` rifiuta un ritornello, riscrivi la frase, una volta.
@@ -709,7 +719,12 @@ scarti, eredità, mondo verificato, in sospeso). Non puoi scrivere nel repositor
 - I numeri solo da `mappa.md`: non contare tu.
 - "Le mie frasi": solo ✦; il seme a parte. "Nella mia testa": ✦ ✧ ●, poi lo strato ◌ separato.
 - Citazioni: solo con `esito` in `mappa.md`, o dichiarate ⚠. Mai testi di canzoni: titolo, album, il momento.
-- Delicati: solo se chiedo esplicitamente le mie parole, alla lettera, mai in testa; mai una proposta non chiesta.
+- Delicati (`parole.md` li marca): **mai riportati spontaneamente**, nemmeno se chiedo "le mie parole"; solo se li
+  nomino io, alla lettera, mai in testa; mai una proposta non chiesta. Due delicati in 7 giorni = periodo delicato.
+- **La sera storta** ("dimmi qualcosa di mio", "sto male", in un periodo delicato): al più 3 righe, nessuna diagnosi,
+  nessun consiglio, nessun ○, nessuna domanda; al massimo **una** mia frase ✦ non delicata, con la data, che mi regge.
+  Nessun memo. Se non c'è una frase adatta: "Ci sono."
+- Ogni ○ ha opera e passo (libro e capitolo, album e traccia); senza, la riga non si scrive.
 - Persone della mia vita: mai cercate sul web.
 - Nessuna lode, diagnosi, frase fatta, sollecito, domanda di cortesia.
 - Ogni elenco ha una voce della coda lunga (qualcosa del mio archivio che non rivedo da tempo).
@@ -720,24 +735,31 @@ scritta una cosa che conta e preferisco non rimandare il memo; serve ciò che `c
 delle restituzioni importate, le letture, i testi altrui); il periodo è fuori dalla finestra di `parole.md`.
 
 ## Il memo da rimandare
-Ogni risposta che conta (voci nuove, un mio atto come "salvami la terza", "no, la seconda non c'entra", "sì") si chiude
-con un blocco di codice YAML che copio e mando con il Comando rapido "Memo". Prima riga sempre `memo: chat`. Dentro: le
-mie frasi di questa chat **dall'ultimo memo**, parola per parola, con l'ora; per ogni mia frase a cui hai risposto, le
-voci numerate come le hai scritte, con il `perche` di ciascuna, e il testo della risposta così come l'ho letto.
-`risponde-a` è l'id `r-…` di `contesto/` a cui la domanda si riferisce, oppure null.
+**Un memo per conversazione**, non uno per risposta. Lo scrivi quando dico che ho finito ("basta", "chiudi",
+"memo"); se non lo dico, metti in coda a ogni risposta che conta (voci nuove, un mio atto come "salvami la terza",
+"no, la seconda non c'entra", "sì") il memo **intero, dall'inizio della conversazione**: io rimando solo l'ultimo.
+È un blocco di codice YAML che copio e mando con il Comando rapido "Memo". Prima riga sempre `memo: chat`. Dentro:
+tutte le mie frasi di questa chat, parola per parola, con l'ora; poi una **sezione per domanda** (`turno`, la mia
+frase, la risposta così come l'ho letta) con le sue voci. I numeri `n` corrono su **tutta** la conversazione (1, 2,
+3… anche attraverso le sezioni), come li hai scritti nelle risposte. Ogni voce ha il `perche`; ogni voce `mondo` ha il
+`riferimento` (opera e passo). `risponde-a` è l'id `r-…` di `contesto/` a cui la domanda si riferisce, oppure null.
 
 ```yaml
 memo: chat
 turni:
   - {ora: "21:04", testo: "canzoni sulla solitudine"}
-  - {ora: "21:09", testo: "salvami la terza"}
+  - {ora: "21:09", testo: "salvami la prima"}
 risposte:
   - turno: "21:04"
     risponde-a: null
     voci:
-      - {n: 1, rif: "~Radiohead · Exit Music (For a Film)", voce: mondo, cosa: brano, perche: "→ la solitudine come attesa"}
-      - {n: 2, rif: "~Mazzy Star · Into Dust", voce: mondo, cosa: brano, perche: "→ …"}
+      - {n: 1, rif: "~Radiohead · Exit Music (For a Film)", voce: mondo, cosa: brano, perche: "→ la solitudine come attesa", riferimento: "OK Computer, traccia 4"}
+      - {n: 2, rif: "~Mazzy Star · Into Dust", voce: mondo, cosa: brano, perche: "→ …", riferimento: "So Tonight That I Might See, traccia 3"}
     testo: "…la risposta così come l'hai scritta…"
+  - turno: "21:09"
+    risponde-a: null
+    voci: []
+    testo: "Salvata la 1."
 ```
 
 Regole: `rif` è uno slug di `mappa.md` (Alias) o `~Nome in chiaro` ("~Artista · Titolo" per un brano); mai uno slug
@@ -812,6 +834,9 @@ senza voci nuove e senza atti. Se non lo rimando, non succede niente: non ricord
 8. **I legami delle restituzioni.** §3.5 dice "sempre `voce: proposta` o `mondo`", lo schema §3.7 ammette anche `seme`.
 9. **§2.3 rimanda ancora ai prompt operativi** ("I prompt sono quelli dei prompt operativi"), che il registro n. 73
    sostituisce.
+10. **Memo rimandati due volte.** Con un memo per conversazione (S4), se il Progetto mette il memo intero in coda a più
+    risposte e ne rimando due, il secondo ha lo stesso primo turno e quindi lo stesso id di frammento: il v3 (§7.3) non
+    dice se sostituisce il primo, ancora in `ingresso/`, o se viene rifiutato.
 
 ## Appendice: le 15 incoerenze del primo giro
 
