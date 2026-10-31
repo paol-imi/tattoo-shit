@@ -16,26 +16,27 @@ Branch di raccolta: `claude/quirky-newton-qe5g9o`. Ogni sessione lavora su un br
 2. Ricerca v2, in `_progetto/v2/`: essenza, esempi-ingresso (68), esempi-domande (108), cervello, stato-arte, archivio-reale, restituzione (prove vere, mandata all'utente), telefono, eredita, citazioni, identita.
 3. Modello v2: `_progetto/v2/modello.md` + `banco-di-prova.md` (25 messaggi + 25 domande).
 
-## Completati nel giro 3
-- R1 critica-tempo.md, R2 critica-semplicita.md, S2 simulazione/importazione.md (+ regole e attriti): già uniti qui.
+## Completati
+- Giro 3: critica-tempo.md, critica-semplicita.md, simulazione/importazione (+ regole, attriti), banco-di-prova-v2.md, voce.md + prompt-operativi.md, simulazione/domande-simulate.md + attriti-domande.md.
+- Modello v3: modello-v3.md (allineato a banco v2, voce, prompt, attriti domande). Manca solo l'integrazione della simulazione dell'ingresso.
 
-## In corso (giro 3-4)
-| Sessione | Compito | Branch | Output atteso |
+## In corso (giro 4)
+| Sessione | Compito | Branch | Output |
 |---|---|---|---|
-| session_01WgHifykAB2cgnqa8vKxDwg | S1 simulazione ingresso (25 messaggi + consolidamento) | claude/v3-sim-ingresso | simulazione/ingresso.md, attriti-ingresso.md |
-| session_01WgHig3GnW2DvdKsdGC6XzM | M modello v3 definitivo, autosufficiente | claude/v3-modello | modello-v3.md (QUANDO ARRIVA S1: girargli il riassunto con send_message) |
-| session_01WgHig3o88JPFpAdTisBt6S | B2 banco di prova v2 (+ restituzione, tempo e uso) | claude/v3-banco | banco-di-prova-v2.md |
-| session_01WgHig2xm2qPm5Sea4gmoy9 | S3 simulazione delle 25 domande sull'import | claude/v3-sim-domande | simulazione/domande.md, attriti-domande.md |
-| session_01WgHig2fxk4NixpDPNx3zUL | V voce + prompt operativi (CLAUDE.md nuovo, smista, consolidamento, lettera, ritratto, ti ricordi, sogno, confronto, Specchio) | claude/v3-voce | voce.md, prompt-operativi.md |
+| session_01WgHifykAB2cgnqa8vKxDwg | S1 simulazione ingresso (quasi finita) | claude/v3-sim-ingresso | simulazione/ingresso.md, attriti-ingresso.md |
+| session_01WgHig3GnW2DvdKsdGC6XzM | M modello v3: QUANDO ARRIVA S1 girargli il riassunto con send_message | claude/v3-modello | modello-v3.md |
+| session_01WgHifzv9xzwECdY2BAVM22 | P piano di implementazione eseguibile dall'altro account | claude/v4-piano | piano.md |
+| session_01WgHifyR2ErMvFtJGTrRGFG | TR prova R01–R14 sul v3, con giudice separato (soglia ≥10/14 + R01, R06, R07, R14) | claude/v4-prova-restituzione | simulazione/prova-restituzione.md, attriti-restituzione.md |
+| session_01WgHig19brLHAhAd5X9cpDd | TT prova T01–T10 sul v3 (dati sintetici, misure vere) | claude/v4-prova-tempo | simulazione/prova-tempo.md, attriti-tempo.md |
 
-Decisione del coordinatore: la restituzione (sogno, ti ricordi, ritratto) NON si taglia nonostante critica-semplicita; si applicano i ritmi di critica-tempo.
+Decisioni del coordinatore: la restituzione resta (si decide con la prova TR); ritratto mensile nei primi 3 mesi, poi trimestrale; dove modello e critica-tempo divergono vale critica-tempo.
 
 ## Prossimi passi
-1. Unire i branch man mano (conflitti solo su README: si tengono entrambe le righe). Girare S1 e S3 alla sessione M (modello v3).
-2. Prova del v3: simulare il banco v2 per intero (più sessioni in parallelo: ingresso, domande, restituzione, tempo), poi correggere il v3 finché regge.
-3. Piano di implementazione a blocchi, con i criteri di collaudo presi dal banco v2.
-4. Pacchetto + prompt finale autosufficiente per l'altro account (sostituisce avvio.md): modello v3, banco v2, voce, prompt operativi, telefono, citazioni, identità, regole di importazione, eredità.
-5. Voce di diario e commit.
+1. Unire i branch man mano. Girare S1, TR e TT alla sessione M per l'ultima revisione del v3.
+2. Riallineare prompt-operativi.md e banco-di-prova-v2.md ai nomi del v3 (una sessione).
+3. Pacchetto per l'altro account: una cartella `_progetto/pacchetto/` con i file da copiare nel nuovo repo (modello, banco, voce, prompt, CLAUDE.md nuovo, regole di import, protocolli) + `prompt-avvio.md` autosufficiente, che sostituisce avvio.md.
+4. Revisione finale avversaria del pacchetto: una sessione "a freddo" che lo legge senza contesto e prova a partire.
+5. Voce di diario e commit. Attenzione: `<…>` fuori dal codice rompe il build del sito.
 
 ## Diagnosi chiave da non perdere
 - Nell'Atlante l'utente ha scritto ~8 note su ~320, ha preso 0 decisioni su ~130 proposte, ha dato 0 risposte "a pancia", poi 23 giorni di silenzio.
