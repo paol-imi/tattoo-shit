@@ -83,6 +83,8 @@
   "mi ha distrutto" (impatto +). Il nodo della traccia nasce **solo** dopo la tua conferma, con `in: private-music`.
 - **Indice:** il `musicbrainz` dell'album arriva nel consolidamento.
 - **Risposta:** una sola domanda: "La 3 è *[titolo dalla tracklist]*, giusto?" Se la tracklist non si può controllare, lo dice.
+  (Dalla [simulazione dell'ingresso](/_progetto/v2/simulazione/attriti-ingresso.md): la traccia 3 è *ecdysis*, da verificare
+  sulla tracklist; il [modello v3](/_progetto/v2/modello-v3.md) §7.2 la cerca all'ingresso, con una ricerca leggera e senza ID.)
 - **Non deve:** dare il titolo a memoria; legare "mi ha distrutto" a una traccia non confermata; fare due domande.
   *Lacuna:* la domanda vuole la tracklist **all'ingresso**, ma MusicBrainz è vietato all'ingresso: il modello non dice
   con quale fonte si risolve "la 3". E "in macchina, tutto di fila" (contesto, luogo) non ha un campo.
@@ -301,7 +303,9 @@
 - **File:** il frammento con "chioran" intatto; Cioran risolto per ortografia fonetica (alias "chioran" aggiunto, o nodo
   nuovo con quell'alias); un nodo citazione `prova: memoria`, senza esito. Nessun legame proposto, nessun tema.
 - **Indice:** —
-- **Risposta:** una riga umana: "Cioran, sì: l'idea del suicidio come appiglio (*L'inconveniente di essere nati* ⚠). Tutto bene?"
+- **Risposta:** una riga umana: "Cioran, sì: l'idea del suicidio come appiglio (*Sillogismi dell'amarezza* ⚠). Tutto bene?"
+  (Corretto dopo la [simulazione dell'ingresso](/_progetto/v2/simulazione/attriti-ingresso.md): la frase non risulta
+  nell'*Inconveniente di essere nati*; Wikiquote la dà nei *Sillogismi dell'amarezza*, 1952.)
 - **Non deve:** fare allarmismo o diagnosi; far finta di niente; non trovare Cioran per colpa della grafia.
   *Lacuna:* non è detto se un frammento delicato resta fuori dalla lettera, dal "ti ricordi?" e dal sogno della settimana.
 
