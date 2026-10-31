@@ -22,7 +22,7 @@ incollate nel Progetto, che non legge il repository. Dove il v3 non fissa un det
 | file | chi lo usa | quando |
 |---|---|---|
 | `CLAUDE.md` | ogni sessione Code | sempre |
-| `prompt/piano.md` | tutti i cicli che scrivono | il formato del piano per `applica.mjs` |
+| `prompt/formato-piano.md` | tutti i cicli che scrivono | il formato del piano per `applica.mjs` |
 | `prompt/smista.md` | Routine "smista", Specchio | a ogni `fire` e ogni 3 ore |
 | `prompt/consolida.md` | Routine "consolida" | domenica 03:13 (ripiego 09:13) |
 | `prompt/lettera.md` | Routine "lettera" | domenica 17:37 |
@@ -57,7 +57,7 @@ Fuori dagli strati: `riserva/ritorno.md` (la riga del "mentre eri via") e `riser
 della lettera), scritti solo da "consolida"; `taratura/`, scritta solo da `migra/tara.mjs`.
 
 **Mai file scritti a mano** in `frammenti/`, `letture/`, nodi, `restituzioni/`, `riserva/`, `contesto/`: tutto passa da
-un piano (`prompt/piano.md`) e da `applica.mjs`. L'unica eccezione è Specchio, che scrive a mano il frammento di chat e
+un piano (`prompt/formato-piano.md`) e da `applica.mjs`. L'unica eccezione è Specchio, che scrive a mano il frammento di chat e
 la sua bozza in `ingresso/` mentre conversa (`prompt/specchio.md`).
 
 Un file, un solo scrittore:
@@ -276,7 +276,7 @@ Ogni subagent ha un compito piccolo e chiuso (un frammento, tre citazioni, una s
 
 ---
 
-## 2. `prompt/piano.md`
+## 2. `prompt/formato-piano.md`
 
 Il formato unico con cui l'AI scrive (v3 §2.2, registro n. 73): un involucro `{ciclo, letto-da, operazioni}` e sette tipi
 di operazione. Il v3 nomina i tipi; i campi di ciascuno sono **[scelta]**, presi dai campi dello schema §3.7.
@@ -338,7 +338,7 @@ Ogni ciclo che scrive (smista, consolida, ritratto, specchio) produce **un piano
 ````markdown
 # Routine "smista"
 
-Leggi CLAUDE.md e prompt/piano.md. Il testo che ricevi, se c'è, è l'id del frammento appena salvato; se è vuoto, sei la
+Leggi CLAUDE.md e prompt/formato-piano.md. Il testo che ricevi, se c'è, è l'id del frammento appena salvato; se è vuoto, sei la
 passata delle 3 ore.
 
 ## Passi
@@ -382,7 +382,7 @@ passata delle 3 ore.
    **Raffica**: tutti i memo che elabori in questa sessione, in tutti i giri, hanno **una** risposta, con `per`
    l'ultimo e `copre` gli altri. Se in `recenti.md` c'è già una risposta con `per` a meno di 10 minuti dal tuo primo
    memo, non scriverne un'altra: la lettura punta a quella (`risposta: ID`).
-4. `node scripts/applica.mjs PIANO.json`. Se rifiuta: prompt/piano.md, "Rifiuto".
+4. `node scripts/applica.mjs PIANO.json`. Se rifiuta: prompt/formato-piano.md, "Rifiuto".
 5. `node scripts/lucchetto.mjs rinnova` se sono passati 10 minuti (se il lucchetto non è più tuo, abbandona senza
    spingere). `git pull`: se sono arrivati memo, torna al passo 2, **al massimo 3 giri**; poi lasciali alla passata.
 6. `node scripts/contesto.mjs`, `node scripts/verifica.mjs`, `node scripts/lucchetto.mjs lascia`, commit
@@ -431,7 +431,7 @@ sessione: A rilegge e aggiorna i dati, B restituisce sui dati rigenerati.
 ````markdown
 # Routine "consolida"
 
-Leggi CLAUDE.md e prompt/piano.md. Una volta a settimana, di notte, con subagent dal compito piccolo (uno ogni 3
+Leggi CLAUDE.md e prompt/formato-piano.md. Una volta a settimana, di notte, con subagent dal compito piccolo (uno ogni 3
 citazioni, uno per gruppo di 10 frammenti).
 
 ## Apertura
@@ -538,7 +538,7 @@ lancia a mano da Specchio con lo stesso file.
 ````markdown
 # Routine "ritratto"
 
-Leggi CLAUDE.md e prompt/piano.md.
+Leggi CLAUDE.md e prompt/formato-piano.md.
 
 ## Tocca a te?
 1. `git pull`; leggi `contesto/mappa.md`, Stato: la data d'inizio, i ritratti già scritti, i frammenti parlanti del mese
@@ -581,7 +581,7 @@ Si apre con "Leggi ed esegui prompt/specchio.md".
 ````markdown
 # Specchio
 
-Leggi CLAUDE.md e prompt/piano.md.
+Leggi CLAUDE.md e prompt/formato-piano.md.
 
 ## All'apertura
 1. `git pull`. Se `ingresso/` ha memo e il lucchetto è libero, fai il lavoro di prompt/smista.md (passi 1–6, con
@@ -779,7 +779,7 @@ senza voci nuove e senza atti. Se non lo rimando, non succede niente: non ricord
 
 1. **I campi delle sette operazioni** (§2): il v3 ne dà i nomi, non i campi.
 2. **La fusione come operazione `lapide`**, che `applica.mjs` esegue chiamando `migra/fondi.mjs`.
-3. **`prompt/piano.md`, `prompt/specchio.md`, `prompt/ricordo.md`, `prompt/sogno.md`, `prompt/confronto.md`,
+3. **`prompt/formato-piano.md`, `prompt/specchio.md`, `prompt/ricordo.md`, `prompt/sogno.md`, `prompt/confronto.md`,
    `prompt/progetto.md`**: file in più rispetto a quelli che il v3 nomina (`prompt/smista.md`, `prompt/consolida.md`, …).
 4. **La verifica rapida prima di `applica`**, dentro il `crea-nodo`, perché `esito` e `riferimento` siano "ancora la
    creazione" (v3 §3.4).

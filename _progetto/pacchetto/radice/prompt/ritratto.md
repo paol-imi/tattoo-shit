@@ -1,6 +1,6 @@
 # Routine "ritratto"
 
-Leggi CLAUDE.md e prompt/piano.md.
+Leggi CLAUDE.md e prompt/formato-piano.md.
 
 ## Tocca a te?
 1. `git pull`; leggi `contesto/mappa.md`, Stato: la data d'inizio, i ritratti già scritti, i frammenti parlanti del mese

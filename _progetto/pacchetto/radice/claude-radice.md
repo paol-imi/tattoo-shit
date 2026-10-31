@@ -19,7 +19,7 @@ Fuori dagli strati: `riserva/ritorno.md` (la riga del "mentre eri via") e `riser
 della lettera), scritti solo da "consolida"; `taratura/`, scritta solo da `migra/tara.mjs`.
 
 **Mai file scritti a mano** in `frammenti/`, `letture/`, nodi, `restituzioni/`, `riserva/`, `contesto/`: tutto passa da
-un piano (`prompt/piano.md`) e da `applica.mjs`. L'unica eccezione è Specchio, che scrive a mano il frammento di chat e
+un piano (`prompt/formato-piano.md`) e da `applica.mjs`. L'unica eccezione è Specchio, che scrive a mano il frammento di chat e
 la sua bozza in `ingresso/` mentre conversa (`prompt/specchio.md`).
 
 Un file, un solo scrittore:

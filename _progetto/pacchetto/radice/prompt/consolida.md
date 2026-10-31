@@ -1,6 +1,6 @@
 # Routine "consolida"
 
-Leggi CLAUDE.md e prompt/piano.md. Una volta a settimana, di notte, con subagent dal compito piccolo (uno ogni 3
+Leggi CLAUDE.md e prompt/formato-piano.md. Una volta a settimana, di notte, con subagent dal compito piccolo (uno ogni 3
 citazioni, uno per gruppo di 10 frammenti).
 
 ## Apertura

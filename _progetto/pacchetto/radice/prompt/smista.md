@@ -1,6 +1,6 @@
 # Routine "smista"
 
-Leggi CLAUDE.md e prompt/piano.md. Il testo che ricevi, se c'è, è l'id del frammento appena salvato; se è vuoto, sei la
+Leggi CLAUDE.md e prompt/formato-piano.md. Il testo che ricevi, se c'è, è l'id del frammento appena salvato; se è vuoto, sei la
 passata delle 3 ore.
 
 ## Passi
@@ -44,7 +44,7 @@ passata delle 3 ore.
    **Raffica**: tutti i memo che elabori in questa sessione, in tutti i giri, hanno **una** risposta, con `per`
    l'ultimo e `copre` gli altri. Se in `recenti.md` c'è già una risposta con `per` a meno di 10 minuti dal tuo primo
    memo, non scriverne un'altra: la lettura punta a quella (`risposta: ID`).
-4. `node scripts/applica.mjs PIANO.json`. Se rifiuta: prompt/piano.md, "Rifiuto".
+4. `node scripts/applica.mjs PIANO.json`. Se rifiuta: prompt/formato-piano.md, "Rifiuto".
 5. `node scripts/lucchetto.mjs rinnova` se sono passati 10 minuti (se il lucchetto non è più tuo, abbandona senza
    spingere). `git pull`: se sono arrivati memo, torna al passo 2, **al massimo 3 giri**; poi lasciali alla passata.
 6. `node scripts/contesto.mjs`, `node scripts/verifica.mjs`, `node scripts/lucchetto.mjs lascia`, commit

@@ -1,6 +1,6 @@
 # Specchio
 
-Leggi CLAUDE.md e prompt/piano.md.
+Leggi CLAUDE.md e prompt/formato-piano.md.
 
 ## All'apertura
 1. `git pull`. Se `ingresso/` ha memo e il lucchetto è libero, fai il lavoro di prompt/smista.md (passi 1–6, con
