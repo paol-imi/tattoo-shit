@@ -16,21 +16,26 @@ Branch di raccolta: `claude/quirky-newton-qe5g9o`. Ogni sessione lavora su un br
 2. Ricerca v2, in `_progetto/v2/`: essenza, esempi-ingresso (68), esempi-domande (108), cervello, stato-arte, archivio-reale, restituzione (prove vere, mandata all'utente), telefono, eredita, citazioni, identita.
 3. Modello v2: `_progetto/v2/modello.md` + `banco-di-prova.md` (25 messaggi + 25 domande).
 
-## In corso (giro 3: prove sul modello v2)
+## Completati nel giro 3
+- R1 critica-tempo.md, R2 critica-semplicita.md, S2 simulazione/importazione.md (+ regole e attriti): già uniti qui.
+
+## In corso (giro 3-4)
 | Sessione | Compito | Branch | Output atteso |
 |---|---|---|---|
 | session_01WgHifykAB2cgnqa8vKxDwg | S1 simulazione ingresso (25 messaggi + consolidamento) | claude/v3-sim-ingresso | simulazione/ingresso.md, attriti-ingresso.md |
-| session_01WgHig3R3LXEFeTZzg2J6nm | S2 simulazione importazione (regole R1–R13) | claude/v3-sim-import | simulazione/importazione.md, regole-importazione.md, attriti-importazione.md |
-| session_01WgHig38zgkCcZhFCZZMf8L | R1 critica: tempo e uso (1 mese, 1 anno, 5 anni, colonizzazione) | claude/v3-critica-tempo | critica-tempo.md |
-| session_01WgHify2SgKU2DqZRyY8moo | R2 critica: semplicità (tagliare a metà, nucleo minimo vitale) | claude/v3-critica-semplicita | critica-semplicita.md |
+| session_01WgHig3GnW2DvdKsdGC6XzM | M modello v3 definitivo, autosufficiente | claude/v3-modello | modello-v3.md (QUANDO ARRIVA S1: girargli il riassunto con send_message) |
+| session_01WgHig3o88JPFpAdTisBt6S | B2 banco di prova v2 (+ restituzione, tempo e uso) | claude/v3-banco | banco-di-prova-v2.md |
+| session_01WgHig2xm2qPm5Sea4gmoy9 | S3 simulazione delle 25 domande sull'import | claude/v3-sim-domande | simulazione/domande.md, attriti-domande.md |
+| session_01WgHig2fxk4NixpDPNx3zUL | V voce + prompt operativi (CLAUDE.md nuovo, smista, consolidamento, lettera, ritratto, ti ricordi, sogno, confronto, Specchio) | claude/v3-voce | voce.md, prompt-operativi.md |
+
+Decisione del coordinatore: la restituzione (sogno, ti ricordi, ritratto) NON si taglia nonostante critica-semplicita; si applicano i ritmi di critica-tempo.
 
 ## Prossimi passi
-1. Unire i 4 branch.
-2. S3: simulare le 25 domande del banco sui dati prodotti da S1 e S2 (risposte complete, verdetto per criterio).
-3. Modello v3: integrare attriti e critiche (una sessione), poi un secondo giro di prova sul banco, finché lo schema regge.
-4. Piano di implementazione a blocchi, con criteri di collaudo dal banco.
-5. Prompt finale autosufficiente per l'altro account, al posto di `avvio.md`. Contiene: modello, regole, banco, architettura telefono, protocolli citazioni e identità, eredità, istruzioni da coordinatore. Prevedere un pacchetto di file da copiare nel nuovo repo.
-6. Voce di diario e commit.
+1. Unire i branch man mano (conflitti solo su README: si tengono entrambe le righe). Girare S1 e S3 alla sessione M (modello v3).
+2. Prova del v3: simulare il banco v2 per intero (più sessioni in parallelo: ingresso, domande, restituzione, tempo), poi correggere il v3 finché regge.
+3. Piano di implementazione a blocchi, con i criteri di collaudo presi dal banco v2.
+4. Pacchetto + prompt finale autosufficiente per l'altro account (sostituisce avvio.md): modello v3, banco v2, voce, prompt operativi, telefono, citazioni, identità, regole di importazione, eredità.
+5. Voce di diario e commit.
 
 ## Diagnosi chiave da non perdere
 - Nell'Atlante l'utente ha scritto ~8 note su ~320, ha preso 0 decisioni su ~130 proposte, ha dato 0 risposte "a pancia", poi 23 giorni di silenzio.
@@ -43,3 +48,4 @@ Branch di raccolta: `claude/quirky-newton-qe5g9o`. Ogni sessione lavora su un br
 - Quanto parla per primo il sistema (racc.: lettera domenicale + ritratto trimestrale).
 - Il sogno (racc.: max 1 al mese).
 - Il giudizio a pancia su `restituzione.md` (chiesto, ancora senza risposta).
+- Fuori ambito, da proporre: correggere le citazioni sbagliate dell'Atlante (vedi citazioni.md, simulazione/attriti-importazione.md A8).
