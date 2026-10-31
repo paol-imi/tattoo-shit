@@ -60,7 +60,7 @@ Sono dodici. Ognuno ha la prova che lo fonda.
 
 | strato | cartelle | chi scrive | si modifica? | se si perde |
 |---|---|---|---|---|
-| **Detto** | `ingresso/` → `frammenti/` | tu (Comando rapido, sessione Specchio) o l'importazione; [S] lo sposta senza toccarlo | **mai** (verifica con hash) | perso per sempre |
+| **Detto** | `ingresso/` → `frammenti/` | tu (Comando rapido, memo del Progetto, sessione Specchio) o l'importazione; [S] lo sposta senza toccarlo (il memo del Progetto lo separa, §7.3) | **mai** (verifica con hash) | perso per sempre |
 | **Letto** | `letture/`, nodi in `persone/ opere/ citazioni/ temi/ raccolte/` | [AI] decide, [S] scrive | sì, per versioni; lo slug **mai** | si rifà dai frammenti, a costo di token |
 | **Restituito** | `restituzioni/` | [AI] scrive la prosa, [S] numera e salva | **mai** | perso: ti ha detto qualcosa che non si ritrova |
 | **Calcolato** | `contesto/` (4 file, versionato) | [S] `contesto.mjs`, senza AI | si rigenera | si rifà in un secondo |
@@ -311,11 +311,13 @@ Scritta una volta, mai cambiata ([S] confronta l'hash a ogni verifica).
 | `copre` | no | gli altri frammenti di una raffica a cui la stessa risposta risponde (T01) |
 | `aggancio` | no | `{a: <id frammento>, passo: "nucleo:19"}`: la frase su cui si regge (A7). Non è "chi l'ha chiesta" |
 | `voci` | sì (anche vuoto) | gli elementi numerati: `{n, rif, voce, cosa}` |
-| `legami` | no | i legami che propone (convergenze, ponti), sempre `voce: proposta` o `mondo` |
+| `legami` | no | i legami che propone (convergenze, ponti), sempre `voce: proposta` o `mondo`; `da: 3` se il legame parte dalla voce 3 (un brano che parla di solitudine: Q25) |
 | `fonte` | solo `eredita` | `file:riga@commit` (A20) |
 
 `voci[].rif` è uno slug, un id di frammento o un `~Nome`; `voci[].turno` dice a quale turno di una chat appartiene; `voci[].cosa` dice che cosa è: `brano`, `libro`, `citazione`,
-`film`, `persona`, `idea`, `ponte`, `convergenza`, `confronto`, `sogno`, `ricordo`, `domanda`, `assenza`. Il numero `n` lo assegna [S], nell'ordine
+`film`, `persona`, `idea`, `ponte`, `convergenza`, `confronto`, `sogno`, `ricordo`, `domanda`, `assenza`. `voci[].esito` registra una verifica del mondo fatta in quella risposta (D15, Q21): `mappa.md` la elenca tra le voci già
+verificate e non si rifà. `voci[].estratto` (solo `eredita`) è la riga centrale del passo, ≤ 25 parole, **copiata** dal
+corpo: [S] controlla che sia una sottostringa (Q3). Il numero `n` lo assegna [S], nell'ordine
 in cui le voci compaiono nel corpo; il corpo mostra gli stessi numeri. Così "la terza" è stabile (D17).
 
 Il corpo è il testo consegnato, con i segni di voce (§5). Le convergenze dell'Atlante e i ritratti importati sono
@@ -395,7 +397,8 @@ questo schema prima di ogni push. Un piano che non passa non diventa file.
         "perche": {"type": "string", "minLength": 3, "maxLength": 300},
         "momento": {"type": "string", "maxLength": 60},
         "fruizione": {"enum": ["da-fare", "in-corso", "fatta"]},
-        "come": {"enum": ["metafora", "stato", "aggiunge", "corregge", "ripensa", "effetto", "accoglie", "rifiuta"]},
+        "come": {"enum": ["metafora", "stato", "aggiunge", "corregge", "ripensa", "effetto", "accoglie", "rifiuta", "chiede", "dubbio"]},
+        "da": {"type": "integer", "minimum": 1},
         "n": {"type": "integer", "minimum": 1},
         "passo": {"type": "string", "pattern": "^[a-z0-9-]+:\\d+(-\\d+)?$"},
         "turno": {"type": "string", "pattern": "^\\d{2}:\\d{2}$"},
@@ -413,10 +416,12 @@ questo schema prima di ogni push. Un piano che non passa non diventa file.
         {"if": {"properties": {"p": {"enum": ["ritorna-su", "contraddice"]}}},
          "then": {"properties": {"a": {"anyOf": [{"$ref": "#/$defs/idF"}, {"$ref": "#/$defs/idR"}]}}}},
         {"if": {"properties": {"p": {"const": "ritorna-su"}}},
-         "then": {"required": ["come"], "properties": {"come": {"enum": ["aggiunge", "corregge", "ripensa", "effetto", "accoglie", "rifiuta"]}}}},
+         "then": {"required": ["come"], "properties": {"come": {"enum": ["aggiunge", "corregge", "ripensa", "effetto", "accoglie", "rifiuta", "chiede"]}}}},
+        {"if": {"properties": {"p": {"const": "contraddice"}}},
+         "then": {"properties": {"come": {"const": "dubbio"}}}},
         {"if": {"properties": {"p": {"const": "parla-di"}}},
          "then": {"properties": {"come": {"enum": ["metafora", "stato"]}}}},
-        {"if": {"properties": {"p": {"enum": ["nomina", "serve-a", "contraddice", "converge-con"]}}},
+        {"if": {"properties": {"p": {"enum": ["nomina", "serve-a", "converge-con"]}}},
          "then": {"not": {"required": ["come"]}}},
         {"if": {"properties": {"p": {"not": {"const": "nomina"}}}},
          "then": {"not": {"anyOf": [{"required": ["momento"]}, {"required": ["fruizione"]}]}}},
@@ -530,6 +535,8 @@ questo schema prima di ogni push. Un piano che non passa non diventa file.
             "turno": {"type": "string", "pattern": "^\\d{2}:\\d{2}$"},
             "rif": {"$ref": "#/$defs/oggetto"},
             "voce": {"$ref": "#/$defs/voce"},
+            "estratto": {"type": "string", "maxLength": 200},
+            "esito": {"enum": ["verificata", "simile", "errata", "non-trovata"]},
             "cosa": {"enum": ["brano", "libro", "film", "citazione", "persona", "ponte", "convergenza", "confronto", "sogno", "ricordo", "domanda", "assenza", "idea"]}}}},
         "legami": {"type": "array", "items": {"allOf": [{"$ref": "#/$defs/legame"},
           {"properties": {"voce": {"enum": ["proposta", "mondo", "seme"]}}}]}},
@@ -564,8 +571,8 @@ Un legame è un oggetto dell'elenco `legami:` di una lettura (o di una restituzi
 | `nomina` | frammento → persona, opera, citazione (o `~Nome`) | `momento` (12:34, cap. 34, traccia 3, "verso la fine"), `fruizione` (`da-fare` · `in-corso` · `fatta`) | B01, B02, B14 "dal minuto 12", B24 "devo leggere", D13 |
 | `parla-di` | frammento → tema, o qualunque nodo usato come immagine | `come: metafora` · `come: stato` (lo stato d'animo del momento) | B10 "mi sento come sisifo" = metafora; D03, l'inverno: `stato` |
 | `serve-a` | frammento, restituzione → raccolta | — | B07, B23, D20 |
-| `ritorna-su` | frammento → frammento o restituzione (`n` per una voce, `passo` per un punto dello sguardo, `turno` nella chat) | `come`: `aggiunge` · `corregge` (+ `campo`, `valore`) · `ripensa` · `effetto` · `accoglie` · `rifiuta` | B02, B22, D05 "mi ha fatto bene", D17, D18 |
-| `contraddice` | frammento → frammento (`passo` facoltativo) | — | B20 il dolore contro il nucleo; D25 "camus si sbagliava" |
+| `ritorna-su` | frammento → frammento o restituzione (`n` per una voce, `passo` per un punto dello sguardo, `turno` nella chat) | `come`: `aggiunge` · `corregge` (+ `campo`, `valore`) · `ripensa` · `effetto` · `accoglie` · `rifiuta` · `chiede` | B02, B22, D05 "mi ha fatto bene", D08, D17, D18 |
+| `contraddice` | frammento → la frase tua più vicina (`passo` per lo sguardo) | `come: dubbio` se esiti | B20 il dolore contro u03; D25 "camus si sbagliava" |
 | `converge-con` | `tra`: due o più tra nodi, frammenti, voci di restituzione (`r-…#2`), `~Nome` (A1) | (solo `perche`, in prosa) | B16 Eraclito = nave di Teseo, voce sua; le convergenze dell'Atlante |
 
 **Tutti gli atti passano da `ritorna-su`** (CS §1.2): niente più `atti` e `in-risposta-a`. Esempi:
@@ -580,17 +587,28 @@ Un legame è un oggetto dell'elenco `legami:` di una lettura (o di una restituzi
 ```
 
 **Regole di confine.**
-- **Che cosa conta come accoglienza** [S]: `come: accoglie`; `come: effetto` positivo (D05); un tuo frammento che porta
+- **Che cosa conta come accoglienza** [S]: `come: accoglie`; `come: effetto` positivo **con `n`** su una voce che
+  porta un legame ◌ (un effetto senza `n` vale per tutta la restituzione e **non** è accoglienza: D05, Q16); un tuo frammento che porta
   **lo stesso legame** (stessi capi, stesso predicato). Che lo stesso pensiero torni **con altre parole** (Karamazov) lo
-  decide [AI] nel consolidamento, scrivendo `come: accoglie`. **Non** conta: averla letta, o chiederne il perché (D08).
-- **Un rifiuto** non si ripropone più nello stesso contesto: [S] tiene in `mappa.md` lo scarto con il tema della
-  richiesta ("solitudine"); "smista" e "consolida" lo leggono prima di proporre.
+  decide [AI] nel consolidamento, scrivendo `come: accoglie`. **Non** conta: averla letta, o chiederne il perché (D08):
+  quella è `come: chiede`, che pesa come un richiamo e non come un ritorno (Q16).
+- **Un rifiuto** non si ripropone più nello stesso contesto (Q4, Q17). [S] lo scrive nella sezione `## Scarti` di
+  `mappa.md`, che leggono tutti, Progetto compreso: **chiave** = lo slug, oppure la `chiave()` di `~Nome` (per un brano
+  "artista · titolo"); **contesto** = i temi `parla-di` del frammento che aveva chiesto ("solitudine"). **Portata**: il
+  rifiuto vale per il legame; se le tue parole nominano l'entità e non il legame ("questa di buddha non mi rappresenta"),
+  vale per l'entità in quel contesto, e la risposta lo dice.
 - **Una correzione** (`campo`, `valore`) vale subito nelle viste ([S] la applica); il consolidamento poi aggiorna il nodo e
   scrive la versione nuova della lettura colpita. Una correzione cerca il bersaglio solo negli ultimi 3 giorni; senza
   bersaglio non c'è atto (B22).
-- **`contraddice`** è una tensione, non chiude niente. Di voce `sua` ("camus si sbagliava") segna una posizione nuova con
-  la data; proposto dall'AI (B20) si mostra come tensione. Non esiste lo stato `superato`: "che cosa pensavo a gennaio"
-  si risponde con le date.
+- **`contraddice`** punta alla **frase tua più vicina** (u03 «la dimensione principale…», non tutto il nucleo) e, se
+  serve, al **passo** dello sguardo (`passo: nucleo:19`): mai a un frammento intero da cui prenderebbe con sé tutto
+  (Q6, Q23). Di voce `sua` e senza esitazione ("camus si sbagliava") lo scrive già "smista" e segna, **per quel passo**,
+  la data in cui la posizione è stata messa in discussione (Q31); se il frammento esita ("forse", una domanda) porta
+  `come: dubbio` e resta **tensione** finché non ci torni. Proposto dall'AI (B20) è sempre tensione. Non esiste lo stato
+  `superato`: [S] scrive in `mappa.md` le **posizioni** per passo (data · frase · voce · dal · messa in discussione il ·
+  tensioni), e "che cosa pensavo a gennaio" si risponde con quelle date (Q12).
+- **Anche una domanda nomina** (Q18): "top quote di dostoevskij" fa nascere `persone/fedor-dostoevskij` se manca. Le opere
+  che lo portavano come `~Fëdor Dostoevskij` si ricollegano nel calcolo (`mappa.md`, nomi senza nodo), senza riscriverle.
 - **Una idea attribuita che non è una frase** (Telemaco secondo Recalcati, B05) è `nomina` della persona con voce `mondo`
   e il `perche`; non diventa una citazione.
 - **`momento`** porta anche la traccia di un album ("traccia 3", B04): il titolo si risolve nel consolidamento con una
@@ -644,25 +662,34 @@ token-stimati: 18400            # caratteri / 3,5
 | file | che cosa | chi lo legge |
 |---|---|---|
 | `contesto/parole.md` | solo i frammenti **✦ parlanti** (C7, T08), in ordine di tempo, parola per parola, con data e id; gli importati ✦ marcati con la data-tetto; i turni di chat senza contenuto tolti; i `delicato` e gli `altrui` marcati. Il seme ✧ no: si legge da `frammenti/` | Progetto, Specchio, "consolida" |
-| `contesto/recenti.md` | gli ultimi **30** frammenti, anche non parlanti e di qualunque età (T02: dopo un silenzio servono quelli di prima), e le ultime 10 restituzioni **intere**, con le voci numerate | "smista" (per "quella di ieri", "la terza"), Specchio |
+| `contesto/recenti.md` | gli ultimi **30** frammenti del telefono, anche non parlanti e di qualunque età (T02: dopo un silenzio servono quelli di prima), ciascuno con la sua risposta; **a parte**, le ultime 5 conversazioni di chat; le ultime 10 restituzioni **intere**, con le voci numerate (così le domande non scacciano i messaggi: Q5) | "smista" (per "quella di ieri", "la terza"), Progetto, Specchio |
 | `contesto/ritratto.md` | la copia dell'ultimo ritratto, senza frontmatter ([S] la copia, non la riscrive) | Progetto |
 | `contesto/mappa.md` | tutto il resto, per nodo e non per frammento (C7): sotto | tutti |
 
-`mappa.md` contiene, in quest'ordine:
-1. **stato**: giorni attivi totali, frammenti parlanti totali e della settimana, soglie (lettera sì/no, sogno acceso/spento, ritratto);
-2. **nodi**: una riga ciascuno, `slug · genere · nome · ✦n ◌n ●n · prima–ultima data · vicenda?`; lapidi con la freccia;
-3. **alias**: `chiave → slug (genere)`;
-4. **parole candidate**: parola, date, giorni distinti (D24);
-5. **conti** per mese, per tema, per voce, importati esclusi; le domande a parte (C15d);
-6. **posizioni e tensioni**: i `contraddice` con le date;
-7. **fruizioni**: da fare, in corso, fatte;
-8. **correzioni** applicate e **rifiuti** con il loro contesto;
-9. **nomi senza nodo** (A1, A17): ogni `~Nome` e ogni `rif` di voce di restituzione, per `chiave`, con i file che lo
-   citano. Quando nasce un nodo con la stessa chiave, [S] lo collega qui **nel calcolo** (le restituzioni non si
-   toccano): "Sisifo" trova le convergenze dell'Atlante anche se il nodo `sisifo` è nato dopo;
-10. **ricordabili**: i frammenti ✦ oltre i 60 giorni attivi, non delicati, mai ricordati (§9.3); e i ricordi già usati;
-11. **seme già usato**: i nodi su cui una lettera si è già appoggiata al ✧ (C14c); le **immagini già usate** (§9.4);
-12. **voce**: gli indicatori Q (§9.5).
+`mappa.md` contiene, in quest'ordine, una sezione `##` ciascuno:
+1. **Stato**: giorni attivi totali, frammenti parlanti totali e della settimana, soglie (lettera sì/no, sogno acceso/spento, ritratto);
+2. **Nodi**: una riga ciascuno, `slug · genere · nome · ✦n ◌n ●n · prima–ultima data · vicenda?`; la voce è quella **del
+   legame**, non dell'origine della nota (Q33); lapidi con la freccia. Per le citazioni anche `esito`, l'originale breve e
+   la traduzione o "resa di Claude" (Q20); la `nota` della lettura quando c'è ("esempio", "citata da Claude": Q19);
+3. **Alias**: `chiave → slug (genere)`;
+4. **Parole candidate**: parola, date, giorni distinti (D24);
+5. **Conti** per mese, per tema, per voce, importati esclusi; i delicati contati ma non nominati; le domande a parte (C15d, Q22);
+6. **Posizioni**: per passo, data · frase · voce · dal · messa in discussione il · tensioni (§4, Q6, Q12);
+7. **Fruizioni**: da fare, in corso, fatte;
+8. **Correzioni** applicate;
+9. **Scarti**: chiave · contesto · portata · data · parole tue (§4, Q4, Q17);
+10. **Eredità**: per ogni restituzione `eredita`, una riga con le voci (rif, voce, esito) e, se ha `serve-a` o `converge-con`
+    verso un nodo, il suo `estratto` (≤ 25 parole). Così il Progetto non ripropone come nuovo ciò che ottobre aveva già
+    proposto (Q3, D19–D21);
+11. **Ritorni con effetto**: data · restituzione · voci in breve · le tue parole (D04, D05);
+12. **Mondo verificato**: le voci ○ con `esito` già verificate in una risposta, per non rifarle (Q21);
+13. **Nomi senza nodo** (A1, A17, Q18): ogni `~Nome` e ogni `rif` di voce, per `chiave`, con i file che lo citano. Quando
+    nasce un nodo con la stessa chiave, [S] lo collega qui **nel calcolo** (le restituzioni non si toccano): "Sisifo" trova
+    le convergenze dell'Atlante anche se il nodo `sisifo` è nato dopo;
+14. **Ricordabili**: i frammenti ✦ oltre i 60 giorni attivi, non delicati, mai ricordati (§9.3); i ricordi già usati;
+15. **In sospeso**: le domande che le restituzioni ti hanno fatto negli ultimi 30 giorni, da non ripetere (Q29);
+16. **Seme già usato**: i nodi su cui una lettera si è già appoggiata al ✧ (C14c); le **immagini già usate** (§9.4);
+17. **Voce**: gli indicatori Q (§9.5).
 
 **Il tetto: 80.000 token in tutto** (C7). Prima si tolgono da `parole.md` i frammenti più vecchi di tre anni che non hanno
 né reazioni né ritorni; poi si passa al connettore MCP o alla sessione Code. **Mai** il recupero muto: se `parole.md` è
@@ -681,6 +708,9 @@ stato tagliato, la sua testata dice da quando, e l'istruzione del Progetto obbli
 - **Accolta**, **rifiutato**, **sbiadito**: §5.
 - **Vicini** di un frammento (per il pacchetto di "smista"): fino a 10 frammenti ✦ o ✧ che condividono un nodo o una
   parola candidata, più vecchi di 7 giorni. È da qui che nasce il ponte inatteso.
+- **Cammini** tra due nodi (D19 "che cosa collega…"): un frammento che nomina più di 8 nodi (lo sguardo, una lista) vale
+  come "stessa lista" e **non** si attraversa (Q9); un frammento che nomina una persona `cerchia: vita` non fa da ponte,
+  salvo che la domanda la nomini (Q24).
 - **Serie nel tempo** (D10): si contano prima le **tue parole** (ricerca nel testo dei frammenti ✦), poi, a parte, i
   legami dell'AI. Una data in cui è cambiato `letto-da` è segnata "cambio di lettore" (C13).
 
@@ -724,27 +754,65 @@ Routine con due inneschi: il `fire` e una passata ogni 3 ore (`7 */3 * * *`) che
 6. [S] `contesto.mjs`, `verifica.mjs`, commit `smista: N memo` (senza contenuto), push, lucchetto rilasciato.
 
 **La prudenza.** Su un tema delicato (lutto, suicidio, apatia) la risposta è una riga umana, senza proposte, temi o
-diagnosi, e non finge che non sia successo niente: B12, B25, "Ci sono". La lettura ha `delicato: true`.
+diagnosi, e non finge che non sia successo niente: B12, B25, "Ci sono". La lettura ha `delicato: true`. Dopo (Q10): se
+chiedi esplicitamente le tue parole, i delicati si riportano alla lettera, mai in testa a un elenco e mai come prova di un
+tratto ("dopo le 22", "l'amore solo lì"); nei conteggi si contano, non si nominano; una proposta solo se la chiedi tu, una,
+prima le tue parole.
 
 **Il ritorno.** Se il frammento arriva dopo **≥ 14 giorni** di silenzio, la risposta è un `ritorno`: il testo di
 `riserva/ritorno.md`, preparato dall'ultimo "consolida" prima del silenzio e non rigenerato (T10), più al massimo una riga
 sul memo. Mai un arretrato, mai "bentornato" (T02).
 
-### 7.3 Le domande: la sessione Specchio (tappa 1) e il Progetto
+### 7.3 Le domande: il Progetto, con il memo da rimandare, e Specchio
 
-La chat del Progetto claude.ai è **in sola lettura** e non scrive nel repository (CS §2.1). Quindi:
-- **Specchio** è una sessione Claude Code sul repository, aperta da te quando vuoi chiedere o leggere (1–2 minuti
-  d'avvio: per una domanda va bene, per una cattura no). All'apertura, se `ingresso/` ha memo e il lucchetto è libero,
-  **fa lei il lavoro di "smista"** (§7.2, con il lucchetto) e ti dice i ponti della giornata (≤ 3 righe per memo): nella
-  prima settimana, senza Routine, è l'unico modo in cui i memo vengono letti. Poi conversa: il frammento di chat cresce in
-  `ingresso/` turno per turno, le risposte in una bozza accanto (`ingresso/<id>.risposte.md`). Alla fine, con il
-  lucchetto, sigilla **un** frammento e **una** restituzione per la conversazione e lancia "smista" su quel frammento.
-  Usa `contesto/` e, per il resto, `grep` sui file. **I numeri vengono da `mappa.md`: l'AI non conta.**
-- **Il Progetto** resta per chiacchierare senza memoria: legge `contesto/`, e la sua istruzione obbligatoria è "se la
-  domanda tocca giorni dopo `aggiornato`, dillo prima di rispondere" (C2). La memoria di claude.ai va **spenta** nel
-  Progetto (C15f).
-- **Tappa 2, dal secondo mese** (C1c): un connettore MCP personale (`cerca`, `leggi`, poi `salva`) che porta le domande e
-  le risposte nella chat dell'app, senza Specchio.
+La simulazione delle domande ([attriti](/_progetto/v2/simulazione/attriti-domande.md)) dice: dal Progetto 69 criteri
+passano, 30 male, 1 fallisce; da Code 29/3/0, ma Code costa 4–6 volte il tempo. Quindi **il Progetto è la via di
+default**, e Specchio quella per i casi che lo richiedono.
+
+**Il Progetto claude.ai** legge `contesto/` ed è in sola lettura (Q1). Le sue istruzioni obbligatorie:
+- se la domanda tocca giorni dopo `aggiornato`, o un riferimento ("quella", "me l'avevi messa") non si trova in
+  `contesto/`, dillo prima di rispondere e chiedi il Sync (C2, Q8); una catena resta nella stessa chat;
+- se la domanda presuppone una cosa che non hai, correggi la premessa prima di aggiungere mondo (Q32);
+- ogni risposta che conta si **chiude con un memo** da rimandare (Q1, Q2): un blocco di testo che tu copi e mandi con il
+  Comando rapido "Memo" (un tocco dal foglio di condivisione). Il memo è YAML:
+
+```yaml
+memo: chat
+turni:                       # le tue frasi di questa chat dall'ultimo memo, con l'ora
+  - {ora: "21:04", testo: "canzoni sulla solitudine"}
+  - {ora: "21:09", testo: "salvami la terza"}
+risposte:
+  - turno: "21:04"
+    risponde-a: null         # oppure l'id r-… di contesto/ a cui la domanda si riferisce
+    voci:
+      - {n: 1, rif: "~Radiohead · Exit Music (For a Film)", voce: mondo, cosa: brano, perche: "→ la solitudine come attesa"}
+      - {n: 2, rif: "~Mazzy Star · Into Dust", voce: mondo, cosa: brano, perche: "→ …"}
+    testo: "…la risposta così come l'hai letta…"
+```
+
+  [S] `smista.mjs` lo riconosce dalla prima riga e lo **separa in modo deterministico**: le tue frasi diventano il frammento
+  `canale: chat` (una riga `[ora]` per turno), le risposte una restituzione `forma: risposta` con le voci già numerate e il
+  `perche` di ogni ◌; la lettura poi scrive i `ritorna-su` (la "terza" con il suo `n`). Le tue frasi le ha ricopiate la
+  chat, quindi il frammento porta `forma: riportata`, **salvo** che la stessa domanda sia già arrivata con il Comando
+  rapido "Chiedi" (C15e): allora fa testo quella, byte per byte, e il memo aggiunge solo le risposte. Se non rimandi il
+  memo, la risposta resta detta in chat e basta: nessun danno, nessun sollecito.
+
+**Specchio** è una sessione Claude Code sul repository (1–2 minuti d'avvio). Ci si va quando (regola della simulazione):
+1. la domanda va **verificata sul mondo** con il testo primario ("top quote", "è vera?", i capitoli: Q7);
+2. la domanda deve **scrivere** qualcosa che conta (una posizione, una contraddizione, un'accoglienza) e non vuoi
+   rimandare il memo;
+3. la risposta vive in ciò che `contesto/` non porta (la prosa intera delle restituzioni importate, le letture, i testi
+   altrui);
+4. il periodo chiesto è uscito da `contesto/` (§6.1, il tetto).
+
+All'apertura, se `ingresso/` ha memo e il lucchetto è libero, Specchio **fa il lavoro di "smista"** (§7.2, con il
+lucchetto) e ti dice i ponti della giornata (≤ 3 righe per memo): nella prima settimana, senza Routine, è l'unico modo in
+cui i memo vengono letti. Poi conversa: il frammento di chat cresce in `ingresso/` turno per turno, le risposte in una
+bozza accanto (`ingresso/<id>.risposte.md`). Alla fine, con il lucchetto, sigilla **un** frammento e **una** restituzione
+per la conversazione. Usa `contesto/` e, per il resto, `grep` sui file. **I numeri vengono da `mappa.md`: l'AI non conta.**
+
+La memoria di claude.ai va **spenta** nel Progetto (C15f). **Tappa 2, dal secondo mese** (C1c): un connettore MCP
+personale (`cerca`, `leggi`, poi `salva`) che fa da sé ciò che oggi fa il memo rimandato.
 
 ### 7.4 Le Routine della settimana e del mese
 
@@ -802,12 +870,12 @@ le mie).
 | quando | che cosa | dove lo leggi (tappa 1) | soglia |
 |---|---|---|---|
 | a ogni memo | "Salvato." | telefono | — |
-| pochi minuti dopo | la risposta, se ha contenuto; **una sola** per una raffica | Specchio; i ponti forti anche nella lettera | C11 |
+| pochi minuti dopo | la risposta, se ha contenuto; **una sola** per una raffica | nel Progetto (`recenti.md`) o in Specchio; i ponti forti anche nella lettera | C11 |
 | al primo memo dopo ≥ 14 giorni | il ritorno: il testo di `riserva/ritorno.md`, preparato dall'ultimo "consolida" prima del silenzio e non rigenerato | nella risposta | — |
 | domenica sera | la lettera | messaggio finale di "lettera" + notifica | ≥ 3 frammenti parlanti dall'ultima lettera |
 | il primo del mese (mesi 1–3), poi ogni tre mesi | il ritratto | come la lettera | ≥ 10 frammenti parlanti nel mese, ≥ 20 nel trimestre |
 | una volta al mese al più | il sogno, dentro la lettera | lettera | ≥ 50 frammenti parlanti in tutto |
-| quando chiedi | tutto | Specchio (poi MCP) | — |
+| quando chiedi | tutto | il Progetto, con il memo da rimandare; Specchio per verificare o scrivere (poi MCP) | — |
 
 ---
 
@@ -849,7 +917,7 @@ Elaborare due volte non fa danni [S]:
 
 | file | lo scrive | quando |
 |---|---|---|
-| `ingresso/<id>` e le bozze di chat | Comando rapido, Specchio | sempre, senza lucchetto (file nuovi o propri) |
+| `ingresso/<id>` e le bozze di chat | Comando rapido (anche il memo del Progetto), Specchio | sempre, senza lucchetto (file nuovi o propri) |
 | `frammenti/` | "smista" o Specchio che ne fa il lavoro (sposta, sigilla) | con il lucchetto |
 | `letture/` v1 | "smista" | con il lucchetto |
 | `letture/` v≥2 | "consolida", migrazioni | con il lucchetto |
@@ -1054,7 +1122,7 @@ voci:
 ```
 
 6. Verifica rapida: nessun apocrifo noto; `contesto.mjs`; commit `smista: 1 memo`; lucchetto rilasciato; push. Tempo stimato: 3–5 minuti.
-   **Nessuna notifica** (C1a): la risposta la vedi in Specchio, se lo apri.
+   **Nessuna notifica** (C1a): la risposta la vedi nel Progetto (`recenti.md`) o in Specchio, se li apri.
 
 ### 13.3 La raffica (variante)
 
@@ -1099,7 +1167,7 @@ appoggiarsi di nuovo al nucleo per questo nodo); "porta" e "chi apre la porta" e
 formula non potrà tornare in un'altra restituzione se non la scrivi tu. (La riga di Rust è da verificare sul testo della
 serie prima di consegnarla.)
 
-Se apri Specchio e scrivi "sì, Rust è l'ospite", il frammento di chat accoglie la voce 1 (§4) e il legame diventa ●, con la
+Se rispondi "sì, Rust è l'ospite" (nel Progetto, rimandando il memo, o in Specchio), il frammento di chat accoglie la voce 1 (§4) e il legame diventa ●, con la
 formula ancora mia, in tondo.
 
 ### 13.6 Novembre–dicembre
@@ -1176,7 +1244,7 @@ materiale per rispondere; D21 (tatuaggi da Sisifo) si chiude con A1 (voci indici
 | 1 | l'AI scrive i file | l'AI scrive un **piano**, [S] i file | CS §3.2; principio 11 |
 | 2 | il Comando rapido mette il grezzo, la Routine scrive il frontmatter | il Comando rapido scrive il frammento completo; [S] lo sposta con hash | CS §3.2 |
 | 3 | ogni turno di chat è un frammento | una conversazione = un frammento `chat`, solo i tuoi turni | C15a |
-| 4 | domande nel Progetto, "salvate con un memo" | Specchio (sessione Code) scrive; Progetto in sola lettura con `aggiornato`; "Chiedi"; MCP al mese 2 | CS §2.1; C1c, C2, C15e |
+| 4 | domande nel Progetto, "salvate con un memo" | Progetto di default, che chiude con un **memo YAML** (turni, voci numerate, `perche`, `risponde-a`) da rimandare; [S] lo separa in frammento e restituzione; Specchio per verificare o scrivere; "Chiedi"; MCP al mese 2 | CS §2.1; C1c, C2, C15e |
 | 5 | risposta a ogni memo in `recenti.md`, notifiche "senza contenuto" | risposta solo se ha contenuto; nessuna notifica per memo; ponti nella lettera; la lettera è il messaggio finale della Routine | C1, C11 |
 | 6 | due fasi di consolidamento, 6 azioni + 3 | una passata settimanale ("consolida", domenica 03:13); fusione mensile; ritratto mensile nei mesi 1–3, poi trimestrale | CS §1.2; C8; decisione del coordinatore; banco R01, T05 |
 | 7 | `.indice/` (5 JSON) + 4 file in `contesto/` | 4 file in `contesto/` (`parole` solo ✦, `recenti` ultimi 30, `ritratto` copia, `mappa`), con `aggiornato` e tetto di 80k token | CS §1.2; C2, C7; T02, T08 |
@@ -1217,6 +1285,12 @@ materiale per rispondere; D21 (tatuaggi da Sisifo) si chiude con A1 (voci indici
 | 42 | lucchetto `ingresso/.lavoro` | `ingresso/.in-corso`, 20 minuti, rinnovato ogni 10; "consolida" e "ritratto" aspettano fino a 30 | C6; prompt operativi; coordinatore |
 | 43 | Specchio scrive solo file nuovi | Specchio fa il lavoro di "smista" con il lucchetto (prima settimana, senza Routine) | prompt operativi (i); CS §4 |
 | 44 | — | `anno` sulle opere; Q-contesto; immagini già usate | B04; T07; R03 |
+| 45 | `contraddice` frammento → frammento, rende `superata` la posizione | verso la frase tua più vicina e il `passo`; `come: dubbio`; posizioni per passo in `mappa.md`; il ✦ netto lo scrive già "smista" | [attriti delle domande](/_progetto/v2/simulazione/attriti-domande.md) Q6, Q12, Q23, Q31 |
+| 46 | scarti in `.indice/` | sezione `## Scarti` in `mappa.md` con chiave, contesto, portata | Q4, Q17 |
+| 47 | le restituzioni importate in `contesto/` come titoli | riga per ognuna in `mappa.md`, con voci, esito ed `estratto` ≤ 25 parole; ritorni con effetto; mondo verificato | Q3, Q21 |
+| 48 | `recenti.md` per numero di frammenti, chat comprese | ultimi 30 del telefono con le risposte, le chat a parte | Q5 |
+| 49 | — | `come: chiede`; effetto senza `n` non è accoglienza; legami di restituzione `da` una voce; una domanda fa nascere il nodo | Q16, Q25, Q18 |
+| 50 | cammini su tutto il grafo | lo sguardo e le liste non si attraversano; niente ponti per persone della vita; delicati a richiesta | Q9, Q24, Q10 |
 
 **Scartati, con il motivo:**
 - *Togliere sogno, "ti ricordi?" e ritratto* (CS §1.2): restano. Il banco non li collaudava, ma la ricerca dice che la
@@ -1263,7 +1337,7 @@ e un *Non deve* passano solo se restano identici. Dove v3 e banco divergono nel 
 | `contesto` (campo della lettura) | `nota` |
 | `letto` | `letto-da`, `prompt`, `versione`; la data la dà git |
 | Routine "sogno" · "settimana" | "consolida" + "lettera" |
-| domande nella chat del Progetto, che scrive | Specchio (§7.3); il Progetto legge e basta |
+| domande nella chat del Progetto, che scrive | il Progetto chiude con il memo da rimandare; Specchio quando serve (§7.3) |
 
 ### 16.2 Dove il v3 non segue il banco
 
@@ -1276,6 +1350,11 @@ e un *Non deve* passano solo se restano identici. Dove v3 e banco divergono nel 
 | X5 | diff solo in `restituzioni/`, `letture/`, `contesto/`, `.indice/` | "consolida" scrive anche i nodi (temi, esiti, lapidi) e `riserva/` | §8.3; da estendere nel banco |
 | T07 D1 | Q-nomi su ≥ 2 frammenti ✦ senza eccezioni | eccezione per i concetti nominati una volta e per i temi accolti | A9, A14 |
 | B22 | la lettura di ieri passa a `versione: 2` subito | la correzione vale subito nelle viste; la v2 la scrive "consolida" | C9 (come T03) |
+
+Le correzioni al banco trovate dalla simulazione delle domande (voci ✧ che sono ✦, D15 e il libro V, cap. 5, i conti di
+D01 e D24, "coda lunga" in D16) sono in [attriti delle domande §3](/_progetto/v2/simulazione/attriti-domande.md): il v3
+le dà per buone. "Coda lunga" vuol dire sempre l'archivio (qualcosa che non rivedi da tempo); un brano poco noto del mondo
+è "fuori dai soliti" (Q30).
 
 Le *Lacune* del banco che il v3 chiude: B05 (l'idea attribuita), B07 (l'opera sbagliata), B10 (la metafora su un nodo
 qualunque), B13 (`link`), B20 (niente `superato`), B21 (`trascrizione`), B25 (`delicato`), D05 (`n`), D23 (importati fuori
