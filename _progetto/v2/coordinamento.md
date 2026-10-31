@@ -20,15 +20,18 @@ Branch di raccolta: `claude/quirky-newton-qe5g9o`. Ogni sessione lavora su un br
 - Giro 3: critiche (tempo, semplicità), simulazioni (importazione, ingresso, domande), banco-di-prova-v2.md, voce.md, prompt-operativi.md.
 - Giro 4: piano.md (13 blocchi, passi manuali U1–U9), prova-tempo (4/10 passano), prova-restituzione (7/14 alla lettera, 12/14 con le soglie corrette), correzioni-citazioni.md (24 citazioni corrette SULL'ATLANTE, ma solo su questo branch: per l'import vanno unite a main, su decisione dell'utente), prompt-v3.md (prompt allineati, con 15 incoerenze del v3 segnalate).
 
-## In corso (giro 5)
-- Il pacchetto `_progetto/pacchetto/` è montato, con i prompt estratti in `radice/` (CLAUDE.md + prompt/*.md). Si rigenera con `bash _progetto/pacchetto/aggiorna.sh` (con `main` come argomento dopo l'unione).
-- M session_01WgHig3GnW2DvdKsdGC6XzM: ultima rifinitura del v3 (5 incoerenze di prompt-v3 §14). Al termine: unire, rigenerare il pacchetto, poi chiedere a A (session_01WgHig3o9ro6H6FejVFcJkr) di riallineare prompt-v3 se serve.
-- TR session_01WgHifyR2ErMvFtJGTrRGFG: seconda prova R01–R14 sul v3 finale, alla lettera.
-- F session_01WgHig29RTNPTqfbsyV9t8F: prova a freddo. Legge solo il pacchetto, costruisce i blocchi 0–5 in /tmp/memo e riporta i punti di blocco (prova-a-freddo.md + codice).
+## In corso (giro 6: correzioni dopo la prova a freddo)
+Prova a freddo (prova-a-freddo.md): una sessione con il solo pacchetto ha costruito i blocchi 0–4 (import 43/43, ritratto 3/3 giudici), poi si è bloccata al 5. Registro di 69 voci, 18 gravi. Seconda prova di restituzione: 10/14, con le correzioni di forma già applicate.
+Correzioni in corso, ciascuna sulla propria area del registro:
+- M session_01WgHig3GnW2DvdKsdGC6XzM: modello (bug schema §3.7 da verificare con ajv, §3.5, Chiedi, nota 200 caratteri, alias per cognome, riconciliazione slug §14) → claude/v3-modello
+- B2 session_01WgHig3o88JPFpAdTisBt6S: banco riscritto nel vocabolario v3 → claude/v3-banco
+- P session_01WgHifzv9xzwECdY2BAVM22: piano (contesto.mjs e setup.sh anticipati, esito all'ingresso, misure reali, prototipo come punto di partenza?) → claude/v4-piano
+- A session_01WgHig3o9ro6H6FejVFcJkr: prompt (correzione di smista dalla prova, ricordo n. 76, memo n. 77) → claude/v4-allineamento
+Unire con `git checkout --theirs` sui conflitti dei file di area (README: unione delle righe), poi `bash _progetto/pacchetto/aggiorna.sh`.
 
 ## Prossimi passi
-1. Correggere il pacchetto secondo la prova a freddo e la TR (se necessario, una seconda prova a freddo).
-2. Restituire all'utente: il pacchetto, prompt-avvio.md e le scelte (nome del repo; unire a main le correzioni delle citazioni e il pacchetto, così l'import legge main; un account claude.ai collegato al GitHub nuovo).
+1. Seconda prova a freddo (sessione nuova, solo pacchetto, blocchi 0–6) fino a "pronto".
+2. Restituire all'utente: il pacchetto, prompt-avvio.md e le scelte (nome del repo; unire a main le correzioni delle citazioni e il pacchetto, così l'import legge main; un solo account claude.ai collegato al GitHub nuovo).
 3. Voce di diario e commit.
 
 ## Diagnosi chiave da non perdere
