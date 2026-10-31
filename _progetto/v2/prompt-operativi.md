@@ -817,7 +817,7 @@ sbilanciarsi servono due voci altrui, una per lato. La domanda usa il suo lessic
 che viene da un testo che ha scelto lui (il capitano), non una mia metafora. **Il prompt:**
 1. Non diceva come trattare una frase ✦ che è testo altrui trascritto. → ✦ il gesto, ○ le parole, una fonte per lato.
 2. "Il 4 ottobre" è falso alla lettera per gli importati (la data è un tetto), e non c'è un prima e un dopo. →
-   "entro il <data>", nessun racconto di cambio d'idea. Corretto anche in voce.md §5.
+   `"entro il <data>"`, nessun racconto di cambio d'idea. Corretto anche in voce.md §5.
 3. `delicato` si fidava solo del campo; U19 finisce su estinzione e rinuncia e non è marcato. → citare solo la parte
    che serve e segnalarlo.
 
