@@ -182,6 +182,22 @@ Legenda motore: **F** = filtro strutturato sull'indice; **S** = ricerca semantic
   salvare nell'indice (campo `vettore`) senza cambiare architettura.
 - **Memoria di conversazione** per i rimandi ("e di questo genere?"): nella chat, non nello schema.
 
+### 4bis. Se si riparte da zero (nuova indicazione: niente vincoli dall'impianto attuale)
+
+| Opzione | Pro | Contro |
+|---|---|---|
+| **e. Server MCP dell'archivio** (strumenti `salva_frammento`, `cerca`, `citazioni_di`, `cosa_pensavo`, `convergenze`) sopra l'indice | L'app Claude dal telefono interroga e scrive l'archivio direttamente: è la domanda madre ("salva questo") senza passare da una sessione Code | Va ospitato (o eseguito in locale) e autenticato |
+| **f. SQLite come indice** (tabelle nodi, citazioni, temi, legami; FTS5 per il testo; `sqlite-vec` per i vettori) generato dai markdown | Una sola base per filtri, testo pieno, conteggi nel tempo e similarità; query SQL per le famiglie E e J | Un artefatto binario da rigenerare; non si legge su GitHub |
+| **g. Database come fonte di verità** (Postgres/Supabase, Notion…) al posto dei markdown | Query ricche, app native | Si perde la leggibilità, git come storia e la portabilità; lock-in |
+| **h. App mobile dedicata** (PWA di cattura e ricerca) | Cattura in un tocco, offline | Molto lavoro; l'app Claude fa già da interfaccia |
+
+**Raccomandazione aggiornata.** Restano **markdown in git come fonte di verità** (leggibili, versionati, portabili:
+servono già alle domande sul tempo). Sopra: **indice generato** in **SQLite** (FTS5 + vettori), così filtri,
+ricerca testuale e similarità stanno insieme fin dall'inizio (gli embedding non sono più "dopo": costano poco su un indice locale).
+Davanti: un **server MCP** con 5–6 strumenti, che diventa il vero motore di risposta per l'app Claude dal telefono
+e per Claude Code; il sito resta la vetrina sfogliabile, generata dallo stesso indice, con le note `privata` escluse
+(o repo privato e sito solo per la nicchia pubblica, es. i tatuaggi).
+
 ## 5. Le 10 domande da servire dal primo giorno
 
 1. **Salva questo** (frammento al volo): "ho visto Galimberti… diceva '…'" → nota, temi estratti, collegamenti. È la domanda madre.
@@ -196,4 +212,4 @@ Legenda motore: **F** = filtro strutturato sull'indice; **S** = ricerca semantic
 10. **Cosa mi colpisce ultimamente?** (temi ricorrenti nel tempo, riflessione su di sé).
 
 Per servirle servono, minimi: tipo **frammento**, **citazioni multiple** con autore e opera, **temi** su ogni nodo,
-**mezzo/genere**, **date** ovunque, **indice JSON + `cerca.mjs`**, e una decisione sulla **privacy**.
+**mezzo/genere**, **date** ovunque, **indice (JSON o SQLite) + ricerca**, idealmente esposti come **server MCP**, e una decisione sulla **privacy**.
