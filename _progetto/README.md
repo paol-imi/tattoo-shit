@@ -9,3 +9,4 @@ Documenti di progettazione (2026-10-31), proposte di Claude da validare. Non fan
 - [Migrazione](/_progetto/migrazione.md): inventario, nuovo repo, hosting.
 - [Avvio](/_progetto/avvio.md): il prompt da incollare in una nuova chat per avviare l'MVP.
 - [Essenza (v2)](/_progetto/v2/essenza.md): che cosa chiedo davvero, principi, scene d'uso e giudizio sulla proposta.
+- [v2: il corpus degli esempi in ingresso](/_progetto/v2/esempi-ingresso.md): 68 messaggi realistici e le 10 lezioni per lo schema.
