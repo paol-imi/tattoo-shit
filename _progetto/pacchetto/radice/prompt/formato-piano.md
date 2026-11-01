@@ -25,13 +25,17 @@ Ogni ciclo che scrive (smista, consolida, ritratto, specchio) produce **un piano
 ## Le sette operazioni
 | op | campi | chi |
 |---|---|---|
-| `crea-nodo` | `genere`, `nome`, e i campi del genere (`alias`, `cerchia`, `in`, `autore`, `attribuita-a`, `citata-da`, `anno`, `scopo`, `esito`, `riferimento`, `originale`, `traduzione`, `link`), `nato-da` (di default il frammento letto), `corpo` | smista, consolida |
-| `alias` | `nodo`, `alias` | smista, consolida |
+| `crea-nodo` | `genere`, `nome`, e i campi del genere (`alias`, `cerchia`, `in`, `autore`, `attribuita-a`, `citata-da`, `anno`, `scopo`, `esito`, `riferimento`, `originale`, `traduzione`, `link`), `nato-da` (di default il frammento letto), `corpo` | smista, specchio, consolida |
+| `alias` | `nodo`, `alias` | smista, specchio, consolida |
 | `aggiorna-nodo` | `nodo`, `campi: {…}` | solo consolida |
-| `lettura` | `frammento`, `intento`, `reazione`, `legami`, `parole`, `trascrizione`, `altrui`, `vissuto`, `delicato`, `nota`, `risposta` (`salvato` · `ci-sono` · id esistente); la `versione` la mette lo script | smista (v1), consolida (v ≥ 2) |
+| `lettura` | `frammento`, `intento`, `reazione`, `legami`, `parole`, `trascrizione`, `altrui`, `vissuto`, `delicato`, `nota`, `risposta` (`salvato` · `ci-sono` · id esistente); la `versione` la mette lo script | smista e specchio (v1), consolida (v ≥ 2) |
 | `restituzione` | `forma`, `per`, `copre`, `aggancio`, `testo`, `voci` (`rif`, `voce`, `cosa`, `turno`, `perche`, `esito`, `riferimento`), `legami` (con `da`) | smista, specchio, consolida, ritratto |
 | `riserva` | `file` (`ritorno` · `pronte`), `testo` (il file intero) | solo consolida |
 | `lapide` | `da`, `in`, `perche` (la fusione: lo script chiama `migra/fondi.mjs`) | solo consolida |
+
+**I tipi dei campi.** Stringa (slug, `@Nome` o `~Nome`): `autore`, `in`, `nodo`, `a`. Elenco: `alias`,
+`attribuita-a`, `citata-da`, `nato-da`, `copre`, `parole`, `tra`, `intento`. Intero: `anno`, `n`, `da`. Un mito, una
+tradizione, un luogo come voce: `cosa: opera` (il racconto) o `persona` (il protagonista); l'enum non ha altro.
 
 ## Regole
 - **Mai uno slug inventato**: per un nodo nuovo `@Nome`, che lo script risolve anche dentro le altre operazioni dello

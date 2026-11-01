@@ -1,10 +1,11 @@
 # Ricordo ("ti ricordi?")
 
 Quando: al più uno per lettera; su richiesta in Specchio.
-Da dove: solo da `contesto/mappa.md`, Ricordabili (frammenti ✦ oltre i 60 giorni attivi, non delicati, mai ricordati;
-il conteggio e 20 id, in ordine: prima quelli con una reazione, un `serve-a` o un ritorno spontaneo). Scegli quello che
-la settimana richiama. **Nei primi mesi**, finché nessun ✦ ha 60 giorni attivi, scegli tra gli **importati ✦**, con la
-data-tetto. Non calcolare tu i giorni.
+Da dove: solo da `contesto/mappa.md`, Ricordabili: gli **importati ✦ da subito**, con la data-tetto ("entro il 4
+ottobre, nell'archivio d'origine"), e i frammenti ✦ nuovi più vecchi di **60 giorni di calendario** con almeno **10
+giorni attivi** in mezzo; mai delicati, mai già ricordati. La sezione dà il conteggio e 20 id, in ordine: prima quelli
+con una reazione, un `serve-a` o un ritorno spontaneo. Scegli quello che la settimana richiama. Non calcolare tu i
+giorni. Il ricordo non fa partire una lettera da solo: con 0 parlanti la domenica è muta.
 Forma (2–3 righe): un **indizio parziale** (la data e l'inizio della mia frase), poi subito l'**affermazione completa**:
 la frase intera in corsivo con ✦ e una riga d'oggi che dice perché torna adesso. Non è un quiz, non aspetta risposta,
 nessuna domanda.

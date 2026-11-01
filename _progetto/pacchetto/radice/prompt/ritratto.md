@@ -24,7 +24,9 @@ Leggi CLAUDE.md e prompt/formato-piano.md.
    - fuori i delicati; nessuna lode, nessuna etichetta come destino; ogni ○ con opera e passo, o la riga si toglie;
      l'ultima riga è la domanda.
    **Variante giorno 1**: sul nucleo e sulle frasi importate, con **una** convergenza nuova ancorata a una mia frase; le
-   date come tetto ("entro il 4 ottobre"); nessun conto mensile, nessuna riga sulla voce.
+   date come tetto ("entro il 4 ottobre"); nessun conto mensile, nessuna riga sulla voce, niente "nuovo" e "sparito"
+   (non c'è un prima); la convergenza è ◌. Se `lucchetto.mjs` o `contesto.mjs` non esistono ancora, salta i loro passi,
+   leggi `frammenti/` e i nodi, e dillo nel messaggio finale.
 7. `node scripts/applica.mjs PIANO.json`; se `verifica.mjs` rifiuta un ritornello, riscrivi la frase, una volta.
 8. `node scripts/contesto.mjs` (copia il ritratto in `contesto/ritratto.md`), `node scripts/verifica.mjs`,
    `node scripts/lucchetto.mjs lascia`, commit `ritratto: AAAA-MM`, push.

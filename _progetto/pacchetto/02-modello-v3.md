@@ -100,7 +100,7 @@ memo di Galimberti:
      "legami": [
        {"p": "nomina", "a": "@Umberto Galimberti", "voce": "sua", "perche": "«uno spezzone di galimberti a teatro»"},
        {"p": "parla-di", "a": "nichilismo", "voce": "sua", "perche": "parola tua"}],
-     "parole": ["ragazzi", "cultura"]},
+     "parole": ["ragazzo", "cultura"]},
     {"op": "restituzione", "forma": "risposta", "per": "20261103-2340-k7q2", "testo": "…",
      "voci": [
        {"rif": "@Il nichilismo è l'ospite inquietante", "voce": "mondo", "cosa": "citazione"},
@@ -129,7 +129,7 @@ del §3.7, `@Nome` ammesso dove il §3.7 vuole uno slug), e poi i file prodotti 
 | `smista.mjs` | `prepara`: sposta il grezzo, separa i memo del Progetto, riduce le foto, costruisce il pacchetto | ~180 righe |
 | `applica.mjs` | piano → file, per tutti i cicli: slug, numeri, link puliti, `prompt` | ~150 |
 | `slug.mjs` | `slug()`, `chiave()`, `scheletro()`, la ricerca dei candidati (§3.6) | ~60 |
-| `contesto.mjs` | calcola tutto (conti, vicende, sbiadimento, accoglienze, alias) e scrive `contesto/` | ~300 |
+| `contesto.mjs` | calcola tutto (conti, vicende, sbiadimento, accoglienze, alias) e scrive `contesto/`; le sezioni Stato, Nodi e Alias di `mappa.md` e `recenti.md` servono già a "smista" e al primo ritratto, quindi si scrivono per prime (R44) | ~300 |
 | `verifica.mjs` | schema JSON, hash dei frammenti, immutabilità delle restituzioni, link, Q-nomi, ritornelli, budget | ~200 |
 | `lucchetto.mjs` | `prendi`, `rinnova`, `lascia`, con il gettone e il fencing (§8.1) | ~70 |
 | `importa.mjs` | l'Atlante, una volta sola (§14) | ~250 |
@@ -167,7 +167,8 @@ Lo scrive il Comando rapido, già completo, in `ingresso/`; [S] lo sposta con `g
 | `canale` | sì | `telefono` · `chat` · `importato` | D01, D23: l'importato fuori dai conti |
 | `voce` | solo importato | `sua` · `seme` | D02 conterebbe il nucleo come tuo |
 | `forma` | importato o chat | `riportata`: frase tua messa per iscritto da Claude (A2), o ricopiata dalla chat del Progetto nel memo (§7.3) | D02 la mostrerebbe come scritta da te |
-| `allegati` | se ci sono | nomi di file accanto (`<id>.webp`) | B21 la foto della pagina |
+| `allegati` | se ci sono | nomi di file accanto, nel formato originale (`<id>.jpg`, `.heic`, `.webp`, `.m4a`); la copia ridotta `<id>.webp` la ricava [S] (I14) | B21 la foto della pagina |
+| `chiede` | se viene da "Chiedi" | `true`: lo scrive il Comando rapido "Chiedi" (§7.1). È un gesto tuo, non una lettura: l'`intento` resta nella lettura, che con `chiede: true` contiene sempre `chiedi` | C15e; prova a freddo R33 |
 
 Il corpo è il testo **esatto**, link, refusi e a capo compresi ("chioran", "nn", `?si=`). Niente titolo, niente sezioni.
 
@@ -222,7 +223,7 @@ di un altro frammento: sta nella lettura del frammento che lo compie, e lo appli
 | `altrui` | no | `true`: il corpo è in gran parte parole d'altri che hai trascritto (un monologo, una citazione lunga); ✦ il gesto, ○ le parole | [voce §5](./10-voce.md); U19 |
 | `vissuto` | no | quando è accaduto, se diverso (`stanotte`, `~2009`, `≤2026-10-04`) | B17; A4 |
 | `delicato` | no | `true`: fuori da lettera, ricordo, sogno, ritratto finché non ci torni tu | B12, B25; CS §2.3 |
-| `nota` | no | una riga: il dove e il come ("in macchina"), o la cornice di Claude per un importato | B04; A2, A19 |
+| `nota` | no | una riga (≤ 200 caratteri): il dove e il come ("in macchina"), o la cornice breve di Claude per un importato. Le cornici e le descrizioni lunghe (§14.1) vanno nel **corpo della lettura**, che per il resto è vuoto (R41) | B04; A2, A19 |
 | `fonte` | solo importato | `file:riga@commit` dell'Atlante | A20 |
 | `risposta` | no | id della restituzione, oppure `salvato` / `ci-sono` se non c'è file | C11 |
 
@@ -246,7 +247,7 @@ legami:
   - {p: nomina, a: spettacolo-sulle-emozioni, voce: sua, perche: "«credo lo spettacolo sulle emozioni»"}
   - {p: nomina, a: il-nichilismo-e-l-ospite-inquietante, voce: sua, perche: "«il nichilismo è l'ospite inquietante», detto da Galimberti secondo te"}
   - {p: parla-di, a: nichilismo, voce: sua, perche: "parola tua"}
-parole: [ragazzi, cultura]
+parole: [ragazzo, cultura]
 risposta: r-20261103-2341-risposta
 ---
 ```
@@ -276,7 +277,8 @@ Mai per copertura, mai per riempire un campo. La scheda è un documento d'identi
   omonimo della vita fa una domanda e prende lo slug con l'iniziale (`marco-b`), senza toccare il primo.
 - **I miti col nome del protagonista** (Sisifo): un nodo solo in `persone/`, `cerchia: finzione`, `in: ~mito greco`; il
   mito come opera solo se lo nomini come racconto; il saggio di Camus ha il suo slug (`il-mito-di-sisifo`).
-- **I gruppi** (Radiohead, Deftones) sono persone `mondo` (A10). Un tema nato da una negazione ("non nichilismo") lo dice
+- **I gruppi** (Radiohead, Deftones) sono persone `mondo` (A10); un popolo o una tradizione ("i greci") no: è un tema
+  con il tuo nome (principio 9). "Mia cugina" è una parentela: slug `cugina`, alias "mia cugina" (R62). Un tema nato da una negazione ("non nichilismo") lo dice
   nel `perche`.
 
 **Chi la scrive.** La crea "smista" (file nuovo, compresi `esito` e `riferimento` se la verifica rapida li trova:
@@ -330,7 +332,7 @@ Passo 1: la frase circola come immagine di Nietzsche, ripresa da Galimberti in u
 ```
 
 ```yaml
-# la stessa, dopo "consolida" (testo primario e traduzione pubblicata)
+# citazioni/il-nichilismo-e-l-ospite-inquietante.md, dopo "consolida" (testo primario e traduzione pubblicata)
 ---
 schema: 3
 nome: Il nichilismo è l'ospite inquietante
@@ -376,7 +378,28 @@ verificate e non si rifà. `voci[].estratto` (solo `eredita`) è la riga central
 corpo: [S] controlla che sia una sottostringa (Q3). Il numero `n` lo assegna [S], nell'ordine
 in cui le voci compaiono nel corpo; il corpo mostra gli stessi numeri. Così "la terza" è stabile (D17).
 
-Il corpo è il testo consegnato, con i segni di voce (§5). Le convergenze dell'Atlante e i ritratti importati sono
+Il corpo è il testo consegnato, con i segni di voce (§5). Le voci compaiono nel corpo come `1.` a inizio riga (anche
+quando ce n'è una sola) oppure `[1]` dentro la prosa; [S] controlla che i numeri del corpo e quelli di `voci` coincidano
+(R38, R61). Un esempio completo (R12):
+
+```md
+---
+schema: 3
+forma: risposta
+letto-da: <modello>
+registrato: 2026-11-03T23:41:05+01:00
+per: 20261103-2340-k7q2
+voci:
+  - {n: 1, rif: il-nichilismo-e-l-ospite-inquietante, voce: mondo, cosa: citazione, riferimento: "Frammenti postumi, 2[127] (da verificare)"}
+  - {n: 2, rif: spettacolo-sulle-emozioni, voce: mondo, cosa: opera}
+---
+**Salvato.**
+1. "L'ospite inquietante" è un'immagine di Nietzsche ○, che Galimberti ha ripreso in un libro ⚠.
+2. Lo spettacolo forse è *Il mondo delle emozioni* ⚠.
+```
+
+Una risposta non ripete la tua reazione (R67). Senza file (`risposta: salvato` o `ci-sono`), la riga "Salvato." o
+"Ci sono." la mostra `recenti.md`, letta dalla lettura (R61). Le convergenze dell'Atlante e i ritratti importati sono
 restituzioni `eredita`: fuori dai conti, mai rilanciate, mai sbiadite, trovabili.
 
 ### 3.6 Lo slug e gli alias
@@ -408,12 +431,17 @@ restituzioni `eredita`: fuori dai conti, mai rilanciate, mai sbiadite, trovabili
 tabella degli alias assorbe la differenza (A16). Uno slug fuso resta come lapide (§3.4).
 
 **La tabella degli alias** [S] sta in `contesto/mappa.md` (§6.1): una riga per ogni `nome` e `alias` di ogni nodo vivo,
-nella forma `chiave → slug (genere)`. `chiave(s)` = i passi 1–3 di `slug()` con lo spazio al posto del trattino.
+nella forma `chiave → slug (genere, cerchia)`. `chiave(s)` = i passi 1–3 di `slug()` con lo spazio al posto del trattino,
+senza gli articoli in testa (il, lo, la, i, gli, le, l', un, una, the) (R11).
 
 **La risoluzione di un nome** (in "smista"):
 1. [S] cerca la `chiave` esatta tra nomi e alias; per i nomi propri nudi guarda **prima** `cerchia: vita` (B06 Marco);
 2. [S] propone i candidati vicini: distanza di Levenshtein ≤ 2 sulle chiavi di almeno 5 lettere, oppure lo stesso
    **scheletro** (`scheletro(s)` = chiave senza vocali, senza `h`, doppie ridotte: "chioran" e "cioran" danno entrambe `crn`);
+   e due regole per le persone (R10): **cognome**, la chiave detta coincide con le ultime parole intere di un nome
+   ("galimberti" → `umberto-galimberti`, "de andre" → `fabrizio-de-andre`); **nome**, coincide con le prime parole
+   ("marco" → `marco-aurelio`). Sono candidati **deboli**: li mostra all'AI, mai una scelta automatica, e un nome nudo
+   in prima persona va prima alla `cerchia: vita` (B06);
 3. [AI] sceglie tra i candidati o dice "nuovo"; se l'entità è ambigua e un errore sarebbe permanente (B04 "la 3"), fa
    **una** domanda nella risposta e intanto scrive `~Nome`;
 4. [S] se la forma usata è nuova, la aggiunge agli `alias` del nodo (unica modifica di un nodo concessa a "smista").
@@ -438,7 +466,8 @@ questo schema prima di ogni push. Un piano che non passa non diventa file.
       {"type": "string", "pattern": "^r-\\d{8}-\\d{4}-[a-z0-9-]+(#\\d+)?$"}]},
     "voce": {"enum": ["sua", "seme", "proposta", "mondo"]},
     "quando": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?(Z|[+-]\\d{2}:\\d{2}))?$"},
-    "fonte": {"type": "string", "pattern": "^[^:]+:\\d+(-\\d+)?(, ?\\d+(-\\d+)?)*@[0-9a-f]{7}$"},
+    "fonte1": {"type": "string", "pattern": "^[^:]+:\\d+(-\\d+)?(, ?\\d+(-\\d+)?)*@[0-9a-f]{7}$"},
+    "fonte": {"anyOf": [{"$ref": "#/$defs/fonte1"}, {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/fonte1"}}]},
     "modello": {"type": "string", "minLength": 3},
 
     "legame": {
@@ -498,7 +527,8 @@ questo schema prima di ogni push. Un piano che non passa non diventa file.
         "voce": {"enum": ["sua", "seme"]},
         "forma": {"const": "riportata"},
         "continua": {"$ref": "#/$defs/idF"},
-        "allegati": {"type": "array", "items": {"type": "string", "pattern": "^\\d{8}-\\d{4}-[a-z0-9]{3,4}(-\\d)?\\.(webp|m4a)$"}}
+        "chiede": {"const": true},
+        "allegati": {"type": "array", "items": {"type": "string", "pattern": "^\\d{8}-\\d{4}-[a-z0-9]{3,4}(-\\d)?\\.(webp|jpg|jpeg|png|heic|m4a)$"}}
       },
       "allOf": [
         {"if": {"properties": {"canale": {"const": "importato"}}},
@@ -564,7 +594,7 @@ questo schema prima di ogni push. Un piano che non passa non diventa file.
          "then": {"propertyNames": {"enum": ["_genere", "schema", "nome", "nato-da", "fuso-in"]}}},
         {"if": {"properties": {"_genere": {"const": "persone"}}, "not": {"required": ["fuso-in"]}},
          "then": {"required": ["cerchia"], "propertyNames": {"enum": ["_genere", "schema", "nome", "alias", "nato-da", "link", "cerchia", "in"]}}},
-        {"if": {"properties": {"cerchia": {"const": "vita"}}},
+        {"if": {"required": ["cerchia"], "properties": {"cerchia": {"const": "vita"}}},
          "then": {"not": {"anyOf": [{"required": ["link"]}, {"required": ["in"]}]}}},
         {"if": {"properties": {"_genere": {"const": "opere"}}},
          "then": {"propertyNames": {"enum": ["_genere", "schema", "nome", "alias", "nato-da", "link", "fuso-in", "autore", "in", "anno"]}}},
@@ -844,8 +874,13 @@ citati **I1–I25** sono quelli della [simulazione dell'ingresso](https://github
 4. [AI] **la verifica rapida** di una citazione **nuova**, dentro il suo `crea-nodo`, prima di `applica` (I8, V16): una-due ricerche sulla frase così come l'hai scritta. Se trovano una
    scheda (Quote Investigator, Wikiquote), il nodo prende subito `esito` e la scheda in `riferimento` ("fonte secondaria"),
    qualunque sia l'esito; altrimenti nessun `esito` (⚠) e la traccia della ricerca nel corpo del nodo. L'attribuzione tua
-   va **sempre** in `attribuita-a` (anche un'opera: `~La peste`); `autore` solo quando è verificato;
-5. [S] `applica.mjs`: file, slug, numeri, link puliti;
+   va **sempre** in `attribuita-a` (anche un'opera: `~La peste`); `autore` solo quando è verificato. Questa è la **regola
+   unica** sull'esito all'ingresso (prova a freddo R24/R62): vale per modello, prompt, piano e banco, e `verifica.mjs` la
+   accetta. La verifica **non fa nascere nodi**: l'autore vero o l'opera vera che trova (Hemingway, *Addio alle armi*)
+   restano `~Nome` finché non li nomini tu. "Smista" crea temi solo per i concetti che nomini tu (§3.4), mai dedotti (R51);
+5. [S] `applica.mjs`: file, slug, numeri, link puliti. È **transazionale** (R69): scrive in una cartella di lavoro, lancia
+   `verifica.mjs` e sposta i file al loro posto solo se passa; se no, non resta niente. Il piano arriva da un file scritto
+   con lo strumento di scrittura, mai da un heredoc della shell, che perde gli apostrofi (R60);
 6. [S] `contesto.mjs`, `verifica.mjs`, commit `smista: N memo` (senza contenuto), push, lucchetto rilasciato.
 
 #### 7.2.1 La risposta all'ingresso
@@ -1086,7 +1121,7 @@ Elaborare due volte non fa danni [S]:
 |---|---|---|
 | `ingresso/<id>` e le bozze di chat | Comando rapido (anche il memo del Progetto), Specchio | sempre, senza lucchetto (file nuovi o propri) |
 | `frammenti/` | "smista" o Specchio che ne fa il lavoro (sposta, sigilla) | con il lucchetto |
-| `letture/` v1 | "smista" | con il lucchetto |
+| `letture/` v1 | "smista", o Specchio quando ne fa il lavoro | con il lucchetto |
 | `letture/` v≥2 | "consolida", migrazioni | con il lucchetto |
 | nodi: creazione, alias | "smista" | con il lucchetto |
 | nodi: ogni altro campo, lapidi | "consolida", migrazioni | con il lucchetto |
@@ -1223,7 +1258,7 @@ La voce dell'AI entra da tre porte (C14). Le chiusure:
 
 ## 11. Migrazioni ed evoluzione dello schema
 
-- **`_schema.md`** alla radice: il numero di versione (oggi **3**), lo schema JSON del §3.7, la storia delle migrazioni.
+- **`_schema.md`** alla radice, creato al giorno 0 (R9): il numero di versione (oggi **3**), lo schema JSON del §3.7, la storia delle migrazioni.
   Il campo `schema: 3` sta in ogni lettura, nodo e restituzione (C12a).
 - **Il frammento non ha `schema`**: il suo formato è congelato per sempre (`registrato`, `canale`, testo; per l'importato
   `voce` e `forma`). È la scelta che regge cinque anni.
@@ -1290,7 +1325,7 @@ nei campi si scrive allora `~Friedrich Nietzsche`.
    sulle emozioni" (nessuno), per "nichilismo" (`nichilismo`, esatto); i vicini (`s01` e `u19`, che condividono
    `nichilismo`).
 4. Il piano dell'AI (§2.2): tre nodi nuovi (lo spettacolo nasce con il nome che gli dai tu: l'identità è certa, è il
-   titolo vero a essere incerto, e va negli alias quando lo confermi), quattro legami ✦, la reazione, le parole `ragazzi` e `cultura`, la risposta.
+   titolo vero a essere incerto, e va negli alias quando lo confermi), quattro legami ✦, la reazione, le parole `ragazzo` e `cultura`, la risposta.
    L'AI vede il ponte con Rust ma lo giudica **non forte** a caldo (il legame c'è solo per una parola): lo tiene per la
    lettera.
 5. `applica`: la lettura del §3.3, `persone/umberto-galimberti.md`, `opere/spettacolo-sulle-emozioni.md`,
@@ -1301,9 +1336,10 @@ nei campi si scrive allora `~Friedrich Nietzsche`.
 schema: 3
 forma: risposta
 letto-da: <modello>
+registrato: 2026-11-03T23:41:05+01:00
 per: 20261103-2340-k7q2
 voci:
-  - {n: 1, rif: il-nichilismo-e-l-ospite-inquietante, voce: mondo, cosa: citazione}
+  - {n: 1, rif: il-nichilismo-e-l-ospite-inquietante, voce: mondo, cosa: citazione, riferimento: "Frammenti postumi, 2[127] (da verificare)"}
   - {n: 2, rif: spettacolo-sulle-emozioni, voce: mondo, cosa: opera}
 ---
 **Salvato.** 1. "L'ospite inquietante" è un'immagine di Nietzsche ○, che Galimberti ha ripreso in un libro ⚠.
@@ -1404,7 +1440,9 @@ con uno sguardo indietro sui tre mesi:
 
 Le regole R1–R13 dell'[eredità](./06-eredita.md), riscritte con gli attriti della
 [simulazione](https://github.com/paol-imi/tattoo-shit/blob/claude/quirky-newton-qe5g9o/_progetto/v2/simulazione/attriti-importazione.md). Script `importa.mjs` [S]; i giudizi segnati [AI] si
-preparano prima, in una tabella che lo script legge.
+preparano prima, in una tabella che lo script legge. **Questa sezione è la sola norma dell'importazione**: le
+[regole d'importazione](./05-regole-importazione.md) (il file 05 del pacchetto) sono **superate** e
+usano nomi del v2 (`ritratto-cNN`, `per`, `importata`, `correggi`); valgono solo come storia (prova a freddo R7).
 
 | regola | che cosa |
 |---|---|
@@ -1414,14 +1452,20 @@ preparano prima, in una tabella che lo script legge.
 | **R4 convergenze** | C1–C25 → restituzioni `eredita`, `r-AAAAMMGG-0000-eredita-<slug>`, data del passo (riga di `## Evoluzione` o commit: A5), `aggancio: {a, passo}`, voci numerate con `rif` a un nodo o `~Nome`; `converge-con` con `tra` che ammette voci e `~Nome` (A1); voce ✧ solo se tutto il passo è del seme validato, altrimenti ◌ (A23) |
 | **R5 entità vive** | diventano nodi solo quelle nominate da te o dallo sguardo; slug dell'Atlante conservati; concetti e stili nominati da te → temi (A9); band → persone `mondo` (A10); Dostoevskij da U31 (A18); Napoleone resta alias di `resilienza-napoleonica` (A31) |
 | **R6 proposte** | tutto ciò che è di Claude entra solo dentro restituzioni `eredita`, ◌, che **non sbiadiscono** (A11) |
-| **R7 citazioni** | nelle tue frasi → nodi senza `esito` (⚠); quelle scelte da Claude → voci di `r-20261007-0000-eredita-citazioni`, **dopo** il protocollo sulle 17 vive (A8); se ne accogli una, il nodo nasce già con `esito` e `riferimento`; le correzioni sulle entità morte si fanno sull'Atlante, fuori dallo script |
+| **R7 citazioni** | se l'esito dell'eredità e il protocollo delle [citazioni](./08-citazioni.md) divergono, vince il protocollo (R43); nelle tue frasi → nodi senza `esito` (⚠); quelle scelte da Claude → voci di `r-20261007-0000-eredita-citazioni`, **dopo** il protocollo sulle 17 vive (A8); se ne accogli una, il nodo nasce già con `esito` e `riferimento`; le correzioni sulle entità morte si fanno sull'Atlante, fuori dallo script |
 | **R8 tatuaggi** | `raccolte/tatuaggi.md` con `nato-da: [s03]` e lo `scopo` da chiedere alla prima risposta sulla raccolta (A30); le tue idee sono frammenti con `serve-a`; le altre restituzioni `eredita` con `serve-a` ◌. Il brief `s02` non esiste: è una vista (A3) |
 | **R9 ricerche** | la tua frase è il frammento; la pista è `nomina` con `fruizione: da-fare`; lo stato della ricerca nell'Atlante va in `nota` (A12) |
 | **R10 pin** | link nel frammento; le descrizioni di Claude in `nota` |
 | **R11 emozioni** | le 10 parole di U1 → temi; `parla-di` per le tappe, `come: stato` solo per lo stato d'arrivo, con `vissuto` (A21); le 4 di Claude non entrano |
 | **R12 il resto** | un `link` alla scheda dell'Atlante |
 | **R13 le 8 domande** | `r-20261007-0000-eredita-domande` con 8 voci; la lettura di U30 ("vai con la mappa") le **accoglie**: nascono 8 temi ● (A14) |
-| **ordine** | frammenti → nodi → letture → restituzioni → `contesto.mjs` → verifica che nessun conto contenga l'importato |
+| **ordine** | **0. l'elenco dei nodi** (slug, nome, genere), fissato per primo da una sola sessione; poi frammenti → nodi → letture → restituzioni → **riconciliazione** → `contesto.mjs` → verifica che nessun conto contenga l'importato |
+| **riconciliazione** (R27) | se le parti sono scritte da subagent diversi, divergono negli slug (7 casi nella prova a freddo): un passo [S] unisce le parti, sostituisce ogni slug e ogni `~Nome` con quello dell'elenco 0 (per `chiave` e alias), e fallisce se resta uno slug fuori elenco |
+
+**Precisazioni della prova a freddo:** le convergenze C5, C8, C10 e C16 sono ◌, non ✧, perché contengono idee del seme non
+validate (R36, A23); `s04` fa nascere solo `divina-commedia` (Machiavelli, i lamed-vav e le tre metamorfosi restano testo,
+R17); U31 non fa nascere Galimberti, che al punto zero non esiste (B01, R18); U20 ha `altrui: true` (R48); le etichette e
+i numeri d'elenco di Claude dentro il seme si tolgono dal corpo (R28).
 
 Numeri attesi: ~35 frammenti, ~52 nodi, ~60 restituzioni `eredita`. Al giorno 1, 20 domande del banco su 25 hanno il
 materiale per rispondere; D21 (tatuaggi da Sisifo) si chiude con A1 (voci indicizzate per nome).
@@ -1575,6 +1619,7 @@ Totale: 32 frammenti U più `s01`, `s03`, `s04` = **35**. Nel nucleo U1, U3, U10
 | 75 | piano piatto per "smista"; hash di un solo file; verifica rapida dopo `applica`; `riserva/` scritta dall'AI | involucro con 7 operazioni anche nell'esempio; hash di `CLAUDE.md` + `prompt/<ciclo>.md` + `prompt/formato-piano.md`, `prompt/specchio.md`; verifica rapida dentro `crea-nodo`; `riserva/` solo da `applica.mjs`; Specchio nei giorni 1–7; ricordabili con gli importati | [prompt v3](./03-prompt-v3.md) §14; coordinatore |
 | 76 | ricordo dopo 60 giorni attivi, importati solo "nei primi mesi" | regola unica: importati ✦ da subito, nuovi dopo 60 giorni di calendario e ≥ 10 attivi; domenica senza parlanti muta; proposte pronte solo da una notte precedente; nessun ○ senza opera e passo | [seconda prova di restituzione](https://github.com/paol-imi/tattoo-shit/blob/claude/quirky-newton-qe5g9o/_progetto/v2/simulazione/attriti-restituzione.md) S2, S7, S8; coordinatore |
 | 77 | due memo della stessa chat senza regola | il successivo sostituisce solo se contiene il precedente come prefisso (crescita in coda, `n` continui); altrimenti conflitto per Specchio | [prompt v3](./03-prompt-v3.md) §14 n. 10; coordinatore |
+| 78 | schema con `if` su `cerchia: vita` senza `required`; nessun esempio in §3.5; "Chiedi" fuori schema; `nota` stretta; "galimberti" non trova `umberto-galimberti` | `required: [cerchia]` (verificato con ajv: 34 casi validi e non validi); esempio di restituzione; campo `chiede`; corpo della lettura per le cornici; regole cognome e nome; riconciliazione degli slug nell'importazione; 05 dichiarato superato; esito all'ingresso con regola unica; `applica.mjs` transazionale | [prova a freddo](https://github.com/paol-imi/tattoo-shit/blob/claude/quirky-newton-qe5g9o/_progetto/v2/prova-a-freddo.md) R7, R10, R12, R13, R23, R24, R27, R33, R36, R41, R43, R44, R51, R56, R60–R62, R67, R69 |
 
 **Scartati, con il motivo:**
 - *Togliere sogno, "ti ricordi?" e ritratto* (CS §1.2): restano. Il banco non li collaudava, ma la ricerca dice che la

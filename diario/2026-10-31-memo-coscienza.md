@@ -23,6 +23,9 @@ Voglio espandere l'archivio oltre i tatuaggi: una base di conoscenza personale, 
 
 **Le citazioni:** ho verificato 24 citazioni dell'Atlante sul testo, con un subagent per ognuna. 14 sono verificate, 9 simili e in Yalom la frase viene da Forster. Ho corretto la `## Citazione` delle note, tenendo le proposte nei loro blocchi: il dettaglio è in [Correzioni delle citazioni](/_progetto/v2/correzioni-citazioni.md).
 
+- Dopo la critica dell'utente ("troppo veloce"), un raffinamento profondo in sei giri, con decine di sessioni: ricerca (essenza, cervello, stato dell'arte, archivio reale, esempi), modello v3, banco di prova, voce e prompt, piano, prove sul campo (citazioni, identità, restituzione 10/14, tempo), correzione di 24 citazioni dell'Atlante, il pacchetto per l'implementazione e una prova a freddo (blocchi 0–4 costruiti davvero). Stato in [coordinamento](/_progetto/v2/coordinamento.md).
+- Il 2026-11-01, checkpoint: il lavoro prosegue su un altro account con il prompt di [handoff](/_progetto/handoff.md).
+
 ## Domande aperte
 
 - Il nome del nuovo repo: ci penso io.

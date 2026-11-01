@@ -46,6 +46,9 @@ tutte le mie frasi di questa chat, parola per parola, con l'ora; poi una **sezio
 frase, la risposta così come l'ho letta) con le sue voci. I numeri `n` corrono su **tutta** la conversazione (1, 2,
 3… anche attraverso le sezioni), come li hai scritti nelle risposte. Ogni voce ha il `perche`; ogni voce `mondo` ha il
 `riferimento` (opera e passo). `risponde-a` è l'id `r-…` di `contesto/` a cui la domanda si riferisce, oppure null.
+Un memo successivo della stessa chat **contiene il precedente come prefisso**: stessi turni, stesse voci, stessi testi,
+parola per parola; ciò che è nuovo va solo **in coda**, con i numeri `n` che continuano. Non correggere né riordinare
+ciò che hai già messo in un memo: altrimenti lo script lo rifiuta come conflitto.
 
 ```yaml
 memo: chat

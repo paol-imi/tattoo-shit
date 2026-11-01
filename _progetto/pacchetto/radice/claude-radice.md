@@ -24,8 +24,9 @@ la sua bozza in `ingresso/` mentre conversa (`prompt/specchio.md`).
 
 Un file, un solo scrittore:
 - `letture/` versione 1: "smista" (o Specchio che ne fa il lavoro); versione ≥ 2: solo "consolida" e le migrazioni.
-- nodi: creazione (compresi `esito` e `riferimento` della verifica rapida) e nuovi alias: "smista"; ogni altro campo e
-  le lapidi `fuso-in`: "consolida".
+- nodi: creazione (compresi `esito` e `riferimento` della verifica rapida, e i temi per i concetti che nomino io) e
+  nuovi alias: "smista"; ogni altro campo, i temi dedotti e le lapidi `fuso-in`: "consolida".
+- `riserva/`: solo "consolida", sempre attraverso `applica.mjs`.
 - restituzioni `risposta`: "smista" e Specchio; `lettera`: "consolida" ("lettera" la consegna e basta); `ritratto`:
   "ritratto"; `eredita`: solo l'importazione.
 - un atto (accogli, rifiuta, correggi) non riscrive mai la lettura di un altro frammento: sta nella lettura del
@@ -187,7 +188,10 @@ nominano.
 | `node scripts/migra/fondi.mjs DA IN` | la fusione di due temi (la chiama `applica.mjs` per un'operazione `lapide`) |
 | `node scripts/contesto.mjs` | rigenera `contesto/` |
 | `node scripts/verifica.mjs` | prima di ogni push: schema, hash, immutabilità, link, Q-nomi, ritornelli, tetto |
-Regole: si lavora su `main`. **Fencing**: se `rinnova` o `lascia` dicono che il lucchetto non è più tuo, abbandona
+Regole: si lavora su `main`. Il clone è pulito: se `node_modules/` manca, prima di tutto `npm ci`. Il piano si scrive
+in un file con lo strumento di scrittura dei file, **mai con un heredoc della shell** (perde gli apostrofi). Se
+`verifica.mjs` fallisce dopo `applica.mjs`, i file restano scritti: annulla con `git reset --hard` e `git clean -fd`
+(il lucchetto è già nel commit precedente), correggi il piano e rifai da `smista.mjs prepara`. **Fencing**: se `rinnova` o `lascia` dicono che il lucchetto non è più tuo, abbandona
 senza spingere niente. Un push solo se `verifica.mjs` passa; se fallisce, correggi una volta, poi non spingere e scrivi
 il motivo nel messaggio finale. Un frammento senza lettura è la coda: non si perde niente. Mai `git push --force`.
 
@@ -202,6 +206,8 @@ il motivo nel messaggio finale. Un frammento senza lettura è la coda: non si pe
   Scarti, Eredità, Ritorni con effetto, Mondo verificato, Nomi senza nodo, Ricordabili (quanti, e 20 id), In sospeso,
   Seme già usato e immagini già usate, Voce.
 Ognuno ha in testa `aggiornato`, `fino-a`, `token-stimati`.
+Il campo `prompt` di letture e restituzioni è l'hash di `CLAUDE.md`, `prompt/CICLO.md` e `prompt/formato-piano.md`
+messi in fila: cambiare uno di questi file è un cambio di lettore.
 
 ## Cercare nei file (Specchio)
 La ricerca **espande sempre la domanda**: prima di cercare scegli 6–10 parole d'espansione (sinonimi, parentele: per
@@ -210,6 +216,7 @@ La ricerca **espande sempre la domanda**: prima di cercare scegli 6–10 parole 
 
 ## Ricette per le domande
 Voci numerate `1.`, `2.`… (le fissa lo script), lunghezze della tabella.
+- **"le mie frasi"** senza argomento: le ultime 5 ✦ non delicate, più una della coda lunga.
 - **"le mie frasi su X"**: solo ✦, con data, in corsivo; il seme ✧ a parte, come voce mista; i delicati alla lettera,
   mai in testa. Nessuna formula tua.
 - **"che cosa pensavo a MESE"**: Posizioni (data, frase, dal, messa in discussione il, tensioni) e le mie frasi di quel

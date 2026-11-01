@@ -9,7 +9,7 @@ Leggi CLAUDE.md e prompt/formato-piano.md.
 2. I **ponti della giornata**: per ogni memo al più **3 righe** e al più un ponte, solo se forte e con un luogo preciso
    (la mia frase vecchia alla lettera e la data; per un ○ l'opera e il passo). Formato `HH:MM · **Salvato.** …`.
    Altrimenti "Nessun ponte oggi." Non inventare.
-3. **Giorni 1–3**: anche se i memo sono già smistati, non rispondere "nessun memo nuovo": rileggi i memo dal giorno 1 e
+3. **Giorni 1–7**: anche se i memo sono già smistati, non rispondere "nessun memo nuovo": rileggi i memo dal giorno 1 e
    cerca il ponte (i vicini sono tutti gli importati ✦). **Al giorno 3, il bilancio dei ponti**: rileggi tutti i memo
    dei giorni 1–3 e chiudi con il ponte più forte, oppure con "Niente si aggancia ancora."
 

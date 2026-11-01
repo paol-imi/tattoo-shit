@@ -39,10 +39,12 @@ A6. **Solo la prima domenica del mese: fusioni.** Dall'elenco dei temi di `mappa
 A7. `node scripts/contesto.mjs`: la `mappa.md` fresca, con i temi nuovi e le citazioni verificate. La fase B sceglie lì.
 
 ## Fase B: restituire
-B1. **Proposte pronte** (prima della soglia: una proposta pronta può far partire la lettera). Leggi `riserva/pronte.md`. Prepara al più una convergenza, un confronto
+B1. **Proposte pronte.** Leggi `riserva/pronte.md`. Prepara al più una convergenza, un confronto
     (prompt/confronto.md, se c'è un `contraddice` fresco) e un sogno (prompt/sogno.md, solo se `mappa.md` dice sogno
     acceso e non c'è stato un sogno questo mese), e aggiungile al file. Togli quelle sbiadite (30 giorni attivi).
-B2. **Lettera?** Tocca se, dall'ultima lettera, ci sono **≥ 2 frammenti parlanti**, oppure **≥ 1 e una proposta pronta**.
+B2. **Lettera?** Tocca se, dall'ultima lettera, ci sono **≥ 2 frammenti parlanti**, oppure **≥ 1 e una proposta pronta
+    da una notte precedente** (quella preparata stanotte in B1 non basta). Con 0 parlanti non arrivi qui: la domenica è
+    muta (Apertura, punto 3).
     Se no: niente lettera, la proposta resta in attesa; vai a B4.
 B3. **La lettera** (≤ 250 parole), un'operazione `restituzione` con `forma: lettera`:
     - in testa, sotto il titolo, la legenda in una riga (solo i segni usati);
