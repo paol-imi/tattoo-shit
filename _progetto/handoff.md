@@ -54,6 +54,28 @@ F. Seconda prova a freddo: una sessione NUOVA che legge SOLO il pacchetto, costr
 G. Solo allora parte l'implementazione vera nel repo nuovo, seguendo `pacchetto/prompt-avvio.md`, fino alla porta
    del blocco 6 (la prova della meraviglia).
 
+COME ORGANIZZARE LE SOTTOSESSIONI (metodo collaudato nel lavoro fatto finora):
+- Strumenti: create_session per aprire altre sessioni cloud (repo, branch di partenza e branch di uscita propri),
+  send_message per parlarsi, ReadNotifications per leggere i loro messaggi. Se mancano, usa subagent (Agent), in
+  sequenza e con compiti piccoli.
+- Ogni sessione nasce dal branch di raccolta del repo nuovo, lavora su un branch suo (`claude/<giro>-<area>`), scrive UN
+  file in `progetto/`, fa commit e push, poi ti manda al massimo 10-15 righe: solo le scoperte che CAMBIANO il
+  progetto (non quelle che lo confermano), i numeri e il percorso del file. Tu non leggi i documenti lunghi: unisci i
+  branch con git (i conflitti sugli indici si risolvono tenendo entrambe le righe) e lavori sui riassunti.
+- Il prompt di ogni sessione è autosufficiente: chi è (figlia del coordinatore, con il tuo session id per
+  rispondere), la fase, le MIE PAROLE verbatim, quali file leggere, il compito con l'uscita esatta, e la consegna
+  (file, commit, push, controlli, messaggio breve).
+- Il ritmo che ha funzionato: ricerca in parallelo → una sessione di sintesi o di modello → simulazioni e critiche
+  avversarie in parallelo → correzioni → prova a freddo. Le correzioni vanno a chi ha scritto il documento, con
+  send_message (conserva il contesto). Le sessioni nuove servono per gli sguardi indipendenti: i giudici sono sempre
+  separati da chi produce, e la prova a freddo legge solo il pacchetto.
+- Le divergenze tra sessioni le decidi tu, scegliendo la soluzione più semplice; le comunichi con una riga e le
+  scrivi nel registro delle decisioni.
+- Dopo ogni giro aggiorna `progetto/v2/coordinamento.md`: sessioni in corso, branch, decisioni, prossimi passi.
+  Serve a riprendere dopo una compattazione o un cambio di account.
+- Quota: con circa 20 sessioni pesanti in un giorno, l'account precedente ha esaurito il limite delle 5 ore. Tieni
+  al massimo 4-6 sessioni attive insieme, e preferisci i subagent per i compiti brevi.
+
 DECISIONI GIÀ PRESE (non riaprirle):
 - Cattura cieca, struttura derivata: io non compilo campi e non c'è una coda di validazione.
 - La meraviglia sta nella restituzione. La seconda prova ha fatto 10/14 alla lettera, e le correzioni di forma sono
