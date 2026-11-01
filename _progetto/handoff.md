@@ -18,7 +18,8 @@ con decine di sessioni, l'abbiamo progettato a fondo: ricerca, modello, simulazi
 prompt, piano, una prova "a freddo".
 
 DOVE STA TUTTO. Repo pubblico https://github.com/paol-imi/tattoo-shit, branch `claude/quirky-newton-qe5g9o`,
-cartella `_progetto/` (clonalo in lettura: da questo account non puoi scriverci). Leggi, con subagent:
+cartella `_progetto/` (clonalo in lettura: da questo account non puoi scriverci; se il clone è rifiutato, usa
+add_repo con accesso in lettura, il repo è pubblico). Leggi, con subagent:
 1. `_progetto/v2/coordinamento.md`: lo stato, le decisioni, la diagnosi chiave. Leggilo per primo.
 2. `_progetto/pacchetto/LEGGIMI.md`: il pacchetto per l'implementazione (modello v3, piano, banco, prompt, CLAUDE.md
    del nuovo repo in `radice/`, voce, telefono, protocolli). `prompt-avvio.md` è il prompt d'implementazione.
@@ -86,6 +87,7 @@ DECISIONI GIÀ PRESE (non riaprirle):
 - Un solo account claude.ai (quello del telefono) collegato al GitHub nuovo, con la GitHub App sul repo.
 - L'import legge tattoo-shit dal branch del checkpoint, che contiene le citazioni già corrette (24, vedi
   `v2/correzioni-citazioni.md`), non da main.
+- Finché l'import non è fatto, tattoo-shit e il branch del checkpoint non si toccano: sono la fonte dell'import.
 
 ANCORA DA ME: il nome del repo; un giudizio a pancia su `v2/restituzione.md` (che pezzo mi colpisce, quale mi lascia
 freddo); i passi manuali U1–U9 del piano, quando ci arriviamo.
